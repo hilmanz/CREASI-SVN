@@ -1,0 +1,267 @@
+/* Responsive changes */
+@media (max-width: 1440px) {	
+
+} 
+@media (max-width: 1280px) {
+
+}
+@media (max-width: 1200px) {
+
+}
+@media (max-width: 1100px) {
+.wrapper,.footwrap{
+	max-width:968px;
+}
+.newsHome .boxContent{
+	width:95%;
+	margin:0 auto;
+}
+.form-field select{
+	width:400px;
+}
+.telpInput{
+	width:85% !important;
+}
+#sekolah{
+	width:27%;
+}
+.telpRumah{
+	margin-right:5px;
+}
+.caption-loc{
+	margin-left:30px;
+}
+#Books-read .divBack{
+	position:relative;
+	z-index:110;
+}
+.form-field input[type="text"], .form-field input[type="email"], .form-field textarea{
+	width:66%;
+}
+.form-field #uploadFile{
+	width:40%;
+}
+.selectes{
+	width:66%;
+}
+.form-field .tinyText{
+	font-size:11px;
+}
+} 
+@media only screen and (max-width: 979px) {
+.wrapper,.footwrap{
+	padding:0 15px;
+}
+.col-left{
+	display:none;
+}
+.col-main{
+	width:100%;
+	padding:0;
+}
+#home .col-left{
+	width:40%;
+	margin:0 0 20px 0;
+	display:block;
+}
+#home .col-center{
+	width:60%;
+}
+#home .col-right{
+	float:none;
+	width:37%;
+}
+.newsHome .boxContent{
+	width:auto;
+}
+.form-field select{
+	width:107% !important;
+}
+}
+
+@media only screen and (max-width: 600px) {
+
+	
+}
+
+@media (max-width: 500px) {
+.form-registration .bigText{
+	margin:0px 0 0 30%;
+}
+.tittle-aboutUs{
+	text-align:left;
+	width:100%;
+	margin-bottom:10px;
+}
+.detail-aboutUs{
+	width:100%;
+	margin:0;
+}
+.registration{
+	display:inline-block !important;
+}
+.topmenu li:nth-child(3){
+	border-right:1px #FFF solid;
+}
+.topmenu li:nth-child(4){
+	border-right:none;
+}
+.topmenu li a{
+	padding:4px;
+}
+#home .col-left{
+	display:none;
+}
+.menuMobile{
+	display:block;
+}
+.mainMenu{
+	display:none;
+}
+.wrapper,.footwrap{
+	padding:0 5px;
+}
+.topmenu{
+	left:0;
+}
+.logo{
+	max-width:186px;
+	margin:20px 0 0 0;
+}
+.logo img{
+	width:100%;
+}
+#home .col-left{
+	width:100%;
+	margin:0;
+	text-align:center;
+}
+.bigMenu a,.bigMenu a.firstChild{
+	margin:10px auto;
+}
+#home .col-center{
+	width:100%;
+	margin-bottom:10px;
+	float:none;
+}
+.our-location,.downloadBrosur{
+	float:none;
+	margin:0 auto;
+}
+.newsHighlights .tittle{
+	background:none;
+}
+.newsText{
+	width:68%;
+}
+#home .col-right{
+	width:100%;
+}
+.button-link{
+	padding:5px 15px;
+}
+.col-3,.col-4{
+	width:100%;
+}
+.tittle-system img{
+	width:100%;
+}
+.tittle-page h1{
+	font-size:18px;
+}
+.tittle-system {
+	position: absolute;
+	left: 50%;
+	top: -12px;
+	margin-left: -125px;
+	max-width: 252px;
+}
+.box-books{
+	text-align:center;
+}
+.thumb-books,.thumb-photos{
+	margin:0 auto;
+}
+.location-content .boxContent,.boxContent{
+	padding:10px;
+}
+.eduThumbnail{
+	float:none;
+	margin:0 auto;
+}
+.eduText{
+	width:100%;
+	float:none;
+	text-align:center;
+	margin:10px 0 0 0;
+}
+.box-form,.box-form-regis{
+	padding:10px;
+}
+.form-field label>span,.selectes,.form-registration label>span,#sekolah,#kelas{
+	width:100%;
+}
+.form-field input[type="text"], .form-field input[type="email"], .form-field textarea, .form-field select, .form-field #uploadFile,
+.form-registration input[type="text"], .form-registration input[type="email"], .form-registration textarea, .form-registration select, .form-registration #uploadFile{
+	width:100%;
+}
+.form-registration .iconsTelp{
+	width:12% !important;
+}
+.telpInput{
+	width:147% !important;
+}
+.icon-mobile{
+	clear:both;
+}
+.kelasInput{
+	margin:0;
+	clear:both;
+	float:none !important;
+}
+.form-field .tinyText{
+	margin:5px 0;
+	font-size:11px;
+}
+.form-field textarea{
+	position:relative;
+	z-index:2;
+}
+.faq-point h4{
+	font-size:14px;
+}
+.detail-faq{
+	font-size:11px;
+}
+.tittle-regis img{
+	width:100%;
+}
+.table-jadwal table thead tr th{
+	font-size:14px;
+}
+.table-jadwal table tbody tr td{
+	font-size:11px; 
+}
+.thumb-system{
+	margin:0 auto;
+}
+#nav ul, .topmenu ul{
+	text-align:center;
+}
+.mobileCopy{
+	display:block !important;
+}
+.copyright{
+	display:none;
+}
+.flex-control-nav{
+	bottom:-5px !important;
+}
+.flex-control-paging li a{
+	width:5px !important;
+	height:5px !important;
+}
+}
+@media (max-width: 480px) {
+
+}

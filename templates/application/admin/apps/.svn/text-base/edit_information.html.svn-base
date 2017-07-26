@@ -1,0 +1,66 @@
+{literal}
+<script type="text/javascript">
+tinymce.init({
+    selector: ".textarea",
+	plugins: "paste",
+    theme: "modern",
+	menubar:false,
+	statusbar:false,
+	file_browser_callback : 'myFileBrowser',
+
+    plugins: [
+        "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+        "searchreplace wordcount visualblocks visualchars code fullscreen",
+        "insertdatetime media nonbreaking save table contextmenu directionality",
+        "emoticons template paste textcolor colorpicker textpattern"
+    ],
+    toolbar1: " styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image ",
+    
+    image_advtab: true,
+    templates: [
+        {title: 'Test template 1', content: 'Test 1'},
+        {title: 'Test template 2', content: 'Test 2'}
+    ]
+});
+</script>
+
+{/literal}
+<div class="page_section" id="project-page">
+    <div id="container">
+        <div class="titlebox">
+            <h2 class="fl"><span class="icon-books">&nbsp;</span> Edit Announcement</h2>
+            {*}<h2 class="fr"><a href="{$basedomain}information" class="button2">Back</a></h2>{/*}
+        </div><!-- end .titlebox -->
+        <div class="content">
+            <div class="summary">
+                <!--<p>Creasi Management System helps you to overview all your Information.  </p>
+		-->
+            </div><!-- end .summary -->
+
+            <form id="forms" class="forms" method="post" action="">
+
+            <div id="new-project" class="boxcontent">
+                <section class="step1">
+                    <!--<h3>Information</h3>
+		    -->
+                    <h3>{$list.page} Page</h3>
+                    <div class="row">
+                        <label for="title">Announcement : <br></label>
+						  <input id="title" name="id" type="hidden" value="{$list.id}" class="required" >
+                          <textarea style="width: 615px; height: 122px;" id="information" name="address" type="text"  class="required textareinput textarea">{$list.info}</textarea><br><label class="msg_name" style="color: red;">{$status.msgpr}</label>
+                    </div><!-- end .row -->
+                    
+                    <input type="hidden" name="submit" value="1">
+                        <input type="submit" value="Save" class="fr button3"  />
+						
+						 <a href="{$basedomain}information" class="fr button4">Cancel</a>
+                        <small class="msg">{$status.msgee}</small>
+                        <small class="msg">{$status.msg}</small>
+                    </div><!-- end .row -->
+                </section>
+            </div><!-- end #wizard -->
+		
+            </form>
+        </div><!-- end .content -->
+    </div><!-- end #container -->
+</div><!-- end #home -->

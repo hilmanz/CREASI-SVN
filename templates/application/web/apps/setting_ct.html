@@ -1,0 +1,221 @@
+<div class="page_section" id="jobBoard">
+    <div id="metapage">
+        <div class="wrapper">
+            <h1 class="page-title fl">{$rolenya} Dashboard</h1>
+            <div class="breadcumb fr">
+                <a href="index.php">Home</a> <span>/</span> <a>{$rolenya} Dashboard</a>
+            </div>
+        </div><!-- end .wrapper -->   
+    </div><!-- end #metapage -->
+    <div id="jobBoardList" class="section"> 
+        <div class="wrapper">
+        	{include file="application/web/widgets/left_menudashboard.html"}  
+        	<div class="col-content ">
+			 {include file="application/web/widgets/notibar.html"}  
+            	 <div class="containers setting">
+                 		<div class="headingform">
+                			<h4>Change your basic account settings here.</h4>
+						</div>
+                        <form class="theforms centerform settingForms">
+				
+				  <div class="" {if $pesan_erorr } style="display:none" {/if}>
+						{*} <div class="rows">
+                                <div class="col2">
+                                  <label>Custom Url</label> 
+                                 </div>
+                                <div class="col2">
+									<span class="blockleft">creasi.co.id/user/acitjazz</span>
+                                </div><!-- end .col2 -->
+                             </div><!-- end .rows -->  {/*} 
+						
+						<div class="rows">
+						<div class="col2">	
+							  <label>Email  :  </label>
+						</div>	
+						 <div class="col2">
+                         	<input type="text" id="emailold" name="emailold" value="{$list.email}"  readonly />
+							{*}<span class="blockleft">{$list.email}</span>{/*}
+                         </div><!-- end .col2 -->
+								
+							    
+						 </div><!-- end .rows -->   
+						<div class="rows">
+							<div class="col2">	
+							  <label>Password  :  </label>
+							</div>	
+							<div class="col2">
+                            	<input type="password" id="passwordold" value="**********" name="passwordold" readonly />
+								{*}<span class="blockleft">**********</span>{/*}
+							</div>	  
+							    
+						 </div><!-- end .rows -->   
+                         {*}
+						 <div class="rows">
+							<div class="col2">
+							  <label>Default Langguage :  
+							 </div>	
+							<div class="col2">
+								<span class="blockleft">{$list.language}</span>
+							</div>	  
+							
+						 </div><!-- end .rows -->  
+						  {/*} 
+						  <div class="rows">
+							<div class="col2">
+							  <label>Privacy :  
+							 </div>	
+							<div class="col2">
+                            	{if $list.privacy==1}
+                            	<input type="text" id="privacy" value="Show profile in Talent Board" name="privacyHold" readonly />
+                                {else}
+                                <input type="text" id="privacy" value="Hide profile in Talent Board" name="privacyHold" readonly />
+                                {/if}
+								
+                                {*}<span class="blockleft">{if $list.privacy==1} Show profile in Talent Board {else} Hide profile in Talent Board {/if}</span>{/*}
+							</div>	  
+							
+						 </div><!-- end .rows -->  
+						 <div class="row">
+								<input type="button" class="button1 edit fr" value="Edit" />
+							 
+								
+							
+						</div><!-- end .rows --> 
+					</div>
+			</form>
+				
+			</div>
+				 <div class="containers editprofil" {if $pesan_erorr=='' } style="display:none" {/if}>
+                 		
+                 		<div class="headingform">
+                			<h4>Change your basic account and language settings here.</h4>
+						</div>
+                        <form  method="post"  action="" class="theforms centerform">
+                            <!-- <div class="rows">
+                                <div class="col2">
+                                  <label>Custom Url</label> 
+                                 </div>
+                                <div class="col2">
+                                    <input type="text" placeholder="creasi.co.id/user/USERNAME" />
+                                </div>
+                             </div> --><!-- end .rows -->  
+                            <div class="rows">
+                                <div class="col2">
+                                  <label>Email</label> 
+                                 </div>
+                                <div class="col2">
+                                 <input type="text" id="emailold" name="emailold" value="{$list.email}" placeholder="Enter your email" readonly /> 
+                                  <input type="text" id="emailnew" name="emailnew" class="emailnew" placeholder="New Email Address" />
+                                  <input type="text" id="emailconfirm" name="emailconfirm" class="emailconfirm" placeholder="Confirm Email Address" />
+								   <label class="fr email_no red">{$email_no}</label>
+                                </div><!-- end .col2 -->
+                             </div><!-- end .rows --> 
+                            <div class="rows">
+                                <div class="col2">
+                                  <label>Password</label> 
+                                 </div>
+                                <div class="col2">
+                                  <input type="password" id="passwordold" name="passwordold" placeholder="Current Password" />
+                                  <input type="password" id="newpassword" name="newpassword" class="newpassword" placeholder="New Password" />
+                                  <input type="password" id="confirmpassword" name="confirmpassword" class="confirmpassword" placeholder="Confirm New Password" />
+								   <label class="fr password_no red">{$password_no}</label>
+                                </div><!-- end .col2 -->
+                             </div><!-- end .rows --> 
+                            <!-- <div class="rows">
+                                <div class="col2">
+                                  <label>Default Language</label> 
+                                 </div>
+                                <div class="col2">
+                                      <div class="selectbox">
+                                      <select id="language" name="language">
+                                        <option value="English">English</option>
+                                        <option value="Indonesia">Indonesia</option>
+                                      </select>
+                                      </div>
+                                </div><!-- end .col2 -->
+                             <!-- </div>  end .rows -->
+                            <div class="rows">
+                                <div class="col2">
+                                  <label>Privacy</label> 
+                                 </div>
+                                <div class="col2">
+                                      <div class="selectbox">
+										  <select name="privacy">
+											<option value="1" {if $list.privacy==1} selected="selected" {/if} > Show profile in Talent board </option>
+											<option value="0"  {if $list.privacy==0} selected="selected" {/if}  > Hide profile in Talent board </option>
+										  </select>
+                                      </div>
+                                </div><!-- end .col2 -->
+                             </div><!-- end .rows -->    
+                            <div class="rows">
+                                <input type="submit" class="button2" value="CANCEL" />
+								<input type="hidden" name="submit" value="1" />
+                                <input type="submit" class="button1 submitsetting" value="SAVE" />
+                             </div><!-- end .rows -->    
+                        </form>
+                </div><!-- end .containers -->    
+            </div><!-- end .col-content -->   
+        </div><!-- end .wrapper -->    
+    </div><!-- end #jobBoardList --> 
+</div><!-- end #jobBoard -->
+
+<script>
+{literal}
+$(document).ready(function(){
+                $('.edit').click(function(e){
+					console.log('aaaa');
+						$('.setting').hide();
+						$('.editprofil').show();
+					});
+				  $('.editproses').click(function(e){
+						$('.setting').show();
+						$('.editprofil').hide();
+					});
+			$('.submitsetting').click(function()
+			{	
+				var email_no='.email_no';
+				$(email_no).html(' ');
+				var password_no='.password_no';
+				$(password_no).html(' ');
+				var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/; 
+				var valid='';
+				
+				if($('.emailnew').val())
+				{
+					 if(!$('.emailnew').val().match(mailformat))  
+					{  
+						$(email_no).html(' This email is incorrect format (e.g. example@creasi.co.id)');
+						
+						valid='ada';
+					} 
+					else if($('.emailnew').val()!=$('.emailconfirm').val())
+					{
+						$(email_no).html('The Email you entered does not match');
+						valid='ada';
+					}
+				}
+			
+				//console.log($('.emailnew').val()+'!='+$('.emailconfirm').val());return false;
+				if($('.newpassword').val())
+				{
+					if($('.newpassword').val()!=$('.confirmpassword').val())
+					{
+						$(password_no).html('The Password you entered does not match');
+						valid='ada';
+					}
+				}
+				
+				if(valid)
+				{
+					return false;
+				}
+				else
+				{
+					return true;
+				}
+				
+			});
+	});
+	{/literal}
+	</script>
+					

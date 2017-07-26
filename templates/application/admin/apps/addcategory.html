@@ -1,0 +1,57 @@
+
+<div class="page_section" id="project-page">
+    <div id="container">
+        <div class="titlebox">
+            <h2 class="fl"><span class="icon-list2">&nbsp;</span> Add New Category</h2>
+            {*}<h2 class="fr"><a href="{$basedomain}categorymanagemant" class="button2">Back</a></h2>{/*}
+        </div><!-- end .titlebox -->
+        <div class="content">
+
+            <form id="forms" class="forms" method="post" action="">
+            <div id="new-project" class="boxcontent">
+                <section class="step1">
+                    <div class="row">
+                        <label for="title" style="width:20%; float:left;">Category Name<br></label>
+                        <input id="namecategory" name="namecategory" type="text" class="required" ><br><label class="msg_name" style="color: red;">{$status.msgpr}</label>
+                    </div><!-- end .row -->
+					<div class="row">
+                    	<div style="width:20%; float:left;">
+                        	<label for="title" >Sub Category Name<br></label>
+                        </div>
+                        <div style="width:80%; float:left;">
+                            <div class="subcategory" style="width:70%; float:left;">
+                                <div class="row">
+                                    <input id="namesubcategory" name="namesubcategory[]" type="text" class="required" ><br><label class="msg_name" style="color: red;">{$status.msgpr}</label>
+                                </div>
+                            </div>
+                        </div>
+				   </div><!-- end .row -->
+					<div class="row">
+					
+						<label for="title" class="add-category"><a href="javascript:void(0)">+ Add sub Category</a><br></label>
+                    </div><!-- end .row -->
+                    <input type="hidden" name="submit" value="1">
+                        <input type="submit" value="Save" class="fr button3"  />
+						 <a href="{$basedomain}categorymanagemant" class="fr button4">Cancel</a>
+                        <small class="msg">{$status.msgee}</small>
+                        <small class="msg">{$status.msg}</small>
+                    </div><!-- end .row -->
+                </section>
+            </div><!-- end #wizard -->
+            </form>
+        </div><!-- end .content -->
+    </div><!-- end #container -->
+</div><!-- end #home -->
+<script>
+{literal}
+	$('.add-category').click(function()
+	{
+			
+			if($(".subcategory:last").find('.row').find('#namesubcategory').val()!='')
+			{
+				$(".subcategory:last").clone().insertAfter('.subcategory:last');
+				$(".subcategory:last").find('.row').find('#namesubcategory').val('');
+			}
+	});
+{/literal}
+</script>

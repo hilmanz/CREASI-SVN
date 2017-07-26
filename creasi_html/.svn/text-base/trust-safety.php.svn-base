@@ -1,0 +1,47 @@
+<div class="page_section" id="staticpage">
+    <div id="metapage">
+        <div class="wrapper">
+            <h1 class="page-title fl">Trust & Safety</h1>
+            <div class="breadcumb fr">
+                <a href="index.php">Home</a> <span>/</span> <a>Trust & Safety</a>
+            </div>
+        </div><!-- end .wrapper -->   
+    </div><!-- end #metapage -->
+    <div id="theform" class="section"> 
+        <div class="wrapper">
+        	<div class="cols">
+                <div class="singlebox">   
+                    <div class="titleboxs">   
+                        <h2>Trust & <span class="red">Safety</span></h2>
+                        <p>This is an online job platform for Creative Talents and Talents Seekers to find each other. Your safety is extremely important to us and we try to implement safety measures to create an effective and convenient process for everyone. All Talent Seekers must register and provide legal identification prior to posting jobs at our Website. Also, we moderate all job posts to screen possible scam jobs. However, it is still every user's responsibility to behave and keep them safe.</p>
+                    </div><!-- end .titlebox -->
+                    <div class="entries">
+                    	<h3 class="blocktitle">Here are some tips to help you keep safe:</h3>
+                    	<ul>
+                        	<li>Select carefully about the personal things you share online. You should not publicly share information about where you live, where you can be found or your phone number. Your contact details such as phone number and email will only be shared to registered Talent Seekers who have posted a job relevant for you. </li>
+
+                       	<li>Every Creative Talent under 18 years old must gain their parents/guardian's permission. For safety reasons, please don't include any direct contact information on your child's profile, such as phone numbers or email addresses, or any places where the child may be located (schools, etc.).</li>
+
+                       	<li>We automatically disable comments on Creative Talents profiles that are less than 18 years old profile for safety reasons. However, their profile will still appear in our Talent Board.</li>
+
+                       	<li>Never send money to anyone. If you are looking for a job or project, you should never send money even if the Talent Seeker claims it is normal to do so.</li>
+
+                       	<li>It's possible to be contacted by a scammer even before the audition stage, by receiving an email from someone pretending to be an agent. Don't reply to the sender, and definitely don't send them any personal details or money! Report the email by contacting us.</li>
+
+                       	<li>If you are invited for an audition, make sure to inform a friend or family member the details; the person who invited you, the place and time. You have the right to reject any situation or requirements that you do not feel comfortable with.</li>
+
+                       	<li>Trust your instincts; if something seems suspicious or too good to be true, then it probably is. If someone contacts you with a job offer that is unclear but promises a very big reward, you should be cautious.</li>
+
+                       	<li>You will only ever be contacted by Creasi staff via an email address ending in @creasi.co.id. If anyone contacts you claiming to be from Creasi, please carefully check the information in their email and their 'from' address.</li>
+
+                       	<li>If you think you might be dealing with a scammer, or you've already been scammed, please contact us </li>
+                    </div><!-- end .entries -->
+                </div><!-- end .singlebox -->
+                <div class="centerbox">   
+                    <div class="circleicon"><img src="images/icon_phone.png" /></div>
+                    <h3>If you have any questions about this policy, please contact us at <a href="mailto:info@creasi.co.id" class="red">info@creasi.co.id</a> <br />This policy was last modified on January 1, 2015</h3>
+                </div><!-- end .centerbox -->
+            </div><!-- end .cols -->   
+        </div><!-- end .wrapper -->    
+    </div><!-- end #theform --> 
+</div><!-- end #staticpage -->

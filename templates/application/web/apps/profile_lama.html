@@ -1,0 +1,1093 @@
+<div class="page_section" id="profilepage">
+    <div id="metapage">
+        <div class="wrapper">
+            <h1 class="page-title fl">Creative Talent Profile</h1>
+            <div class="breadcumb fr">
+                <a href="index.php">Home</a> <span>/</span> <a>Creative Talent Profile</a>
+            </div>
+        </div><!-- end .wrapper -->   
+    </div><!-- end #metapage -->
+		
+    <div id="profileboard" class="section"> 
+	{if $list}
+		{section name=i loop=$list} 
+        <div class="wrapper">
+        	<div class="cols">
+            	<form class="theforms" id="bioinput">
+                <div class="blocks">
+                	<div class="coverprofile">
+                    	<img src="{$basedomain}assets/content/cover.jpg" />
+                    </div><!-- END .coverprofile -->
+                </div><!-- END .blocks -->
+                <div class="sectionsrow profilebox">
+                  <div class="profilethumb thumb"><img src="{$basedomain}assets/content/u1.jpg" /></div>
+                  <div class="profileentry">
+                  	<div class="rows">
+                        <div class="col2">
+                            <label>First Name</label>
+                            <input id="name" name="name" type="text" value='{$list[i].name}'  />
+                        </div>
+                        <div class="col2">
+                            <label>Last Name</label>
+                            <input id="lastname" name="lastname" type="text" value='{$list[i].lastname}'  />
+                        </div>
+                    </div>
+                  	<div class="rows">
+                        <label>Location</label>
+                        <div class="rowin">
+                            <div class="col2">
+                                <div class="selectbox">
+                                <select class="provincy"   name="provincy">
+								  <option>Please select your province* </option>
+										{section name=n loop=$provincy}
+										{if $provincy[n].province==$list[i].provincy}
+										<option value="{$provincy[n].province}" selected=selected>{$provincy[n].province}</option>
+										{else}
+										<option value="{$provincy[n].province}" >{$provincy[n].province}</option>
+										{/if}
+										{/section}
+								  </select>
+                                </div>
+                            </div>
+                            <div class="col2">
+                                <div class="selectbox">
+                                  <select class="city" id='city' name="city" >
+									<option class="" value="{$list[i].city}">{$list[i].city}</option>
+								  </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  	<div class="rows">
+                        <div class="socialbox">
+                            <div class="col2">
+                                 <a href="#" target="_blank"><i class="ico icon-facebook">&nbsp;</i></a>
+                                 <input type="text" name='fb' value="{$list[i].fb_link}" />
+                            </div>
+                            <div class="col2">
+                                 <a href="#" target="_blank"><i class="ico icon-twitter">&nbsp;</i></a>
+                                <input type="text" name='twitter'  value="{$list[i].twitter_link}" />
+                            </div>
+                        </div><!-- END .socialbox -->
+                    </div><!-- END .rows -->
+                  	<div class="rows">
+                        <div class="socialbox">
+                            <div class="col2">
+                                 <a href="#" target="_blank"><i class="ico icon-youtube">&nbsp;</i></a>
+                                 <input type="text" name='youtube'  value="{$list[i].youtube_link}" />
+                            </div>
+                            <div class="col2">
+                                 <a href="#" target="_blank"><i class="ico icon-instagram">&nbsp;</i></a>
+                                <input type="text" name='instagram'  value="{$list[i].instagram_link}" />
+                            </div>
+                        </div><!-- END .socialbox -->
+                    </div><!-- END .rows -->
+                  	<div class="rows">
+						<input type='hidden' name='bioinput' value='{$list[i].user_id}'>
+                    	<input type="submit" value="SAVE" class="button1" />
+                    	<input type="button" value="CANCEL" class="button2" />
+                    </div><!-- END .rows -->
+                  </div><!-- END .profileentry -->
+                </div><!-- END .sectionsrow -->
+               </form>
+{literal}
+<script>
+$().ready(function(){
+$('.provincy').change(function(){
+	var id = $('.provincy option:selected').val();
+	console.log(id);
+	$.ajax ({
+				type	 : 'POST', 
+				url	 :  basedomain+'personal/ajaxcity' , 
+				data:{id:id},
+				dataType:'json',
+				success	: function (result) 
+				{ 
+					if(result.status==1)
+								{
+									
+									var str="";
+									$.each(result.data,function(kal,val){
+						
+										str +='<option value="'+val.city+'">'+val.city+'</option>';
+										
+									});
+									
+									$('#city').html(str);
+								
+								}
+				}
+			});
+
+		});
+	});
+
+$().ready(function(){
+                $('#bioinput').submit(function(e){
+                    e.preventDefault();
+                    $.ajax({
+                        'type': 'POST',
+                        'url': basedomain+'personal/editpersonal',
+                        'data': $(this).serialize(),
+						'dataType':'json',
+                        'success': function(result){
+						
+							alert('Success !');
+						
+						}
+					});
+				});
+			});
+						
+
+</script>
+{/literal}
+                <div class="sharebox">
+                    <h4>Share This Profile</h4> 
+                    <a href="#"><i class="ico icon-facebook">&nbsp;</i></a>
+                    <a href="#"><i class="ico icon-twitter">&nbsp;</i></a>
+                    <a href="#"><i class="ico icon-envelope">&nbsp;</i></a>
+                </div>
+            	<div class="euTab">
+                  <ul>
+                    <li><a href="#my-bio">BIO</a></li>
+                    <li><a href="#my-photographer">Photographer</a></li>
+                    <li><a href="#my-portfolio">Portfolio</a></li>
+                  </ul>
+                  <div id="my-bio" class="tab-content">
+                  	<div class="tabentry">
+                        <div class="sectionsrow">
+                            <div class="sections">
+						
+            					<form class="theforms" id="forminput">
+                                <div class="rows">
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <td colspan="3">
+                                            <textarea name="testimoni">{$list[i].testimoni}
+                                            </textarea>
+                                        </td>
+                                      <tr>
+                                        <td width="220"><strong>Nickname</strong></td>
+                                        <td width="10">:</td>
+                                        <td><input id="nickname" name="nickname" type="text" value='{$list[i].nickname}'  /></td>
+                                      </tr>
+                                      <tr>
+                                        <td><strong>Phone Number</strong></td>
+                                        <td>:</td>
+                                        <td><input id="telp" name="telp" type="text" value='{$list[i].no_tlp}' /></td>
+                                      </tr>
+                                      <tr>
+                                        <td><strong>Email Address</strong></td>
+                                        <td>:</td>
+                                        <td><input id="email" name="email" type="text" value='{$list[i].email}' /></td>
+                                      </tr>
+                                      <tr>
+                                        <td colspan="3">
+                                            <div class="smallbtn">
+											<input type='hidden' name='bioid' value='{$list[i].user_id}'>
+                                                <button type="submit" class="button1" value="SAVE" /> SAVE</button>
+                                                <button type="submit" class="button2" />CANCEL </button>
+                                            </div>
+                                        </td>
+                                      </tr>
+                                    </table>
+                                    </form>
+										{/section}
+									{/if}
+									
+{literal}
+<script>
+ $().ready(function(){
+                $('#forminput').submit(function(e){
+                    e.preventDefault();
+                    $.ajax({
+                        'type': 'POST',
+                        'url': basedomain+'personal/editpersonal',
+                        'data': $(this).serialize(),
+						'dataType':'json',
+                        'success': function(result){
+						
+						alert('Success !');
+						
+						}
+					});
+				});
+			});
+						
+
+</script>
+{/literal}
+                                </div><!-- END .rows -->
+                            </div><!-- END .sections -->
+                        </div><!-- END .sectionsrow -->
+                        <h3 class="sectiontitle">Parent / Guardian <span class="red">Info</span></h3>
+                        <div class="sectionsrow">
+                            <div class="sections">
+                                <div class="rows">
+								{if $load}
+								{section name=j loop=$load}
+            					<form class="theforms " id="GuardianInfo">
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                      <tr>
+                                        <td width="220"><strong>Name of parent / guardian</strong></td>
+                                        <td width="10">:</td>
+                                        <td><input type="text" name="nparent" value="{$load[j].name_parent}" /></td>
+                                      </tr>
+                                      <tr>
+                                        <td><strong>Relation with talent
+										
+
+
+										</strong></td>
+                                        <td>:</td>
+                                        <td><input type="text" name='r_talent' value="{$load[j].name_parent}" /></td>
+                                      </tr>
+								
+                                      <tr>
+                                        <td><strong>Date of birth</strong></td>
+                                        <td>:</td>
+                                        <td>
+                                          <div class="selectbox w50">
+                                          <select name="parentdate"  >
+										  <option>Date</option>
+										  {assign var="testsplit" value="-"|explode:$load[j].birth}
+										  {assign var="year" value="$testsplit[0]"}
+										  {assign var="month" value="$testsplit[1]"}
+										  {assign var="day" value="$testsplit[2]"}
+										  {assign var="ys" value=$smarty.now|date_format:"%Y" }
+											{assign var="tahunsekarang" value=$ys+1 }
+											
+										  {section name=foo start=1 loop=32 step=1}
+										  {if $day==$smarty.section.foo.index}
+												<option value='{$smarty.section.foo.index}' selected>{$smarty.section.foo.index}</option>
+										  {else}
+												<option value='{$smarty.section.foo.index}' >{$smarty.section.foo.index}</option>
+										  {/if}
+										  {/section}
+												
+													
+											  </select>
+                                          </div>
+                                          <div class="selectbox w50">
+													  <select name="parentmonth" >
+															  <option>Month</option>
+										  {section name=foos start=1 loop=13 step=1}
+										  {if $month==$smarty.section.foos.index}
+										  
+												{if $smarty.section.foos.index=='1'}
+												<option value='{$smarty.section.foos.index}' selected>January</option>
+												{/if}
+												{if $smarty.section.foos.index=='2'}
+												<option value='{$smarty.section.foos.index}' selected>Febuary</option>
+											
+												{/if}
+												{if $smarty.section.foos.index=='3'}
+												<option value='{$smarty.section.foos.index}' selected>March</option>
+												{/if}
+												{if $smarty.section.foos.index=='4'}
+												<option value='{$smarty.section.foos.index}' selected >April</option>
+												{/if}
+												{if $smarty.section.foos.index=='5'}
+												<option value='{$smarty.section.foos.index}' selected >Mei</option>
+												{/if}
+												{if $smarty.section.foos.index=='6'}
+												<option value='{$smarty.section.foos.index}' selected>Juni</option>
+												{/if}
+												{if $smarty.section.foos.index=='7'}
+												<option value='{$smarty.section.foos.index}' selected >Juli</option>
+												{/if}
+												{if $smarty.section.foos.index=='8'}
+												<option value='{$smarty.section.foos.index}' selected>Agustus</option>
+												{/if}
+												{if $smarty.section.foos.index=='9'}
+												<option value='{$smarty.section.foos.index}' selected>September</option>
+												{/if}
+												{if $smarty.section.foos.index=='10'}
+												<option value='{$smarty.section.foos.index}' selected >Oktober</option>
+												{/if}
+												{if $smarty.section.foos.index=='11'}
+												<option value='{$smarty.section.foos.index}' selected>November</option>
+												{/if}
+												{if $smarty.section.foos.index=='12'}
+												<option value='{$smarty.section.foos.index}' selected>Desember</option>
+												{/if}	
+										 
+										 {else}
+												{if $smarty.section.foos.index=='1'}
+												<option value='{$smarty.section.foos.index}' >January</option>
+											
+												{/if}
+												{if $smarty.section.foos.index=='2'}
+												<option value='{$smarty.section.foos.index}' >Febuary</option>
+												{/if}
+												{if $smarty.section.foos.index=='3'}
+												<option value='{$smarty.section.foos.index}' >March</option>
+												{/if}
+												{if $smarty.section.foos.index=='4'}
+												<option value='{$smarty.section.foos.index}'  >April</option>
+												{/if}
+												{if $smarty.section.foos.index=='5'}
+												<option value='{$smarty.section.foos.index}'  >Mei</option>
+												{/if}
+												{if $smarty.section.foos.index=='6'}
+												<option value='{$smarty.section.foos.index}' >Juni</option>
+												{/if}
+												{if $smarty.section.foos.index=='7'}
+												<option value='{$smarty.section.foos.index}'  >Juli</option>
+												{/if}
+												{if $smarty.section.foos.index=='8'}
+												<option value='{$smarty.section.foos.index}' >Agustus</option>
+												{/if}
+												{if $smarty.section.foos.index=='9'}
+												<option value='{$smarty.section.foos.index}' >September</option>
+												{/if}
+												{if $smarty.section.foos.index=='10'}
+												<option value='{$smarty.section.foos.index}'  >Oktober</option>
+												{/if}
+												{if $smarty.section.foos.index=='11'}
+												<option value='{$smarty.section.foos.index}'>November</option>
+												{/if}
+												{if $smarty.section.foos.index=='12'}
+												<option value='{$smarty.section.foos.index}'>Desember</option>
+												{/if}	
+											
+										  {/if}
+										  {/section}				 
+																										
+															  </select>
+                                          </div>
+                                          <div class="selectbox w50">
+                                           <select name="parentyear">
+										  
+										     {section name=tahun start=1964 loop=$tahunsekarang step=1}
+												
+														{if $year==$smarty.section.tahun.index}
+														<option value='{$smarty.section.tahun.index}' selected>{$smarty.section.tahun.index}</option>
+														{else}
+														<option value='{$smarty.section.tahun.index}' >{$smarty.section.tahun.index}</option>
+														{/if}
+														  
+												  {/section}
+												  
+												  
+												  </select>
+												  
+												
+												  
+                                          </div>
+                                      </td>
+                                      </tr>
+                                      <tr> 
+                                        <td><strong>Phone number </strong></td>
+                                        <td>:</td>
+                                        <td><input type="text" name='phone_parent' value="{$load[j].phone}" /></td>
+                                      </tr>
+                                      <tr>
+                                        <td><strong>ID card number</strong></td>
+                                        <td>:</td>
+                                        <td><input type="text" name='id_parent' value="{$load[j].identitas}" /></td>
+                                      </tr>
+                                      <tr>
+                                        <td><strong>Address</strong></td>
+                                        <td>:</td>
+                                        <td><input type="text" name='parent_address' value="{$load[j].address}" /></td>
+                                      </tr>
+                                      <tr>
+                                        <td><strong>Email Address</strong></td>
+                                        <td>:</td>
+                                        <td><input type="text" name='parent_email' value="{$load[j].email}" /></td>
+                                      </tr>
+                                      <tr>
+                                        <td colspan="3">
+                                            <div class="smallbtn">
+											<input type="hidden" name="guardian" value="{$load[j].id}" >
+                                                <input type="submit" value="SAVE" class="button1" />
+                                                <input type="button" value="CANCEL" class="button2" />
+                                            </div>
+                                        </td>
+                                      </tr>
+                                    </table>
+                                    </form>
+								
+{literal}
+<script>
+ $().ready(function(){
+                $('#GuardianInfo').submit(function(e){
+                    e.preventDefault();
+                    $.ajax({
+                        'type': 'POST',
+                        'url': basedomain+'personal/editpersonal',
+                        'data': $(this).serialize(),
+						'dataType':'json',
+                        'success': function(result){
+						
+						alert('Success !');
+						
+						}
+					});
+				});
+			});
+						
+
+</script>
+{/literal}				
+                                </div><!-- END .rows -->
+                            </div><!-- END .sections -->
+                        </div><!-- END .sectionsrow -->
+						
+						
+						
+                        <h3 class="sectiontitle">Education <span class="red">Info</span></h3>
+                      
+
+					  <div class="sectionsrow" >
+					
+					 {if $listmyedu}
+						 {section name=m loop=$listmyedu} 
+						 
+
+                            <div class="sections" id="edurow">
+                                <div class="rows">
+            					<form class="theforms" id='eduform'>
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="mytable">
+									<tbody>
+                                      <tr>
+                                        <td><strong>Year 			{$listmyedu[m].tahunlulus}			</strong></td>
+                                        <td>:</td>
+                                        <td>
+                                          <div class="selectbox w50">
+                                          <select name="dari[]">
+                                            {section name=tahun1 start=1964 loop=$tahunsekarang step=1}
+												
+														{if  $listmyedu[m].tahunmasuk==$smarty.section.tahun1.index}
+														<option value='{$smarty.section.tahun1.index}' selected>{$smarty.section.tahun1.index}</option>
+														{else}
+														<option value='{$smarty.section.tahun1.index}' >{$smarty.section.tahun1.index}</option>
+														{/if}
+														  
+												  {/section}
+                                          </select>
+                                          </div>
+                                          <div class="selectbox w50">
+                                          <select name="sampai[]">
+                                            {section name=tahun2 start=1964 loop=$tahunsekarang step=1}
+												
+														{if $listmyedu[m].tahunlulus==$smarty.section.tahun2.index}
+														<option value='{$smarty.section.tahun2.index}' selected>{$smarty.section.tahun2.index}</option>
+														{else}
+														<option value='{$smarty.section.tahun2.index}' >{$smarty.section.tahun2.index}</option>
+														{/if}
+														  
+												  {/section}
+                                          </select>
+                                          </div>
+                                      </td>
+                                      </tr>
+                                      <tr>
+                                        <td width="220"><strong>Degree {$listmyedu[m].degree}</strong></td>
+                                        <td width="10">:</td>
+                                        <td>
+                                          <div class="selectbox">
+                                          <select name="degree[]">
+										{if $listmyedu[m].degree =='SMP'}
+											<option value='SMP' selected>SMP</option>
+										{else}
+											<option value='SMP' >SMP</option>
+										{/if}
+										{if $listmyedu[m].degree =='SMA'}
+										<option value='SMA' selected>SMA/SMK/STM</option>
+										{else}
+										<option value='SMA'>SMA/SMK/STM</option>
+										{/if}
+										{if $listmyedu[m].degree == 'S1'}
+												<option value='S1' selected>S1</option>
+										{else}
+										<option value='S1'>S1</option>
+										{/if}
+										{if $listmyedu[m].degree == 'S2'}
+										<option value='S2' selected>S2</option>
+										{else}
+										<option value='S2'>S2</option>
+										{/if}
+                                          </select>
+                                          </div>
+                                         </td>
+                                      </tr>
+                                      <tr>
+                                        <td><strong>School / Institution</strong></td>
+                                        <td>:</td>
+                                        <td><input type="text" name="school[]" value="{$listmyedu[m].institusi}" /></td>
+                                      </tr>
+                                      <tr class="study">
+                                        <td><strong>Field of Study </strong></td>
+                                        <td>:</td>
+                                        <td><input type="text" name="study[]" value="{$listmyedu[m].bidang_studi}" /></td>
+                                      </tr>
+									  </tbody>
+                                    
+									  
+                                    </table>
+                                   {/section}
+								{/if}<!-- END SECTION -->
+								   <table width="100%" border="0" cellspacing="0" cellpadding="0">
+								   {if $countnya<2}
+									  <tr class="addmore">
+                                        <td colspan="3">
+                                        	<a href="#" class="addbtn" id="addedu">+ ADD MORE EDUCATION INFO</a>
+                                        </td>
+                                      </tr>
+									 {/if}
+                                      <tr>
+                                        <td colspan="3">
+                                            <div class="smallbtn">
+												<input type="hidden" name="educations" value="{$load[j].user_id}" >
+                                                <input type="submit" value="SAVE" class="button1" />
+                                                <input type="button" value="CANCEL" class="button2" />
+                                            </div>
+                                        </td>
+                                      </tr>
+									</table>
+								</form>
+
+
+                                </div><!-- END .rows -->
+                            </div><!-- END .sections -->
+								
+							
+							
+{literal}
+<script>
+ $(document).ready(function() {
+        $("#addedu").click(function() {
+           var n = $( '.mytable' ).length;
+           if(n==1) {$(this).hide();}
+          $('.mytable tbody>tr').clone(true).insertAfter('.study');
+          return false;
+        });
+    });		
+
+ $().ready(function(){
+                $('#eduform').submit(function(e){
+                    e.preventDefault();
+                    $.ajax({
+                        'type': 'POST',
+                        'url': basedomain+'personal/editpersonal',
+                        'data': $(this).serialize(),
+						'dataType':'json',
+                        'success': function(result){
+						
+						alert('Success !');
+						
+						}
+					});
+				});
+			});
+						
+
+</script>
+{/literal}		
+								{/section}
+								{/if}<!-- END SECTION -->	
+							
+							
+							
+                        </div><!-- END .sectionsrow -->
+                    </div><!-- END .tabentry -->
+                  </div><!-- END .tab-content -->
+                  <div id="my-photographer" class="tab-content">
+                  	<div class="tabentry">
+                        <div class="sectionsrow">
+                            <div class="sections">
+                                <div class="rows">
+            						<form class="theforms">
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                      <tr>
+                                        <td colspan="3">
+                                        	<h4 class="red">Photographer <a href="#"><i class="icon-times-circle">&nbsp;</i></a></h4>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td width="220"><strong>Short Description</strong></td>
+                                        <td width="10">:</td>
+                                        <td><input type="text" value="I'm an Editor at Bernardo Pictura, and PT. Kreatif Ideologi" /></td>
+                                      </tr>
+                                      <tr>
+                                        <td colspan="3">
+                                        	<label>Photographer - Wedding <a href="#"><i class="icon-times-circle">&nbsp;</i></a></label>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td width="220"><strong>Have an Agent?</strong></td>
+                                        <td width="10">:</td>
+                                        <td>
+                                          <div class="selectbox">
+                                          <select>
+                                            <option>Yes</option>
+                                            <option>No</option>
+                                          </select>
+                                          </div>
+                                         </td>
+                                      </tr>
+                                      <tr>
+                                        <td width="220"><strong>Agent Name</strong></td>
+                                        <td width="10">:</td>
+                                        <td><input type="text" value="PT. Monsoon Accessorize" /></td>
+                                      </tr>
+                                      <tr>
+                                        <td><strong>Looking for</strong></td>
+                                        <td width="10">:</td>
+                                        <td><input type="checkbox" /><span>Full time</span> <input type="checkbox" /><span>Part time</span> <input type="checkbox" /><span>Internship</span> <input type="checkbox" /><span>Freelance</span></td>
+                                      </tr>
+                                      <tr>
+                                        <td><strong>Open for</strong></td>
+                                        <td>:</td>
+                                        <td><input type="checkbox" /><span>Paid</span> <input type="checkbox" /><span>Unpaid</span> <input type="checkbox" /><span>Expenses only</span></td>
+                                      </tr>
+                                      <tr>
+                                        <td colspan="3">
+                                        	<a href="#" class="addbtn">+ ADD MORE SUB-CATEGORY</a>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td colspan="3">
+                                            <div class="smallbtn">
+                                                <input type="submit" value="SAVE" class="button1" />
+                                                <input type="button" value="CANCEL" class="button2" />
+                                            </div>
+                                        </td>
+                                      </tr>
+                                    </table>
+                                    </form>
+                                </div><!-- END .rows -->
+                            </div><!-- END .sections -->
+                        </div><!-- END .sectionsrow -->
+                        <h3 class="sectiontitle">Experience</h3>
+                        <div class="sectionsrow">
+                            <div class="sections">
+                                <div class="rows">
+            					<form class="theforms">
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                      <tr>
+                                        <td colspan="3">
+                                        	<h4 class="red">Photographer</h4>
+                                            <h5>Wedding</h5>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td colspan="3">
+                                          <div class="selectbox w50">
+                                          <select>
+                                            <option>Year</option>
+                                          </select>
+                                          </div>
+                                          <div class="selectbox w50">
+                                          <select>
+                                            <option>Month</option>
+                                          </select>
+                                          </div>
+                                          <div class="w20 center">
+                                          -
+                                          </div>
+                                          <div class="selectbox w50">
+                                          <select>
+                                            <option>Year</option>
+                                          </select>
+                                          </div>
+                                          <div class="selectbox w50">
+                                          <select>
+                                            <option>Month</option>
+                                          </select>
+                                          </div>
+                                      </td>
+                                      </tr>
+                                      <tr>
+                                        <td colspan="3">
+                                        	<textarea> <p>- Nullam quis risus eget urna mollis ornare vel eu leo. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. </p>
+
+<p>- Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras mattis consectetur purus sit amet fermentum. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Nulla vitae elit libero, a pharetra augue.</p></textarea>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td colspan="3">
+                                        	<a href="#" class="addbtn">+ ADD MORE EXPERIENCE</a>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td colspan="3">
+                                            <div class="smallbtn">
+                                                <input type="submit" value="SAVE" class="button1" />
+                                                <input type="button" value="CANCEL" class="button2" />
+                                            </div>
+                                        </td>
+                                      </tr>
+                                    </table>
+								</form>
+                                </div><!-- END .rows -->
+                            </div><!-- END .sections -->
+                        </div><!-- END .sectionsrow -->
+                        <?php include("widget/related-project.php");?>
+                    </div><!-- END .tabentry -->
+                  </div><!-- END .tab-content -->
+                  <div id="my-portfolio" class="tab-content">
+                  	<div class="tabentry">
+                        <div class="sectionsrow">
+                            <a class="btnadd" href="#"><i class="icon-plus">&nbsp;</i> Add more photos</a>
+                            <div class="sectionbox">
+                                <div class="rows rows5">
+                                    <div class="box">
+                                        <div class="boximg">
+                                            <a href="#" class="thumbbox"><img src="content/6.jpg"></a>  
+                                        </div><!-- end .boximg -->    
+                                        <div class="caption">
+                                            <div class="desc-box">
+                                                <h4><a href="#">Nama Foto</a></h4>
+                                            </div><!-- end .author-box -->    
+                                            <h5><a href="#">Executive Team Leader Assets Protection West Suburbs Il</a></h5>
+                                        </div>
+                                    </div><!-- END .box -->
+                                    <div class="box">
+                                        <div class="boximg">
+                                            <a href="#" class="thumbbox"><img src="content/6.jpg"></a>  
+                                        </div><!-- end .boximg -->    
+                                        <div class="caption">
+                                            <div class="desc-box">
+                                                <h4><a href="#">Nama Foto</a></h4>
+                                            </div><!-- end .author-box -->    
+                                            <h5><a href="#">Executive Team Leader Assets Protection West Suburbs Il</a></h5>
+                                        </div>
+                                    </div><!-- END .box -->
+                                    <div class="box">
+                                        <div class="boximg">
+                                            <a href="#" class="thumbbox"><img src="content/6.jpg"></a>    
+                                        </div><!-- end .boximg -->    
+                                        <div class="caption">
+                                            <div class="desc-box">
+                                                <h4><a href="#">Nama Foto</a></h4>
+                                            </div><!-- end .author-box -->    
+                                            <h5><a href="#">Executive Team Leader Assets Protection West Suburbs Il</a></h5>
+                                        </div>
+                                    </div><!-- END .box -->
+                                    <div class="box">
+                                        <div class="boximg">
+                                            <a href="#" class="thumbbox"><img src="content/6.jpg"></a>   
+                                        </div><!-- end .boximg -->    
+                                        <div class="caption">
+                                            <div class="desc-box">
+                                                <h4><a href="#">Nama Foto</a></h4>
+                                            </div><!-- end .author-box -->    
+                                            <h5><a href="#">Executive Team Leader Assets Protection West Suburbs Il</a></h5>
+                                        </div>
+                                    </div><!-- END .box -->
+                                    <div class="box">
+                                        <div class="boximg">
+                                            <a href="#" class="thumbbox"><img src="content/6.jpg"></a>   
+                                        </div><!-- end .boximg -->    
+                                        <div class="caption">
+                                            <div class="desc-box">
+                                                <h4><a href="#">Nama Foto</a></h4>
+                                            </div><!-- end .author-box -->    
+                                            <h5><a href="#">Executive Team Leader Assets Protection West Suburbs Il</a></h5>
+                                        </div>
+                                    </div><!-- END .box -->
+                                    <div class="box">
+                                        <div class="boximg">
+                                            <a href="#" class="thumbbox"><img src="content/6.jpg"></a>   
+                                        </div><!-- end .boximg -->    
+                                        <div class="caption">
+                                            <div class="desc-box">
+                                                <h4><a href="#">Nama Foto</a></h4>
+                                            </div><!-- end .author-box -->    
+                                            <h5><a href="#">Executive Team Leader Assets Protection West Suburbs Il</a></h5>
+                                        </div>
+                                    </div><!-- END .box -->
+                                    <div class="box">
+                                        <div class="boximg">
+                                            <a href="#" class="thumbbox"><img src="content/6.jpg"></a>  
+                                        </div><!-- end .boximg -->    
+                                        <div class="caption">
+                                            <div class="desc-box">
+                                                <h4><a href="#">Nama Foto</a></h4>
+                                            </div><!-- end .author-box -->    
+                                            <h5><a href="#">Executive Team Leader Assets Protection West Suburbs Il</a></h5>
+                                        </div>
+                                    </div><!-- END .box -->
+                                    <div class="box">
+                                        <div class="boximg">
+                                            <a href="#" class="thumbbox"><img src="content/6.jpg"></a>   
+                                        </div><!-- end .boximg -->    
+                                        <div class="caption">
+                                            <div class="desc-box">
+                                                <h4><a href="#">Nama Foto</a></h4>
+                                            </div><!-- end .author-box -->    
+                                            <h5><a href="#">Executive Team Leader Assets Protection West Suburbs Il</a></h5>
+                                        </div>
+                                    </div><!-- END .box -->
+                                    <div class="box">
+                                        <div class="boximg">
+                                            <a href="#" class="thumbbox"><img src="content/6.jpg"></a>   
+                                        </div><!-- end .boximg -->    
+                                        <div class="caption">
+                                            <div class="desc-box">
+                                                <h4><a href="#">Nama Foto</a></h4>
+                                            </div><!-- end .author-box -->    
+                                            <h5><a href="#">Executive Team Leader Assets Protection West Suburbs Il</a></h5>
+                                        </div>
+                                    </div><!-- END .box -->
+                                    <div class="box">
+                                        <div class="boximg">
+                                            <a href="#" class="thumbbox"><img src="content/6.jpg"></a>  
+                                        </div><!-- end .boximg -->    
+                                        <div class="caption">
+                                            <div class="desc-box">
+                                                <h4><a href="#">Nama Foto</a></h4>
+                                            </div><!-- end .author-box -->    
+                                            <h5><a href="#">Executive Team Leader Assets Protection West Suburbs Il</a></h5>
+                                        </div>
+                                    </div><!-- END .box -->
+                                </div><!-- END .rows -->
+                            </div><!-- END .sectionbox -->
+                        </div><!-- END .sectionsrow -->
+                        <h3 class="sectiontitle">Videos</h3>
+                        <div class="sectionsrow">
+                            <a class="btnadd" href="#"><i class="icon-plus">&nbsp;</i> Add more Videos</a>
+                            <div class="sectionbox">
+                                <div class="rows rows5">
+                                    <div class="box">
+                                        <div class="boximg">
+                                            <a href="#" class="thumbbox"><img src="content/6.jpg"><i class="icon-play-circle-o">&nbsp;</i></a>  
+                                        </div><!-- end .boximg -->    
+                                        <div class="caption">
+                                            <div class="desc-box">
+                                                <h4><a href="#">Nama Foto</a></h4>
+                                            </div><!-- end .author-box -->    
+                                            <h5><a href="#">Executive Team Leader Assets Protection West Suburbs Il</a></h5>
+                                        </div>
+                                    </div><!-- END .box -->
+                                    <div class="box">
+                                        <div class="boximg">
+                                            <a href="#" class="thumbbox"><img src="content/6.jpg"><i class="icon-play-circle-o">&nbsp;</i></a>  
+                                        </div><!-- end .boximg -->    
+                                        <div class="caption">
+                                            <div class="desc-box">
+                                                <h4><a href="#">Nama Foto</a></h4>
+                                            </div><!-- end .author-box -->    
+                                            <h5><a href="#">Executive Team Leader Assets Protection West Suburbs Il</a></h5>
+                                        </div>
+                                    </div><!-- END .box -->
+                                    <div class="box">
+                                        <div class="boximg">
+                                            <a href="#" class="thumbbox"><img src="content/6.jpg"><i class="icon-play-circle-o">&nbsp;</i></a>  
+                                        </div><!-- end .boximg -->    
+                                        <div class="caption">
+                                            <div class="desc-box">
+                                                <h4><a href="#">Nama Foto</a></h4>
+                                            </div><!-- end .author-box -->    
+                                            <h5><a href="#">Executive Team Leader Assets Protection West Suburbs Il</a></h5>
+                                        </div>
+                                    </div><!-- END .box -->
+                                    <div class="box">
+                                        <div class="boximg">
+                                            <a href="#" class="thumbbox"><img src="content/6.jpg"><i class="icon-play-circle-o">&nbsp;</i></a>  
+                                        </div><!-- end .boximg -->    
+                                        <div class="caption">
+                                            <div class="desc-box">
+                                                <h4><a href="#">Nama Foto</a></h4>
+                                            </div><!-- end .author-box -->    
+                                            <h5><a href="#">Executive Team Leader Assets Protection West Suburbs Il</a></h5>
+                                        </div>
+                                    </div><!-- END .box -->
+                                    <div class="box">
+                                        <div class="boximg">
+                                            <a href="#" class="thumbbox"><img src="content/6.jpg"><i class="icon-play-circle-o">&nbsp;</i></a>  
+                                        </div><!-- end .boximg -->    
+                                        <div class="caption">
+                                            <div class="desc-box">
+                                                <h4><a href="#">Nama Foto</a></h4>
+                                            </div><!-- end .author-box -->    
+                                            <h5><a href="#">Executive Team Leader Assets Protection West Suburbs Il</a></h5>
+                                        </div>
+                                    </div><!-- END .box -->
+                                    <div class="box">
+                                        <div class="boximg">
+                                            <a href="#" class="thumbbox"><img src="content/6.jpg"><i class="icon-play-circle-o">&nbsp;</i></a>  
+                                        </div><!-- end .boximg -->    
+                                        <div class="caption">
+                                            <div class="desc-box">
+                                                <h4><a href="#">Nama Foto</a></h4>
+                                            </div><!-- end .author-box -->    
+                                            <h5><a href="#">Executive Team Leader Assets Protection West Suburbs Il</a></h5>
+                                        </div>
+                                    </div><!-- END .box -->
+                                    <div class="box">
+                                        <div class="boximg">
+                                            <a href="#" class="thumbbox"><img src="content/6.jpg"><i class="icon-play-circle-o">&nbsp;</i></a>  
+                                        </div><!-- end .boximg -->    
+                                        <div class="caption">
+                                            <div class="desc-box">
+                                                <h4><a href="#">Nama Foto</a></h4>
+                                            </div><!-- end .author-box -->    
+                                            <h5><a href="#">Executive Team Leader Assets Protection West Suburbs Il</a></h5>
+                                        </div>
+                                    </div><!-- END .box -->
+                                    <div class="box">
+                                        <div class="boximg">
+                                            <a href="#" class="thumbbox"><img src="content/6.jpg"><i class="icon-play-circle-o">&nbsp;</i></a>  
+                                        </div><!-- end .boximg -->    
+                                        <div class="caption">
+                                            <div class="desc-box">
+                                                <h4><a href="#">Nama Foto</a></h4>
+                                            </div><!-- end .author-box -->    
+                                            <h5><a href="#">Executive Team Leader Assets Protection West Suburbs Il</a></h5>
+                                        </div>
+                                    </div><!-- END .box -->
+                                    <div class="box">
+                                        <div class="boximg">
+                                            <a href="#" class="thumbbox"><img src="content/6.jpg"><i class="icon-play-circle-o">&nbsp;</i></a>  
+                                        </div><!-- end .boximg -->    
+                                        <div class="caption">
+                                            <div class="desc-box">
+                                                <h4><a href="#">Nama Foto</a></h4>
+                                            </div><!-- end .author-box -->    
+                                            <h5><a href="#">Executive Team Leader Assets Protection West Suburbs Il</a></h5>
+                                        </div>
+                                    </div><!-- END .box -->
+                                    <div class="box">
+                                        <div class="boximg">
+                                            <a href="#" class="thumbbox"><img src="content/6.jpg"><i class="icon-play-circle-o">&nbsp;</i></a>  
+                                        </div><!-- end .boximg -->    
+                                        <div class="caption">
+                                            <div class="desc-box">
+                                                <h4><a href="#">Nama Foto</a></h4>
+                                            </div><!-- end .author-box -->    
+                                            <h5><a href="#">Executive Team Leader Assets Protection West Suburbs Il</a></h5>
+                                        </div>
+                                    </div><!-- END .box -->
+                                </div><!-- END .rows -->
+                            </div><!-- END .sectionbox -->
+                        </div><!-- END .sectionsrow -->
+                        <h3 class="sectiontitle">Audios</h3>
+                        <div class="sectionsrow">
+                            <a class="btnadd" href="#"><i class="icon-plus">&nbsp;</i> Add more Audios</a>
+                            <div class="sectionbox">
+                                <div class="rows rows5">
+                                    <div class="box">
+                                        <div class="boximg">
+                                            <a href="#" class="thumbbox"><img src="content/6.jpg"><i class="icon-play-circle-o">&nbsp;</i></a>  
+                                        </div><!-- end .boximg -->    
+                                        <div class="caption">
+                                            <div class="desc-box">
+                                                <h4><a href="#">Nama Foto</a></h4>
+                                            </div><!-- end .author-box -->    
+                                            <h5><a href="#">Executive Team Leader Assets Protection West Suburbs Il</a></h5>
+                                        </div>
+                                    </div><!-- END .box -->
+                                    <div class="box">
+                                        <div class="boximg">
+                                            <a href="#" class="thumbbox"><img src="content/6.jpg"><i class="icon-play-circle-o">&nbsp;</i></a>  
+                                        </div><!-- end .boximg -->    
+                                        <div class="caption">
+                                            <div class="desc-box">
+                                                <h4><a href="#">Nama Foto</a></h4>
+                                            </div><!-- end .author-box -->    
+                                            <h5><a href="#">Executive Team Leader Assets Protection West Suburbs Il</a></h5>
+                                        </div>
+                                    </div><!-- END .box -->
+                                    <div class="box">
+                                        <div class="boximg">
+                                            <a href="#" class="thumbbox"><img src="content/6.jpg"><i class="icon-play-circle-o">&nbsp;</i></a>  
+                                        </div><!-- end .boximg -->    
+                                        <div class="caption">
+                                            <div class="desc-box">
+                                                <h4><a href="#">Nama Foto</a></h4>
+                                            </div><!-- end .author-box -->    
+                                            <h5><a href="#">Executive Team Leader Assets Protection West Suburbs Il</a></h5>
+                                        </div>
+                                    </div><!-- END .box -->
+                                    <div class="box">
+                                        <div class="boximg">
+                                            <a href="#" class="thumbbox"><img src="content/6.jpg"><i class="icon-play-circle-o">&nbsp;</i></a>  
+                                        </div><!-- end .boximg -->    
+                                        <div class="caption">
+                                            <div class="desc-box">
+                                                <h4><a href="#">Nama Foto</a></h4>
+                                            </div><!-- end .author-box -->    
+                                            <h5><a href="#">Executive Team Leader Assets Protection West Suburbs Il</a></h5>
+                                        </div>
+                                    </div><!-- END .box -->
+                                    <div class="box">
+                                        <div class="boximg">
+                                            <a href="#" class="thumbbox"><img src="content/6.jpg"><i class="icon-play-circle-o">&nbsp;</i></a>  
+                                        </div><!-- end .boximg -->    
+                                        <div class="caption">
+                                            <div class="desc-box">
+                                                <h4><a href="#">Nama Foto</a></h4>
+                                            </div><!-- end .author-box -->    
+                                            <h5><a href="#">Executive Team Leader Assets Protection West Suburbs Il</a></h5>
+                                        </div>
+                                    </div><!-- END .box -->
+                                    <div class="box">
+                                        <div class="boximg">
+                                            <a href="#" class="thumbbox"><img src="content/6.jpg"><i class="icon-play-circle-o">&nbsp;</i></a>  
+                                        </div><!-- end .boximg -->    
+                                        <div class="caption">
+                                            <div class="desc-box">
+                                                <h4><a href="#">Nama Foto</a></h4>
+                                            </div><!-- end .author-box -->    
+                                            <h5><a href="#">Executive Team Leader Assets Protection West Suburbs Il</a></h5>
+                                        </div>
+                                    </div><!-- END .box -->
+                                    <div class="box">
+                                        <div class="boximg">
+                                            <a href="#" class="thumbbox"><img src="content/6.jpg"><i class="icon-play-circle-o">&nbsp;</i></a>  
+                                        </div><!-- end .boximg -->    
+                                        <div class="caption">
+                                            <div class="desc-box">
+                                                <h4><a href="#">Nama Foto</a></h4>
+                                            </div><!-- end .author-box -->    
+                                            <h5><a href="#">Executive Team Leader Assets Protection West Suburbs Il</a></h5>
+                                        </div>
+                                    </div><!-- END .box -->
+                                    <div class="box">
+                                        <div class="boximg">
+                                            <a href="#" class="thumbbox"><img src="content/6.jpg"><i class="icon-play-circle-o">&nbsp;</i></a>  
+                                        </div><!-- end .boximg -->    
+                                        <div class="caption">
+                                            <div class="desc-box">
+                                                <h4><a href="#">Nama Foto</a></h4>
+                                            </div><!-- end .author-box -->    
+                                            <h5><a href="#">Executive Team Leader Assets Protection West Suburbs Il</a></h5>
+                                        </div>
+                                    </div><!-- END .box -->
+                                    <div class="box">
+                                        <div class="boximg">
+                                            <a href="#" class="thumbbox"><img src="content/6.jpg"><i class="icon-play-circle-o">&nbsp;</i></a>  
+                                        </div><!-- end .boximg -->    
+                                        <div class="caption">
+                                            <div class="desc-box">
+                                                <h4><a href="#">Nama Foto</a></h4>
+                                            </div><!-- end .author-box -->    
+                                            <h5><a href="#">Executive Team Leader Assets Protection West Suburbs Il</a></h5>
+                                        </div>
+                                    </div><!-- END .box -->
+                                    <div class="box">
+                                        <div class="boximg">
+                                            <a href="#" class="thumbbox"><img src="content/6.jpg"><i class="icon-play-circle-o">&nbsp;</i></a>  
+                                        </div><!-- end .boximg -->    
+                                        <div class="caption">
+                                            <div class="desc-box">
+                                                <h4><a href="#">Nama Foto</a></h4>
+                                            </div><!-- end .author-box -->    
+                                            <h5><a href="#">Executive Team Leader Assets Protection West Suburbs Il</a></h5>
+                                        </div>
+                                    </div><!-- END .box -->
+                                </div><!-- END .rows -->
+                            </div><!-- END .sectionbox -->
+                        </div><!-- END .sectionsrow -->
+                    </div><!-- END .tabentry -->
+                  </div><!-- END .tab-content -->
+                </div><!-- END .widget -->
+            </div><!-- end .cols -->   
+        </div><!-- end .wrapper -->    
+    </div><!-- end #profileboard --> 
+</div><!-- end #profilepage -->
+

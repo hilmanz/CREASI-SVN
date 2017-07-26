@@ -1,0 +1,543 @@
+<div id="popup-upload-audio" class="popup mfp-hide">
+    <div class="popupcontent">
+    	<h3 class="title">Upload <span class="red">Audio</span></h3>
+        <div class="rows center">
+		<form action="{$basedomain}personal/addportofolioaudio" method="post" enctype="multipart/form-data" id="formuploadaudio">
+                      
+		  <div class="boxs boxaudio">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table">
+                  <tr>
+                    <td> 
+						<a href="javascript:void(0)" class="button2 upaudio"> UPLOAD THUMBNAIL </a>
+						<input type="file"  name="foto[]"  value="" class="fotoaudio" style="display:none">
+						<span class="row tmptaudio" style="color:red" > </span>
+						<span class="row fotoaudio_no" style="color:red" > </span> 
+					</td>
+                  </tr>
+				  <tr>
+                    <td><input type="hidden" value="3"  name="type[]"  />
+					<input type="text"  class="urlaudio" name="url[]" autocomplete="off" value="" placeholder="Paste Soundcloud Url Here" />
+					<span class="row urlaudio_no" style="color:red" > </span> 
+					</td>
+                  </tr>
+                  <tr>
+                    <td><input type="text" class="titleaudio" autocomplete="off" name="title[]" value="" placeholder="Insert Title Here" />
+					<span class="row titleaudio_no" style="color:red" > </span> 
+					</td>
+                  </tr>
+                  <tr>
+                    <td><input type="text"  class="descaudio" autocomplete="off" name="desc[]" value="" placeholder="Insert Audio Description" />
+					<span class="row descaudio_no" style="color:red" > </span> 
+					</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label>Tag in Category</label>
+                      <div class="selectbox">
+					  <select name="category[]" class="categoryaudio">
+					   <option value="0">None</option>
+					  <option value="99">Both</option>
+                     {section name=p loop=$listcategory}
+							<option value="{$listcategory[p].id}">{$listcategory[p].category_name}</option>
+						{/section}
+						</select>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+            </div><!-- END .boxs -->
+            <div class="boxs boxaudio">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table">
+				 <tr>
+                    <td> 
+						<a href="javascript:void(0)" class="button2 upaudio"> UPLOAD THUMBNAIL </a>
+						<input type="file"  name="foto[]"  value="" class="fotoaudio" style="display:none">
+						<span class="row tmptaudio" style="color:red"> </span>
+						<span class="row fotoaudio_no" style="color:red"> </span> 
+					</td>
+                  </tr>
+				  <tr>
+                    <td><input type="hidden" value="3"  name="type[]"  />
+					<input type="text"  class="urlaudio" autocomplete="off" name="url[]" value="" placeholder="Paste Soundcloud Url Here" />
+					<span class="row urlaudio_no" style="color:red"> </span> 
+					</td>
+                  </tr>
+                  <tr>
+                    <td><input type="text" class="titleaudio" autocomplete="off" name="title[]" value="" placeholder="Insert Title Here" />
+					<span class="row titleaudio_no" style="color:red"> </span> 
+					</td>
+                  </tr>
+                  <tr>
+                    <td><input type="text"  class="descaudio" autocomplete="off" name="desc[]" value="" placeholder="Insert Audio Description" />
+					<span class="row descaudio_no" style="color:red"> </span> 
+					</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label>Tag in Category</label>
+                      <div class="selectbox">
+                      <select name="category[]" class="categoryaudio">
+					   <option value="0">None</option>
+					  <option value="99">Both</option>
+						{section name=q loop=$listcategory}
+							<option value="{$listcategory[q].id}">{$listcategory[q].category_name}</option>
+						{/section}
+						</select>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+            </div><!-- END .boxs -->
+            <div class="boxs boxaudio">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table">
+				 <tr>
+                    <td> 
+						<a href="javascript:void(0)" class="button2 upaudio"> UPLOAD THUMBNAIL </a>
+						<input type="file"  name="foto[]"  value="" class="fotoaudio" style="display:none">
+						<span class="row tmptaudio" style="color:red"> </span>
+						<span class="row fotoaudio_no" style="color:red"> </span> 
+					</td>
+                  </tr>
+				  <tr>
+                    <td><input type="hidden" value="3"  name="type[]"  />
+					<input type="text"  class="urlaudio" autocomplete="off" name="url[]" value="" placeholder="Paste Soundcloud Url Here" />
+					<span class="row urlaudio_no" style="color:red"> </span> 
+					</td>
+                  </tr>
+                  <tr>
+                    <td><input type="text" class="titleaudio" autocomplete="off" name="title[]" value="" placeholder="Insert Title Here" />
+					<span class="row titleaudio_no" style="color:red"> </span> 
+					</td>
+                  </tr>
+                  <tr>
+                    <td><input type="text"  class="descaudio" autocomplete="off" name="desc[]" value="" placeholder="Insert Audio Description" />
+					<span class="row descaudio_no" style="color:red"> </span> 
+					</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label>Tag in Category</label>
+                      <div class="selectbox">
+                     <select name="category[]" class="categoryaudio">
+					  <option value="0">None</option>
+					  <option value="99">Both</option>
+						{section name=y loop=$listcategory}
+							<option value="{$listcategory[y].id}">{$listcategory[y].category_name}</option>
+						{/section}
+						</select>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+            </div><!-- END .boxs -->
+            <div class="smallbtn audiolists">
+                <input type="submit" value="SAVE" class="button1 saveprotoaudio" />
+				<input type="hidden" name="uploadphoto" value="1">
+                <input type="button" value="+ Add More Audio" class="button2 addmoreaudio" />
+            </div>
+			</form>
+			<div id="progressbaraudio" style="display:none" ><div class="progress-label"></div></div>
+        </div><!-- END .rows -->
+    </div>
+</div>
+<div id="popup-maxaudio" class="popup mfp-hide" style="width:300px; text-align:center;">
+			<div class="popupfullcontent">
+				<h3 class="title">Portfolio <span class="red">Audio</span></h3>
+				<p>Maximum Upload 20 audio</p>
+				
+			</div>
+</div><!-- END .popup -->
+<script>
+{literal}
+$(function() {
+	getFilesaudio();
+	duplicataudio();
+	//clickuploadaudio();
+	uploadeaudio();
+	imgdel();
+});
+function getFilesaudio()
+{
+	$('.upaudio').click(function()
+	{
+		thiss= $(this).next('.fotoaudio');
+		console.log(thiss);
+		thiss.change(function(e)
+		 {
+		   
+			    e.preventDefault();
+				
+			    $(".upload_no").html('');
+				console.log(this.files[0].size);
+				$(thiss).next().next('.fotoaudio_no').html('');
+				$(thiss).next('.tmptaudio').html('');
+				if(this.files[0].size > 2100000)
+				{
+				
+					$(thiss).next().next('.fotoaudio_no').html('Maximum file size 2MB');
+					
+					thiss.replaceWith('<input type="file" style="display:none" class="fotoaudio" value="" name="foto[]">');
+					
+				}
+				else
+				{
+				   if(this.files[0].type=='image/jpeg' ||  this.files[0].type=='image/png')
+					{
+						 var reader = new FileReader();
+						 reader.onload = function (ex) {
+							ex.preventDefault();
+							console.log($(thiss).next('.tmptaudio'));
+							$(thiss).next('.tmptaudio').html('<br> <img width="100" class="filimg" src="'+ex.target.result+'">');
+						  }
+					  reader.readAsDataURL(this.files[0]);
+						//imgdel();
+					 // end;
+					}
+					else
+					{
+						$(thiss).next().next('.fotoaudio_no').html(' Sorry, we can only support PNG,JPEG/JPG files ');
+					
+						thiss.replaceWith('<input type="file" style="display:none" class="fotoaudio" value="" name="foto[]">');
+						
+					}
+				}
+		});
+	
+		$($(this).next('.fotoaudio')).trigger('click');
+	});
+
+}
+function imgdel()
+{
+	$('.tmptaudio').click(function(){
+		$(this).parent().find('.fotoaudio')
+		$(this).parent().find('.fotoaudio').replaceWith('<input type="file" style="display:none" class="fotoaudio" value="" name="foto[]">');
+		$(this).html('');
+	});
+}
+function duplicataudio()
+{
+	$('.addmoreaudio').click(function(e)
+	{
+		e.preventDefault();
+		console.log($(".boxaudio:last"));
+		$(".boxaudio:last").clone().insertBefore('.audiolists');
+		
+		$('.urlaudio:last').val('');
+		$('.tmptaudio:last').html('');
+		$('.titleaudio:last').val('');
+		$('.descaudio:last').val('');
+		$('.urlaudio_no:last').html('');
+		$('.titleaudio_no:last').html('');
+		$('.descaudio_no:last').html('');
+		$('.fotoaudio_no:last').html('');
+		$('.fotoaudio:last').replaceWith('<input type="file" style="display:none" class="fotoaudio" value="" name="foto[]">');
+		getFilesaudio();
+		end;
+	});
+}
+function checkFormaudio()
+{
+	var titleaudio_no='.titleaudio_no';
+	$(titleaudio_no).html(' ');
+	var urlaudio_no='.urlaudio_no';
+	$(urlaudio_no).html(' ');
+	var descaudio_no='.descaudio_no';
+	$(descaudio_no).html(' ');
+	var fotoaudio_no='.fotoaudio_no';
+	$(fotoaudio_no).html(' ');
+	var soundcloudformat = /^https?:\/\/(soundcloud.com|snd.sc)\/(.*)$/; 
+	
+	var valide='';
+	$.each($('.titleaudio'),function(k,v){
+		if($('.titleaudio').eq(k).val() || $('.descaudio').eq(k).val() ||$('.tmptaudio img').eq(k).attr('src') ||$('.urlaudio').eq(k).val())
+		{
+			if($('.titleaudio').eq(k).val()=='')
+			{
+				$(titleaudio_no).eq(k).html('You cannot leave this field empty');
+				valide='ada';
+			}
+			if($('.urlaudio').eq(k).val()=='')
+			{
+				$(urlaudio_no).eq(k).html('You cannot leave this field empty');
+				valide='ada';
+			}
+			else if(!$('.urlaudio').eq(k).val().match(soundcloudformat)  )
+			{
+				$(urlaudio_no).eq(k).html('Url not Match');
+				valide='ada';
+			}
+			if($('.descaudio').eq(k).val()=='')
+			{
+				$(descaudio_no).eq(k).html('You cannot leave this field empty');
+				valide='ada';
+			}
+			if($('.tmptaudio').eq(k).find('img').attr('src')==undefined)
+			{
+				$(fotoaudio_no).eq(k).html('You cannot leave this field empty');
+				valide='ada';
+			}
+		}
+		
+	});
+	if(valide)
+	{
+		return false;
+	}
+	else
+	{
+		return true;
+	}
+	
+}
+function uploadeaudio()
+{
+	$('.saveprotoaudio').click(function()
+	{
+		
+		
+			var titleaudio_no='.titleaudio_no';
+			$(titleaudio_no).html(' ');
+			var urlaudio_no='.urlaudio_no';
+			$(urlaudio_no).html(' ');
+			var descaudio_no='.descaudio_no';
+			$(descaudio_no).html(' ');
+			var fotoaudio_no='.fotoaudio_no';
+			$(fotoaudio_no).html(' ');
+			var soundcloudformat = /^https?:\/\/(soundcloud.com|snd.sc)\/(.*)$/; 
+			var valide='';
+			var jumlahup=0;
+			$.each($('.titleaudio'),function(k,v){
+				if($('.titleaudio').eq(k).val() || $('.descaudio').eq(k).val() ||$('.tmptaudio img').eq(k).attr('src') ||$('.urlaudio').eq(k).val())
+				{
+					if($('.titleaudio').eq(k).val()=='')
+					{
+						$(titleaudio_no).eq(k).html('You cannot leave this field empty');
+						valide='ada';
+					}
+					if($('.urlaudio').eq(k).val()=='')
+					{
+						$(urlaudio_no).eq(k).html('You cannot leave this field empty');
+						valide='ada';
+					}
+					else if(!$('.urlaudio').eq(k).val().match(soundcloudformat))
+					{
+						$(urlaudio_no).eq(k).html('Url not Match');
+						valide='ada';
+					}
+					
+					++jumlahup;
+				}
+				
+			});
+			if(valide)
+			{
+				jumlahup=0;
+				return false;
+			}
+			console.log(jumlahup);
+		var jumlahkirim =0;
+		//$.each($('.titleaudio'),function(kx,vx){
+			
+			if($('.urlaudio').eq(0).val()!='')
+			{
+					
+				datas = new FormData();
+				datas.append("title", $('.titleaudio').eq(0).val());
+				datas.append("url", $('.urlaudio').eq(0).val());
+				datas.append("desc", $('.descaudio').eq(0).val());
+				datas.append("foto", $('.fotoaudio').eq(0)[0].files[0]);
+				datas.append("ajax", 1);
+				datas.append("category", $('.categoryaudio option:selected').eq(0).val());
+				datas.append('uploadphoto',1);
+				$('.tmptaudio').eq(0).html('<div id="progressbarphoto" class="progressbarphoto fl"><div class="progress-label"></div></div>');
+				
+				console.log(datas);
+				
+				$.ajax({
+						   xhr: function(){
+							   var xhr = new window.XMLHttpRequest();
+							   //Upload progress
+							   xhr.upload.addEventListener("progress", function(evt){
+							   if (evt.lengthComputable) {
+								 percentComplete = Math.round(100 * evt.loaded / evt.total);
+								 //Do something with upload progress
+									progressbar = $( ".progressbarphoto" ).eq(0),
+									progressl = $( ".progress-label" ).eq(0),
+									$(progressl).text(percentComplete+ '%');
+									  $(progressbar).css('width', '' + percentComplete+ '%');
+								 }
+							   }, false);
+							 
+							   return xhr;
+							 },
+
+
+
+							url: basedomain+"personal/addportofolioaudio",
+						   type: "POST",
+						   data: datas,
+						   processData: false,
+						   contentType: false,
+						   success: function(response) {
+						   response= jQuery.parseJSON(response );
+						  console.log(response.status);
+							++jumlahkirim;
+							if(response.status==0)
+							{
+								
+								$('.mfp-close').trigger('click');
+								$.magnificPopup.open({
+										items: {
+											src: '#popup-maxaudio' 
+										},
+										type: 'inline'
+										  });
+								setTimeout(function(){ location.reload(); }, 500);
+							}
+							if(jumlahkirim==jumlahup)
+							{
+									if(window.location.href.indexOf("#my-portfolio") > -1) {
+										location.reload();
+									}
+									else
+									{
+										
+											location.href = basedomain+"personal/#my-portfolio";
+									}
+									return false;
+									
+							}
+							gouploadaudio(jumlahkirim,jumlahup)
+							
+						   },
+						   error: function(jqXHR, textStatus, errorMessage) {
+							   console.log(errorMessage); // Optional
+						   }
+						});
+				
+			}
+		
+		//});
+		
+		if($('.titleaudio').val()=='' && $('.urlaudio').val()=='')
+				{
+					
+					$('#popup-upload-audio').magnificPopup('close');
+					return false;
+				}
+			else
+				{
+					return false;
+				}
+		
+	});
+
+}
+function gouploadaudio(numberkirim,numberjumlahup)
+{
+	jumlahkirim=numberkirim
+	datas = new FormData();
+				datas.append("title", $('.titleaudio').eq(numberkirim).val());
+				datas.append("url", $('.urlaudio').eq(numberkirim).val());
+				datas.append("desc", $('.descaudio').eq(numberkirim).val());
+				datas.append("foto", $('.fotoaudio').eq(numberkirim)[0].files[0]);
+				datas.append("ajax", 1);
+				datas.append("category", $('.categoryaudio option:selected').eq(numberkirim).val());
+				datas.append('uploadphoto',1);
+				$('.tmptaudio').eq(numberkirim).html('<div id="progressbarphoto" class="progressbarphoto fl"><div class="progress-label"></div></div>');
+				
+				
+				
+				$.ajax({
+						   xhr: function(){
+							   var xhr = new window.XMLHttpRequest();
+							   //Upload progress
+							   xhr.upload.addEventListener("progress", function(evt){
+							   if (evt.lengthComputable) {
+								 percentComplete = Math.round(100 * evt.loaded / evt.total);
+								 //Do something with upload progress
+									progressbar = $( ".progressbarphoto" ).eq(numberkirim),
+									progressl = $( ".progress-label" ).eq(numberkirim),
+									$(progressl).text(percentComplete+ '%');
+									  $(progressbar).css('width', '' + percentComplete+ '%');
+								 }
+							   }, false);
+							 
+							   return xhr;
+							 },
+
+
+
+							url: basedomain+"personal/addportofolioaudio",
+						   type: "POST",
+						   data: datas,
+						   processData: false,
+						   contentType: false,
+						   success: function(response) {
+						   response= jQuery.parseJSON(response );
+						  console.log(response.status);
+							++jumlahkirim;
+							if(response.status==0)
+							{
+								
+								$('.mfp-close').trigger('click');
+								$.magnificPopup.open({
+										items: {
+											src: '#popup-maxaudio' 
+										},
+										type: 'inline'
+										  });
+								setTimeout(function(){ location.reload(); }, 500);
+							}
+							if(jumlahkirim==numberjumlahup)
+							{
+									if(window.location.href.indexOf("#my-portfolio") > -1) {
+										location.reload();
+									}
+									else
+									{
+										
+											location.href = basedomain+"personal/#my-portfolio";
+									}
+									return false;
+									
+							}
+							gouploadaudio(jumlahkirim,numberjumlahup)
+							
+						   },
+						   error: function(jqXHR, textStatus, errorMessage) {
+							   console.log(errorMessage); // Optional
+						   }
+						});
+}
+function clickuploadaudio()
+{
+	$('.saveprotoaudio').click(function()
+	{
+		$('#progressbaraudio').show();
+		$('#formuploadaudio').hide();
+		var progressbar = $( "#progressbaraudio" ),
+			progressLabel = $( ".progress-label" );
+			progressbar.progressbar({
+				value: false,
+				change: function() {
+					progressLabel.text( progressbar.progressbar( "value" ) + "%" );
+				},
+				complete: function() {
+					progressLabel.text( "Complete!" );
+				}
+			});
+			function progress() {
+				var val = progressbar.progressbar( "value" ) || 0;
+				progressbar.progressbar( "value", val + 2 );
+				if ( val < 99 ) {
+					setTimeout( progress, 80 );
+				}
+			}
+			setTimeout( progress, 2000 );
+		
+	});
+}
+{/literal}
+</script>

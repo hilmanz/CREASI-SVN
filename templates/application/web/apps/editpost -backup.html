@@ -1,0 +1,523 @@
+{if $load}
+					     {section name=i loop=$load}
+						 
+<div class="page_section" id="theformpage">
+    <div id="metapage">
+        <div class="wrapper">
+            <h1 class="page-title fl">Draft Posting Form </h1>
+            <div class="breadcumb fr">
+                <a href="index.php">Home</a> <span>/</span> <a>Draft Posting Form </a>
+            </div>
+        </div><!-- end .wrapper -->   
+    </div><!-- end #metapage -->
+	
+    <div id="theform" class="section"> 
+        <div class="wrapper">
+        	<div class="col-content">
+        	<div class="titleboxs">   
+                <h2>Draft Posting <span class="red">Form</span></h2>
+                <p>Complete this easy and quick form and start receiving CVs from our Creative Talents. </p>
+            </div><!-- end .titlebox -->
+            <form class="theforms forms" id="forms"  method='POST' action="{$basedomain}postjobs/editdraft" enctype="multipart/form-data">
+            	<div class="rows">
+                	<div class="col2">
+                      <label>Category* </label>
+                      <select class="selectpicker selectpicker show-tick categorylist" data-live-search="true" name="category"  data-width="100%">
+					   
+                           {section name=j loop=$category}
+							{if $load[i].category_id==$category[j].id}
+								<option name-cat="{$category[j].category_name}" value="{$category[j].id}" selected='selected'>{$category[j].category_name}</option>
+							{else}
+								<option name-cat="{$category[j].category_name}" value="{$category[j].id}" >{$category[j].category_name}</option>	
+								{/if}
+						    {/section}
+					
+                        <option>Please select one category</option>
+                      </select>
+                    </div><!-- end .col2 -->    
+                	<div class="col2">
+                       <label>Sub - Category* </label>
+                      <select class="selectpicker selectpicker show-tick subcategory" id='subcategory' name='subcategory' data-width="100%">
+                        <option>Please select one sub-category</option>
+                      </select>
+                    </div><!-- end .col2 -->    
+                 </div><!-- end .rows -->    
+            	<div class="rows">
+                       <label>Job Title*  </label>
+                       <input id="title" name="title" type="text" class="required" value='{$load[i].job_title}' placeholder="E.g. 'Graphic Designer' or 'Looking for an actor in a music video clip'"><br><label class="msg_name" style="color: red;" />{$status.msgpr}</label>
+                </div><!-- end .rows -->  
+            	<div class="rows">
+                       <label>Job Description*</label>
+				
+                       <textarea type="text" placeholder="Maximum of 1000 characters"  id="description" name="description">{$load[i].job_description}</textarea>
+                </div><!-- end .rows -->    
+            	<div class="rows">
+                       <label>Job Requirement*</label>
+					   	<textarea   type="text" placeholder="Maximum of 1000 characters"  name="requitment">{$load[i].requitment}</textarea>
+                       
+                </div><!-- end .rows -->   
+            	<div class="rows">
+                       <label>Upload Samples, Helpful Or Supporting  Materials	(Optional)*</label>
+					   <div style="display:none">
+					    <input type='hidden' value="{$load[i].file}" name="filelama" />
+						<input type='hidden' value="{$load[i].id_job}" name="idjob" />
+						<input type='hidden' value="{$load[i].talent_seeker_id}" name="talent_seeker_id" />
+						<input type='hidden' value="{$load[i].id_job}" name="param" />
+					   <input type="file" class="myfile" id="myfile"  name="myfile[]" />
+					   
+					   </div>
+                       <a   href="javascript:void(0)" class="button2 button2s browsfile" id="browsfile">BROWSE FILE</a>
+						{section name=iw loop=$userlize.file}
+							{if $userlize.file[iw].type == 'image/jpeg'}
+								<img width="50" height="50" src="{$basedomain}public_assets/postjob/{$userlize.file[iw].name}">
+							{elseif $userlize.file[iw].type == 'application/msword'}
+									<img width="50" height="50" src="{$basedomain}assets/images/doc.png">
+							{elseif $userlize.file[iw].type == 'application/pdf'}
+									<img width="50" height="50" src="{$basedomain}assets/images/pdf.png">	
+							{/if}
+						  {/section}
+			   </div><!-- end .rows --> 
+            	<div class="rows">
+                	<div class="col2">
+                      <label>Primary Work Location*</label>
+                      <select class="selectpicker selectpicker show-tick provincy"  data-live-search="true" name="provincy" data-width="100%">
+					  <option class="">Please select your province* </option>
+                        {section name=n loop=$provincy}
+							{if $load[i].provinsi==$provincy[n].province}
+							 <option value="{$provincy[n].province}" selected>{$provincy[n].province}</option>
+							 {else}
+							 <option value="{$provincy[n].province}" >{$provincy[n].province}</option>
+							{/if}
+						{/section}
+                      </select>
+                    </div><!-- end .col2 -->    
+                	<div class="col2">
+                      <label>&nbsp;</label>
+                      <select class="selectpicker selectpicker show-tick city"   data-live-search="true" id='city' name="city" data-width="100%">
+                        <option class="">Please select your city*</option>
+                      </select>
+                    </div><!-- end .col2 -->   
+ <label class="red city_no"></label>					
+                 </div><!-- end .rows -->
+            	<div class="rows checkboxs">
+                       <label>Looking for:*</label> 
+					   
+											   
+						
+						<input type="checkbox" name='check[]' class='subcat' value='fulltime' {if in_array('fulltime',$checklist)} checked {/if} /><span>Full timer</span>
+					
+						
+						
+                       <input type="checkbox" name='check[]' class='subcat'  value='parttime' {if  in_array('parttime',$checklist)}checked {/if}/><span>Part timer</span>
+					   
+					   
+                       <input type="checkbox" name='check[]' class='subcat'  value='freelancer' {if in_array('freelancer',$checklist) }checked{/if} /><span>Freelancer</span>
+					   
+					  
+                       <input type="checkbox" name='check[]' class='subcat'  value='inter'  {if in_array('inter',$checklist) }checked {/if}/><span>Internship</span>
+					  
+					    <label class="red checkboxs_no"></label>
+                 </div><!-- end .rows -->  
+            	<div class="rows">
+                	<div class="col2">
+                      <label>Is experience required? *</label>
+                      <select class="selectpicker selectpicker show-tick" data-width="100%" name="experience">
+					  {if $load[i].experience == 1}
+                        <option value='1' selected>Yes</option>
+					  {else}
+						<option value='1' >Yes</option>
+					  {/if}
+					  {if $load[i].experience == 0}
+						<option value='0' selected>No</option>
+						{else}
+						<option value='0' >No</option>
+						{/if}
+                      </select>
+                    </div><!-- end .col2 -->    
+                	<div class="col2">
+                      <label>Expected pay/ salary *</label>
+                        <select name="salary" class="selectpicker selectpicker show-tick" data-width="100%"> 
+											  <option>Select Option </option>
+											   
+											  <option value='1' {if $load[i].salary == 1} selected{/if}>Paid</option>
+											  <option value='2' {if $load[i].salary == 2} selected{/if}>Unpaid</option>
+											 <option value='3' {if $load[i].salary == 3} selected{/if}>Expense</option>
+											  </select>
+                    </div><!-- end .col2 -->    
+                 </div><!-- end .rows -->   
+            	<div class="rows">
+                	<div class="col2">
+                      <label>Is an agent required? *</label>
+                      <select class="selectpicker selectpicker show-tick" data-width="100%" name="agent">
+					   {if $load[i].agent == 1}
+                        <option value='1' selected>Yes</option>
+					   {else}
+						<option value='1' >Yes</option>
+					   {/if}
+					   {if $load[i].agent == 0}
+					   <option value='0' selected>No</option>
+					   {else}
+					   <option value='0' >No</option>
+					   {/if}
+                      </select>
+                    </div><!-- end .col2 -->    
+                	<div class="col2">
+                      <label>Job post closing date*</label>
+                     <input id="endpublish" name="endpublish" type="text" value="{$load[i].enddate}" class="datepicker">
+                    </div><!-- end .col2 -->    
+                 </div><!-- end .rows -->   
+            	<div class="rows">
+				<input type="hidden"  value="0" class="postnya"  name="postnya"/> 
+				<input type="hidden"  value="1" class="saveasdraft"  name="saveasdraft"/> 
+                	<input type="submit" class="button1 fr" value="POST"  name="postnya" id='postjb'/>
+					{if $uid !=''}
+					<input type="submit" class="button2 fr" value="Save As Draft"/>
+					{/if}
+                 </div><!-- end .rows -->   
+            </form>
+            </div><!-- end .col-content -->   
+        </div><!-- end .wrapper -->    
+    </div><!-- end #theform --> 
+</div><!-- end #theformpage -->
+
+{/section}
+{/if}
+
+
+
+
+
+
+{literal}
+ <script>
+$(function() {
+$( ".datepicker" ).datepicker();
+});
+</script>
+{/literal}
+
+<script>
+var subcategory={$subcategory};
+var citynya='{$city}';
+{literal}
+
+	var id = $('.provincy option:selected').val();
+	
+	console.log(id);
+	$.ajax ({
+				type	 : 'POST', 
+				url	 :  basedomain+'postjobs/ajaxcity' , 
+				data:{id:id},
+				dataType:'json',
+				success	: function (result) 
+				{ 
+					if(result.status==1)
+								{
+									$("#city option").remove();
+									var str="";
+									$.each(result.data,function(kal,val){
+										if(citynya==val.city)
+										{
+										str +='<option value="'+val.city+'" selected>'+val.city+'</option>';
+										}else{
+										str +='<option value="'+val.city+'">'+val.city+'</option>';
+										}
+										
+									});
+									
+									$('#city').append(str);
+									$('.city').selectpicker("refresh");
+								}
+				}
+			});
+
+			
+		var id = $('.categorylist option:selected').val();
+		
+	console.log(id);
+	$.ajax ({
+				type	 : 'POST', 
+				url	 :  basedomain+'postjobs/ajaxsub' , 
+				data:{id:id},
+				dataType:'json',
+				success	: function (result) 
+				{ 
+					if(result.status==1)
+								{
+									$("#subcategory option").remove();
+									var str="";
+									$.each(result.data,function(kal,val){
+									if(subcategory==val.id)
+										{
+										str +='<option value="'+val.id+'" selected>'+val.name_subcategory+'</option>';
+										}else{
+										str +='<option value="'+val.id+'">'+val.name_subcategory+'</option>';
+										}
+										
+									});
+									
+									$('#subcategory').append(str);
+									$('.subcategory').selectpicker("refresh");
+								}
+				}
+			});
+
+</script>
+
+<script>
+$('.provincy').change(function(){
+	var id = $('.provincy option:selected').val();
+	console.log(id);
+	$.ajax ({
+				type	 : 'POST', 
+				url	 :  basedomain+'postjobs/ajaxcity' , 
+				data:{id:id},
+				dataType:'json',
+				success	: function (result) 
+				{ 
+					if(result.status==1)
+								{
+									$("#city option").remove();
+									var str="";
+									$.each(result.data,function(kal,val){
+						
+										str +='<option value="'+val.city+'">'+val.city+'</option>';
+										
+									});
+									
+									$('#city').append(str);
+									$('.city').selectpicker("refresh");
+								}
+				}
+			});
+
+})
+
+$('.categorylist').change(function(){
+	var id = $('.categorylist option:selected').val();
+	console.log(id);
+	$.ajax ({
+				type	 : 'POST', 
+				url	 :  basedomain+'postjobs/ajaxsub' , 
+				data:{id:id},
+				dataType:'json',
+				success	: function (result) 
+				{ 
+					if(result.status==1)
+								{
+									$("#subcategory option").remove();
+									var str="";
+									$.each(result.data,function(kal,val){
+						
+										str +='<option value="'+val.id+'">'+val.name_subcategory+'</option>';
+										
+									});
+									
+									$('#subcategory').append(str);
+									$('.subcategory').selectpicker("refresh");
+								}
+				}
+			});
+
+})
+ var id = $('.categorylist option:selected').val();
+$('.browsfile').click(function(e)
+ {
+	console.log($('.filimg').length);
+	console.log($('.myfile').length);
+	if($('.filimg').length < 3  )
+	{
+		console.log($('.filimg').length);
+		console.log('sss');
+		if(($('.myfile').length >1 && $('.myfile').length<=3) || ($('.browsfile').length >1 && $('.browsfile').length<=3 ))
+		{
+			$(".myfile:last").trigger('click');
+			thiss= $(".myfile:last");
+		}
+		else if($('.myfile').length==1)
+		{
+			$(".myfile").trigger('click');
+			thiss= $(".myfile");
+		}
+		else
+		{
+			
+			$(".upload_no").html('maximal upload 3 file');
+		}
+	}
+	else
+	{
+		$(".upload_no").html('maximal upload 3 file');
+	}
+	if($('.myfile').length<=3)
+	{
+		thiss.change(function(e)
+		 {
+		   
+			   e.preventDefault();
+				
+			    $(".upload_no").html('');
+			   if(this.files[0].type=='image/jpeg')
+				{
+					 var reader = new FileReader();
+					 reader.onload = function (ex) {
+						ex.preventDefault();
+						$('.browsfile').after(' <img width="50" class="filimg" hegiht="50" src="'+ex.target.result+'"> ');
+					  }
+				  reader.readAsDataURL(this.files[0]);
+				  $(this).after(' <input type="file" class="myfile" id="myfile" name="myfile[]" />');
+				  end;
+				}
+			   else if(this.files[0].type=='application/msword' || this.files[0].type=='application/vnd.openxmlformats-officedocument.wordprocessingml.document' )
+			   {
+				   $('.browsfile').after(' <img width="50" class="filimg" hegiht="50" src="'+basedomain+'assets/images/doc.png"> ');
+				   $(this).after(' <input type="file" class="myfile" id="myfile" name="myfile[]" />');
+				   end;
+			   }
+			   else if(this.files[0].type=='application/pdf')
+			   {
+				   $('.browsfile').after(' <img width="50" class="filimg" hegiht="50" src="'+basedomain+'assets/images/pdf.png"> ');
+				   $(this).after(' <input type="file" class="myfile" id="myfile" name="myfile[]" />');
+				    end;
+			   }
+			   else if(this.files[0].type=='application/vnd.openxmlformats-officedocument.presentationml.presentation')
+			   {
+					$('.browsfile').after(' <img width="50" class="filimg" hegiht="50" src="'+basedomain+'assets/images/ppt.png"> ');
+				   $(this).after(' <input type="file" class="myfile" id="myfile" name="myfile[]" />');
+				    end;
+			   
+			   }
+			   else
+			   {
+			   
+				 $(".upload_no").html('Sorry, we can only support JPG, PDF and WORD files');
+			   }
+			  
+			   
+				
+			   // $('browsfile')
+			   // $('.bg_home').attr('src', e.target.result);   
+
+		 });
+	 }
+ });
+ $('#postjb').click(function(e)
+		{
+			e.preventDefault();
+			console.log($('.checkboxs:checked').length);
+			var title_no='.title_no';
+			$(title_no).html(' ');
+			var description_no='.description_no';
+			$(description_no).html(' ');
+			var requitment_no='.requitment_no';
+			$(requitment_no).html(' ');
+			var provincy_no='.provincy_no';
+			$(provincy_no).html(' ');
+			var city_no='.city_no';
+			$(city_no).html(' ');
+			
+			var endpublish_no='.endpublish_no';
+			$(endpublish_no).html(' ');
+			
+			var checkboxs_no='.checkboxs_no';
+			$(checkboxs_no).html(' ');
+			
+			var salary_no='.salary_no';
+			$(salary_no).html(' ');
+			var valid='';
+			
+			if($('.title').val()=='')
+			{
+				$(title_no).html('You cannot leave this field empty');
+				valid='ada';
+			}
+			if(tinymce.get('description').getContent()=='')
+			{
+				$(description_no).html('You cannot leave this field empty');
+				valid='ada';
+			}
+			if(tinymce.get('requitment').getContent()=='')
+			{
+				$(requitment_no).html('You cannot leave this field empty');
+				valid='ada';
+			}
+			if($('.provincy').val()=='')
+			{
+				$(provincy_no).html('You cannot leave this field empty');
+				valid='ada';
+			}
+			if($('.city').val()=='')
+			{
+				$(city_no).html('You cannot leave this field empty');
+				valid='ada';
+			}
+			if($('.endpublish').val()=='')
+			{
+				$(endpublish_no).html('You cannot leave this field empty');
+				valid='ada';
+			}
+			if($('.salary').val()=='')
+			{
+				$(salary_no).html('You cannot leave this field empty');
+				valid='ada';
+			}
+			if($('.checkboxs').find('.subcat:checked').length ==0)
+				{
+					
+					$(checkboxs_no).html('You cannot leave this field empty');
+					valid='ada';
+				}
+			if(valid)
+			{
+				return false;
+			
+			}
+			else
+			{
+			console.log('berhasil');
+				$('.postnya').val('1');
+				$('.saveasdraft').val('0');
+				
+				$('#forms').trigger('submit');
+			}
+		});
+
+
+{/literal}
+</script>
+
+{literal}
+	<script>
+	tinymce.init({selector:'textarea',
+	
+	style_formats: [
+        {title: 'Bold text', inline: 'b'},
+        {title: 'Red text', inline: 'span', styles: {color: '#ff0000'}},
+        {title: 'Red header', block: 'h1', styles: {color: '#ff0000'}},
+        {title: 'Example 1', inline: 'span', classes: 'example1'},
+        {title: 'Example 2', inline: 'span', classes: 'example2'},
+        {title: 'Table styles'},
+        {title: 'Table row 1', selector: 'tr', classes: 'tablerow1'}
+    ],
+
+	 plugins: [
+        "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+        "searchreplace wordcount visualblocks visualchars code fullscreen",
+        "insertdatetime media nonbreaking save table contextmenu directionality",
+        "emoticons template paste textcolor colorpicker textpattern", "insertdatetime media table contextmenu paste jbimages"
+    ],
+    menubar : false,
+
+    toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+
+	image_advtab: true,
+
+	theme : "modern",
+	height: "100",
+    width:850
+	
+	});
+	
+
+	</script>
+{/literal}

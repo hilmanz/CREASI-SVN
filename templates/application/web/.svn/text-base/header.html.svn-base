@@ -1,0 +1,164 @@
+{literal}
+<!--Start of Zopim Live Chat Script-->
+ 	<script type="text/javascript">
+	window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
+	d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
+	_.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute('charset','utf-8');
+	$.src='//v2.zopim.com/?2Ptk9Q8C8hZehZYy4h8K7lxc8Od0ScS6';z.t=+new Date;$.
+	type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
+	</script> 
+	<!--End of Zopim Live Chat Script-->
+	{/literal}
+<div id="top"> 
+	<div class="wrapper">   
+    	<div class="topInfo fl topInfoleft">
+        	<a class="con-phoneWhite"><span>(+62)21 7050-8952/53</span></a>
+        	<a class="con-envelopeWhite"><span>info@creasi.co.id</span></a>
+        </div><!-- end .topInfo -->
+    	<div class="topInfo fr">
+        	<a href="http://facebook.com/creasi.ID" target="_blank"><i class="ico icon-facebook">&nbsp;</i></a>
+        	<a href="http://twitter.com/creasi_ID" target="_blank"><i class="ico icon-twitter">&nbsp;</i></a>
+        	<a href="http://instagram.com/creasi_ID" target="_blank"><i class="ico icon-instagram">&nbsp;</i></a>
+        	<a href="https://www.youtube.com/channel/UC4oeowGuM-E3GTeuYFkAWZQ" target="_blank"><i class="ico icon-youtube">&nbsp;</i></a>
+          <!--   <form class="searchform" id="searchform">
+                <input type="text" placeholder="Search Here..." />
+                <input type="submit" value="GO" />
+            </form> 
+            <a class="toggleSearch"><i class="icon-search">&nbsp;</i></a>-->
+        </div><!-- end .topInfo -->
+    </div><!-- end .wrapper -->    
+</div><!-- end #top --> 
+<div id="header"> 
+	<div class="wrapper">   
+        <a id="logo" href="{$basedomain}home"><img src="{$basedomain}assets/images/logo.png" /></a> 
+        <div id="nav">
+                <ul class="sf-menu" id="main-menu">
+				
+                  <li><a class="imenu-home" href="{$basedomain}home"><span>Home</span></a></li>
+                  <li><a class="imenu-jobbard" href="{$basedomain}jobboard"><span>Job board</span></a></li>
+                  <li><a class="imenu-talentboard" href="{$basedomain}talentboard"><span>talent board</span></a></li>
+				  {if $roleidnya == '2' || $roleidnya == '' }
+                  <li><a class="imenu-postjob" href="{$basedomain}postjobs"><span>post job</span></a></li>
+				  {/if}
+				  {if $roleidnya == '' }
+                  <li><a class="imenu-cv" href="{$basedomain}registration"><span>create cv</span></a></li>
+				  {/if}
+                  <li><a class="imenu-directory" href="#"><span>directory</span></a>
+                  		<div class="mobnav-subarrow"><i class="icon-arrow-circle-right">&nbsp;</i></div>
+                        <ul class="submenuDirectory">
+                            <li><a class="tsb-menu" href="{$basedomain}talentsekeerboard">Talent Seeker Board</a></li>
+                            <li><a class="schollDir" href="{$basedomain}schooldirectory">School Directory</a></li>
+                        </ul>
+                  </li>
+				  {if $roleidnya == '' }
+                  <li><a class="imenu-joinus" href="{$basedomain}join"><span>join us</span></a></li>
+				  {/if}
+                </ul>  
+				 {if $roleidnya == '' }
+                <div class="headerboxbtn fr">
+                    <a id="loginTrigger" class="loginTriger login button1" href="#">LOGIN</a>
+                    <div id="loginToogle" class="loginToogle login-form">
+                    	<form class="theforms" id="loginForm" name="Form2" method="POST" action="{$basedomain}login/local">
+                    	<div class="greybox">    
+                            <div class="rows">
+                             <input name="username" placeholder="Enter your email address" type="text" id="username"> 
+                            
+                            </div><!-- end .rows -->    
+                            <div class="rows">
+                             <input name="password" placeholder="Password" type="password" id="password" maxlength="20">
+                            </div><!-- end .rows -->       
+                            <div class="rows">
+                            	{*}<div class="cekbox">
+                                    <input type="checkbox" class="login" value="logine" name="">		
+                                        <label>
+                                        Keep me signed in
+                                        </label>
+                                </div>{/*}
+                                <input type="submit" class="button1 fr" value="LOGIN" name="Submit" />
+                                  <input type="hidden" name="login" value="1">
+                                  
+                            </div><!-- end .rows -->
+                            <div class="rows" style="text-align:right;">
+                                <a href="{$basedomain}forgot" class="forgot">Forgot Password ?</a>&nbsp;&nbsp;<br />
+                            	<a href="{$basedomain}join" class="forgot">New Member ?</a>&nbsp;&nbsp;<br />
+                                 <a href="{$basedomain}resend" class="forgot">Resend  Verification</a>
+                                 
+                            </div>
+                            
+                        </div>  <!-- end .greybox -->
+                    </form>
+                    </div><!--end.loginToogle-->
+                </div>
+				{else}
+				 <div class="headerboxbtn fr">
+                    <!--<a class="button1" href="index.php?page=login">LOGIN</a>-->
+                    <a href="#" id="toggleuser"><div class="smallthumb">
+					{if $img_avatar != ''}
+					<img class='avatar' src="{$basedomain}public_assets/personal/{$img_avatar}" width="30" height="40"/>
+					{else}
+						{if $roleidnya == '1' }
+							<img class='avatar' src="{$basedomain}assets/images/images_small_ct.jpg"/>
+						{else}
+							<img  class='avatar' src="{$basedomain}assets/images/images_small_ts.jpg"/>
+						{/if}
+					{/if}
+					
+					</div><i class="ico icon-chevron-down">&nbsp;</i></a>
+                    
+					
+					<div id="usermenubox" class="bubble">
+                        <ul>
+                          <li><a href="{$basedomain}dashboard"><i class="ico icon-dashboard">&nbsp;</i> <span>Dashboard</span></a></li>
+						   {if $roleidnya == '1' }
+                          <li><a href="{$basedomain}personal"><i class="ico icon-user">&nbsp;</i> <span>Profile</span></a></li>
+						  {else}
+						   <li><a href="{$basedomain}personalts"><i class="ico icon-suitcase">&nbsp;</i> <span>Profile Company</span></a></li>
+						  {/if}
+                          <li><a href="{$basedomain}notification" class="{if $notifnya > 1} notifRed {/if}"><i class="ico icon-exclamation-circle  ">&nbsp;</i> <span>Notifications</span></a></li>
+                          <li><a href="{$basedomain}dashboard/setting"><i class="ico icon-gear">&nbsp;</i> <span>Settings</span></a></li>
+                          <li><a href="{$basedomain}help"><i class="ico icon-question-circle">&nbsp;</i> <span>Help</span></a></li>
+                          <li><a href="{$basedomain}logout.php"><i class="ico icon-sign-in">&nbsp;</i> <span>Logout</span></a>
+                        </ul> 
+                    </div>
+                </div>
+				{/if}
+        </div>
+		
+    </div><!-- end .wrapper -->    
+</div><!-- end #header --> 
+{literal}
+<script>
+/*
+$(document).ready(function() {
+	$('#loginTrigger').click(function() {									
+		$('#loginToogle').slideToggle("");
+	});
+});
+*/
+
+$("#loginTrigger").click(function (event) {
+    if ($(".loginToogle").is(":hidden")) {
+        event.stopPropagation();
+        $(".loginToogle").slideToggle("fast");
+    }
+});
+
+
+$('body').click(function () {
+    $(".loginToogle").slideUp();
+});
+$(".loginToogle").click(function (event) {
+    event.stopPropagation();
+});
+
+/*
+$('.login').click(function(event) {
+		$(this).parent().siblings('.login-form').toggle("slide", { direction: "up" }, 500); 
+	});
+
+*/
+$(".submenuDirectory").hover(function () {
+	$(".imenu-directory").toggleClass("directorys-menu");
+});
+</script>
+{/literal}

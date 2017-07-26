@@ -1,0 +1,79 @@
+<div class="page_section" id="newspage">
+    <div id="metapage">
+        <div class="wrapper">
+            <h1 class="page-title fl">News & Press</h1>
+            <div class="breadcumb fr">
+                <a href="{$basedomain}home">Home</a> <span>/</span> <a href="">News & Press</a> <span>/</span> <a href="">Our News</a>
+            </div>
+        </div><!-- end .wrapper -->   
+    </div><!-- end #metapage -->
+    <div id="newspagelist" class="section"> 
+        <div class="wrapper">
+        	<div class="col-sidebar">
+                <div class="leftmenu">
+                    <div class="leftmenu-content">
+                    	<ul>
+                        	<li><a class="inew-news active" href="{$basedomain}news">Our news</a></li>
+                        	<li><a class="inew-press" href="{$basedomain}news/press">Press Coverage</a></li>
+                        </ul>
+                    </div><!-- END .widget-content -->
+                </div><!-- END .widget -->
+            </div><!-- end .col-sidebar -->    
+        	<div class="col-content">
+			
+            	<div class="shorter">
+                    <div id="paging_of_news_list" class="paging paging_of_news_list fr">
+                    	
+                    </div>
+                </div><!-- END .shorter -->
+                <div class="news-list">
+                    <div class="titleboxs">   
+                        <h2>Our <span class="red">News</span></h2>
+                    </div><!-- end .titlebox -->
+						{if $list}
+							{section name=i loop=$list}
+									<div class="rowarticle">
+										<div class="newsthumb">
+											<a href="{$basedomain}news/details/{$list[i].id}" class="newsthumbimg">
+											{if $list[i].images==''}
+											<img src="{$basedomain}assets/content/news.jpg" /></a> 
+											{else}
+											<img src="{$basedomain}/public_assets/banner/{$list[i].images}" onerror="this.src ='{$basedomain}assets/content/news.jpg'" /></a> 
+											{/if}
+										</div><!-- end .boximg -->    
+										<div class="newsentry">
+											<div class="entry-title">
+												<div class="datebox">
+													<span class="day">{$list[i].date}</span>
+													<span class="month">{$list[i].month}</span>
+													<span class="year">{$list[i].year}</span>
+												</div>
+												<h3><a href="{$basedomain}news/details/{$list[i].id}">{$list[i].title}</a></h3>
+												<div class="meta-post">
+													<span class="author"><i>{if $list[i].caption}Source: {$list[i].caption}{else} Source: creasi {/if}</i></span>
+												</div>
+											</div><!-- end .entry-title -->
+											<div class="entry-summary">
+												<p>{$list[i].description|truncate:120}</p>
+												<a href="{$basedomain}news/details/{$list[i].id}" class="readmore">READ MORE</a>
+											</div><!-- end .entry-summary -->   
+										</div><!-- end .newsentry -->    
+									</div><!-- end .rowarticle --> 
+							{/section}
+					{/if} 
+                </div><!-- end .news-list -->
+                <div class="row-paging">
+				  
+                    <div id="paging_of_news_list" class="paging paging_of_news_list">
+                    	
+                    </div>
+                </div>
+            </div><!-- end .col-content -->   
+        </div><!-- end .wrapper -->    
+    </div><!-- end #jobBoardList --> 
+</div><!-- end #jobBoard -->
+<script type="text/javascript">
+					getpaging(0,{$total},"paging_of_news_list","paging_ajax_news",5);
+					//getpaging(0,{$total},"paging_of_talent_list2","paging_ajax_talent",16);
+</script>
+

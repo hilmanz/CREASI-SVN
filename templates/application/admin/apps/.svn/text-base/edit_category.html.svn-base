@@ -1,0 +1,35 @@
+
+<div class="page_section" id="project-page">
+    <div id="container">
+        <div class="titlebox">
+            <h2 class="fl"><span class="icon-list2">&nbsp;</span> Edit Category</h2>
+            {*}<h2 class="fr"><a href="{$basedomain}categorymanagemant" class="button2">Back</a></h2>{/*}
+        </div><!-- end .titlebox -->
+        <div class="content">
+            <div class="summary">
+            </div><!-- end .summary -->
+
+            <form id="forms" class="forms" method="post" action="">
+
+            <div id="new-project" class="boxcontent">
+                <section class="step1">
+                    <div class="row">
+                        <label for="title">Category Name<br></label>
+						  <input id="title" name="id" type="hidden" value="{$list.id}" class="required" >
+                        <input id="title" name="name" type="text" value="{$list.category_name}" class="required" ><br><label class="msg_name" style="color: red;">{$status.msgpr}</label>
+                    </div><!-- end .row -->
+                    
+                    <input type="hidden" name="submit" value="1">
+                        <input type="submit" value="Save" class="button3 fr"  />
+						
+						 <a href="{$basedomain}categorymanagemant" class="fr button4">Cancel</a>
+                        <small class="msg">{$status.msgee}</small>
+                        <small class="msg">{$status.msg}</small>
+                    </div><!-- end .row -->
+                </section>
+            </div><!-- end #wizard -->
+		
+            </form>
+        </div><!-- end .content -->
+    </div><!-- end #container -->
+</div><!-- end #home -->

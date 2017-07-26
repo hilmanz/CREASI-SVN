@@ -1,0 +1,65 @@
+<div class="page_section" id="staticpage">
+    <div id="metapage">
+        <div class="wrapper">
+            <h1 class="page-title fl">Contact Us</h1>
+            <div class="breadcumb fr">
+                <a href="{$basedomain}home">Home</a> <span>/</span> <a href="">Contact Us</a>
+            </div>
+        </div><!-- end .wrapper -->   
+    </div><!-- end #metapage -->
+    <div id="staticpages" class="section"> 
+        <div class="wrapper">
+        	<div class="col-content">
+                <div class="titleboxs">   
+                    <h2>Contact <span class="red">Us</span></h2>
+                    <p><i>If you have any questions, comments or just wanted to say hi, feel free to drop us a message.</i></p>
+                </div><!-- end .titlebox -->
+                <form class="theforms" id="contactForm" method="post" action="{$basedomain}contactus/addcontact_us" enctype="multipart/form-data">
+                    <div class="rows">
+                        <div class="col3">
+                          <input  id="name" name="name" type="text" class="required mandatory" value="{$name}" placeholder="Your Name *" />
+							<label class="msg_name" style="color: red;">{$name_no}</label>
+					  </div><!-- end .col2 -->    
+                        <div class="col3">
+                          <input  id="email" name="email" type="text"  class="required mandatory" value="{$email}" placeholder="Please enter your email" />
+							<label class="msg_name" style="color: red;">{$email_no}</label>
+					   </div><!-- end .col2 -->    
+                        <div class="col3">
+                          <input id="subject" name="subject" type="text"  class="required mandatory" value="{$subject}" placeholder="Subject *" />
+						  <label class="msg_name" style="color: red;">{$subject_no}</label>
+                        </div><!-- end .col2 -->    
+                     </div><!-- end .rows -->    
+                    <div class="rows">
+                        <div class="col">
+                          <textarea   name="message"  class="required mandatory" value="{$message}" placeholder="Message *"></textarea>
+							<label class="msg_name" style="color: red;">{$message_no}</label>
+						</div><!-- end .col -->      
+                     </div><!-- end .rows --> 
+                    <div class="rows">
+                        <span><img src="{$basedomainpath}public_assets/cptcha/{$captcha}.jpg">=</span></span>
+                        <input type="text"  name="captchavalue" class="captchavalue"/>
+						<label class="msg_name" style="color: red;">{$captchavalue_no} </label>
+                    </div><!-- end .rows -->  
+                    <div class="rows">
+                        <input type="submit" class="button1" value="SEND" />
+                     </div><!-- end .rows -->    
+                </form>
+            </div><!-- end .col-content -->    
+        	<div class="col-sidebar infoContact">
+                <div class="widget widget-contact">
+                    <div class="widget-content iconContact">
+                        <p class="iconfot-phone">(+62) 21 7050 8952/53</p>
+                        <p class="iconfot-mail">info@creasi.co.id</p>
+                        <p class="iconfot-location">Jakarta, Indonesia</p>
+                        <div class="socialbox">
+                            <a href="http://facebook.com/creasi.ID" target="_blank"><i class="ico icon-facebook">&nbsp;</i></a>
+                            <a href="http://twitter.com/creasi_ID" target="_blank"><i class="ico icon-twitter">&nbsp;</i></a>
+                            <a href="http://instagram.com/creasi_ID" target="_blank"><i class="ico icon-instagram">&nbsp;</i></a>
+                            <a href="https://www.youtube.com/channel/UC4oeowGuM-E3GTeuYFkAWZQ" target="_blank"><i class="ico icon-youtube">&nbsp;</i></a>
+                        </div><!-- END .socialbox -->
+                    </div><!-- END .widget-content -->
+                </div><!-- END .widget -->
+            </div><!-- end .col-sidebar -->      
+        </div><!-- end .wrapper -->    
+    </div><!-- end #staticpages --> 
+</div><!-- end #staticpage -->

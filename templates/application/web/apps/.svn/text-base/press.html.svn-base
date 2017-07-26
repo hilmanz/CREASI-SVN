@@ -1,0 +1,138 @@
+<div class="page_section" id="newspage">
+    <div id="metapage">
+        <div class="wrapper">
+            <h1 class="page-title fl">News & Press</h1>
+            <div class="breadcumb fr">
+                <a href="{$basedomain}home">Home</a> <span>/</span> <a href="">News & Press</a> <span>/</span> <a href="">Our Press</a>
+            </div>
+        </div><!-- end .wrapper -->   
+    </div><!-- end #metapage -->
+   <div id="newspagelist" class="section"> 
+        <div class="wrapper">
+            <div class="col-sidebar">
+                <div class="leftmenu">
+                    <div class="leftmenu-content">
+                        <ul>
+                            <li><a href="index.php?page=news" class="inew-news">Our news</a></li>
+                            <li><a href="index.php?page=press" class="inew-press active">Press Coverage</a></li>
+                        </ul> 
+                    </div><!-- END .widget-content -->
+                </div><!-- END .widget -->
+            </div><!-- end .col-sidebar -->    
+            <div class="col-content">
+                 <div class="shorter">
+                    <div id="paging_of_pers_list" class="paging fr paging_of_pers_list">
+                     
+                     
+                    </div>
+                </div>
+                <div class="press-list">
+                    <div class="titleboxs">   
+                        <h2>Press <span class="red">Coverage</span></h2>
+                    </div><!-- end .titlebox -->
+                      {if $list}
+                            {section name=i loop=$list}
+                                <div class="rowarticle"> 
+									<div class="pressthumb">
+										<a target="_blank" { if $list[i].link} href="http://{$list[i].link|replace:'https://':''|replace:'http://':''}"  {else} href="" {/if} class="pressthumbimg">
+											{if $list[i].images==''}
+											<img src="{$basedomain}assets/content/press.jpg" /></a> 
+											{else}
+											<img src="{$basedomain}/public_assets/banner/{$list[i].images}" /></a> 
+											{/if}
+									</div><!-- end .pressthumb -->  
+                                    <div class="pressentry">
+                                        <div class="press-title">
+                                            <h3><a target="_blank" { if $list[i].link} href="http://{$list[i].link|replace:'https://':''|replace:'http://':''}"  {else} href="" {/if}>{$list[i].title}</a></h3>
+                                            <div class="meta-post">
+                                                <span class="date">{$list[i].fulldate}</span> I <a href="#" class="sumber">{if $list[i].caption}Source: {$list[i].caption}{else} Source: creasi {/if}</a>
+                                            </div>
+                                        </div><!-- end .entry-title -->
+                                        <div class="entry-summary">
+                                            <p>{$list[i].description|truncate:120}</p>
+                                            <a target="_blank" { if $list[i].link} href="http://{$list[i].link|replace:'https://':''|replace:'http://':''}"  {else} href="" {/if}  class="readmore">READ MORE  </a>
+                                        </div><!-- end .entry-summary -->   
+                                    </div><!-- end .pressentry -->    
+                                </div><!-- end .rowarticle --> 
+                            {/section}
+                    {/if} 
+                  
+                </div><!-- end .press-list -->
+                <div class="row-paging">
+                    <div id="paging_of_pers_list" class="paging paging_of_pers_list">
+                     
+                     
+                    </div>
+                </div>
+            </div><!-- end .col-content -->   
+        </div><!-- end .wrapper -->    
+    </div><!-- end #jobBoardList -->
+</div><!-- end #jobBoard -->
+
+<script type="text/javascript">
+					getpaging(0,{$total},"paging_of_pers_list","paging_ajax_pers",5);
+					//getpaging(0,{$total},"paging_of_talent_list2","paging_ajax_talent",16);
+</script>
+
+
+<script type="text/javascript">
+
+
+	//getpaging(0,{$total},"paging_of_company","paging_ajax_company",10);
+	
+	{literal}
+	function paging_ajax_company(fungsi,start){ 
+
+	
+		$.post(basedomain+"news/press",{start:start,ajax:1},function(response){
+			if(response){
+				  if(response.status==1){
+						var no = start+1;
+						var str="";
+						$.each(response.data,function(k,v){  
+						if(v.verified==1)
+						{
+							var button='button2';
+						}
+						else 
+						{
+							var button='button';
+						}
+						str +='<div class="rowarticle"> '+
+                                   ' <div class="pressentry">'+
+                                       ' <div class="press-title">'+
+                                          '  <h3><a href="#">'+v.title+'</a></h3>'+
+                                           ' <div class="meta-post">'+
+                                                '<span class="date">'+v.fulldate+'</span> I <a href="#" class="sumber">id.techinasia.com</a>'+
+                                           ' </div>'+
+                                       ' </div><!-- end .entry-title -->'+
+                                      '  <div class="entry-summary">'+
+                                            '<p>'+v.description.substring(0,150)+'</p>'+
+                                           ' <a target="_blank" ';
+										   
+										   if (v.link)
+											{
+												str +='href="'+v.link.replace("", "")+'"';
+											}
+											else
+											{
+												str +='href="" ';
+											}
+											str +=' class="readmore">READ MORE</a>';
+                                       str +=' </div>';
+                                  str +='  </div>'  ;
+                                str +='</div>'; 
+					no++;
+				});
+				$('.pagilist').html(str);
+			
+		}else{
+		   $('.pagilist').html('<tr><td colspan="5"> No Data</td></tr>');
+		 
+		}
+			}
+		},"JSON");
+	}
+	
+	{/literal}
+</script>

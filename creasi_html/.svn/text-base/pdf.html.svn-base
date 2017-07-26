@@ -1,0 +1,479 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Email Verify</title>
+<link rel="stylesheet" type="text/css" media="all" href="css/pdf.css" />
+</head>
+
+<body>
+	<div id="wrapper">
+    	<div id="header">
+        	<img src="images/logo_creasi_pdf.png" width="180" />
+        </div>
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="150">
+            	<div id="photo">
+                	<img src="content/u7.jpg" />
+                </div>
+            </td>
+            <td>
+            	<div id="name">
+                	<h1>Andry Shevchenko</h1>
+                    <h2><i>Photographer & Production Crew</i></h2>
+                </div>
+            </td>
+          </tr>
+        </table>
+        <div class="row">
+        	<div class="titlerow">
+            	<h3>BIO</h3>
+            </div>
+            <p>Creative & Technical office @creasi_ID. Videographer @creativeowl_ID, creativemind3, Bernardo Pictura. Creative & Technical office @creasi_ID.</p>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="120">Nickname</td>
+                <td width="10">:</td>
+                <td>Shevchenko</td>
+              </tr>
+              <tr>
+                <td>Gender</td>
+                <td width="10">:</td>
+                <td>Male</td>
+              </tr>
+              <tr>
+                <td>Date of Birth</td>
+                <td width="10">:</td>
+                <td>Jakarta, 20 Mei 1989</td>
+              </tr>
+              <tr>
+                <td>Location</td>
+                <td width="10">:</td>
+                <td>Jakarta Selatan, Dki Jakarta</td>
+              </tr>
+              <tr>
+                <td>Phone Number</td>
+                <td width="10">:</td>
+                <td>0129301810i2</td>
+              </tr>
+              <tr>
+                <td>Email Address</td>
+                <td width="10">:</td>
+                <td>Shevchenko@gmail.com</td>
+              </tr>
+            </table>
+        </div>
+        
+        <div class="row">
+        	<div class="titlerow">
+            	<h3>Social Media</h3>
+            </div>
+            <div class="content socialcontent">
+            	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td><a href="#"><img src="images/facebook.png"/><span>facebook.com/Shevchenko</span></a></td>
+                    <td><a href="#"><img src="images/twitter.png" /><span>twitter.com/Shevchenko</span></a></td>
+                    <td><a href="#"><img src="images/instagram.png" /><span>instagram.com/Shevchenko</span></a></td>
+                  </tr>
+                  <tr>
+                    <td><a href="#"><img src="images/youtube.png" /><span>youtube.com/Shevchenko</span></a></td>
+                    <td colspan="2"><a href="#"><img src="images/www.png" /><span>www.shevchenko.com</span></a></td>
+                  </tr>
+                </table>
+            </div>
+        </div>
+        
+        <div class="row">
+        	<div class="titlerow">
+            	<h3>EDUCATION</h3>
+            </div>
+            <div class="content educontent">
+            	<ul>
+                	<li><strong class="labelname">MASTER DEGREE</strong> <span class="date">/  2011 - 2014</span></<br />
+                    <span class="universityname">University of Creative Minds</span></li>
+                	<li><strong class="labelname">MASTER DEGREE</strong> <span class="date">/  2011 - 2014</span></<br />
+                    <span class="universityname">University of Creative Minds</span></li>
+                	<li><strong class="labelname">MASTER DEGREE</strong> <span class="date">/  2011 - 2014</span></<br />
+                    <span class="universityname">University of Creative Minds</span></li>
+                	<li><strong class="labelname">MASTER DEGREE</strong> <span class="date">/  2011 - 2014</span></<br />
+                    <span class="universityname">University of Creative Minds</span></li>
+                	<li><strong class="labelname">MASTER DEGREE</strong> <span class="date">/  2011 - 2014</span></<br />
+                    <span class="universityname">University of Creative Minds</span></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="row">
+        	<div class="titlerow">
+            	<h3>Dancer</h3>
+            </div>
+            <p>Creative & Technical office @creasi_ID. Videographer @creativeowl_ID, creativemind3, Bernardo Pictura. Creative & Technical office @creasi_ID.</p>
+            <div class="section">
+            	<h5 class="category-title">Dancer - Jazz</h5>
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td width="120">Agent</td>
+                    <td width="10">:</td>
+                    <td>David Beckham</td>
+                  </tr>
+                  <tr>
+                    <td>Agent Number</td>
+                    <td width="10">:</td>
+                    <td>087808224237</td>
+                  </tr>
+                  <tr>
+                    <td>Looking For</td>
+                    <td width="10">:</td>
+                    <td>Full Time, Part Time</td>
+                  </tr>
+                  <tr>
+                    <td>Open For</td>
+                    <td width="10">:</td>
+                    <td>Paid, Expense Only</td>
+                  </tr>
+                  <tr>
+                    <td>Experience</td>
+                    <td width="10">:</td>
+                    <td>Yes</td>
+                  </tr>
+                </table>
+                <div class="experience">
+                	<h5>2010-2012</h5>
+                    <ul>
+                    	<li>lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                    	<li>lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                    	<li>lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="section">
+            	<h5 class="category-title">Dancer - Jazz</h5>
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td width="120">Agent</td>
+                    <td width="10">:</td>
+                    <td>David Beckham</td>
+                  </tr>
+                  <tr>
+                    <td>Agent Number</td>
+                    <td width="10">:</td>
+                    <td>087808224237</td>
+                  </tr>
+                  <tr>
+                    <td>Looking For</td>
+                    <td width="10">:</td>
+                    <td>Full Time, Part Time</td>
+                  </tr>
+                  <tr>
+                    <td>Open For</td>
+                    <td width="10">:</td>
+                    <td>Paid, Expense Only</td>
+                  </tr>
+                  <tr>
+                    <td>Experience</td>
+                    <td width="10">:</td>
+                    <td>Yes</td>
+                  </tr>
+                </table>
+                <div class="experience">
+                	<h5>2010-2012</h5>
+                    <ul>
+                    	<li>lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                    	<li>lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                    	<li>lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="section">
+            	<h5 class="category-title">Dancer - Jazz</h5>
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td width="120">Agent</td>
+                    <td width="10">:</td>
+                    <td>David Beckham</td>
+                  </tr>
+                  <tr>
+                    <td>Agent Number</td>
+                    <td width="10">:</td>
+                    <td>087808224237</td>
+                  </tr>
+                  <tr>
+                    <td>Looking For</td>
+                    <td width="10">:</td>
+                    <td>Full Time, Part Time</td>
+                  </tr>
+                  <tr>
+                    <td>Open For</td>
+                    <td width="10">:</td>
+                    <td>Paid, Expense Only</td>
+                  </tr>
+                  <tr>
+                    <td>Experience</td>
+                    <td width="10">:</td>
+                    <td>Yes</td>
+                  </tr>
+                </table>
+                <div class="experience">
+                	<h5>2010-2012</h5>
+                    <ul>
+                    	<li>lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                    	<li>lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                    	<li>lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="row">
+        	<div class="titlerow">
+            	<h3>Other</h3>
+            </div>
+            <p>Creative & Technical office @creasi_ID. Videographer @creativeowl_ID, creativemind3, Bernardo Pictura. Creative & Technical office @creasi_ID.</p>
+            <div class="section">
+            	<h5 class="category-title">Dancer - Jazz</h5>
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td width="120">Agent</td>
+                    <td width="10">:</td>
+                    <td>David Beckham</td>
+                  </tr>
+                  <tr>
+                    <td>Agent Number</td>
+                    <td width="10">:</td>
+                    <td>087808224237</td>
+                  </tr>
+                  <tr>
+                    <td>Looking For</td>
+                    <td width="10">:</td>
+                    <td>Full Time, Part Time</td>
+                  </tr>
+                  <tr>
+                    <td>Open For</td>
+                    <td width="10">:</td>
+                    <td>Paid, Expense Only</td>
+                  </tr>
+                  <tr>
+                    <td>Experience</td>
+                    <td width="10">:</td>
+                    <td>Yes</td>
+                  </tr>
+                </table>
+                <div class="experience">
+                	<h5>2010-2012</h5>
+                    <ul>
+                    	<li>lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                    	<li>lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                    	<li>lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="section">
+            	<h5 class="category-title">Dancer - Jazz</h5>
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td width="120">Agent</td>
+                    <td width="10">:</td>
+                    <td>David Beckham</td>
+                  </tr>
+                  <tr>
+                    <td>Agent Number</td>
+                    <td width="10">:</td>
+                    <td>087808224237</td>
+                  </tr>
+                  <tr>
+                    <td>Looking For</td>
+                    <td width="10">:</td>
+                    <td>Full Time, Part Time</td>
+                  </tr>
+                  <tr>
+                    <td>Open For</td>
+                    <td width="10">:</td>
+                    <td>Paid, Expense Only</td>
+                  </tr>
+                  <tr>
+                    <td>Experience</td>
+                    <td width="10">:</td>
+                    <td>Yes</td>
+                  </tr>
+                </table>
+                <div class="experience">
+                	<h5>2010-2012</h5>
+                    <ul>
+                    	<li>lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                    	<li>lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                    	<li>lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="section">
+            	<h5 class="category-title">Dancer - Jazz</h5>
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td width="120">Agent</td>
+                    <td width="10">:</td>
+                    <td>David Beckham</td>
+                  </tr>
+                  <tr>
+                    <td>Agent Number</td>
+                    <td width="10">:</td>
+                    <td>087808224237</td>
+                  </tr>
+                  <tr>
+                    <td>Looking For</td>
+                    <td width="10">:</td>
+                    <td>Full Time, Part Time</td>
+                  </tr>
+                  <tr>
+                    <td>Open For</td>
+                    <td width="10">:</td>
+                    <td>Paid, Expense Only</td>
+                  </tr>
+                  <tr>
+                    <td>Experience</td>
+                    <td width="10">:</td>
+                    <td>Yes</td>
+                  </tr>
+                </table>
+                <div class="experience">
+                	<h5>2010-2012</h5>
+                    <ul>
+                    	<li>lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                    	<li>lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                    	<li>lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+        	<div class="titlerow">
+            	<h3>Photographer, TV dan Media</h3>
+            </div>
+            <p>Creative & Technical office @creasi_ID. Videographer @creativeowl_ID, creativemind3, Bernardo Pictura. Creative & Technical office @creasi_ID.</p>
+            <div class="section">
+            	<h5 class="category-title">Dancer - Jazz</h5>
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td width="120">Agent</td>
+                    <td width="10">:</td>
+                    <td>David Beckham</td>
+                  </tr>
+                  <tr>
+                    <td>Agent Number</td>
+                    <td width="10">:</td>
+                    <td>087808224237</td>
+                  </tr>
+                  <tr>
+                    <td>Looking For</td>
+                    <td width="10">:</td>
+                    <td>Full Time, Part Time</td>
+                  </tr>
+                  <tr>
+                    <td>Open For</td>
+                    <td width="10">:</td>
+                    <td>Paid, Expense Only</td>
+                  </tr>
+                  <tr>
+                    <td>Experience</td>
+                    <td width="10">:</td>
+                    <td>Yes</td>
+                  </tr>
+                </table>
+                <div class="experience">
+                	<h5>2010-2012</h5>
+                    <ul>
+                    	<li>lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                    	<li>lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                    	<li>lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="section">
+            	<h5 class="category-title">Dancer - Jazz</h5>
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td width="120">Agent</td>
+                    <td width="10">:</td>
+                    <td>David Beckham</td>
+                  </tr>
+                  <tr>
+                    <td>Agent Number</td>
+                    <td width="10">:</td>
+                    <td>087808224237</td>
+                  </tr>
+                  <tr>
+                    <td>Looking For</td>
+                    <td width="10">:</td>
+                    <td>Full Time, Part Time</td>
+                  </tr>
+                  <tr>
+                    <td>Open For</td>
+                    <td width="10">:</td>
+                    <td>Paid, Expense Only</td>
+                  </tr>
+                  <tr>
+                    <td>Experience</td>
+                    <td width="10">:</td>
+                    <td>Yes</td>
+                  </tr>
+                </table>
+                <div class="experience">
+                	<h5>2010-2012</h5>
+                    <ul>
+                    	<li>lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                    	<li>lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                    	<li>lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="section">
+            	<h5 class="category-title">Dancer - Jazz</h5>
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td width="120">Agent</td>
+                    <td width="10">:</td>
+                    <td>David Beckham</td>
+                  </tr>
+                  <tr>
+                    <td>Agent Number</td>
+                    <td width="10">:</td>
+                    <td>087808224237</td>
+                  </tr>
+                  <tr>
+                    <td>Looking For</td>
+                    <td width="10">:</td>
+                    <td>Full Time, Part Time</td>
+                  </tr>
+                  <tr>
+                    <td>Open For</td>
+                    <td width="10">:</td>
+                    <td>Paid, Expense Only</td>
+                  </tr>
+                  <tr>
+                    <td>Experience</td>
+                    <td width="10">:</td>
+                    <td>Yes</td>
+                  </tr>
+                </table>
+                <div class="experience">
+                	<h5>2010-2012</h5>
+                    <ul>
+                    	<li>lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                    	<li>lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                    	<li>lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <p style=" text-align:right;">**www.creasi.co.id/ct/kevincruziel</p>
+    </div>
+</body>
+</html>

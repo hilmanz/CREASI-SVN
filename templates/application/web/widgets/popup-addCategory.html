@@ -1,0 +1,198 @@
+<div id="popup-addCategory" class="popupfull mfp-hide">
+	<div class="popupfullcontent">
+    	<a class="closepopup" href="#"><i class="icon-times-circle">&nbsp;</i></a>
+        <div class="title-popup">
+        	<h1 class="page-title fl">Add New Category</h1>
+        </div>
+        <div class="formAdd">
+        	<form class="theforms" action='{$basedomain}personal/save' method="POST">
+            	<div class="rows">
+                		<div class="col2 incat">
+                                  <label class="relative">Category* 
+                                  <a href="#" class="tooltip helpicon" title="<h6>Tips</h6> <p>You can choose up to 2 categories. Make sure you choose which one suits you best</p>">?</a></label>
+								  <select  name="category[]" class="selectpicker selectpicker show-tick categorylist" data-width="100%" data-live-search="true" data-live-search="true" data-live-search="true" >
+									 <option value="">Please select one category that suits you best</option> 
+									{section name=i loop=$category}
+										<option name-cat="{$category[i].category_name}" value="{$category[i].id}">{$category[i].category_name}</option>
+									  
+									   {/section}
+								  </select>
+								    <label class="fr categorylist_no red">{$categorylist_no}</label>
+								</div><!-- end .col2 -->    
+							<!-- 	<div class="col2">
+                                   <a class="add-category fl" href="#add-category"><i class="icon-plus-circle">&nbsp;</i> Add More Category</a>
+								</div> --><!-- end .col2 -->    								
+						</div><!-- end .rows -->  
+						<div class="rows checkboxs subcategory">
+                                   <label></label>   
+                        </div><!-- end .rows -->  
+							 
+						<div class="rows">
+							<label class=" subcategory_no red">{$subcategory_no}</label>
+						</div>
+                 
+                 <div class="smallbtn">
+                   
+                        <button type="submit" class="button1 saveb" value="SAVE" style=""> SAVE</button>
+                       <a class="button2 cancelpops" style=""> CANCEL</a>
+                 </div>
+            </form>
+        </div>					
+    </div>
+</div><!-- END .popup -->
+
+<script>
+{literal}
+
+	$('.add-category').click(function()
+	{
+       console.log($('.categorylist' ).val());
+	   if($( '.category:last' ).find('.subcat:checked').length==0 || $( '.category:last' ).find('.subcat:checked').length>5)
+		{
+			if($( '.categorylist' ).val())
+			{
+				$('.subcategory_no:last').html('You cannot leave this field empty');
+				if($( '.category:last' ).find('.subcat:checked').length>5)
+				{
+				
+					$('.subcategory_no').html('maximum 5 subcategory');
+				}
+			}
+			else
+			{
+				$('.categorylist_no:last').html('You cannot leave this field empty');
+			}
+			return false;
+		
+		}
+		else
+		{
+			$('.subcategory_no').html(' ');
+		}
+			
+			
+			var n = $( '.category' ).length;
+			
+           if(n==1) {$(this).hide();}
+            
+		console.log($( '.category:last' ).find('.subcat:checked').length);
+    
+
+		//	$(".category").clone().appendTo(".boxcontent");
+		
+		$(".category:last").clone().insertAfter('.category:last');
+		$(".category:last").find(".tooltip").hide();
+		
+		$('.categorylist:last').remove();
+		$('.category:last').find('.relative').html('Category*   <a href="#" class="tooltip helpicon" title="<h6>Tips</h6> <p>You can choose up to 2 categories. Make sure you choose which one suits you best</p>">?</a></label>')
+		//console.log();
+		$('.categorylist:last .relative').removeClass('.tooltip');
+		//$('.categorylist:last .relative').addClass('tooltip')
+		$('.subcategory:last lebel').html('');
+		$('.categorylist').selectpicker();
+			//$(".categorylist:last ").addClass('categorylist2');
+		var categoryid= $('.categorylist option:selected').val();
+		var parentchange= $('.categorylist:last');
+		$('.tooltip').show();
+		parentchange.parent().parent().next().html('');
+		//step2category();
+		
+		var str = '';
+		parentchange.parent().parent().next().html('<label></label>');
+	
+		tooltips();
+			$('.categorylist').on('change',function(){
+					var categoryid= $(this).val();
+					
+					$('.categorylist_no:last').html('');
+						$(".incat:last").removeClass('error');
+					if(categoryid==$('.categorylist:first').val())
+					{
+						$('.categorylist_no:last').html('The Category has already choosen');
+						$(".incat:last").addClass('error');
+						categoryid='';
+						categoryerorr=1;
+						  
+					}
+					else
+					{
+						categoryerorr='';
+					}	
+					var parentchange= $(this);
+					var str = '';
+					$.ajax ({ 
+										type	 : 'POST', 
+										url	 :  basedomain+'registration/getSubcategory' , 
+										data:{categoryid:categoryid},
+										dataType:'json',
+										success	: function (result) 
+										{ 
+											console.log(parentchange.parent().parent().next());
+											parentchange.parent().parent().next().html('');
+											if(result.status==1)
+											{
+												str +='<label>Sub-Category:*</label>';
+												$.each(result.data,function(kal,val){
+													
+													str +='<input type="checkbox" class="subcat subcat_'+val.id+'" name-subcat ="'+val.name_subcategory+'" data-cat="'+categoryid+'" name="subcat['+categoryid+'][]" value="'+val.id+'"><span class="subcatSpan">'+val.name_subcategory+'</span>';
+													
+												});
+												//console.log(str);
+												parentchange.parent().parent().next().html(str);
+											}
+										}
+							});
+					//$(this).parent().find('.subcategory').find('.subcat').attr('name','subcat['+categoryid+'][]');
+			});
+	});
+	function tooltips()
+	{
+			console.log('ssss');
+			$('.tooltip').tooltipster({
+				contentAsHTML:true,
+				multiple:true
+			});
+	}
+	$('.categorylist').on('change',function(){
+		var categoryid= $('.categorylist option:selected').val();
+		if(categoryid=='')
+			{
+				$('.categorylist_no').html('You cannot leave this field empty');
+				//valid='ada';
+			}
+		else
+			{
+				$('.categorylist_no').html('');
+			}
+		console.log('sssssssss');
+		
+		var parentchange= $(this);
+		var str = '';
+		$.ajax ({ 
+							type	 : 'POST', 
+							url	 :  basedomain+'registration/getSubcategory' , 
+							data:{categoryid:categoryid},
+							dataType:'json',
+							success	: function (result) 
+							{ 
+								console.log(parentchange.parent().parent().next());
+								parentchange.parent().parent().next().html('');
+								if(result.status==1)
+								{
+									str +='<label>Sub-Category:*</label>';
+									$.each(result.data,function(kal,val){
+										
+										str +='<input type="checkbox" class="subcat subcat_'+val.id+'" name-subcat ="'+val.name_subcategory+'" data-cat="'+categoryid+'" name="subcat['+categoryid+'][]" value="'+val.id+'"><span class="subcatSpan">'+val.name_subcategory+'</span>';
+										
+									});
+									$('.subcategory_no').html('');
+									//console.log(str);
+									parentchange.parent().parent().next().html(str);
+								}
+							}
+				});
+		//$(this).parent().find('.subcategory').find('.subcat').attr('name','subcat['+categoryid+'][]');
+		
+	});
+{/literal}
+</script>

@@ -1,0 +1,264 @@
+{literal}
+	<script>
+	tinymce.init({selector:'.textarea2',
+	plugins: "paste",
+	menubar: "false",
+    toolbar1: "bold italic underline strikethrough  alignleft aligncenter alignright alignjustify  styleselect formatselect fontselect fontsizeselect",
+    //toolbar2: "cut copy paste | bullist numlist | outdent indent blockquote | undo redo | anchor | forecolor backcolor",
+	theme : "modern",
+	height: "100",
+    width:900
+	
+	});
+	</script>
+{/literal}
+<div class="page_section" id="project-page">
+    <div id="container">
+        <div class="titlebox">
+            <h2 class="fl"><span class="icon-newspaper">&nbsp;</span> Edit Jobs</h2>
+           {*}  <h2 class="fr"><a href="{$basedomain}jobmanagement" class="button2">Back</a></h2> {/*}
+        </div><!-- end .titlebox -->
+        <div class="content">
+            <div class="summary">
+            </div><!-- end .summary -->
+
+            <form class="theforms forms" id="forms"  method='POST' action="" enctype="multipart/form-data">
+            	<div class="row">
+                      <label>Category*</label>
+                      <select class="selectpicker selectpicker show-tick categorylist" data-live-search="true" name="category"  data-width="100%">
+					   
+                           {section name=i loop=$category}
+                            <option name-cat="{$category[i].category_name}" {if $list.category_id == $category[i].id } selected="selected" {/if} value="{$category[i].id}">{$category[i].category_name}</option>
+						    {/section}
+					
+                        <option>Please select one category</option>
+                      </select>
+                      </div>
+                	<div class="row">
+                       <label>Sub - Category*</label>
+                      <select class="selectpicker selectpicker show-tick subcategory" id='subcategory' name='subcategory' data-width="100%">
+                        <option>Please select one sub-category</option>
+                      </select>
+                 </div><!-- end .rows -->    
+            	<div class="row">
+                       <label>Job Title*</label>
+                       <input id="title" name="title" type="text" class="required" value="{$list.job_title}" placeholder="E.g. 'Graphic Designer' or 'Looking for an actor in a music video clip'"><br><label class="msg_name" style="color: red;" />{$status.msgpr}</label>
+                </div><!-- end .rows -->  
+            	<div class="row">
+                       <label>Job Description*</label>
+						<div class="row">
+							<textarea type="text" placeholder="Maximum of 1000 characters" class="textarea2"  id="description" name="description">{$list.job_description}</textarea>
+						</div>
+			   </div><!-- end .rows -->    
+            	<div class="row">
+                       <label>Job Requirement*</label>
+					   <div class="row">
+					   	<textarea   type="text" placeholder="Maximum of 1000 characters" class="textarea2"  name="requitment">{$list.requitment}</textarea>
+                       </div>
+                </div><!-- end .rows -->   
+            	
+            	<div class="row">
+                      <label>Primary Work Location*</label>
+                      <select class="selectpicker selectpicker show-tick provincy"  data-live-search="true" name="provincy" data-width="100%">
+					  <option class="provinces">Please select your province*</option>
+                        {section name=i loop=$provincy}
+						   <option value="{$provincy[i].province}" {if $list.provinsi == $provincy[i].province } selected="selected" {/if}>{$provincy[i].province}</option>
+						    {/section}
+                      </select>
+                      <select class="selectpicker selectpicker show-tick city"   data-live-search="true" id='city' name="city" data-width="100%">
+                        <option class="">Please select your city*</option>
+                      </select>
+                 </div><!-- end .rows -->
+            	<div class="row checkboxs">
+                       <label>Looking for:*</label>
+                       <div class="checkbox-inline">
+                       	<input type="checkbox" name='check[]' {if $lokingfor}  {if  in_array('fulltime',$lokingfor) } checked="checked" {/if} {/if} value='fulltime'/><span>Full timer</span>
+                       </div>
+                       <div class="checkbox-inline">
+                       	<input type="checkbox" name='check[]' {if $lokingfor}  {if  in_array('parttime',$lokingfor) } checked="checked" {/if} {/if} value='parttime'/><span>Part timer</span>
+                       </div>
+                       <div class="checkbox-inline">
+                       	<input type="checkbox" name='check[]'  {if $lokingfor}  {if  in_array('freelancer',$lokingfor) } checked="checked" {/if} {/if} value='freelancer'/><span>Freelancer</span>
+                       </div>
+                       <div class="checkbox-inline">
+                       	<input type="checkbox" name='check[]'   {if $lokingfor}  {if  in_array('inter',$lokingfor) } checked="checked" {/if} {/if}  value='inter'/><span>Intership</span>
+                       </div>
+                 </div><!-- end .rows -->  
+            	<div class="row">
+                      <label>Is experience required? *</label>
+                      <select class="selectpicker selectpicker show-tick" data-width="100%" name="experience">
+						<option value='2' {if $list.experience == '2' } selected="selected" {/if}  >Any</option>
+                        <option value='1' {if $list.experience == '1' } selected="selected" {/if}  >Yes</option>
+						<option value='0' {if $list.experience == '0' } selected="selected" {/if}  >No</option>
+                      </select>
+                 </div>
+                	<div class="row">
+                      <label>Expected pay/ salary  *</label>
+                        <select name="salary" class="selectpicker selectpicker show-tick" data-width="100%"> 
+                          <option>Select Option </option>
+                          	<option value='1' {if $list.salary == '1' } selected="selected" {/if} >PAID</option>
+							<option value='2' {if $list.salary == '2' } selected="selected" {/if}  >UNPAID</option>
+								<option value='3' {if $list.salary == '3' } selected="selected" {/if}  >EXPENSES</option>
+                          </select>    
+                 </div><!-- end .rows -->   
+            	<div class="row">
+                      <label>Is an agent required? *</label>
+                      <select class="selectpicker selectpicker show-tick" data-width="100%" name="agent">
+						<option value='2' {if $list.agent == '2' } selected="selected" {/if}  >Any</option>
+                        <option value='1' {if $list.agent == '1' } selected="selected" {/if} >Yes</option>
+						<option value='0' {if $list.agent == '0' } selected="selected" {/if} >No</option>
+                      </select>
+                    </div>
+                	<div class="row">
+                      <label>Job post closing date*</label>
+                     <input id="endpublish" name="endpublish" value="{$list.enddate}" type="text" class="datepicker">  
+                 </div><!-- end .rows -->   
+            	<div class="row">
+				 <input id="submit" name="submit" value="1" type="hidden" class=" submit">
+				 <input id="idjobs" name="idjobs" value="{$list.id_job}" type="hidden" class="submit">
+                 
+                	<input type="submit" class="fr button3" value="Save"  name="postnya"/>
+				  <a href="javascript:window.history.back(-1);" class="fr button4">Cancel</a>
+					
+				
+                 </div><!-- end .rows -->   
+            </form>
+        </div><!-- end .content -->
+    </div><!-- end #container -->
+</div><!-- end #home -->
+
+ <script>
+ var id = $('.categorylist option:selected').val();
+ var subcatid = '{$list.subcategory_id}';
+ var provincesid=$('.provincy option:selected').val();
+  var city='{$list.city}';
+	console.log(provincesid);
+{literal}
+	$.ajax ({
+				type	 : 'POST', 
+				url	 :  basedomain+'companymanegement/ajaxsub' , 
+				data:{id:id},
+				dataType:'json',
+				success	: function (result) 
+				{ 
+					if(result.status==1)
+								{
+									$("#subcategory option").remove();
+									var str="";
+									var checkeds="";
+									$.each(result.data,function(kal,val){
+										if(val.id==subcatid)
+										{
+											checkeds='selected="selected"';
+										}
+										else
+										{
+											checkeds="";
+										
+										}
+										str +='<option value="'+val.id+'" '+checkeds+'>'+val.name_subcategory+'</option>';
+										
+									});
+									
+									$('#subcategory').append(str);
+									///$('.subcategory').selectpicker("refresh");
+								}
+				}
+			});
+	$.ajax ({
+				type	 : 'POST', 
+				url	 :  basedomain+'companymanegement/ajaxcity' , 
+				data:{id:provincesid},
+				dataType:'json',
+				success	: function (result) 
+				{ 
+					if(result.status==1)
+								{
+									$("#city option").remove();
+									var str="";
+									$.each(result.data,function(kal,val){
+										if(val.city==city)
+										{
+											checkeds='selected="selected"';
+										}
+										else
+										{
+											checkeds="";
+										
+										}
+										str +='<option value="'+val.city+'"  '+checkeds+' >'+val.city+'</option>';
+										
+									});
+									
+									$('#city').append(str);
+									//$('.city').selectpicker("refresh");
+								}
+				}
+			});
+
+
+$(function() {
+$( ".datepicker" ).datepicker();
+});
+</script>
+<script>
+$('.provincy').change(function(){
+	var id = $('.provincy option:selected').val();
+	console.log(id);
+	$.ajax ({
+				type	 : 'POST', 
+				url	 :  basedomain+'companymanegement/ajaxcity' , 
+				data:{id:id},
+				dataType:'json',
+				success	: function (result) 
+				{ 
+					if(result.status==1)
+								{
+									$("#city option").remove();
+									var str="";
+									$.each(result.data,function(kal,val){
+						
+										str +='<option value="'+val.city+'">'+val.city+'</option>';
+										
+									});
+									
+									$('#city').append(str);
+									//$('.city').selectpicker("refresh");
+								}
+				}
+			});
+
+})
+
+$('.categorylist').change(function(){
+	var id = $('.categorylist option:selected').val();
+	console.log(id);
+	$.ajax ({
+				type	 : 'POST', 
+				url	 :  basedomain+'companymanegement/ajaxsub' , 
+				data:{id:id},
+				dataType:'json',
+				success	: function (result) 
+				{ 
+					if(result.status==1)
+								{
+									$("#subcategory option").remove();
+									var str="";
+									$.each(result.data,function(kal,val){
+						
+										str +='<option value="'+val.id+'">'+val.name_subcategory+'</option>';
+										
+									});
+									
+									$('#subcategory').append(str);
+									//$('.subcategory').selectpicker("refresh");
+								}
+				}
+			});
+
+})
+
+
+
+{/literal}
+</script>

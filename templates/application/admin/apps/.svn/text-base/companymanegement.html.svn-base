@@ -1,0 +1,388 @@
+<div class="page_section" id="project-page">
+    <div id="container">
+        <div class="titlebox">
+            <h2 class="fl"><span class="icon-quill">&nbsp;</span> Talent Seeker Management</h2>
+               <h2 class="fr"><a class="button2 downloadXls" id="downloadXls" href="#downloadXls">Download</a></h2>
+        </div><!-- end .titlebox -->
+        <div class="content">
+        	<div class="summary">
+				<div class="row">
+					<form id="form" action="" method="post">
+					<input type="text" name="search" class="search" value="{$search}" placeholder="Search" style="width:200px">
+					<div class="fr">
+						<input type="text" name="startdate" value="{$startdate}" placeholder="Start Date" class="startdate">
+						<span> To </span>
+						<input type="text" name="enddate" value="{$enddate}" placeholder="End Date"  class="enddate" { if $enddate} {else} readonly='readonly' {/if}  >
+						<input type="submit" value="GO" class="button3 submitsearch">
+					</div>
+					</form>
+				</div>
+            </div><!-- end .summary -->
+			<table cellpadding="0" cellspacing="0" border="0">
+			<thead>
+				
+				<tr>
+					<th   rowspan="2" class="head0">No</th>
+					<th   rowspan="2" class="head0">User ID</th>
+					<th   rowspan="2" class="head0">Company Name</th> 
+					<th rowspan="2" class="head0">Email</th> 
+					<th rowspan="2" class="head0">Registration Date</th> 
+					<th rowspan="2" class="head0">Status</th> 
+					<th rowspan="2" class="head0">Verified</th>
+					
+					<th colspan="6" style="text-align:center" class="head0">
+						Action
+					</th> 
+				</tr>
+				<tr>
+					
+					<th  class="head0"> Profile </th> 
+					<th  class="head0"> Suspend </th>
+					<th  class="head0"> Delete </th> 
+					<th  class="head0"> Jobs </th> 
+					<th  class="head0"> Verified</th> 
+				
+				</tr>
+			</thead>
+			<tbody class="pagilist">
+			{if $list}
+				{section name=i loop=$list}    
+                   <tr>
+						<td  >{$list[i].no}</td>
+						<td  >{$list[i].id}</td>
+						<td ><span>{$list[i].nama_perusahaan}</span></td> 
+						<td ><span>{$list[i].email}</span></td> 
+						<td ><span>{$list[i].tanggal}</span></td> 
+						<td   class="deleteinfo"><span>
+						
+							{if $list[i].n_status==0}
+								UnPublish
+							{elseif $list[i].n_status==1}
+								Active
+							{elseif $list[i].n_status==2}
+								Delete
+							{elseif $list[i].n_status==3}
+								Hide
+							{elseif $list[i].n_status==4}
+								Suspend
+							{elseif $list[i].n_status==4}
+								In Active
+							{/if}
+						</span></td> 
+						
+						<td   class="arrivedinfo"><span>
+							{if $list[i].verified!=0}
+								Verified
+							{else}
+								-
+							
+							{/if}
+						</span></td> 
+						<td  ><span><a href="{$basedomain}companymanegement/detail?id={$list[i].id}" class="button"> View</a></span></td> 
+						<td  ><span><a href="javascript:void(0)"  class="button block" data-status="{$list[i].n_status}" data-id="{$list[i].id}"> { if $list[i].n_status==4} Unsuspend {else} Suspend {/if}</a></span></td> 
+						<td  ><span><a href="javascript:void(0)"  class=" button delct" data-status="{$list[i].n_status}" data-id="{$list[i].id}"> { if $list[i].n_status==2} Deleted {else} Delete {/if} </a></span></td> 
+						<td  ><span>	<a href="{$basedomain}companymanegement/jobs?iduser={$list[i].id}" class="button"><span>View</span> </a></span></td> 
+						<td style="text-align:center;"  ><span>
+						<input type="checkbox" data-status="{$list[i].verified}" data-id="{$list[i].id}" value="26" id="26" { if $list[i].verified=='2' || $list[i].verified=='1' } checked="checked"  {/if} class="verified">
+						 </span></td> 
+					</tr>
+                {/section}
+			{/if}
+					
+			</tbody>
+			</table>
+            <div id="paging_of_company" class="paging">
+             
+            </div>
+        </div><!-- end .content -->
+    </div><!-- end #container -->
+</div><!-- end #home -->
+
+<script type="text/javascript">
+
+
+	getpaging(0,{$total},"paging_of_company","paging_ajax_company",10);
+	var userid = {$user->id};
+	{literal}
+	$(document).ready(function(){
+		verified();
+		delct();
+		block();
+		 var $from = $(".startdate").datepicker({dateFormat: 'dd-mm-yy'});
+		//  var $to = $(".enddate").datepicker({dateFormat: 'dd-mm-yy'}).prop('disabled', true);
+		$(".startdate").change(function()
+		{
+			$(".enddate").datepicker({
+				dateFormat: 'dd-mm-yy'
+			}).prop('disabled', false);
+			$(".enddate").removeAttr('readonly');
+		});
+		$('#downloadXls').attr('href',basedomain+"companymanegement/callsheader?search="+$(".search").val()+'&startdate='+$(".startdate").val()+'&enddate='+$(".enddate").val());
+	});
+function delct()
+	{
+		$('.delct').click(function()
+		{
+			var idCt =$(this).data('id');
+			var deltatus= $(this).attr('data-status');
+			thiss=$(this);
+			if(deltatus==2 )
+				{
+					status=1;
+					thiss.parents('tr').find('.deleteinfo').html('Active');
+					thiss.removeAttr('data-status');
+											thiss.attr('data-status','1');
+											thiss.parent().parent().parent().remove();
+											thiss.html('Delete');
+				}
+			else
+				{
+					status=2;
+					thiss.parents('tr').find('.deleteinfo').html('Delete');
+					thiss.removeAttr('data-status');
+											thiss.attr('data-status','2');
+											thiss.parent().parent().parent().remove();
+											thiss.html('Deleted');
+											
+				}
+			
+				$.ajax({
+								'type': 'POST',
+								'url': basedomain+'personalmanagement/delete',
+								'data': {id:idCt,deltatus:status},
+								'dataType':'json',
+								'success': function(response){
+									if(response.status==1)
+									{
+										
+											
+												thiss.parents('tr').remove();
+											
+										
+									}
+								}
+								
+							});
+			
+		
+		});
+	}
+	function paging_ajax_company(fungsi,start){ 
+
+	
+	$.post(basedomain+"companymanegement/main",{start:start,ajax:1,search:$('.search').val(),startdate:$('.startdate').val(),enddate:$('.enddate').val()},function(response){
+		if(response){
+			  if(response.status==1){
+		var no = start+1;
+		var str="";
+		$.each(response.data,function(k,v){  
+		if(v.verified==1)
+		{
+			var button='button2';
+		}
+		else 
+		{
+			var button='button';
+		}
+		
+		
+		
+					str+='<tr>'+
+						'<td  >'+v.no+'</td>'+
+						'<td  >'+v.id+'</td>'+
+						'<td ><span>'+v.nama_perusahaan+'</span></td> '+
+						'<td ><span>'+v.email+'</span></td> '+
+						'<td ><span>'+v.tanggal+'</span></td>'+
+						'<td   class="deleteinfo"><span>';
+							if (v.n_status==0)
+							{
+								str+='UnPublish';
+							}
+							else if(v.n_status==1)
+							{
+								str+='Active';
+							}
+							else if (v.n_status==2)
+							{
+								str+='Delete';
+							}
+							else if (v.n_status==3)
+							{
+								str+='Hide';
+							}
+							else if (v.n_status==4)
+							{
+								str+='Suspend';
+							}
+							else if (v.n_status==4)
+							{
+								str+='In Active';
+							}
+						str+='</span></td>'+
+						
+							'<td   class="arrivedinfo"><span>';
+							if (v.verified==1)
+							{
+								str+='Verified';
+							}
+							else
+							{	
+								str+='-';
+							
+							}
+						str+='</span></td>'+
+						'<td  ><span><a href="'+basedomain+'personalmanagement/detail?id='+v.id+'" class="button"> View</a></span></td>'+
+						'<td  ><span><a href="javascript:void(0)"  class="';
+							if (v.n_status==4)
+								{
+									statussuspend ='Unsuspend';
+								}
+							else
+								{
+									statussuspend ='Suspend';
+							}
+						str+='button block" data-status="'+v.n_status+'" data-id="'+v.id+'"> '+statussuspend+'</a></span></td>'+ 
+						'<td  ><span><a href="javascript:void(0)"  class="';
+						 if (v.n_status==2)
+						 {
+							ststusdelete ='Deleted'; 
+						}
+						else
+						{						
+							ststusdelete ='Delete';
+						}
+						str+='button delct" data-status="'+v.n_status+'" data-id="'+v.id+'"> '+ststusdelete+'</a></span></td>'+ 
+						'<td  ><span>	<a href="'+basedomain+'companymanegement/jobs?iduser='+v.id+'" class="button"><span class="icon-pencil">&nbsp;</span> </a></span></td>'+
+						'<td  style="text-align:center;" ><span>'+
+						'<input type="checkbox" data-status="'+v.verified+'" data-id="'+v.id+'" value="26" id="26" ';
+						if (v.verified=='2' || v.verified=='1')
+							{
+								str+='checked="checked"'; 
+							}
+						str+='class="verified">'+
+						 '</span></td> '+
+					'</tr>'+
+			no++;
+		});
+		$('.pagilist').html(str);
+		verified();
+		block();
+		delct();
+	}else{
+	   $('.pagilist').html('<tr><td colspan="5"> No Data</td></tr>');
+	 
+	}
+		}
+	},"JSON");
+}
+function  verified()
+{
+	$('.verified').click(function()
+		{
+			var idCt =$(this).data('id');
+			thiss=$(this);
+			var verified= $(this).attr('data-status');
+			if(verified==1)
+				{
+					status=0;
+					thiss.parents('tr').find('.arrivedinfo').html('-');
+					
+											thiss.removeAttr('data-status');
+											thiss.attr('data-status','0');
+											thiss.removeClass('button2');
+											thiss.addClass('button');
+				}
+			else
+				{
+					status=1;
+					thiss.parents('tr').find('.arrivedinfo').html('verified ');
+					
+											thiss.removeAttr('data-status');
+											thiss.attr('data-status','1');
+											thiss.removeClass('button');
+											thiss.addClass('button2');
+				}
+				$.ajax({
+								'type': 'POST',
+								'url': basedomain+'companymanegement/verified',
+								'data': {id:idCt,verified:status},
+								'dataType':'json',
+								'success': function(response){
+									if(response.status==1)
+									{
+										//console.log(thiss.parents('tr').remove());
+										if(verified==1)
+										{
+											
+											
+											
+										}
+										else
+										{
+											
+											
+										}
+									}
+								}
+								
+							});
+			
+		
+		});
+}	
+function block()
+	{
+		$('.block').click(function()
+		{
+			var idCt =$(this).data('id');
+			thiss=$(this);
+			var blockstatus= $(this).attr('data-status');
+			if(blockstatus==4)
+				{
+					status=1;
+					thiss.removeAttr('data-status');
+					thiss.attr('data-status','1');
+					//thiss.removeClass('button2');
+					thiss.html('Suspend');
+					thiss.parents('tr').find('.deleteinfo').html('Active');
+				}
+			else
+				{
+					status=4;
+					thiss.removeAttr('data-status');
+											thiss.attr('data-status','4');
+											//thiss.removeClass('button');
+											thiss.html('Unsuspend');
+					thiss.parents('tr').find('.deleteinfo').html('Suspend');
+				}
+				$.ajax({
+								'type': 'POST',
+								'url': basedomain+'personalmanagement/block',
+								'data': {id:idCt,blockstatus:status},
+								'dataType':'json',
+								'success': function(response){
+									if(response.status==1)
+									{
+										//console.log(thiss.parents('tr').remove());
+										if(blockstatus==4)
+										{
+											
+											
+											
+										}
+										else
+										{
+											
+											
+											
+										}
+									}
+								}
+								
+							});
+			
+		
+		});
+	}				
+{/literal}
+</script>

@@ -1,0 +1,93 @@
+/*
+Theme Name:  CREASI
+Version: 1.0
+Author: Acit Jazz 2014
+*/
+body{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:14px;
+	margin:30px;
+	color:#000;
+}
+#wrapper{
+	max-width:700px;
+	margin:0 auto;
+}
+#header{
+	text-align:right;
+}
+#photo{
+	width:150px;
+	margin:0 30px 0 0;
+	border:solid 2px #000;
+}
+#photo img{
+	width:100%;
+}
+#name h1,#name h2{
+	font-weight:normal;
+	margin:0;
+	padding:10px 0;
+}
+#name h1{
+	border-bottom:solid 1px #ddd;
+}
+.row{
+	border:solid 1px #ddd;
+	padding:20px;
+	margin:20px 0;
+}
+.titlerow{
+	color:#c00;
+	border-bottom:solid 1px #c00;
+	padding:0 0 10px 0;
+}
+.titlerow h3{
+	margin:0;
+}
+.content{
+	padding:20px 0;
+}
+.socialcontent img{
+	float:left;
+	margin:0 10px 0 0;
+}
+.socialcontent a{
+	color:#000;
+	display:block;
+	margin:20px 0;
+}
+.socialcontent span{
+	display:block;
+	line-height:40px;
+	float:left;
+}
+.universityname{
+	display:block;
+	font-size:12px;
+}
+.date{
+	color:#666;
+	font-size:12px;
+	margin:0 0 0 10px;
+}
+.labelname{
+	letter-spacing:3px;
+}
+.educontent li{
+	margin:0 0 20px 0;
+}
+.category-title{
+	margin:20px 0 5px 0;
+}
+.experience ul{
+	margin:0;
+	padding:0;
+}
+.experience ul li{
+	padding:5px 0px;
+	list-style:inside none;
+}
+.experience h5{
+	margin:30px 0 10px 0;
+}

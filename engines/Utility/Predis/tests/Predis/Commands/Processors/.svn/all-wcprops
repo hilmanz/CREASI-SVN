@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/creasi/!svn/ver/49/trunk/engines/Utility/Predis/tests/Predis/Commands/Processors
+END
+ProcessorChainTest.php
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/creasi/!svn/ver/49/trunk/engines/Utility/Predis/tests/Predis/Commands/Processors/ProcessorChainTest.php
+END
+KeyPrefixProcessorTest.php
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/creasi/!svn/ver/49/trunk/engines/Utility/Predis/tests/Predis/Commands/Processors/KeyPrefixProcessorTest.php
+END

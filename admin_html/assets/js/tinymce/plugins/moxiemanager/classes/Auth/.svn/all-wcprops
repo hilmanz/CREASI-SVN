@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/creasi/!svn/ver/56/trunk/admin_html/assets/js/tinymce/plugins/moxiemanager/classes/Auth
+END
+AuthManager.php
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/creasi/!svn/ver/56/trunk/admin_html/assets/js/tinymce/plugins/moxiemanager/classes/Auth/AuthManager.php
+END
+IStandaloneAuthenticator.php
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/creasi/!svn/ver/56/trunk/admin_html/assets/js/tinymce/plugins/moxiemanager/classes/Auth/IStandaloneAuthenticator.php
+END
+User.php
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/creasi/!svn/ver/56/trunk/admin_html/assets/js/tinymce/plugins/moxiemanager/classes/Auth/User.php
+END
+Oauth2.php
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/creasi/!svn/ver/56/trunk/admin_html/assets/js/tinymce/plugins/moxiemanager/classes/Auth/Oauth2.php
+END
+IAuthenticator.php
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/creasi/!svn/ver/56/trunk/admin_html/assets/js/tinymce/plugins/moxiemanager/classes/Auth/IAuthenticator.php
+END

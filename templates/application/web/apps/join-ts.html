@@ -1,0 +1,574 @@
+<div class="page_section" id="theformpage">
+    <div id="metapage">
+        <div class="wrapper">
+            <h1 class="page-title fl">Talent Seeker Sign Up Form</h1>
+            <div class="breadcumb fr">
+                <a href="{$basedomain}home">Home</a> <span>/</span> <a href="">Talent Seeker Sign Up Form</a>
+            </div>
+        </div><!-- end .wrapper -->   
+    </div><!-- end #metapage -->
+    <div id="theform" class="section regisForm"> 
+        <div class="wrapper">
+        	<div class="col-content">
+        	<div class="titleboxs">   
+                <h2>Talent Seeker <span class="red"> Sign Up Form</span></h2>
+                <p><i>Complete this easy and quick form and start posting jobs immediately!</i></p>
+            </div><!-- end .titlebox -->
+            <div class="rows">
+                	<h3 class="arialBold firstArial">Contact Person Information:</h3>      
+                 </div>
+           <form id="forms" class="theforms" method="post" onsubmit="return validateForm()" name="myForm" action="{$basedomain}registrationts/save" enctype="multipart/form-data">
+            	<div class="rows">
+                	<div class="col2">
+                      <label>First Name*</label>
+                      <input type="text"  name='name' class="string namekosong2" autocomplete="off" id='name' placeholder="Enter your first name" value="{$valmandatory.names}"/>
+					  <label style="display:none; color:red;"  class="fr red namekosong" > You cannot leave this field empty</label>
+					 
+                    </div><!-- end .col2 -->    
+                	<div class="col2">
+                       <label>Last Name*</label>
+                      <input type="text" name='lastname' class="lastnamekosong2" autocomplete="off" id='lastname'  value="{$valmandatory.lastname}" placeholder="Enter your last name" />
+					    <label style="display:none; color:red;" class="fr red lastnamekosong" >  You cannot leave this field empty</label>
+                    </div><!-- end .col2 -->    
+                 </div><!-- end .rows -->    
+            	<div class="rows">
+                	<div class="col2">
+                      <label>Email Address (username)*</label>
+                      <input id="email" name="email" type="text" class="emailkosong2" autocomplete="off" value="{$valmandatory.email}"  placeholder="Please enter your email address" />
+					   <label style="color:red;" >{$valmandatory.no_email}</label>
+					    <label style="display:none; color:red;" class="fr red emailkosong" >  You cannot leave this field empty</label>
+						  <label style="display:none; color:red;" class="fr red emailformat" >  This email is incorrect format (e.g. example@creasi.co.id)</label>
+                    </div><!-- end .col2 -->    
+                	<div class="col2">
+                       <label>Phone Number*</label>
+                      <input  id="phone" name="phone" class="number phonekosong2" autocomplete="off"  type="text" placeholder="Preferably mobile number" value="{$valmandatory.phone}" />
+					   <label style="display:none; color:red;" class="fr red phonekosong" > You cannot leave this field empty</label>
+                    </div><!-- end .col2 -->    
+                 </div><!-- end .rows -->  
+            	<div class="rows">
+                	<div class="col2">
+                      <label>Password*</label>
+                      <input name='password' type="password" class="passw2" placeholder="Password (at least 6 characters)" />
+					     <label style="display:none; color:red;" class="fr red passw" > You cannot leave this field empty</label>
+						 <label style="display:none; color:red;" class="fr red passwsct" > The Password you entered must be at least 6 characters</label>
+					   
+						
+                    </div><!-- end .col2 -->    
+                	<div class="col2">
+                      <label>Confirm password*</label>
+                      <input name='repassword'  type="password" class="cpassw2" placeholder="Confirm password" />
+					   <label style="color:red;" >{$valmandatory.no_pass}</label>
+					     <label style="display:none; color:red;" class="fr red cpassw" > You cannot leave this field empty</label>
+						   <label style="display:none; color:red;" class="fr red passwsalah" >  Your password does not match </label>
+					    <label style="color:red;" >{$valmandatory.no_pass}</label>
+                    </div><!-- end .col2 -->    
+                 </div><!-- end .rows -->
+            	<!--<div class="rows">
+                	<div class="col2">
+                      <label>Category*</label>
+                      <select class="selectpicker selectpicker show-tick"data-width="100%">
+                        <option>Please select one category</option>
+                      </select>
+                    </div><!-- end .col2 -->      
+                 <!--</div><!-- end .rows -->  
+            	<div class="rows">
+                	<div class="col2  jenisperusahaankosong2">
+				<label>Category*</label>
+                	 <select class="selectpicker selectpicker show-tick jenisperusahaan"  data-live-search="true" name="jenisperusahaan" id="jenisperusahaan" data-width="100%">
+					  <option class="" value=''>Please select your category</option>
+					  <option class="coorporate" value='coorporate'>Corporate</option>
+					  <option class="independent" value='independent' >Independent</option>
+					  </select>
+					   <label style="display:none; color:red;" class="fr red jenisperusahaankosong" > You cannot leave this field empty</label>
+					   <label style="color:red;"  >{$valmandatory.jenisperusahaan}</label>
+						</div>
+                 </div><!-- end .rows -->
+                 <div class="rows secondArial">
+                	<h3 class="arialBold">Corporate or Independent Information:</h3>      
+                 </div>
+            	<div class="rows">
+                	<div class="col2">
+                      <label>Name*<span class="mandatory"  style="display:none;">*</span></label>
+                      <input id="name_ts" name="name_ts" class="no_ts2" value="{$valmandatory.name_ts}" type="text" placeholder="Please enter your company or organization name" />
+					  <label style="display:none; color:red;" class="fr red  no_ts" > You cannot leave this field empty</label>
+						<label style="color:red;" >{$valmandatory.no_ts}</label>
+                    </div><!-- end .col2 -->    
+                	<div class="col2 ">
+                       <label>Telephone*<span class="mandatory" style="display:none;">*</span></label>
+                      <input	name="telp" class="number no_telp2"  value="{$valmandatory.telp}" type="text" placeholder="Preferably land line" />
+					   <label style="display:none; color:red;" class="fr red no_telp" > You cannot leave this field empty</label>
+					  <label style="color:red;" class="" >{$valmandatory.no_telp}</label>
+                    </div><!-- end .col2 -->    
+                 </div><!-- end .rows -->  
+            	<div class="rows">
+                	<div class="">
+                       <label>Address*<span class="mandatory" style="display:none;">*</span></label>
+                       <textarea id="address"  value="{$valmandatory.address}" class="no_address2" name="address"  type="text" placeholder="Please enter your complete company or organization address"></textarea>
+					     <label style="display:none; color:red;" class="fr red no_address" > You cannot leave this field empty</label>
+					   <label style="color:red;" >{$valmandatory.no_address}</label>
+                     </div>
+                </div><!-- end .rows -->    
+            	<div class="rows ">
+                	<div class="col2 no_provincy2">
+                       <select class="selectpicker selectpicker show-tick provincy"  data-live-search="true" name="provincy" data-width="100%">
+					  <option class="" value="">Please select your province</option>
+                        {section name=i loop=$provincy}
+						   <option value="{$provincy[i].province}">{$provincy[i].province}</option>
+						    {/section}
+                      </select>
+					  <label style="display:none; color:red;" class="fr red no_provincy" > You cannot leave this field empty</label>
+                    </div><!-- end .col2 -->    
+                	<div class="col2 no_city2">
+                      <select class="selectpicker selectpicker show-tick city"   data-live-search="true" id='city' name="city" data-width="100%">
+                        <option class="" value="">Please select your city</option>
+                      </select>
+					    <label style="color:red;" class="fr red" >{$valmandatory.no_city}</label>
+						<label style="display:none; color:red;" class="fr red no_city" >  You cannot leave this field empty</label>
+                    </div><!-- end .col2 -->    
+                 </div><!-- end .rows -->
+            		<div class="rows">
+									<div class="fr">
+                                    <input type="text" name="captcha" class="fr captchavalue captchakosong2"/>
+                                    <span class="samadengan fr">=</span>
+									<span class="captchaImage fr"><img src="{$basedomainpath}public_assets/cptcha/{$captcha}.jpg"></span>
+									<br />
+									<label class="fr captchavalue_no red">{$captchavalue_no}</label>
+									<label style="display:none; color:red;" class="fr red  captchakosong" > You cannot leave this field empty</label>
+									<label style="display:none; color:red;" class="fr red  captchasalah" > The captcha is incorrect</label>
+									</div>
+								 </div><!-- end .rows --> 
+								
+            	<div class="rows">
+                <div class="fr">
+				 <input type="hidden" name="submit" id="mandatoryregts" value="1">
+                	<input type="submit" name ="ok" class="button1" value="JOIN" />
+                    </div>
+                 </div><!-- end .rows -->    
+            
+            <div class="rows">
+									<div class="fr">
+									   By clicking join you have agreed to our <a href="{$basedomain}tnc" class="red">T&amp;C</a> and <a href="{$basedomain}privacy"  class="red">Privacy Policy</a></label>
+									</div>
+								 </div>
+                                 </form>
+            </div><!-- end .col-content -->   
+        </div><!-- end .wrapper -->    
+    </div><!-- end #theform --> 
+</div><!-- end #theformpage -->
+
+
+<script>
+var xa='{$xa}';
+{literal}
+var valid='';
+
+			function validateForm() {
+			
+									var name = document.forms["myForm"]["name"].value;
+									var lastname = document.forms["myForm"]["lastname"].value;
+									var email = document.forms["myForm"]["email"].value;
+									var phone = document.forms["myForm"]["phone"].value;
+									var pass = document.forms["myForm"]["password"].value;
+									var cpass = document.forms["myForm"]["repassword"].value;
+									var jenisperusahaan = document.forms["myForm"]["jenisperusahaan"].value;
+									var name_ts = document.forms["myForm"]["name_ts"].value;
+									var telp = document.forms["myForm"]["telp"].value;
+									var address = document.forms["myForm"]["address"].value;
+									var provincy = document.forms["myForm"]["provincy"].value;
+									var city = document.forms["myForm"]["city"].value;
+									var captcha = document.forms["myForm"]["captcha"].value;
+									var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/; 
+									var regpass=/(?=.{6,}).*$/;
+									var valid='';
+									$('.no_ts2').removeClass('error');
+									$('.no_ts').hide();
+									$('.no_telp2').removeClass('error');
+									$('.no_telp').hide();
+									$('.no_provincy').hide();
+									$('.no_provincy2').removeClass('error');
+									$('.no_address2').removeClass('error');
+									$('.no_address').hide();
+									$('.no_city2').removeClass('error');
+									$('.no_city').hide();
+									$('.captchakosong').hide();
+									$('.captchakosong2').removeClass('error');
+									$('.captchasalah').hide();
+									$('.captchakosong2').removeClass('error');
+									$('.namekosong').hide();
+									$('.namekosong2').removeClass('error');
+									$('.passw').hide();
+									$('.cpassw').hide()
+									$('.passw').removeClass('error');
+									$('.cpassw').removeClass('error');
+									$('.lastnamekosong2').removeClass('error');
+									$('.lastnamekosong').hide();
+									$('.emailkosong2').removeClass('error');
+									$('.emailkosong').hide();	
+									$('.phonekosong2').removeClass('error');
+									$('.phonekosong').hide();
+									$('.passwsalah').hide();
+									$('.emailformat').hide();
+									$('.passwsct').hide();
+										if (name == null || name == "" && lastname == null || lastname == ""
+										|| email == null || email == "" || phone == null || phone == ""
+										|| jenisperusahaan == null || jenisperusahaan == "coorporate" || jenisperusahaan == "independent"|| jenisperusahaan == ""
+										|| pass == null || pass == ""
+										|| cpass == null || cpass == "" || captcha == null || captcha == "" || captcha != xa  ) {
+										
+										if (jenisperusahaan == null || jenisperusahaan == "") {
+										
+										$('.jenisperusahaankosong').show();
+											valid='ada';
+											console.log('persuhanaan');
+										}else{
+										
+										$('.jenisperusahaankosong').hide();
+										//valid='';
+										
+										}
+										
+										if (captcha == null || captcha == "" )
+										{
+										$('.captchakosong').show();
+										$('.captchakosong2').addClass('error');
+										valid='ada';
+										console.log('captchakosong2');
+										
+										}
+										console.log(valid+'captchakosong2');
+										/*else
+										{
+										$('.captchakosong').hide();
+										$('.captchakosong2').removeClass('error');
+										valid='';
+										
+										
+										}*/
+										
+										
+														if (name_ts == null || name_ts == "") {
+															$('.no_ts2').addClass('error');
+															$('.no_ts').show();
+															valid='ada';
+															//console.log('no_ts2');
+															}else{
+															$('.no_ts').hide();
+															}
+															console.log(valid+'no_ts2');
+															/*else{
+															$('.no_ts2').removeClass('error');
+															$('.no_ts').hide();
+															valid='';
+															}*/
+														if (telp == null || telp == "") {
+														
+															$('.no_telp2').addClass('error');
+															$('.no_telp').show();
+															valid='ada';
+															
+															}else{
+																
+															$('.no_telp').hide();
+															}
+															console.log(valid+'no_telp2');
+															/*else{
+															$('.no_telp2').removeClass('error');
+															$('.no_telp').hide();
+															valid='';
+															}*/
+														
+														if (provincy == null || provincy == "") {
+														
+															$('.no_provincy2').addClass('error');
+															$('.no_provincy').show();
+															valid='ada';
+																console.log('no_provincy2');
+															}else{
+															$('.no_provincy').hide();
+															}
+															console.log(valid+'no_provincy2');
+															/*else{
+															$('.no_provincy').hide();
+															$('.no_provincy2').removeClass('error');
+															valid='';
+															}*/
+														if (address == null || address == "") {
+														
+															$('.no_address').show();
+															$('.no_address2').addClass('error');
+															valid='ada';
+																console.log('no_address2');
+															}else{
+																$('.no_address').hide();
+															
+															}
+															console.log(valid+'no_address2');
+															/*else{
+															$('.no_address2').removeClass('error');
+															$('.no_address').hide();
+															valid='';
+															}	*/	
+														if (city == null || city == "") {
+														
+															$('.no_city').show();
+															$('.no_city2').addClass('error');
+															valid='ada';
+																console.log('no_city2');
+															}else{
+																$('.no_city').hide();
+															}
+															console.log(valid+'no_city2');
+															/*else{
+															$('.no_city2').removeClass('error');
+															$('.no_city').hide();
+															valid='';
+															}*/
+										
+										
+										
+										
+											
+											//valid='';
+									
+										if (captcha != null && captcha != "" && captcha != xa)
+										{
+										$('.captchasalah').show();
+										$('.captchakosong2').addClass('error');
+										valid='ada';
+										console.log('captchakosong2');
+										}
+											console.log(valid+'captchakosong2');
+										/*else
+										{
+										$('.captchasalah').hide();
+										$('.captchakosong2').removeClass('error');
+										valid='';
+										}*/
+										
+										if (name == null || name == "")
+										{
+										$('.namekosong').show();
+										$('.namekosong2').addClass('error');
+										valid='ada';
+										console.log('namekosong');
+										}
+										console.log(valid+'namekosong');
+										/*else
+										{
+										$('.namekosong').hide();
+										$('.namekosong2').removeClass('error');
+										valid='';
+										}*/
+										
+										if (pass == null || pass == "")
+										{
+											$('.passw').show();
+											$('.passw2').addClass('error');
+											valid='ada';
+											console.log('passw');
+										}
+										else if(!cpass.match(regpass) && !pass.match(regpass))
+										{
+											$('.passwsct').show();
+											$('.passw2').addClass('error');
+											valid='ada';
+										
+										}
+										console.log(valid+'passw');
+										/*else
+										{
+										$('.passw').hide();
+										$('.passw2').removeClass('error');
+										valid='';
+										}*/
+									
+										if (cpass == null || cpass == "")
+										{
+											$('.cpassw').show();
+											$('.cpassw2').addClass('error');
+											valid='ada';
+											console.log('cpassw2');
+										}
+										else if (pass != cpass )
+										{
+											$('.passwsalah').show();
+											$('.cpassw2').addClass('error');
+											valid='ada';
+											console.log('passw');
+										}
+										console.log(valid+'passw');
+										/*else
+										{
+										$('.cpassw').hide();
+										$('.cpassw2').removeClass('error');
+										valid='';
+										}*/
+										
+										if (lastname == null || lastname == "") {
+										$('.lastnamekosong').show();
+										$('.lastnamekosong2').addClass('error');
+										valid='ada';
+										console.log('lastnamekosong2');
+										}
+										console.log(valid+'lastnamekosong2');
+										/*else{
+										$('.lastnamekosong2').removeClass('error');
+										$('.lastnamekosong').hide();
+										valid='';
+										}*/
+										
+										if (email == null || email == "") {
+											$('.emailkosong').show();
+											$('.emailkosong2').addClass('error');
+											valid='ada';
+											console.log('emailkosong2');
+										}
+										else if(!email.match(mailformat))
+										{
+											$('.emailformat').show();
+											$('.emailkosong2').addClass('error');
+											valid='ada';
+										
+										}
+											console.log(valid+'emailkosong2');
+										/*else{
+										$('.emailkosong2').removeClass('error');
+										$('.emailkosong').hide();
+											valid='';
+										}*/
+									
+										if (phone == null || phone == "") {
+										$('.phonekosong').show();
+										$('.phonekosong2').addClass('error');
+											valid='ada';
+											console.log('phonekosong2');
+										}
+										console.log(valid+'phonekosong2');
+										/*else{
+										$('.phonekosong2').removeClass('error');
+										$('.phonekosong').hide();
+											valid='';
+										}*/
+									
+										if(valid)
+										{
+									
+												if($('.name').val()=='')
+													{
+													document.getElementById('name').focus();
+													}
+												if($('.lasname').val()=='')
+													{
+													$('.lastname').focus();
+													}
+												if($('#email').val()=='')
+													{
+													$('#email').focus();
+													}
+												return false;
+										}
+										else
+										{
+											return true;
+										}
+									
+									
+									}
+									
+									}
+							
+                $('.jenisperusahaan').change(function(e){
+						//console.log($(this).val());
+						if($(this).val()=='Coorporate')
+						{
+						 $('.mandatory').show();
+						}else{
+						
+						$('.mandatory').hide();
+						}
+				
+				});
+			
+
+</script>
+ <script>
+$(function() {
+$( ".datepicker" ).datepicker();
+});
+
+$('.provincy').change(function(){
+	var id = $(this).val();
+	//console.log(id);
+	$.ajax ({
+				type	 : 'POST', 
+				url	 :  basedomain+'postjobs/ajaxcity' , 
+				data:{id:id},
+				dataType:'json',
+				success	: function (result) 
+				{ 
+					if(result.status==1)
+								{
+									$("#city option").remove();
+									var str="";
+									str +='<option value="">Please select your city</option>';
+									$.each(result.data,function(kal,val){
+						
+										str +='<option value="'+val.city+'">'+capitalise(val.city)+'</option>';
+										
+									});
+									
+									$('#city').append(str);
+									$('.city').selectpicker("refresh");
+								}
+				}
+			});
+		});
+
+
+$('.categorylist').change(function(){
+	var id = $('.categorylist option:selected').val();
+	console.log(id);
+	$.ajax ({
+				type	 : 'POST', 
+				url	 :  basedomain+'postjobs/ajaxsub' , 
+				data:{id:id},
+				dataType:'json',
+				success	: function (result) 
+				{ 
+					if(result.status==1)
+								{
+									$("#subcategory option").remove();
+									var str="";
+									$.each(result.data,function(kal,val){
+						
+										str +='<option value="'+val.id+'">'+val.name_subcategory+'</option>';
+										
+									});
+									
+									$('#subcategory').append(str);
+									$('.subcategory').selectpicker("refresh");
+								}
+				}
+			});
+
+})
+$('.string').keyup(function () {  
+		if(this.value)
+		{
+			this.value = this.value.replace(/[^a-zA-Z]/g,''); 
+			
+		}
+	});
+$('.number').keyup(function () {  
+		if(this.value)
+		{
+			this.value = this.value.replace(/[^0-9\.]/g,''); 
+			
+		}
+	});
+
+function capitalise(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+}
+{/literal}
+</script>

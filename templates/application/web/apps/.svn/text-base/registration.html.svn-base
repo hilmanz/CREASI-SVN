@@ -1,0 +1,973 @@
+<div class="page_section" id="theformpage">
+    <div id="metapage">
+        <div class="wrapper">
+            <h1 class="page-title fl">Creative Talent Sign Up Form</h1>
+            <div class="breadcumb fr">
+                <a href="{$basedomain}home">Home</a> <span>/</span> <a href="">Creative Talent Sign Up Form</a>
+            </div>
+        </div><!-- end .wrapper -->   
+    </div><!-- end #metapage -->
+    <div id="theform" class="section regisForm"> 
+        <div class="wrapper">
+        	<div class="col-content">
+        	<div class="titleboxs">   
+                <h2>Creative Talent <span class="red">Sign Up Form</span></h2>
+                <p><i>Join now and start getting exposed!</i></p>
+            </div><!-- end .titlebox -->
+            <form class="theforms" method="post" action="{$basedomain}registration/save" enctype="multipart/form-data">
+					<div class="forprofil">
+						<div class="rows">
+							<div class="col2 firsname">
+							  <label>First Name*</label>
+							  <input type="text" id="name" class="name string" name="name" value="{$name}" placeholder="Enter your first name" autocomplete="off"  />
+							  <label class="fr name_no red">{$name_no}</label>
+							</div><!-- end .col2 -->    
+							<div class="col2 nickname">
+							   <label>Last Name*</label>
+							  <input id="lastname" name="lastname" class="lastname string" value="{$lastname}" type="text" placeholder="Enter your last name" autocomplete="off"  />
+							   <label class="fr lastname_no red">{$lastname_no}</label>
+							  <input id="ages" name="ages" type="hidden" value=""  />
+							</div><!-- end .col2 -->    
+						 </div><!-- end .rows -->    
+						<div class="rows">
+							<div class="col2 checkboxs">
+							   <label>Gender*</label>
+							   <input type="radio" {if $gender=='male' } checked="checked" {/if} value="male" class="genders" name="gender" /><span>Male</span>
+							   <input type="radio" value="female" {if $gender=='female' } checked="checked" {/if}   class="genders" name="gender" /><span>Female</span>
+							   <label class="fr genders_no red">{$genders_no}</label>
+							</div><!-- end .col2 -->    
+							<div class="col2 birthdate">
+							 
+							  <label>Date of Birth*</label>
+							    <select data-width="25%" class="selectpicker selectpicker show-tick birth Date_Day" data-live-search="true"  name="Date_Day">
+								
+								<option value=""  selected>Date</option>
+									{section name=foo start=1 loop=32 step=1}
+									<option value="{$smarty.section.foo.index}" {if $Date_Day}   {if $Date_Day == $smarty.section.foo.index } selected="selected" {/if}    {/if} >{$smarty.section.foo.index} </option>
+								 {/section }
+							  </select>
+							  
+							  <select data-width="48%" class="selectpicker selectpicker show-tick birth Date_Month" data-live-search="true"  name="Date_Month">
+								<option value="" selected>Month</option>
+								<option value="01"  {if $Date_Month}  {if $Date_Month == '01'} selected="selected" {/if}  {else}  {/if} label="January">January</option>
+									<option value="02" {if $Date_Month}  {if $Date_Month == '02'} selected="selected" {/if}  {else}    {/if} label="February">February</option>
+									<option value="03" {if $Date_Month}  {if $Date_Month == '03'} selected="selected" {/if}  {else}   {/if}   label="March">March</option>
+									<option value="04"  {if $Date_Month}  {if $Date_Month == '04'} selected="selected" {/if}  {else}  {/if}  label="April">April</option>
+									<option value="05" {if $Date_Month}  {if $Date_Month == '05'} selected="selected" {/if}  {else}  {/if} label="May">May</option>
+									<option value="06"  {if $Date_Month}  {if $Date_Month == '06'} selected="selected" {/if}  {else}  {/if}  label="June">June</option>
+									<option value="07" {if $Date_Month}  {if $Date_Month == '07'} selected="selected" {/if}  {else}   {/if} label="July">July</option>
+									<option value="08"  {if $Date_Month}  {if $Date_Month == '08'} selected="selected" {/if}  {else}   {/if}   label="August">August</option>
+									<option value="09"   {if $Date_Month}  {if $Date_Month == '09'} selected="selected" {/if}  {else}{/if}  label="September">September</option>
+									<option value="10"  {if $Date_Month}  {if $Date_Month == '10'} selected="selected" {/if}  {else}   {/if}  label="October">October</option>
+									<option value="11" {if $Date_Month}  {if $Date_Month == '11'} selected="selected" {/if}  {else}   {/if} label="November">November</option>
+									<option value="12"  {if $Date_Month}  {if $Date_Month == '12'} selected="selected" {/if}  {else}  {/if}   label="December">December</option>
+									
+							  </select>
+							
+							  
+							  <select data-width="25%" class="selectpicker selectpicker show-tick birth Date_Year" data-live-search="true"  name="Date_Year">
+								<option value=""  selected>Year </option>
+								{section name=foo start=1901 loop=$year step=1}
+									<option value="{$smarty.section.foo.index}" {if $Date_Year}   {if $Date_Year == $smarty.section.foo.index } selected="selected" {/if}   {else}  {/if}  >{$smarty.section.foo.index} </option>
+								 {/section }
+							  </select> 
+							   <label class="fr birth_no red">{$birth_no}</label>
+							</div><!-- end .col2 -->  
+						</div><!-- end .rows -->  
+						<div class="rows">
+							<div class="col2 emailaddress">
+							  <label>Email Address (username)*</label>
+							  <input id="email" value="{$email}" class="email" name="email"  type="text"  placeholder="Please enter your email address" autocomplete="off" />
+								 <label class="fr email_no red">{$email_no}</label>
+							</div><!-- end .col2 -->    
+							<div class="col2 phonenumber">
+							   <label>Phone Number*</label>
+							  <input  id="phone" value="{$phone}" class="phone number" name="phone" type="text" placeholder="Preferably mobile number" autocomplete="off" />
+							   <label class="fr phone_no red">{$phone_no}</label>
+							</div><!-- end .col2 -->    
+						 </div><!-- end .rows -->  
+						<div class="rows">
+							<div class="col2 inprovince">
+							  <label>Province*</label>
+							  <select id="province" name="province"  class="selectpicker selectpicker show-tick province"data-live-search="true" data-width="100%">
+								<option class="red" value="">Please select your province</option>
+								{section name=i loop=$provincy}
+									<option  value="{$provincy[i].province}"  {if $provincy[i].province ==$province} selected="selected" {/if} >{$provincy[i].province}</option>
+								{/section}
+								
+							  </select>
+							   <label class="fr province_no red">{$province_no}</label>
+							</div><!-- end .col2 -->    
+							<div class="col2 incity">
+							  <label>City*</label>
+							  <select id="city" name="city" class="selectpicker selectpicker show-tick city" data-live-search="true"  data-width="100%">
+								<option value="">Please select your city</option>
+							  </select>
+							  <label class="fr city_no red">{$city_no}</label>
+							</div><!-- end .col2 -->    
+						 </div><!-- end .rows -->
+						<div class="rows inpassword">
+							<div class="col2">
+							  <label>Password*</label>
+							  <input id="password" name="password" class="password" value="{$password}"  type="password" placeholder="Password (at least 6 characters)" />
+							   <label class="fr password_no red">{$password_no}</label>
+							</div><!-- end .col2 -->    
+							<div class="col2">
+							  <label>Confirm password*</label>
+							  <input type="password" id="passwordc" class="passwordc" name="passwordc" placeholder="Confirm password" />
+							 <label class="fr passwordc_no red"></label>
+							</div><!-- end .col2 -->    
+						 </div><!-- end .rows -->
+						 <div class="category"> 
+							<div class="rows ">
+								<div class="col2 incat">
+                                  <label class="relative">Category* 
+                                  <a href="#" class="tooltip helpicon" title="<h6>Tips</h6> <p>You can choose up to 2 categories. Make sure you choose which one suits you best</p>">?</a></label>
+								  <select  name="category[]" class="selectpicker selectpicker show-tick categorylist" data-width="100%" data-live-search="true" data-live-search="true" data-live-search="true" >
+									 <option value="">Please select one category that suits you best</option> 
+									{section name=i loop=$category}
+										<option name-cat="{$category[i].category_name}" value="{$category[i].id}">{$category[i].category_name}</option>
+									  
+									   {/section}
+								  </select>
+								    <label class="fr categorylist_no red">{$categorylist_no}</label>
+								</div><!-- end .col2 -->      
+								<div class="col2">
+                                   <a class="add-category fl" href="#add-category"><i class="icon-plus-circle">&nbsp;</i> Add More Category</a>
+								</div><!-- end .col2 -->      
+							 </div><!-- end .rows -->  
+                            <div class="rows checkboxs subcategory">
+                                   <label></label>   
+                                   
+							
+                            </div><!-- end .rows -->  
+							 <div class="rows">
+								<label class=" subcategory_no red">{$subcategory_no}</label>
+							  </div>
+                           {*} <div class="rows">
+                                <div class="col2">
+                                  <label>Other Subcategory</label>
+                                  <input type="text" placeholder="Enter Subcategory" />
+                                </div><!-- end .col2 -->      
+                             </div><!-- end .rows -->  {*}
+						</div>
+						
+						 <div class="rows">
+									<div class="fr">
+                                    <input type="text" name="captchavalue" class="captchavalue fr"/>
+                                     <span class="samadengan fr">=</span>
+									<span class="captchaImage fr"><img src="{$basedomainpath}public_assets/cptcha/{$captcha}.jpg"></span>
+                                   
+									<br />  
+									<label class="fr captchavalue_no red">{$captchavalue_no}</label>
+									
+									</div>
+								 </div><!-- end .rows --> 
+								<div class="rows">
+									<div class="fr">{*}
+									   <input type="checkbox" checked disabled/><span>By clicking join you have agreed to our <a href="{$basedomain}tnc" class="red">T&amp;C</a> and <a href="{$basedomain}privacy"  class="red">Privacy Policy</a></span>{/*}
+									</div>
+								 </div>
+						<!-- <div class="rows">
+							<div class="col2">
+							<span><img src="{$basedomainpath}public_html/public_assets/cptcha/{$captcha}.jpg"> </span>
+							<input type="text" name="captchavalue" class="captchavalue"/>
+							 <label class="fr captchavalue_no red">{$captchavalue_no}</label>
+							 </div>
+						 </div> --><!-- end .rows -->  
+					</div>
+
+
+					<div class="guardian" style="display:none">
+						
+							<div class="rows">
+								<div class="col2">
+								  <label>Relation with talent*:</label>
+								  <input type="text" name="relation_parent" class="relationparent string" placeholder="E.g. father, mother, brother, sister, uncle, etc" />
+								   <label class="fr red relationparent_no">{$relationparent_no}</label>
+								</div><!-- end .col2 -->    
+								<div class="col2">
+								   <label>Name of Parent/ Guardian*:</label>
+								  <input type="text" name="namaparent"  value="{$namaparent}" class="namaparent string" placeholder="Enter full name" />
+								  	  <input type="hidden" name="grd"  value="" class="grd"  />
+								  <label class="fr red namaparent_no">{$namaparent_no}</label>
+								</div><!-- end .col2 -->    
+							 </div><!-- end .rows -->    
+							<div class="rows">
+								<div class="col2 inparentmonth">
+								  <label>Date of Birth* </label>
+                                  <select class="selectpicker selectpicker parentdate show-tick" name="parentdate" data-width="20%" data-live-search="true" >
+									<option value="">Date</option>
+									{section name=foo start=1 loop=32 step=1}
+									<option value="{$smarty.section.foo.index}" {if $Date_Day}   {if $Date_Day == $smarty.section.foo.index } selected="selected" {/if}   {else} {if $smarty.now|date_format:"%Y" ==$smarty.section.foo.index } selected="selected" {/if} {/if} >{$smarty.section.foo.index} </option>
+								 {/section }
+								  </select>
+								  <select class="selectpicker selectpicker parentmonth show-tick" name="parentmonth" data-width="30%" data-live-search="true" >
+								  <option value="">Month</option>
+									<option value="01"  {if $parentmonth}  {if $parentmonth == '01'} selected="selected" {/if}  {else}  {if $smarty.now|date_format:"%m" =='01'} selected="selected" {/if} {/if} label="January">January</option>
+									<option value="02" {if $parentmonth}  {if $parentmonth == '02'} selected="selected" {/if}  {else}  {if $smarty.now|date_format:"%m" =='02'} selected="selected" {/if}  {/if} label="February">February</option>
+									<option value="03" {if $parentmonth}  {if $parentmonth == '03'} selected="selected" {/if}  {else}  {if $smarty.now|date_format:"%m" =='03'} selected="selected" {/if}  {/if}   label="March">March</option>
+									<option value="04"  {if $parentmonth}  {if $parentmonth == '04'} selected="selected" {/if}  {else}  {if $smarty.now|date_format:"%m" =='04'} selected="selected" {/if}  {/if}  label="April">April</option>
+									<option value="05" {if $parentmonth}  {if $parentmonth == '05'} selected="selected" {/if}  {else}  {if $smarty.now|date_format:"%m" =='05'} selected="selected" {/if}  {/if} label="May">May</option>
+									<option value="06"  {if $parentmonth}  {if $parentmonth == '06'} selected="selected" {/if}  {else}  {if $smarty.now|date_format:"%m" =='06'} selected="selected" {/if}  {/if}  label="June">June</option>
+									<option value="07" {if $parentmonth}  {if $parentmonth == '07'} selected="selected" {/if}  {else}  {if $smarty.now|date_format:"%m" =='07'} selected="selected" {/if}  {/if} label="July">July</option>
+									<option value="08"  {if $parentmonth}  {if $parentmonth == '08'} selected="selected" {/if}  {else}  {if $smarty.now|date_format:"%m" =='08'} selected="selected" {/if}  {/if}   label="August">August</option>
+									<option value="09"   {if $parentmonth}  {if $parentmonth == '09'} selected="selected" {/if}  {else}  {if $smarty.now|date_format:"%m" =='09'} selected="selected" {/if}  {/if}   label="September">September</option>
+									<option value="10"  {if $parentmonth}  {if $parentmonth == '10'} selected="selected" {/if}  {else}  {if $smarty.now|date_format:"%m" =='10'} selected="selected" {/if}  {/if}  label="October">October</option>
+									<option value="11" {if $parentmonth}  {if $parentmonth == '11'} selected="selected" {/if}  {else}  {if $smarty.now|date_format:"%m" =='11'} selected="selected" {/if}  {/if} label="November">November</option>
+									<option value="12"  {if $parentmonth}  {if $parentmonth == '12'} selected="selected" {/if}  {else}  {if $smarty.now|date_format:"%m" =='12'} selected="selected" {/if}  {/if}   label="December">December</option>
+									
+																			
+								  </select>
+								  
+								  <select class="selectpicker selectpicker parentyear show-tick" name="parentyear" data-width="40%" data-live-search="true" >
+									<option value="">Year</option>
+									{section name=foo start=1901 loop=$smarty.now|date_format:"%Y" step=1}
+									<option value="{$smarty.section.foo.index}" {if $parentyear}   {if $parentyear == $smarty.section.foo.index } selected="selected" {/if}   {else} {if $smarty.now|date_format:"%Y" ==$smarty.section.foo.index  } selected="selected" {/if} {/if}  >{$smarty.section.foo.index} </option>
+								 {/section }
+								  </select>
+								     <label class="fr birthparent_no red">{$birth_no}</label>
+								</div><!-- end .col2 -->  
+								<div class="col2">
+								   <label>Phone Number*</label>
+								  <input type="text" name="phoneparent" value="{$phoneparent}" class="phoneparent number" placeholder="Preferably mobile number" />
+								   <label class="fr red phoneparent_no">{$phoneparent_no}</label>
+								</div><!-- end .col2 -->    
+							</div><!-- end .rows -->  
+							<div class="rows">
+								<div class="col">
+								  <label>Identification Card (KTP or SIM or Passport)*:</label>
+								  <input type="text" name="identiasparent" value="{$identiasparent}" class="identiasparent" placeholder="Enter your chosen ID card number" />
+									 <label class="fr red identiasparent_no">{$identiasparent_no}</label>
+								</div><!-- end .col -->      
+							 </div><!-- end .rows -->
+							<div class="rows">
+								<div class="col">
+								  <label>Address*:</label>
+								  <textarea name="alamatparent"  class="alamatparent" placeholder="Enter your complete address">{$alamatparent}</textarea>
+								   <label class="fr red alamatparent_no">{$alamatparent_no}</label>
+								</div><!-- end .col -->      
+							 </div><!-- end .rows -->
+							<div class="rows">
+								<div class="col">
+								  <label>Parent/ Guardian Email Address*</label>
+								  <input type="text"  name="emailparent" class="emailparent" value="{$emailparent}" placeholder="Please re-enter your email with the right format (e.g. example@email.com)" />
+									<label class="fr red emailparent_no">{$emailparent_no}</label>
+								</div><!-- end .col -->      
+							 </div><!-- end .rows -->    
+							<div class="rows">
+								<p>CREASI may conduct a verification process to ensure information provided is true and accurate</p>  
+							 </div><!-- end .rows -->    
+							 
+						
+					</div><!-- end .col-content -->	
+
+
+				 
+            	<div class="rows">
+					<div class="fr">
+                	<input type="submit" class="button1 regs nexts" value="JOIN" />
+					</div>
+                    <span style="clear:both; display:block">&nbsp;</span>
+                   <label class="fr">By clicking join you have agreed to our <a class="red" href="{$basedomain}tnc">T&amp;C's</a> and <a class="red" href="{$basedomain}privacy">Privacy Policy</a></label>
+                 </div><!-- end .rows -->    
+            </form>
+            </div><!-- end .col-content -->  
+					
+        </div><!-- end .wrapper -->    
+    </div><!-- end #theform --> 
+</div><!-- end #theformpage -->
+
+
+<script>
+var xa = '{$xa}';
+var city='{$city}';
+var categoryerorr='';
+var emailchck=0;
+{literal}
+if(xa==''||xa==0)
+{
+	xa=0;
+}
+	var datenew= new Date();
+	console.log( $('.birth').eq(1).val());
+	var month = $('.Date_Month').val();
+	
+	var date = $('.Date_Day').val();
+	var year = $('.Date_Year').val();
+	var dob= new Date(month+'/'+date+'/'+year);
+	var today = new Date();
+	var age = Math.floor((today-dob) / (365.25 * 24 * 60 * 60 * 1000));
+	$('#ages').val(age);
+	if(age < 18 )
+		{
+			$('.regs').addClass('nexts');
+			$('.regs').val('next');
+			$('.regs').attr('type','button');
+						
+			 nextguardian();
+		}
+	else
+		{
+					
+			$('.regs').removeClass('nexts');
+			$('.regs').val('JOIN');
+			$('.regs').attr('type','submit');
+			nextguardian();
+		}
+	var id = $('#province option:selected').val();
+		console.log(id);
+		$.ajax ({
+					type	 : 'POST', 
+					url	 :  basedomain+'registration/ajaxcity' , 
+					data:{id:id},
+					dataType:'json',
+					success	: function (result) 
+					{ 
+						console.log(result);
+						if(result.status==1)
+									{
+										$(".city option").remove();
+										var str="";
+										str +='<option value="">Please select your city</option>';
+										$.each(result.data,function(kal,val){
+											if(city==val.city)
+											{
+												selected="selected='selected'";
+											}
+											else
+											{
+												selected="";
+											}
+											str +='<option value="'+val.city+'" '+selected+'>'+val.city+'</option>';
+											
+										});
+										$('#city').append(str);
+										$('.city').selectpicker("refresh");
+									}
+					}
+				});
+	$('.add-category').click(function()
+	{
+       console.log($('.categorylist' ).val());
+	   if($( '.category:last' ).find('.subcat:checked').length==0 || $( '.category:last' ).find('.subcat:checked').length>5)
+		{
+			if($( '.categorylist' ).val())
+			{
+				$('.subcategory_no:last').html('You cannot leave this field empty');
+				if($( '.category:last' ).find('.subcat:checked').length>5)
+				{
+				
+					$('.subcategory_no').html('maximum 5 subcategory');
+				}
+			}
+			else
+			{
+				$('.categorylist_no:last').html('You cannot leave this field empty');
+			}
+			return false;
+		
+		}
+		else
+		{
+			$('.subcategory_no').html(' ');
+		}
+			
+			
+			var n = $( '.category' ).length;
+			
+           if(n==1) {$(this).hide();}
+            
+		console.log($( '.category:last' ).find('.subcat:checked').length);
+    
+
+		//	$(".category").clone().appendTo(".boxcontent");
+		
+		$(".category:last").clone().insertAfter('.category:last');
+		$(".category:last").find(".tooltip").hide();
+		
+		$('.categorylist:last').remove();
+		$('.category:last').find('.relative').html('Category*   <a href="#" class="tooltip helpicon" title="<h6>Tips</h6> <p>You can choose up to 2 categories. Make sure you choose which one suits you best</p>">?</a></label>')
+		//console.log();
+		$('.categorylist:last .relative').removeClass('.tooltip');
+		//$('.categorylist:last .relative').addClass('tooltip')
+		$('.subcategory:last lebel').html('');
+		$('.categorylist').selectpicker();
+			//$(".categorylist:last ").addClass('categorylist2');
+		var categoryid= $('.categorylist option:selected').val();
+		var parentchange= $('.categorylist:last');
+		$('.tooltip').show();
+		parentchange.parent().parent().next().html('');
+		//step2category();
+		
+		var str = '';
+		parentchange.parent().parent().next().html('<label></label>');
+	
+		tooltips();
+			$('.categorylist').on('change',function(){
+					var categoryid= $(this).val();
+					
+					$('.categorylist_no:last').html('');
+						$(".incat:last").removeClass('error');
+					if(categoryid==$('.categorylist:first').val())
+					{
+						$('.categorylist_no:last').html('The Category has already choosen');
+						$(".incat:last").addClass('error');
+						categoryid='';
+						categoryerorr=1;
+						  
+					}
+					else
+					{
+						categoryerorr='';
+					}	
+					var parentchange= $(this);
+					var str = '';
+					$.ajax ({ 
+										type	 : 'POST', 
+										url	 :  basedomain+'registration/getSubcategory' , 
+										data:{categoryid:categoryid},
+										dataType:'json',
+										success	: function (result) 
+										{ 
+											console.log(parentchange.parent().parent().next());
+											parentchange.parent().parent().next().html('');
+											if(result.status==1)
+											{
+												str +='<label>Sub-Category:*</label>';
+												$.each(result.data,function(kal,val){
+													
+													str +='<input type="checkbox" class="subcat subcat_'+val.id+'" name-subcat ="'+val.name_subcategory+'" data-cat="'+categoryid+'" name="subcat['+categoryid+'][]" value="'+val.id+'"><span class="subcatSpan">'+val.name_subcategory+'</span>';
+													
+												});
+												//console.log(str);
+												parentchange.parent().parent().next().html(str);
+											}
+										}
+							});
+					//$(this).parent().find('.subcategory').find('.subcat').attr('name','subcat['+categoryid+'][]');
+			});
+	});
+	function tooltips()
+	{
+			console.log('ssss');
+			$('.tooltip').tooltipster({
+				contentAsHTML:true,
+				multiple:true
+			});
+	}
+	$('.categorylist').on('change',function(){
+		var categoryid= $('.categorylist option:selected').val();
+		if(categoryid=='')
+			{
+				$('.categorylist_no').html('You cannot leave this field empty');
+				//valid='ada';
+			}
+		else
+			{
+				$('.categorylist_no').html('');
+			}
+		console.log('sssssssss');
+		
+		var parentchange= $(this);
+		var str = '';
+		$.ajax ({ 
+							type	 : 'POST', 
+							url	 :  basedomain+'registration/getSubcategory' , 
+							data:{categoryid:categoryid},
+							dataType:'json',
+							success	: function (result) 
+							{ 
+								console.log(parentchange.parent().parent().next());
+								parentchange.parent().parent().next().html('');
+								if(result.status==1)
+								{
+									str +='<label>Sub-Category:*</label>';
+									$.each(result.data,function(kal,val){
+										
+										str +='<input type="checkbox" class="subcat subcat_'+val.id+'" name-subcat ="'+val.name_subcategory+'" data-cat="'+categoryid+'" name="subcat['+categoryid+'][]" value="'+val.id+'"><span class="subcatSpan">'+val.name_subcategory+'</span>';
+										
+									});
+									$('.subcategory_no').html('');
+									//console.log(str);
+									parentchange.parent().parent().next().html(str);
+								}
+							}
+				});
+		//$(this).parent().find('.subcategory').find('.subcat').attr('name','subcat['+categoryid+'][]');
+		
+	});
+	 $('.datepickercreasi').on('change', function() {
+                var dob = new Date(this.value);
+                var today = new Date();
+                var age = Math.floor((today-dob) / (365.25 * 24 * 60 * 60 * 1000));
+				if(age < 18 )
+				{
+					
+					
+					
+					$('.parent').show();
+				}
+				else
+				{
+					$('.parent').hide();
+				}
+            });
+	$('#province').change(function(){
+		var id = $('#province option:selected').val();
+		console.log(id);
+		$.ajax ({
+					type	 : 'POST', 
+					url	 :  basedomain+'registration/ajaxcity' , 
+					data:{id:id},
+					dataType:'json',
+					success	: function (result) 
+					{ 
+						console.log(result);
+						if(result.status==1)
+									{
+										$(".city option").remove();
+										var str="";
+										str +='<option value="">Please select your city</option>';
+										$.each(result.data,function(kal,val){
+											str +='<option value="'+val.city+'">'+val.city+'</option>';
+											
+										});
+										$('#city').append(str);
+										$('.city').selectpicker("refresh");
+									}
+					}
+				});
+		
+	})		
+	 $('.birth').on('change', function() {
+				var datenew= new Date();
+			
+				
+				var month = $('.Date_Month').val();
+				var date = $('.Date_Day').val();
+				var year = $('.Date_Year').val();
+				//console.log($('.birth').eq(4).val());
+				var dob= new Date(month+'/'+date+'/'+year);
+				 var today = new Date();
+				
+				var age = Math.floor((today-dob) / (365.25 * 24 * 60 * 60 * 1000));
+				console.log(age);
+				$('#ages').val(age);
+				
+				if(age < 18 )
+				{
+					$('.regs').addClass('next');
+						$('.regs').val('next');
+						$('.regs').attr('type','button');
+						
+					 nextguardian();
+				}
+				else
+				{
+					
+					$('.regs').removeClass('nexts');
+					$('.regs').val('JOIN');
+					$('.regs').attr('type','submit');
+				
+				}
+				
+     });
+	function nextguardian()
+	{
+		$('.regs').click(function()
+		{
+			
+			var genders_no='.genders_no';
+			$(genders_no).html(' ');
+			var birth_no='.birth_no';
+			$(birth_no).html(' ');
+			$('.birthdate').removeClass('error');
+			var name_no='.name_no';
+			$(name_no).html(' ');
+			$('.name').removeClass('error');
+			var lastname_no=".lastname_no";
+			$(".lastname").removeClass('error');
+			var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/; 
+			var alphaExp = /^[a-zA-Z]+$/;
+			$(lastname_no).html(' ');
+			var email_no=".email_no";
+			$(email_no).html(' ');
+			$(".email").removeClass('error');
+			var phone_no=".phone_no";
+			$(phone_no).html(' ');
+			$(".phone").removeClass('error');
+			var province_no=".province_no";
+			$(province_no).html(' ');
+			$(".inprovince").removeClass('error');
+			var city_no=".city_no";
+			$(city_no).html(' ');
+			$(".incity").removeClass('error');
+			var password_no=".password_no";
+			var regpass=/(?=.{6,}).*$/;
+			$(password_no).html(' ');
+			$(".password").removeClass('error');
+			var passwordc_no=".passwordc_no";
+			$(passwordc_no).html(' ');
+			$(".passwordc").removeClass('error');
+			var categorylist_no=".categorylist_no:last";
+			$(categorylist_no).html(' ');
+			$(".incat").removeClass('error');
+			
+			$(".categorylist_no").html(' ');
+			var  subcategory_no=".subcategory_no:last";
+			$(subcategory_no).html(' ');
+			var valid='';
+			var  captchavalue_no=".captchavalue_no";
+				$(captchavalue_no).html(' ');
+			$(".captchavalue").removeClass('error');
+			var month = $('.Date_Month').val();
+				var date = $('.Date_Day').val();
+				var year = $('.Date_Year').val();
+			var dob= new Date(month+'/'+date+'/'+year);
+			var today = new Date();
+			var age = Math.floor((today-dob) / (365.25 * 24 * 60 * 60 * 1000));
+			
+				if($('.category:last').find('.subcat:checked').length ==0)
+				{
+					if(categoryerorr)
+					{
+						$('.categorylist_no:last').html('The Category has already choosen');
+						$(".incat:last").addClass('error');
+						valid='ada';
+					}
+					else if($('.categorylist').val())
+					{
+						$(subcategory_no).html('You cannot leave this field empty');
+						valid='ada';
+					}
+				}
+				else if($('.category:last').find('.subcat:checked').length >5)
+				{
+					
+					$(subcategory_no).html('Maximum 5 sub categories');
+					valid='ada';
+				}
+			
+			if($('.genders:checked').length==0)
+			{
+				$(genders_no).html('You cannot leave this field empty');
+				valid='ada';
+			}
+			
+			if(month=='' || date=='' || year=='')
+			{
+				$(birth_no).html('You cannot leave this field empty');
+				$('.birthdate').addClass('error');
+				valid='ada';
+			}
+			if($('.name').val()=='')
+			{
+				$(name_no).html('You cannot leave this field empty');
+				$('.name').addClass('error');
+				valid='ada';
+			}
+			else if(!$('.name').val().match(alphaExp))
+			{
+				$(name_no).html('You cannot leave this field empty');
+				$('.name').addClass('error');
+				valid='ada';
+			}
+			
+			if($('.categorylist').val()=='')
+			{
+				$(categorylist_no).html('You cannot leave this field empty');
+				$(".incat").addClass('error');
+				valid='ada';
+			}
+			if($('.lastname').val()=='')
+			{
+				$(lastname_no).html('You cannot leave this field empty');
+				$(".lastname").addClass('error');
+				valid='ada';
+			}
+			else if(!$('.lastname').val().match(alphaExp))
+			{
+				$(lastname_no).html('You cannot leave this field empty');
+				$(".lastname").addClass('error');
+				valid='ada';
+			}
+			if($('.province').val()=='')
+			{
+				$(province_no).html('You cannot leave this field empty');
+				$(".inprovince").addClass('error');
+				valid='ada';
+			}
+			if($('.city').val()=='')
+			{
+				$(city_no).html('You cannot leave this field empty');
+				$(".incity").addClass('error');
+				valid='ada';
+			}
+			if($('.email').val()=='')
+			{
+				$(email_no).html('You cannot leave this field empty');
+				$(".email").addClass('error');
+				valid='ada';
+			}
+			else if(!$('.email').val().match(mailformat))  
+			{  
+				$(email_no).html(' This email is incorrect format (e.g. example@creasi.co.id)');
+				$(".email").addClass('error');
+				valid='ada';
+			} 
+			if(emailchck)
+			{
+				$(email_no).html('The Email has already been registered!)');
+				$(".email").addClass('error');
+				valid='ada';
+			}
+
+			if($('.phone').val()=='')
+			{
+				$(phone_no).html('You cannot leave this field empty');
+				$(".phone").addClass('error');
+				valid='ada';
+			}
+			if($('.password').val()=='')
+			{
+				$(password_no).html('You cannot leave this field empty');
+				$(".password").addClass('error');
+				valid='ada';
+			}
+			else if(!$('.password').val().match(regpass))
+			{
+				$(password_no).html('The Password you entered must be at least 6 characters');
+				$(".password").addClass('error');
+				valid='ada';
+			}
+			else if($('.password').val()!=$('.passwordc').val())
+			{
+				$(passwordc_no).html('The password you entered does not match');
+				$(".passwordc").addClass('error');
+				valid='ada';
+			}
+			if($('.passwordc').val()=='')
+			{
+				$(passwordc_no).html('You cannot leave this field empty');
+				$(".passwordc").addClass('error');
+				valid='ada';
+			}
+			
+			
+			
+			if($('.captchavalue').val()=='')
+			{
+				$(captchavalue_no).html('You cannot leave this field empty');
+				$(".captchavalue").addClass('error');
+				valid='ada';
+			}
+			else if($('.captchavalue').val()!=xa)
+			{
+				$(captchavalue_no).html('The captcha is incorrect');
+				$(".captchavalue").addClass('error');
+				valid='ada';
+			}
+			if(valid)
+			{
+				return false;
+			
+			}
+			
+			
+			console.log($(this).val());
+			if($(this).val()=='JOIN')
+			{
+					if($('.grd').val()!='')
+					{
+						if(age<18)
+						{
+							var parentmonth = $('.parentmonth').val();
+							$(".inparentmonth").removeClass('error');
+							var parentdate = $('.parentdate').val();
+							var parentyear = $('.parentyear').val();
+							var relationparent_no='.relationparent_no';
+							$(relationparent_no).html(' ');
+							$(".relationparent").removeClass('error');
+							
+							var birthparent_no='.birthparent_no';
+							$(birthparent_no).html(' ');
+							
+							var namaparent_no='.namaparent_no';
+							$(namaparent_no).html(' ');
+							$(".namaparent").removeClass('error');
+							var phoneparent_no=".phoneparent_no";
+							$(phoneparent_no).html(' ');
+							$(".phoneparent").removeClass('error');
+							var identiasparent_no=".identiasparent_no";
+							$(identiasparent_no).html(' ');
+							$(".identiasparent").removeClass('error');
+							var alamatparent_no=".alamatparent_no";
+							$(alamatparent_no).html(' ');
+							$(".alamatparent").removeClass('error');
+							var emailparent_no=".emailparent_no";
+								$(emailparent_no).html(' ');
+							$(".emailparent").removeClass('error');
+							var valid="";
+							
+								if(parentmonth=='' || parentdate=='' || parentyear=='')
+								{
+									$(birthparent_no).html('You cannot leave this field empty');
+									$(".inparentmonth").addClass('error');
+									valid='ada';
+								}
+								if($('.relationparent').val()=='')
+								{
+									$(relationparent_no).html('You cannot leave this field empty');
+									$(".relationparent").addClass('error');
+									valid='ada';
+								}
+								else if(!$('.relationparent').val().match(alphaExp))
+								{
+									$(relationparent_no).html('You cannot leave this field empty');
+									$(".relationparent").addClass('error');
+									valid='ada';
+								}
+								if($('.namaparent').val()=='')
+								{
+									$(namaparent_no).html('You cannot leave this field empty');
+									$(".namaparent").addClass('error');
+									valid='ada';
+								}
+								else if(!$('.namaparent').val().match(alphaExp))
+								{
+									$(namaparent_no).html('You cannot leave this field empty');
+									$(".namaparent").addClass('error');
+									valid='ada';
+								}
+								if($('.phoneparent').val()=='')
+								{
+									$(phoneparent_no).html('You cannot leave this field empty');
+									$(".phoneparent").addClass('error');
+									valid='ada';
+								}
+								if($('.identiasparent').val()=='')
+								{
+									$(identiasparent_no).html('You cannot leave this field empty');
+									$(".identiasparent").addClass('error');
+									valid='ada';
+								}
+								else if($('.identiasparent').val().length<7)
+								{
+									$(identiasparent_no).html('Minimum 7 angka');
+									$(".identiasparent").addClass('error');
+									valid='ada';
+								}
+								if($('.alamatparent').val()=='')
+								{
+									$(alamatparent_no).html('You cannot leave this field empty');
+									$(".alamatparent").addClass('error');
+									valid='ada';
+								}
+								if($('.emailparent').val()=='')
+								{
+									$(emailparent_no).html('You cannot leave this field empty');
+									$(".emailparent").addClass('error');
+									valid='ada';
+								}
+								else if(!$('.emailparent').val().match(mailformat))  
+								{  
+									$(emailparent_no).html(' This email is incorrect format (e.g. example@creasi.co.id)');
+									$(".emailparent").addClass('error');
+									valid='ada';
+								} 
+			
+							if(valid)
+							{
+								
+								return false;
+							
+							}	
+							
+						}
+						
+						
+					
+						$('.theforms').trigger('submit');
+					}
+			}
+			else
+			{
+				$('.guardian').show();
+				$('.forprofil').hide();
+				
+				$('.regs').val('JOIN');
+			
+				
+								str='<h2>Parent or Guardian <span class="red">Forms</span></h2></br>';
+								str +="<p>It's really important to us that we help protect our child's privacy and safety on Creasi, while also giving them access to ";
+								str +="relevant castings. All castings on the site are checked by our Customer Support team and we work with parents/ guardians to";
+								str +="ensure minors are looked after. For safety reasons, please don't include any direct contact information on a child's profile,";
+								str +="such as phone numbers or email addresses, or any places where the child may be located (schools, etc.).</p>";
+								
+								str +="<p>We automatically disable comments on our child's profile for safety reasons, but their profile will still appear in our Talent Board.</p>";
+				$('.titleboxs').html(str);
+				$('.grd').val('1');
+				var relationparent_no='.relationparent_no';
+				$(relationparent_no).html(' ');
+				var namaparent_no='.namaparent_no';
+				$(namaparent_no).html(' ');
+				var phoneparent_no=".phoneparent_no";
+				$(phoneparent_no).html(' ');
+				var identiasparent_no=".identiasparent_no";
+				$(identiasparent_no).html(' ');
+				var alamatparent_no=".alamatparent_no";
+				$(alamatparent_no).html(' ');
+				var emailparent_no=".emailparent_no";
+				$(emailparent_no).html(' ');
+							
+				
+				end;
+				
+				return false;
+			}
+		});
+	}
+	$('.number').keyup(function () {  
+		if(this.value)
+		{
+			this.value = this.value.replace(/[^0-9]/g,''); 
+			
+		}
+	});
+	$('.string').keyup(function () {  
+		if(this.value)
+		{
+			this.value = this.value.replace(/[^a-zA-Z]/g,''); 
+			
+		}
+	});	
+	$('.email').focusout(function () {  
+		if(this.value)
+		{
+			$.ajax ({
+					type	 : 'POST', 
+					url	 :  basedomain+'registration/checkemail' , 
+					data:{email:this.value},
+					dataType:'json',
+					success	: function (result) 
+					{ 
+							
+							if(result.status==1)
+							{
+								emailchck=1;
+								$('.email_no').html('The Email has already been registered!');
+								$(".email").addClass('error');
+							}
+							else
+							{
+								emailchck=0;
+							}
+							
+					}
+				});
+			
+		}
+	});	
+{/literal}
+</script>

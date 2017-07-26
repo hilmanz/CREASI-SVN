@@ -1,0 +1,95 @@
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/creasi/!svn/ver/56/trunk/admin_html/assets/js/tinymce/plugins/moxiemanager/classes/Vfs
+END
+IFileConfigProvider.php
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/creasi/!svn/ver/56/trunk/admin_html/assets/js/tinymce/plugins/moxiemanager/classes/Vfs/IFileConfigProvider.php
+END
+IFileUrlResolver.php
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/creasi/!svn/ver/56/trunk/admin_html/assets/js/tinymce/plugins/moxiemanager/classes/Vfs/IFileUrlResolver.php
+END
+BasicFileMetaDataProvider.php
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/creasi/!svn/ver/56/trunk/admin_html/assets/js/tinymce/plugins/moxiemanager/classes/Vfs/BasicFileMetaDataProvider.php
+END
+IFileFilter.php
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/creasi/!svn/ver/56/trunk/admin_html/assets/js/tinymce/plugins/moxiemanager/classes/Vfs/IFileFilter.php
+END
+IFileStream.php
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/creasi/!svn/ver/56/trunk/admin_html/assets/js/tinymce/plugins/moxiemanager/classes/Vfs/IFileStream.php
+END
+IFileMetaDataProvider.php
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/creasi/!svn/ver/56/trunk/admin_html/assets/js/tinymce/plugins/moxiemanager/classes/Vfs/IFileMetaDataProvider.php
+END
+BaseFile.php
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/creasi/!svn/ver/56/trunk/admin_html/assets/js/tinymce/plugins/moxiemanager/classes/Vfs/BaseFile.php
+END
+FileSystemManager.php
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/creasi/!svn/ver/56/trunk/admin_html/assets/js/tinymce/plugins/moxiemanager/classes/Vfs/FileSystemManager.php
+END
+FileMetaData.php
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/creasi/!svn/ver/56/trunk/admin_html/assets/js/tinymce/plugins/moxiemanager/classes/Vfs/FileMetaData.php
+END
+FileSystem.php
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/creasi/!svn/ver/56/trunk/admin_html/assets/js/tinymce/plugins/moxiemanager/classes/Vfs/FileSystem.php
+END
+MemoryFileStream.php
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/creasi/!svn/ver/56/trunk/admin_html/assets/js/tinymce/plugins/moxiemanager/classes/Vfs/MemoryFileStream.php
+END
+IFileUrlProvider.php
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/creasi/!svn/ver/56/trunk/admin_html/assets/js/tinymce/plugins/moxiemanager/classes/Vfs/IFileUrlProvider.php
+END
+CombinedFileFilter.php
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/creasi/!svn/ver/56/trunk/admin_html/assets/js/tinymce/plugins/moxiemanager/classes/Vfs/CombinedFileFilter.php
+END
+BasicFileFilter.php
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/creasi/!svn/ver/56/trunk/admin_html/assets/js/tinymce/plugins/moxiemanager/classes/Vfs/BasicFileFilter.php
+END
+IFile.php
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/creasi/!svn/ver/56/trunk/admin_html/assets/js/tinymce/plugins/moxiemanager/classes/Vfs/IFile.php
+END

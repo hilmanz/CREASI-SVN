@@ -1,0 +1,49 @@
+
+<div class="page_section" id="theformpage">
+    <div id="metapage">
+        <div class="wrapper">
+            <h1 class="page-title fl">Log In or Join</h1>
+            <div class="breadcumb fr">
+                <a href="{$basedomain}home">Home</a> <span>/</span> <a>Log In or Join</a>
+            </div>
+        </div><!-- end .wrapper -->   
+    </div><!-- end #metapage -->
+    <div id="theform" class="section"> 
+        <div class="wrapper">
+        	<div class="col">
+			
+            <form class="theforms" id="loginForm" name="Form2" method="POST" action="{$basedomain}login/local">
+                <div class="rows">
+                  <img src="{$basedomain}assets/images/logo_creasi.png" />
+                  <h4>Website-nya orang kreatif mencari kerja</h4>
+                </div><!-- end .rows -->    
+                <div class="rows">
+                    <a href="{$basedomain}join" class="button2"><span>JOIN</span></a>
+                </div><!-- end .rows -->
+                <div class="rows">
+                   <span>OR</span>
+				    <label class="red">{$msg}</label>
+                </div><!-- end .rows -->
+                <div class="greybox">    
+                    <div class="rows">
+					 <input name="username" placeholder="Enter your email address" type="text" id="username"> 
+                    
+                    </div><!-- end .rows -->    
+                    <div class="rows">
+                     <input name="password" placeholder="Password" type="password" id="password" maxlength="20">
+                    </div><!-- end .rows -->       
+                    <div class="rows">
+                        <a href="{$basedomain}forgot" class="forgot fl">Forgot Password?</a><br>
+						 <a href="{$basedomain}resend" class="forgot fl">Resend  Verification</a>
+                        <input type="submit" class="button1 fr" value="LOGIN" name="Submit" />
+						  <input type="hidden" name="login" value="1">
+                    </div><!-- end .rows -->  
+                </div>  <!-- end .greybox -->
+            </form>
+            </div><!-- end .col -->   
+        </div><!-- end .wrapper -->    
+    </div><!-- end #theform --> 
+</div><!-- end #theformpage -->
+
+
+        

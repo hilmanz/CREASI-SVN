@@ -1,0 +1,2234 @@
+<div class="page_section" id="profilepage">
+    <div id="metapage">
+        <div class="wrapper">
+            <h1 class="page-title fl">Creative Talent Profile</h1>
+            <div class="breadcumb fr">
+                <a href="index.php">Home</a> <span>/</span> <a>Creative Talent Profile</a>
+            </div>
+        </div><!-- end .wrapper -->   
+    </div><!-- end #metapage -->
+	{if $list}
+				{section name=i loop=$list}  
+    <div id="profileboard" class="section"> 
+        <div class="wrapper">
+        	<div class="cols">
+            	{*}<div class="rows">
+                    <div class="helpButton fr">
+                        <a href="#popup-tour-profile" class="helpPopup showPopup2"><i class="icon-question-circle">&nbsp;</i></a>
+                    </div>
+                </div>{/*}
+			 {include file="application/web/widgets/notibar.html"}  
+                  <div class="blocks">
+                	<div class="coverprofile boxpop">
+					{if $list[i].img_cover <> ''}
+                    	<img src="{$basedomain}public_assets/personal/{$list[i].img_cover}"/>
+					{else}
+                    	<img src="{$basedomain}assets/content/cover.jpg" />
+					{/if}
+                        <a href="#popup-upload-cover" class="showpopup editPop">
+                        <i class="icon-pencil">&nbsp;</i> Edit</a>
+                    </div><!-- END .coverprofile -->
+                </div><!-- END .blocks -->
+				{include file='application/web/widgets/popup-upload-cover.html'}
+                <div class="sectionsrow profilebox">
+                  <div class="profilethumb thumb boxpop">
+				    {if $list[i].img_avatar <> ''}
+				  <img src="{$basedomain}public_assets/personal/{$list[i].img_avatar}" />
+				  {else}
+				   <img src="{$basedomain}public_assets/postjob/images.jpg" />
+				  {/if}
+				   <a href="#popup-upload-profilepic" class="showpopup editPop">
+                        <i class="icon-pencil">&nbsp;</i> Edit</a>
+				  </div>
+				  
+				  {include file='application/web/widgets/popup-upload-profilepic.html'}
+                  <div class="profileentry viewpe" >
+                  	<div class="rowhead">
+                        <h3 class="profilename"><label class='namanok'>{$list[i].name} </label><label class='namaok'></label></h3>
+                        <div class="meta-info">
+                            <a href="#" class="c-view"><i class="ico icon-eye">&nbsp;</i> <span>{$list[i].view_count}</span></a>
+                            <a href="#" class="c-like "><i class="ico icon-thumbs-o-up">&nbsp;</i> <span class="likesnya">{$list[i].love_count}</span></a>
+                        </div><!-- END .meta-info -->
+                           <a class="button1 btnedit editpro" ><i class="icon-pencil">&nbsp;</i> Edit</a>
+                           <a class="button1 downloadCV" href="{$basedomain}dashboard/download?param={$id}">Download CV</a>
+						   
+						   
+                           <a class="button2 untuklike" href="#" ref="#" id='likenya' value='{$id}' folow='{$id}'><i class="icon-thumbs-o-up">&nbsp;</i> Like</a>
+                           <!--<a class="button2" href="#"><i class="icon-suitcase">&nbsp;</i> Invite to a job</a>-->
+                    </div><!-- END .rowhead -->
+                  	<div class="rowentry">
+                        <p>{$cat_name}  </p>
+                        <p><i class="icon-map-marker">&nbsp;</i>	<label class='locaok'>{$list[i].provincy}</label>,<label class='cityok'> {$list[i].city}</label><!-- <a href="#popup-message" class="showpopup">click</a> --></i>
+                        <div class="socialbox">
+					
+                           <a class='fbok ico icon-facebook' href="http://www.{$list[i].fb_link}" target="_blank"><i class="ico icon-facebook">&nbsp;</i></a>
+                            <a  class='twok ico icon-twitter' href="http://www.{$list[i].twitter_link}" target="_blank"><i class="">&nbsp;</i></a>
+                            <a  class='yook ico icon-instagram' href="http://www.{$list[i].instagram_link}" target="_blank"><i class="ico ">&nbsp;</i></a>
+                            <a class='inok ico icon-youtube' href="http://www.{$list[i].youtube_link}" target="_blank"><i class="ico ">&nbsp;</i></a>
+                        </div><!-- END .socialbox -->
+                    </div><!-- END .rowentry -->
+                  </div><!-- END .profileentry -->
+				  
+				   <div class="profileentry inputpe" style="display:none;">
+				   <form   class="theforms" id="bioinput">
+                  	<div class="rows">
+                        <div class="col2">
+                            <label>First Name</label>
+                            <input id="name" name="name" type="text" value='{$list[i].name}' class='namannok' style="display:none;" />
+							
+							
+                        </div>
+                        <div class="col2">
+                            <label>Last Name</label>
+                            <input id="lastname" name="lastname" type="text" value='{$list[i].lastname}' class='lastnok' style="display:none;" />
+							
+                        </div>
+                    </div>
+                  	<div class="rows">
+                        <label>Location</label>
+                        <div class="rowin">
+                            <div class="col2">
+                                <div class="selectbox locanok " style="display:none;">
+                                <select class="provincy"   name="provincy">
+								  <option>Please select your province* </option>
+										{section name=n loop=$provincy}
+										{if $provincy[n].province==$list[i].provincy}
+										<option value="{$provincy[n].province}" selected=selected>{$provincy[n].province}</option>
+										{else}
+										<option value="{$provincy[n].province}" >{$provincy[n].province}</option>
+										{/if}
+										{/section}
+								  </select>
+                                </div>
+							
+								
+                            </div>
+                            <div class="col2">
+                                <div class="selectbox citynok" style="display:none;">
+                                  <select class="city " id='city' name="city" >
+									<option class="" value="{$list[i].city}">{$list[i].city}</option>
+								  </select>
+                                </div>
+								
+                            </div>
+                        </div>
+                    </div>
+                  	<div class="rows">
+                        <div class="socialbox">
+                            <div class="col2">
+                                 <a href="#" target="_blank"><i class="ico icon-facebook">&nbsp;</i></a>
+                                 <input type="text" name='fb'  class='fbnok' value="{$list[i].fb_link}" style="display:none;"/>
+								
+                            </div>
+                            <div class="col2">
+                                 <a href="#" target="_blank"><i class="ico icon-twitter">&nbsp;</i></a>
+                                <input type="text" name='twitter' class='twnok' value="{$list[i].twitter_link}" style="display:none;" />
+								
+                            </div>
+                        </div><!-- END .socialbox -->
+                    </div><!-- END .rows -->
+                  	<div class="rows">
+                        <div class="socialbox">
+                            <div class="col2">
+                                 <a href="#" target="_blank"><i class="ico icon-youtube">&nbsp;</i></a>
+                                 <input type="text" name='youtube' class='yonok'  value="{$list[i].youtube_link}" style="display:none;"/>
+								
+                            </div>
+                            <div class="col2">
+                                 <a href="#" target="_blank"><i class="ico icon-instagram">&nbsp;</i></a>
+                                <input type="text" name='instagram' class='innok'  value="{$list[i].instagram_link}" style="display:none;" />
+								
+                            </div>
+                        </div><!-- END .socialbox -->
+                    </div><!-- END .rows -->
+                  	<div class="rows">
+						<input type='hidden' name='bioinput' value='{$list[i].user_id}'>
+                    	<input type="submit" value="SAVE" class="button1 savep"  style="display:none;" />
+						<a  class="button1 editpro" /> EDIT</a>
+                    	<a href='{$basedomain}personal' class="button2 cancelp"  style="display:none;"/> Cancel</a>
+                    </div><!-- END .rows -->
+					</form>
+                  </div><!-- END .profileentry -->
+		<div id="popup-thks-profile" class="popup mfp-hide" style="width:300px;">
+			<div class="popupfullcontent">
+				<h3 class="title">Edit <span class="red">Profile</span></h3>
+				<p>proses Edit profile berhasil</p>
+			</div>
+		</div><!-- END .popup -->	
+
+{literal}
+<script>
+$().ready(function(){
+$('.provincy').change(function(){
+	var id = $('.provincy option:selected').val();
+	console.log(id);
+	$.ajax ({
+				type	 : 'POST', 
+				url	 :  basedomain+'personal/ajaxcity' , 
+				data:{id:id},
+				dataType:'json',
+				success	: function (result) 
+				{ 
+					if(result.status==1)
+								{
+									
+									var str="";
+									$.each(result.data,function(kal,val){
+						
+										str +='<option value="'+val.city+'">'+val.city+'</option>';
+										
+									});
+									
+									$('#city').html(str);
+								
+								}
+				}
+			});
+
+		});
+	});
+
+$().ready(function(){
+$(".editpro").on("click", function(){
+							$('.viewpe').hide();
+							$('.inputpe').show();
+							$('.namannok').show();
+							$('.namaok').hide();
+							$('.lastnok').show();
+							$('.lastok').hide();
+							$('.locanok').show();
+							$('.locaok').hide();
+							$('.citynok').show();
+							$('.cityok').hide();
+							$('.fbnok').show();
+							$('.fbok').hide();
+							$('.twnok').show();
+							$('.twok').hide();
+							$('.yonok').show();
+							$('.yook').hide();
+							$('.innok').show();
+							$('.inok').hide();
+							$('.savep').show();
+							$('.cancelp').show();
+							$('.editpro').hide();	
+	});
+});
+$().ready(function(){
+                $('#bioinput').submit(function(e){
+                    e.preventDefault();
+                    $.ajax({
+                        'type': 'POST',
+                        'url': basedomain+'personal/editpersonalts',
+                        'data': $(this).serialize(),
+						'dataType':'json',
+                        'success': function(result){
+							$('.viewpe').show();
+							$('.inputpe').hide();
+							
+							$('.namaok').show();
+						
+							$('.lastok').show();
+						
+							$('.locaok').show();
+							
+							$('.cityok').show();
+						
+							$('.fbok').show();
+						
+							$('.twok').show();
+						
+							$('.yook').show();
+					
+							$('.inok').show();
+						
+							$('.namanok').hide();
+							$('.namaok').html(result.name);
+							$('.lastnok').hide();
+							$('.lastok').html(result.lastname);
+							$('.locanok').hide();
+							$('.locaok').html(result.provincy);
+							$('.citynok').hide();
+							$('.cityok').html(result.city);
+							$('.fbnok').hide();
+							$('.fbok').html(result.fb);
+							$('.twnok').hide();
+							$('.twok').html(result.twitter);
+							$('.yonok').hide();
+							$('.yook').html(result.youtube);
+							$('.innok').hide();
+							$('.inok').html(result.instagram);
+							
+							$('.savep').hide();
+							$('.cancelp').hide();
+							$('.editpro').show();
+							
+							setTimeout(function() {
+							 if ($('#popup-thks-profile').length) { 
+							   $.magnificPopup.open({
+								items: {
+									src: '#popup-thks-profile' 
+								},
+								type: 'inline'
+								  });
+							   }
+							 }, 0);
+						
+						
+						
+
+						}
+					});
+				});
+			});
+						
+
+</script>
+{/literal}		  
+				  
+                </div><!-- END .sectionsrow -->
+                 <div class="sharebox">
+                    <h4>Share This Profile</h4> 
+                  <a href="{$basedomain}share/fbShare/profile/{$list[i].user_id}/personal/view"><i class="ico icon-facebook">&nbsp;</i></a>
+                       <a href="{$basedomain}share/twitterShare/profile/{$list[i].user_id}/personal/view"><i class="ico icon-twitter">&nbsp;</i></a>
+                     <a href="javascript:void(0)"><i class="ico icon-envelope clicksharemail">&nbsp;</i></a>
+                        <div id="sharemail" class="rows sharemail" style="display:none">
+                         <label> Add email addresses (separate with commas)</label>
+                        
+                         <input class="emailshare" type="text" name="email" id='email' style="width:400px"/>
+                          <input class="idusershare" type="hidden" name="idusershare" id='idusershare' style="width:400px" value="{$list[i].user_id}"/>
+
+                         <input class="button1 submit" type="submit" name="submit" value="submit">
+                         <br>
+                        <label style="red" class="msgerorr"> </label>
+                        </div>
+                </div>
+            	<div class="euTab">
+                  <ul>
+                    <li><a href="#my-bio">BIO</a></li>
+					
+					{if $selectcategory != ''}
+					{section name=n loop=$selectcategory}
+                    <li><a href="#{$selectcategory[n].category_name}">{$selectcategory[n].category_name}</a></li>
+					{/section}
+					{/if}
+                    <li><a href="#my-portfolio">Portfolio</a></li>
+                  </ul>
+				  
+				  
+                  <div id="my-bio" class="tab-content">
+				  
+						
+						
+                  	<div class="tabentry">
+                        <div class="sectionsrow viewnick" >
+                            <a class="button1 btnedit editbio" ><i class="icon-pencil">&nbsp;</i> Edit</a>
+                            <div class="sections">
+                                <p><label class='testimoniok'>{$list[i].testimoni}</label></p>
+                                <div class="rows">
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                      <tr>
+                                        <td width="220"><strong>Nickname</strong></td>
+                                        <td width="10">:</td>
+                                        <td><label class='nicknameok'>{$list[i].nickname}</label></td>
+                                      </tr>
+                                      <tr>
+                                        <td><strong>Gender</strong></td>
+                                        <td width="10">:</td>
+                                        <td>{$list[i].sex}</td>
+                                      </tr>
+                                      <tr>
+                                        <td><strong>Date of birth</strong></td>
+                                        <td>:</td>
+                                        <td>{$list[i].birthday}</td>
+                                      </tr>
+                                      <tr>
+                                        <td><strong>Location</strong></td>
+                                        <td>:</td>
+                                        <td>{$list[i].city}</td>
+                                      </tr>
+                                      <tr>
+                                        <td><strong>Phone Number</strong></td>
+                                        <td>:</td>
+                                        <td><label class='phoneok'>{$list[i].no_tlp}</label></td>
+                                      </tr>
+                                      <tr>
+                                        <td><strong>Email Address</strong></td>
+                                        <td>:</td>
+                                        <td>	<label class='emailok'>{$list[i].email}</label></td>
+                                      </tr>
+                                    </table>
+                                </div><!-- END .rows -->
+                            </div><!-- END .sections -->
+                        </div><!-- END .sectionsrow -->
+						
+						   <div class="sectionsrow inputnick" style='display:none;'>
+                            <div class="sections">
+						
+            					<form class="theforms" id="forminput">
+                                <div class="rows">
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <td colspan="3">
+                                            <textarea name="testimoni" class='testimoninok' style='display:none'>{$list[i].testimoni}
+                                            </textarea>
+											
+                                        </td>
+                                      <tr>
+                                        <td width="220"><strong>Nickname</strong></td>
+                                        <td width="10">:</td>
+                                        <td><input id="nickname" name="nickname" type="text" value='{$list[i].nickname}' class='nicknamenok' style='display:none' />
+										
+										</td>
+                                      </tr>
+                                      <tr>
+                                        <td><strong>Phone Number</strong></td>
+                                        <td>:</td>
+                                        <td><input id="telp" name="telp" type="text" value='{$list[i].no_tlp}'  class='phonenok' style='display:none'/>
+										
+										
+										</td>
+                                      </tr>
+                                      <tr>
+                                        <td><strong>Email Address</strong></td>
+                                        <td>:</td>
+                                        <td><input id="email" name="email" type="text" value='{$list[i].email}' class='emailnok' style='display:none'/>
+									
+										
+										</td>
+                                      </tr>
+                                      <tr>
+                                        <td colspan="3">
+                                            <div class="smallbtn">
+											<input type='hidden' name='bioid' value='{$list[i].user_id}'>
+												<a  class="button1 editbio" /> EDIT</a>
+                                                <button type="submit" class="button1 saveb" value="SAVE" style='display:none' /> SAVE</button>
+                                               <a  class="button2 cancelb" href='{$basedomain}personal' style='display:none' /> CANCEL</a>
+                                            </div>
+                                        </td>
+                                      </tr>
+                                    </table>
+                                    </form>
+									
+			<div id="popup-thks-bio" class="popup mfp-hide" style="width:300px;">
+			<div class="popupfullcontent">
+				<h3 class="title">Edit <span class="red">Biodata</span></h3>
+				<p>proses Edit Biodata berhasil</p>
+			</div>
+		</div><!-- END .popup -->							
+{literal}
+<script>
+$().ready(function(){
+$(".editbio").on("click", function(){
+
+
+							$('.inputnick').show();
+							$('.viewnick').hide();
+							$('.testimoninok').show();
+							$('.testimoniok').hide();
+							$('.nicknamenok').show();
+							$('.nicknameok').hide();
+							$('.phonenok').show();
+							$('.phoneok').hide();
+							$('.emailnok').show();
+							$('.emailok').hide();
+							
+							$('.saveb').show();
+							$('.cancelb').show();
+							$('.editbio').hide();	
+	});
+});
+</script>
+
+<script>
+ $().ready(function(){
+                $('#forminput').submit(function(e){
+                    e.preventDefault();
+                    $.ajax({
+                        'type': 'POST',
+                        'url': basedomain+'personal/editpersonal',
+                        'data': $(this).serialize(),
+						'dataType':'json',
+                        'success': function(result){
+							$('.inputnick').hide();
+							$('.viewnick').show();
+							$('.testimoniok').show();
+							
+							$('.nicknameok').show();
+					
+							$('.phoneok').show();
+						
+							$('.emailok').show();
+							
+							
+							$('.testimoninok').hide();
+							$('.testimoniok').html(result.testimoni);
+							$('.nicknamenok').hide();
+							$('.nicknameok').html(result.nickname);
+							$('.phonenok').hide();
+							$('.phoneok').html(result.telp);
+							$('.emailnok').hide();
+							$('.emailok').html(result.email);
+							$('.saveb').hide();
+							$('.cancelb').hide();
+							$('.editbio').show();
+							
+							
+						setTimeout(function() {
+							 if ($('#popup-thks-bio').length) { 
+							   $.magnificPopup.open({
+								items: {
+									src: '#popup-thks-bio' 
+								},
+								type: 'inline'
+								  });
+							   }
+							 }, 0);
+						
+						}
+					});
+				});
+			});
+						
+
+</script>
+{/literal}
+                                </div><!-- END .rows -->
+                            </div><!-- END .sections -->
+                        </div><!-- END .sectionsrow -->
+						
+						
+						
+						
+						
+						{if $ultah <= 18}
+						{if $list}
+						{section name=j loop=$load} 
+                        <h3 class="sectiontitle">Parent / Guardian <span class="red">Info</span></h3>
+                       
+
+					
+						
+						 <div class="sectionsrow">
+						 <a class="button1 btnedit editg" ><i class="icon-pencil">&nbsp;</i> Edit</a>
+                           
+                            <div class="sections">
+                                <div class="rows">
+								
+            					<form class="theforms " id="GuardianInfo">
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                      <tr>
+                                        <td width="220"><strong>Name of parent / guardian</strong></td>
+                                        <td width="10">:</td>
+                                        <td><input type="text" name="nparent" class="nparentnok" style='display:none' value="{$load[j].name_parent}" />
+											<label class='nparentok'>{$load[j].name_parent}</label>
+										
+										</td>
+                                      </tr>
+                                      <tr>
+                                        <td><strong>Relation with talent
+										
+
+
+										</strong></td>
+                                        <td>:</td>
+                                        <td><input type="text" name='r_talent' style="display:none" class="r_talentnok" value="{$load[j].relation_parent}" />
+										<label class='r_talentok'>{$load[j].relation_parent}</label>
+										</td>
+                                      </tr>
+								
+                                      <tr>
+                                        <td><strong>Date of birth</strong></td>
+                                        <td>:</td>
+                                        <td class="birthnok" style="display:none" >
+                                          <select name="parentdate" class="selectpicker show-tick birth Date_Day "   data-size="10">
+										  <option>Date</option>
+										  {assign var="testsplit" value="-"|explode:$load[j].birth}
+										  {assign var="year" value="$testsplit[0]"}
+										  {assign var="month" value="$testsplit[1]"}
+										  {assign var="day" value="$testsplit[2]"}
+										  {assign var="ys" value=$smarty.now|date_format:"%Y" }
+											{assign var="tahunsekarang" value=$ys+1 }
+											
+										  {section name=foo start=1 loop=32 step=1}
+										  {if $day==$smarty.section.foo.index}
+												<option value='{$smarty.section.foo.index}' selected>{$smarty.section.foo.index}</option>
+										  {else}
+												<option value='{$smarty.section.foo.index}' >{$smarty.section.foo.index}</option>
+										  {/if}
+										  {/section}
+												
+													
+											  </select>
+													  <select name="parentmonth" class="selectpicker show-tick birth Date_Month" data-size="10" >
+															  <option>Month</option>
+										  {section name=foos start=1 loop=13 step=1}
+										  {if $month==$smarty.section.foos.index}
+										  
+												{if $smarty.section.foos.index=='1'}
+												<option value='{$smarty.section.foos.index}' selected>January</option>
+												{/if}
+												{if $smarty.section.foos.index=='2'}
+												<option value='{$smarty.section.foos.index}' selected>Febuary</option>
+											
+												{/if}
+												{if $smarty.section.foos.index=='3'}
+												<option value='{$smarty.section.foos.index}' selected>March</option>
+												{/if}
+												{if $smarty.section.foos.index=='4'}
+												<option value='{$smarty.section.foos.index}' selected >April</option>
+												{/if}
+												{if $smarty.section.foos.index=='5'}
+												<option value='{$smarty.section.foos.index}' selected >Mei</option>
+												{/if}
+												{if $smarty.section.foos.index=='6'}
+												<option value='{$smarty.section.foos.index}' selected>Juni</option>
+												{/if}
+												{if $smarty.section.foos.index=='7'}
+												<option value='{$smarty.section.foos.index}' selected >Juli</option>
+												{/if}
+												{if $smarty.section.foos.index=='8'}
+												<option value='{$smarty.section.foos.index}' selected>Agustus</option>
+												{/if}
+												{if $smarty.section.foos.index=='9'}
+												<option value='{$smarty.section.foos.index}' selected>September</option>
+												{/if}
+												{if $smarty.section.foos.index=='10'}
+												<option value='{$smarty.section.foos.index}' selected >Oktober</option>
+												{/if}
+												{if $smarty.section.foos.index=='11'}
+												<option value='{$smarty.section.foos.index}' selected>November</option>
+												{/if}
+												{if $smarty.section.foos.index=='12'}
+												<option value='{$smarty.section.foos.index}' selected>Desember</option>
+												{/if}	
+										 
+										 {else}
+												{if $smarty.section.foos.index=='1'}
+												<option value='{$smarty.section.foos.index}' >January</option>
+											
+												{/if}
+												{if $smarty.section.foos.index=='2'}
+												<option value='{$smarty.section.foos.index}' >Febuary</option>
+												{/if}
+												{if $smarty.section.foos.index=='3'}
+												<option value='{$smarty.section.foos.index}' >March</option>
+												{/if}
+												{if $smarty.section.foos.index=='4'}
+												<option value='{$smarty.section.foos.index}'  >April</option>
+												{/if}
+												{if $smarty.section.foos.index=='5'}
+												<option value='{$smarty.section.foos.index}'  >Mei</option>
+												{/if}
+												{if $smarty.section.foos.index=='6'}
+												<option value='{$smarty.section.foos.index}' >Juni</option>
+												{/if}
+												{if $smarty.section.foos.index=='7'}
+												<option value='{$smarty.section.foos.index}'  >Juli</option>
+												{/if}
+												{if $smarty.section.foos.index=='8'}
+												<option value='{$smarty.section.foos.index}' >Agustus</option>
+												{/if}
+												{if $smarty.section.foos.index=='9'}
+												<option value='{$smarty.section.foos.index}' >September</option>
+												{/if}
+												{if $smarty.section.foos.index=='10'}
+												<option value='{$smarty.section.foos.index}'  >Oktober</option>
+												{/if}
+												{if $smarty.section.foos.index=='11'}
+												<option value='{$smarty.section.foos.index}'>November</option>
+												{/if}
+												{if $smarty.section.foos.index=='12'}
+												<option value='{$smarty.section.foos.index}'>Desember</option>
+												{/if}	
+											
+										  {/if}
+										  {/section}				 
+																										
+															  </select>
+                                           <select name="parentyear" class="selectpicker show-tick birth Date_Year"  data-size="10" >
+										  
+										     {section name=tahun start=1964 loop=$tahunsekarang step=1}
+												
+														{if $year==$smarty.section.tahun.index}
+														<option value='{$smarty.section.tahun.index}' selected>{$smarty.section.tahun.index}</option>
+														{else}
+														<option value='{$smarty.section.tahun.index}' >{$smarty.section.tahun.index}</option>
+														{/if}
+														  
+												  {/section}
+												  
+												  
+												  </select>
+                                          </div>
+										  
+										 
+                                      </td>
+									  <td class='birthoks'>  <label class='birthok'>{$load[j].birth}</label></td>
+                                      </tr>
+                                      <tr> 
+                                        <td><strong>Phone number </strong></td>
+                                        <td>:</td>
+                                        <td><input type="text" name='phone_parent' class="phone_parentnok" style="display:none" value="{$load[j].phone}" />
+										 <label class='phone_parentok'>{$load[j].phone}</label>
+										
+										</td>
+                                      </tr>
+                                      <tr>
+                                        <td><strong>ID card number</strong></td>
+                                        <td>:</td>
+                                        <td><input type="text" name='id_parent' class="id_parentnok" style="display:none" value="{$load[j].identitas}" />
+										 <label class='id_parentok'>{$load[j].identitas}</label>
+										</td>
+                                      </tr>
+                                      <tr>
+                                        <td><strong>Address</strong></td>
+                                        <td>:</td>
+                                        <td><input type="text" name='parent_address' value="{$load[j].address}" class="parent_addressnok" style="display:none" />
+										 <label class='parent_addressok'>{$load[j].address}</label>
+										</td>
+                                      </tr>
+                                      <tr>
+                                        <td><strong>Email Address</strong></td>
+                                        <td>:</td>
+                                        <td><input type="text" name='parent_email' class="parent_emailnok" style="display:none"  value="{$load[j].email}" />
+										 <label class='parent_emailok'>{$load[j].email}</label>
+										</td>
+                                      </tr>
+                                      <tr>
+                                        <td colspan="3">
+                                            <div class="smallbtn">
+											<input type="hidden" name="guardian" value="{$uid}" >
+											
+                                                <input type="submit" value="SAVE" class="button1 saveg" style="display:none"/>
+                                              	<a  class="button1 cancelg" style="display:none" /> CANCEL</a>
+                                            </div>
+                                        </td>
+                                      </tr>
+                                    </table>
+                                    </form>
+				<div id="popup-thks-guardian" class="popup mfp-hide" style="width:300px;">
+					<div class="popupfullcontent">
+						<h3 class="title">Edit <span class="red">Guardian</span></h3>
+						<p>Proses Edit Guardian Berhasil</p>
+					</div>
+				</div><!-- END .popup -->					
+{literal}
+<script>
+$().ready(function(){
+$(".editg").on("click", function(){
+							$('.parent_emailnok').show();
+							$('.parent_addressnok').show();
+							$('.id_parentnok').show();
+							$('.phone_parentnok').show();
+							$('.birthnok').show();
+					        $('.r_talentnok').show();
+							$('.nparentnok').show();
+							
+							$('.parent_emailok').hide();
+							$('.parent_addressok').hide();
+							$('.id_parentok').hide();
+							$('.phone_parentok').hide();
+							$('.birthok').hide();
+							$('.birthoks').hide();
+					        $('.r_talentok').hide();
+							$('.nparentok').hide();
+							
+							$('.saveg').show();
+							$('.cancelg').show();
+							$('.editg').hide();	
+	});
+});
+</script>
+<script>
+ $().ready(function(){
+                $('#GuardianInfo').submit(function(e){
+                    e.preventDefault();
+                    $.ajax({
+                        'type': 'POST',
+                        'url': basedomain+'personal/editpersonal',
+                        'data': $(this).serialize(),
+						'dataType':'json',
+                        'success': function(result){
+						
+
+							$('.parent_emailok').show();
+							$('.parent_addressok').show();
+							$('.id_parentok').show();
+							$('.phone_parentok').show();
+							$('.birthok').show();
+							$('.birthoks').show();
+					        $('.r_talentok').show();
+							$('.nparentok').show();
+				
+					
+									
+							$('.parent_emailnok').hide();
+							$('.parent_emailok').html(result.parent_email);
+							$('.parent_addressnok').hide();
+							$('.parent_addressok').html(result.parent_address);
+							$('.id_parentnok').hide();
+							$('.id_parentok').html(result.id_parent);
+							
+							$('.phone_parentnok').hide();
+							$('.phone_parentok').html(result.phone_parent);
+							$('.birthnok').hide();
+							$('.birthok').html(result.tahunnya);
+							$('.r_talentnok').hide();
+							$('.r_talentok').html(result.r_talent);
+							
+							$('.nparentnok').hide();
+							$('.nparentok').html(result.nparent);
+							
+							$('.saveg').hide();
+							$('.cancelg').hide();
+							$('.editg').show();
+							
+							
+							
+						setTimeout(function() {
+							 if ($('#popup-thks-guardian').length) { 
+							   $.magnificPopup.open({
+								items: {
+									src: '#popup-thks-guardian' 
+								},
+								type: 'inline'
+								  });
+							   }
+							 }, 0);
+						
+						
+						
+						}
+					});
+				});
+			});
+						
+
+</script>
+{/literal}				
+                                </div><!-- END .rows -->
+                            </div><!-- END .sections -->
+						
+						{/section}
+						{/if}
+						{/if}
+                        <h3 class="sectiontitle">Education <span class="red">Info</span></h3>
+                        <div class="sectionsrow viewedu" >
+						{if $listmyedu}
+						 {section name=m loop=$listmyedu} 
+                            <a class="button1 btnedit editedu"><i class="icon-pencil">&nbsp;</i> Edit</a>
+                            <div class="sections">
+                                <div class="rows">
+                                	<h4 class="red">{$listmyedu[m].tahunmasuk}-{$listmyedu[m].tahunlulus}</h4>
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                      <tr>
+                                        <td width="220"><strong>Degree</strong></td>
+                                        <td width="10">:</td>
+                                        <td>{$listmyedu[m].degree}</td>
+                                      </tr>
+                                      <tr>
+                                        <td><strong>School / Institution</strong></td>
+                                        <td>:</td>
+                                        <td>{$listmyedu[m].institusi}</td>
+                                      </tr>
+                                      <tr>
+                                        <td><strong>Field of Study</strong></td>
+                                        <td>:</td>
+                                        <td>{$listmyedu[m].bidang_studi}</td>
+                                      </tr>
+                                    </table>
+                                	
+                                </div><!-- END .rows -->
+                            </div><!-- END .sections -->
+							{/section}			
+							{/if}
+							
+                        </div><!-- END .sectionsrow -->
+						
+						<div class="sectionsrow inputedu" style="display:none;">
+                        {assign var="ys" value=$smarty.now|date_format:"%Y" }
+						{assign var="tahunsekarang" value=$ys+1 }
+						{if $listmyedu}
+						 {section name=m loop=$listmyedu} 
+						
+							<div class="sections" id="edurow">
+                                <div class="rows">
+            					<form class="theforms" id='eduform'>
+								
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="mytable">
+                                      <tr>
+                                        <td><strong>Year</strong></td>
+                                        <td>:</td>
+                                        <td>
+										  <select name="dari[]" class="selectpicker  show-tick birth Date_Year"  data-size="10">
+												{section name=tahun1 start=1964 loop=$tahunsekarang step=1}
+												
+														{if  $listmyedu[m].tahunmasuk==$smarty.section.tahun1.index}
+														<option value='{$smarty.section.tahun1.index}' selected>{$smarty.section.tahun1.index}</option>
+														{else}
+														<option value='{$smarty.section.tahun1.index}' >{$smarty.section.tahun1.index}</option>
+														{/if}
+														  
+												  {/section}
+												  
+											</select> 
+                                         <select name="sampai[]" class="selectpicker show-tick birth Date_Year"  data-size="10">
+                                            {section name=tahun2 start=1964 loop=$tahunsekarang step=1}
+												
+														{if $listmyedu[m].tahunlulus==$smarty.section.tahun2.index}
+														<option value='{$smarty.section.tahun2.index}' selected>{$smarty.section.tahun2.index}</option>
+														{else}
+														<option value='{$smarty.section.tahun2.index}' >{$smarty.section.tahun2.index}</option>
+														{/if}
+														  
+												  {/section}
+                                          </select>
+                                      </td>
+                                      </tr>
+                                      <tr>
+                                        <td width="220"><strong>Degree</strong></td>
+                                        <td width="10">:</td>
+                                        <td>
+                                          <div class="selectbox">
+                                             <select name="degree[]">
+										{if $listmyedu[m].degree =='SMP'}
+											<option value='SMP' selected>SMP</option>
+										{else}
+											<option value='SMP' >SMP</option>
+										{/if}
+										{if $listmyedu[m].degree =='SMA'}
+										<option value='SMA' selected>SMA/SMK/STM</option>
+										{else}
+										<option value='SMA'>SMA/SMK/STM</option>
+										{/if}
+										{if $listmyedu[m].degree == 'S1'}
+												<option value='S1' selected>S1</option>
+										{else}
+										<option value='S1'>S1</option>
+										{/if}
+										{if $listmyedu[m].degree == 'S2'}
+										<option value='S2' selected>S2</option>
+										{else}
+										<option value='S2'>S2</option>
+										{/if}
+                                          </select>
+                                          </div>
+                                         </td>
+                                      </tr>
+                                      <tr>
+                                        <td><strong>School / Institution</strong></td>
+                                        <td>:</td>
+                                         <td><input type="text" name="school[]" value="{$listmyedu[m].institusi}" /></td>
+                                      </tr>
+                                      <tr>
+                                        <td><strong>Field of Study</strong></td>
+                                        <td>:</td>
+                                        <td><input type="text" name="study[]" value="{$listmyedu[m].bidang_studi}" /></td>
+                                      </tr>
+                                     
+                                    </table>
+									    </div><!-- END .rows -->
+                            </div><!-- END .sections -->
+						{/section}			
+							{else}
+							
+							<div class="sections" id="edurow">
+                                <div class="rows">
+            					<form class="theforms" id='eduform'>
+								
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="mytable">
+                                      <tr>
+                                        <td><strong>Year</strong></td>
+                                        <td>:</td>
+                                        <td>
+										  <select name="dari[]" class="selectpicker show-tick birth Date_Year"  data-size="10">
+												{section name=tahun1 start=1964 loop=$tahunsekarang step=1}
+												
+														{if  $listmyedu[m].tahunmasuk==$smarty.section.tahun1.index}
+														<option value='{$smarty.section.tahun1.index}' selected>{$smarty.section.tahun1.index}</option>
+														{else}
+														<option value='{$smarty.section.tahun1.index}' >{$smarty.section.tahun1.index}</option>
+														{/if}
+														  
+												  {/section}
+												  
+											</select> 
+                                         <select name="sampai[]" class="selectpicker show-tick birth Date_Year"  data-size="10">
+                                            {section name=tahun2 start=1964 loop=$tahunsekarang step=1}
+												
+														{if $listmyedu[m].tahunlulus==$smarty.section.tahun2.index}
+														<option value='{$smarty.section.tahun2.index}' selected>{$smarty.section.tahun2.index}</option>
+														{else}
+														<option value='{$smarty.section.tahun2.index}' >{$smarty.section.tahun2.index}</option>
+														{/if}
+														  
+												  {/section}
+                                          </select>
+                                      </td>
+                                      </tr>
+                                      <tr>
+                                        <td width="220"><strong>Degree</strong></td>
+                                        <td width="10">:</td>
+                                        <td>
+                                          <div class="selectbox">
+                                             <select name="degree[]">
+										{if $listmyedu[m].degree =='SMP'}
+											<option value='SMP' selected>SMP</option>
+										{else}
+											<option value='SMP' >SMP</option>
+										{/if}
+										{if $listmyedu[m].degree =='SMA'}
+										<option value='SMA' selected>SMA/SMK/STM</option>
+										{else}
+										<option value='SMA'>SMA/SMK/STM</option>
+										{/if}
+										{if $listmyedu[m].degree == 'S1'}
+												<option value='S1' selected>S1</option>
+										{else}
+										<option value='S1'>S1</option>
+										{/if}
+										{if $listmyedu[m].degree == 'S2'}
+										<option value='S2' selected>S2</option>
+										{else}
+										<option value='S2'>S2</option>
+										{/if}
+                                          </select>
+                                          </div>
+                                         </td>
+                                      </tr>
+                                      <tr>
+                                        <td><strong>School / Institution</strong></td>
+                                        <td>:</td>
+                                         <td><input type="text" name="school[]" value="{$listmyedu[m].institusi}" /></td>
+                                      </tr>
+                                      <tr class="study">
+                                        <td><strong>Field of Study</strong></td>
+                                        <td>:</td>
+                                        <td><input type="text" name="study[]" value="{$listmyedu[m].bidang_studi}" /></td>
+                                      </tr>
+                                     
+                                    </table>
+									    </div><!-- END .rows -->
+                            </div><!-- END .sections -->
+					{/if}
+									
+									 <table width="100%" border="0" cellspacing="0" cellpadding="0">
+								   {if $countnya<2}
+									  <tr class="addmore">
+                                        <td colspan="3">
+                                        	<a href="#" class="addbtn" id="addedu">+ ADD MORE EDUCATION INFO</a>
+                                        </td>
+                                      </tr>
+									 {/if}
+                                      <tr>
+                                        <td colspan="3">
+                                            <div class="smallbtn">
+												<input type="hidden" name="educations" value="{$uid}" >
+                                                <input type="submit" value="SAVE" class="button1" class="saveedu"/>
+												 <a class="button2 editedu" style="display:none;"/>EDIT</a>
+                                                <a href="{$basedomain}personal"   class="button2" class="canceledu"/>CANCEL</a>
+                                            </div>
+                                        </td>	
+                                      </tr>
+									</table>
+									</form>
+									
+			<div id="popup-thks-education" class="popup mfp-hide" style="width:300px;">
+					<div class="popupfullcontent">
+						<h3 class="title">Edit <span class="red">Education</span></h3>
+						<p>Proses Edit Education Berhasil</p>
+					</div>
+				</div><!-- END .popup -->							
+                            
+					
+							
+{literal}
+<script>
+ $(document).ready(function() {
+        $(".editedu").click(function() {
+			
+					$('.viewedu').hide();
+					$('.inputedu').show();	
+			
+	
+		});
+	});
+	
+ 
+		
+ $(document).ready(function() {
+        $("#addedu").click(function() {
+           var n = $( '.mytable' ).length;
+           if(n==1) {$(this).hide();}
+          $('.mytable').clone(true).insertAfter('.mytable');
+			$('.selectpicker').data('selectpicker', null);
+			$('.bootstrap-select').remove();
+			$('.selectpicker').selectpicker();
+          return false;
+        });
+    });		
+
+ $().ready(function(){
+                $('#eduform').submit(function(e){
+                    e.preventDefault();
+                    $.ajax({
+                        'type': 'POST',
+                        'url': basedomain+'personal/editpersonal',
+                        'data': $(this).serialize(),
+						'dataType':'json',
+                        'success': function(result){
+						$('.inputedu').hide();	
+						setTimeout(function() {
+							 if ($('#popup-thks-education').length) { 
+							   $.magnificPopup.open({
+								items: {
+									src: '#popup-thks-education' 
+								},
+								type: 'inline'
+								  });
+							   }
+							 }, 0);
+							 
+							var str='';
+							$.each(result.data,function(k,v){ 
+						
+							str+=' <a class="button1 btnedit editedu"><i class="icon-pencil">&nbsp;</i> Edit</a>';
+							str+=' <div class="sections">';
+							str+='<div class="rows">';
+							str+='<h4 class="red">'+v[0]+'-'+v[1]+'</h4>';
+							str+='<table width="100%" border="0" cellspacing="0" cellpadding="0">';
+							str+='<tr>';
+							str+='<td width="220"><strong>Degree</strong></td>';
+							str+='<td width="10">:</td>';
+                            str+='<td>'+v[3]+'</td>';
+                            str+='</tr>';
+                            str+='<tr>';
+                            str+='<td><strong>School / Institution</strong></td>';
+                            str+='<td>:</td>';
+                            str+='<td>'+v[2]+'</td>';
+                            str+='</tr>';
+                            str+='<tr>';
+                            str+='<td><strong>Field of Study</strong></td>';
+                            str+='<td>:</td>';
+                            str+='<td>'+v[4]+'</td>';
+                            str+='</tr>';
+                            str+='</table>';
+							str+='</div>';
+                            str+='</div>';
+						
+							
+                        
+								
+							
+							});
+							$('.viewedu').html(str);
+							$('.viewedu').show();
+							$(".editedu").click(function() {
+									
+											$('.viewedu').hide();
+											$('.inputedu').show();	
+									
+							
+								});
+												
+							 
+							 
+						
+						}
+					});
+				});
+			});
+						
+
+</script>
+{/literal}		
+			
+
+			
+							
+                        </div><!-- END .sectionsrow -->
+						
+						
+						
+						
+						
+						
+						
+						
+                    </div><!-- END .tabentry -->
+                  </div><!-- END .tab-content -->
+				</div>
+				  
+				  {if $selectcategory != ''}
+				  {section name=n loop=$selectcategory}
+                  <div id="{$selectcategory[n].category_name}" class="tab-content">
+                  	<div class="tabentry">
+					
+					
+                        <div class="sectionsrow viewcategory{$smarty.section.n.index}">
+                            <a class="button1 btnedit edit_category{$smarty.section.n.index}" ><i class="icon-pencil">&nbsp;</i> Edit</a>
+						{if $selectcategory[n].categorydetail != ''}
+									{section name=o loop=$selectcategory[n].categorydetail}
+                            <div class="sections">
+                                <p>{$selectcategory[n].categorydetail[o].short_description}</p>
+                                <div class="rows">
+                                	<h5>{$selectcategory[n].categorydetail[o].category_name} - {$selectcategory[n].categorydetail[o].name_subcategory}</h5>
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+									 {if $selectcategory[n].categorydetail[o].agent == 'Yes'}
+                                      <tr>
+                                        <td width="220"><strong>Agent</strong></td>
+                                        <td width="10">:</td>
+                                        <td>{$selectcategory[n].categorydetail[o].name_agent}</td>
+                                      </tr>
+									  {else}
+									   <tr>
+                                        <td width="220"><strong>Agent</strong></td>
+                                        <td width="10">:</td>
+											<td>No</td>
+                                      </tr>
+									  
+									  {/if}
+                                      <tr>
+                                        <td><strong>Looking for</strong></td>
+                                        <td width="10">:</td>
+                                        <td>
+										{if  $selectcategory[n].categorydetail[o].mlfor.loking_for_id != ''}
+										{foreach from= $selectcategory[n].categorydetail[o].mlfor.loking_for_id  item=mlfor}
+										{if $mlfor==1}Full time.{/if}
+										{if $mlfor==2}Part time.{/if}
+										{if $mlfor==3}Internship.{/if}
+										{if $mlfor==4}Freelance.{/if}
+										{/foreach}
+										{/if}
+										
+										</td>
+                                      </tr>
+                                      <tr>
+                                        <td><strong>Open for</strong></td>
+                                        <td>:</td>
+                                        <td>{if $selectcategory[n].categorydetail[o].moffor.oppen_for != ''}
+										{foreach from=$selectcategory[n].categorydetail[o].moffor.oppen_for  item=mofor}
+										{$mofor}.
+										{/foreach}
+										{/if}</td>
+                                      </tr>
+                                    </table>
+                                	
+                                </div><!-- END .rows -->
+                            </div><!-- END .sections -->
+							
+							{/section}
+						{/if}
+						</div><!-- END .sectionsrow -->
+						<script>
+						{literal}
+						$(document).ready(function(){
+						$(".edit_category{/literal}{$smarty.section.n.index}{literal}").on("click", function(){
+								$('.viewcategory{/literal}{$smarty.section.n.index}{literal}').hide();
+								$('.inputcategory{/literal}{$smarty.section.n.index}{literal}').show();
+							});
+						});
+						
+						{/literal}
+						</script>
+						<!-- inputnya -->
+						 <div class="sectionsrow inputcategory{$smarty.section.n.index}" style="display:none;">
+                            <div class="sections">
+                                <div class="rows">
+            						
+									
+									 <table width="100%" border="0" cellspacing="0" cellpadding="0" >	
+										 <tr>
+                                        <td colspan="3">
+                                        	<h4 class="red">{$selectcategory[n].category_name} <a href="#"><i class="icon-times-circle">&nbsp;</i></a></h4>
+                                        </td>
+                                      </tr>
+									  </table>
+									<form class="theforms" id="categoryuser{$smarty.section.n.index}">
+									
+									
+									{if $selectcategory[n].categorydetail != ''}
+									{section name=o loop=$selectcategory[n].categorydetail}
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="categorytable{$smarty.section.n.index}" style="margin-bottom:45px;">
+                                     
+									  
+									
+                                      <tr>
+                                        <td width="220"><strong>Short Description</strong></td>
+                                        <td width="10">:</td>
+                                        <td><input type="text" name="shortdesc[]" value="{$selectcategory[n].categorydetail[o].short_description}" /></td>
+                                      </tr>
+                                      <tr>
+                                       
+										<td width="220"><strong>Sub Category</strong></td>
+                                        <td width="10">:</td>
+                                        <td>
+                                          <div class="selectbox">
+                                          <select name="subcategory[]">
+										 
+                                            <option value="Yes" >{$selectcategory[n].categorydetail[o].name_subcategory}
+										
+											</option>
+												{section name=x loop=$selectcategory[n].arraysubcat}
+												
+												{if $selectcategory[n].categorydetail[o].subcategory_id == $selectcategory[n].arraysubcat[x].id}
+												<option value="{$selectcategory[n].arraysubcat[x].id}" selected>{$selectcategory[n].arraysubcat[x].name_subcategory}</option>
+												{else}
+												<option value="{$selectcategory[n].arraysubcat[x].id}" >{$selectcategory[n].arraysubcat[x].name_subcategory}</option>
+												{/if}
+												
+												{/section}
+                                          </select>
+                                          </div>
+                                         </td>
+										
+										
+                                       
+                                      </tr>
+                                      <tr>
+                                        <td width="220"><strong>Have an Agent?</strong></td>
+                                        <td width="10">:</td>
+                                        <td>
+                                          <div class="selectbox">
+                                          <select name="agenthave[]" class="agennya{$smarty.section.n.index}{$smarty.section.o.index}" val='{$smarty.section.n.index}{$smarty.section.o.index}'>
+										  {if $selectcategory[n].categorydetail[o].agent == 'Yes'}
+                                            <option value="Yes" selected>Yes</option>
+											<option value="No">No</option>
+										 {else}
+											  <option value="Yes" >Yes</option>
+											<option value="No" selected>No</option>
+                                            
+											
+											{/if}
+                                          </select>
+                                          </div>
+                                         </td>
+                                      </tr>
+									   {if $selectcategory[n].categorydetail[o].agent == 'Yes'}
+                                      <tr class='seasonagennya{$smarty.section.n.index}{$smarty.section.o.index}' >
+                                        <td width="220"><strong>Agent Name</strong></td>
+                                        <td width="10">:</td>
+                                        <td><input type="text" name="agentname[]" value="{$selectcategory[n].categorydetail[o].name_agent}" /></td>
+                                      </tr>
+									  {else}
+									    <tr class="seasonagennya{$smarty.section.n.index}{$smarty.section.o.index}" style="display:none">
+                                        <td width="220"><strong>Agent Name</strong></td>
+                                        <td width="10">:</td>
+                                        <td><input type="text" name="agentname[]" value="{$selectcategory[n].categorydetail[o].name_agent}" /></td>
+                                      </tr>
+									  {/if}
+									  <script>
+									  var sagen{$smarty.section.n.index}{$smarty.section.o.index}='agennya{$smarty.section.n.index}{$smarty.section.o.index}';
+									  
+									  {literal}
+									  $('.'+sagen{/literal}{$smarty.section.n.index}{$smarty.section.o.index}{literal}).on("click", function(){
+									  $sagennnya=$('.'+sagen{/literal}{$smarty.section.n.index}{$smarty.section.o.index}{literal}).val();
+									  if($sagennnya == 'Yes')
+									  {
+										$('.seasonagennya{/literal}{$smarty.section.n.index}{$smarty.section.o.index}{literal}').show();
+									  }else{
+										$('.seasonagennya{/literal}{$smarty.section.n.index}{$smarty.section.o.index}{literal}').hide();
+									  }
+									  
+									  });
+									  
+									  
+									  {/literal}
+									  </script>
+                                      <tr>
+                                        <td><strong>Looking for</strong></td>
+                                        <td width="10">:</td>
+                                        <td>
+										{if $selectcategory[n].categorydetail[o].mlfor.loking_for_id != ''}
+										<input value="1" class="lookingfor{$smarty.section.n.index}" name="lookingfor[{$smarty.section.o.index}][]" type="checkbox" {if in_array('1',$selectcategory[n].categorydetail[o].mlfor.loking_for_id)} checked {/if}/><span>Full time</span>
+										<input value="2"  class="lookingfor{$smarty.section.n.index}" name="lookingfor[{$smarty.section.o.index}][]" type="checkbox" {if in_array('2',$selectcategory[n].categorydetail[o].mlfor.loking_for_id)} checked {/if}/><span>Part time</span> 
+										<input value="3" class="lookingfor{$smarty.section.n.index}" name="lookingfor[{$smarty.section.o.index}][]" type="checkbox" {if in_array('3',$selectcategory[n].categorydetail[o].mlfor.loking_for_id)} checked {/if}/><span>Freelance</span>
+										<input  value="3" class="lookingfor{$smarty.section.n.index}" name="lookingfor[{$smarty.section.o.index}][]" type="checkbox" {if in_array('3',$selectcategory[n].categorydetail[o].mlfor.loking_for_id)} checked {/if}/><span>Internship</span>
+										{else}
+										<input value="1" class="lookingfor{$smarty.section.n.index}" name="lookingfor[{$smarty.section.o.index}][]" type="checkbox" /><span>Full time</span>
+										<input value="2" class="lookingfor{$smarty.section.n.index}" name="lookingfor[{$smarty.section.o.index}][]" type="checkbox"/><span>Part time</span> 
+										<input value="3" class="lookingfor{$smarty.section.n.index}" name="lookingfor[{$smarty.section.o.index}][]" type="checkbox" /><span>Freelance</span>
+										<input value="3" class="lookingfor{$smarty.section.n.index}" name="lookingfor[{$smarty.section.o.index}][]" type="checkbox" /><span>Internship</span>
+										
+										{/if}
+										
+										
+										</td>
+                                      </tr>
+                                      <tr class="categorytabletr">
+                                        <td><strong>Open for</strong></td>
+                                        <td>:</td>
+                                        <td>
+										{if $selectcategory[n].categorydetail[o].moffor.oppen_for != ''}
+										<input name="openfor[{$smarty.section.o.index}][]" class="openfor{$smarty.section.n.index}" value="Paid"  type="checkbox"  {if in_array('Paid',$selectcategory[n].categorydetail[o].moffor.oppen_for)} checked {/if}/><span>Paid</span> 
+										<input name="openfor[{$smarty.section.o.index}][]" class="openfor{$smarty.section.n.index}" value="Unpaid" type="checkbox"  {if in_array('Unpaid',$selectcategory[n].categorydetail[o].moffor.oppen_for)} checked {/if}/><span>Unpaid</span>
+										<input name="openfor[{$smarty.section.o.index}][]"  class="openfor{$smarty.section.n.index}" value="Expenses" type="checkbox"  {if in_array('Expenses',$selectcategory[n].categorydetail[o].moffor.oppen_for)} checked {/if}/><span>Expenses only</span>
+										
+										{else}
+										<input type="checkbox" name="openfor[{$smarty.section.o.index}][]" class="openfor{$smarty.section.n.index}" value="Paid"/><span>Paid</span> 
+										<input type="checkbox" name="openfor[{$smarty.section.o.index}][]" class="openfor{$smarty.section.n.index}" value="Unpaid"/><span>Unpaid</span>
+										<input type="checkbox" name="openfor[{$smarty.section.n.index}][]" class="openfor{$smarty.section.n.index}" value="Expenses"/><span>Expenses only</span>
+										
+										{/if}
+										<input type="hidden" value="{$selectcategory[n].category_id}" name="idcategory">
+										
+										</td>
+                                      </tr>
+										{/section}
+{/if}										
+									  </table>
+									   <table  class="tablesubmit{$smarty.section.n.index}" width="100%" border="0" cellspacing="0" cellpadding="0" >
+                                      
+									{if $countcategory < 5}
+									  <tr>
+                                        <td colspan="3">
+                                        	<a href="#" class="addbtn" id="addcategory{$smarty.section.n.index}">+ ADD MORE SUB-CATEGORY  </a>
+                                        </td>
+                                      </tr>
+									{/if}
+                                      <tr>
+                                        <td colspan="3">
+                                            <div class="smallbtn">
+											<input type="hidden" name="categorynya" value="{$uid}" >
+                                                <input type="submit" value="SAVE" class="button1" />
+                                                <input type="button" value="CANCEL" class="button2" />
+                                            </div>
+                                        </td>
+                                      </tr>
+                                    </table>
+                                    </form>
+                                </div><!-- END .rows -->
+
+							</div><!-- END .sections -->
+                        </div><!-- END .sectionsrow -->
+						
+						
+						
+						
+						
+						
+						
+                        <h3 class="sectiontitle">Experience</h3>
+						
+                        <div class="sectionsrow viewexperience{$smarty.section.n.index}" >
+                            <a class="button1 btnedit edit_experience{$smarty.section.n.index}" ><i class="icon-pencil">&nbsp;</i> Edit</a>
+                            <div class="sections">
+                                <div class="rows">
+									{foreach from=$selectcategory[n].arrayexp item=arrayexp}
+									{assign var="startp" value="-"|explode:$arrayexp.periode_start}
+									{assign var="yearstart" value="$startp[0]"}
+									{assign var="endp" value="-"|explode:$arrayexp.periode_end}
+									{assign var="yearend" value="$endp[0]"}
+
+                                	<h4 class="red">{$yearstart} - {$yearend}</h4>
+									
+                                	<h5>{$selectcategory[n].category_name}</h5>
+									<p>
+									{$arrayexp.detail_exp}
+									</p>
+							{/foreach}
+                                </div><!-- END .rows -->
+                            </div><!-- END .sections -->
+						 </div><!-- END .sectionsrow -->
+						 <script>
+						{literal}
+						$(document).ready(function(){
+						$(".edit_experience{/literal}{$smarty.section.n.index}{literal}").on("click", function(){
+								$('.viewexperience{/literal}{$smarty.section.n.index}{literal}').hide();
+								$('.inputexperience{/literal}{$smarty.section.n.index}{literal}').show();
+							});
+						});
+						
+						{/literal}
+						</script>
+						 <div class="sectionsrow inputexperience{$smarty.section.n.index}" style="display:none;">
+                            <div class="sections">
+                                <div class="rows">
+            					<form class="theforms" id="experience{$smarty.section.n.index}">
+								{if $selectcategory[n].arrayexp[0] != ''}
+								{section name=p loop=$selectcategory[n].arrayexp}
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0" class='categorytableexp{$smarty.section.n.index}'>
+                                   
+                                      <tr>
+                                        <td colspan="3">
+										
+										  {assign var="startp" value="-"|explode:$selectcategory[n].arrayexp[p].periode_start}
+										  {assign var="yearstart" value="$startp[0]"}
+										  {assign var="monthstart" value="$startp[1]"}
+										  {assign var="endp" value="-"|explode:$selectcategory[n].arrayexp[p].periode_end}
+										  {assign var="yearend" value="$endp[0]"}
+										  {assign var="monthend" value="$endp[1]"}
+										  
+                                          <div class="selectbox w50 dateBox">
+                                          <select name="yearstart[]">
+                                            <option >Year</option>
+											{section name=tahun1 start=1964 loop=$tahunsekarang step=1}
+												
+														{if  $yearstart==$smarty.section.tahun1.index}
+														<option value='{$smarty.section.tahun1.index}' selected>{$smarty.section.tahun1.index}</option>
+														{else}
+														<option value='{$smarty.section.tahun1.index}' >{$smarty.section.tahun1.index}</option>
+														{/if}
+														  
+												  {/section}
+                                          </select>
+                                          </div>
+                                          <div class="selectbox w50 monthBox">
+                                          <select name="monthstart[]">
+                                            <option>Month</option>
+											 {section name=foos start=1 loop=13 step=1}
+										  {if $monthstart==$smarty.section.foos.index}
+										  
+												{if $smarty.section.foos.index=='1'}
+												<option value='{$smarty.section.foos.index}' selected>January</option>
+												{/if}
+												{if $smarty.section.foos.index=='2'}
+												<option value='{$smarty.section.foos.index}' selected>Febuary</option>
+											
+												{/if}
+												{if $smarty.section.foos.index=='3'}
+												<option value='{$smarty.section.foos.index}' selected>March</option>
+												{/if}
+												{if $smarty.section.foos.index=='4'}
+												<option value='{$smarty.section.foos.index}' selected >April</option>
+												{/if}
+												{if $smarty.section.foos.index=='5'}
+												<option value='{$smarty.section.foos.index}' selected >Mei</option>
+												{/if}
+												{if $smarty.section.foos.index=='6'}
+												<option value='{$smarty.section.foos.index}' selected>Juni</option>
+												{/if}
+												{if $smarty.section.foos.index=='7'}
+												<option value='{$smarty.section.foos.index}' selected >Juli</option>
+												{/if}
+												{if $smarty.section.foos.index=='8'}
+												<option value='{$smarty.section.foos.index}' selected>Agustus</option>
+												{/if}
+												{if $smarty.section.foos.index=='9'}
+												<option value='{$smarty.section.foos.index}' selected>September</option>
+												{/if}
+												{if $smarty.section.foos.index=='10'}
+												<option value='{$smarty.section.foos.index}' selected >Oktober</option>
+												{/if}
+												{if $smarty.section.foos.index=='11'}
+												<option value='{$smarty.section.foos.index}' selected>November</option>
+												{/if}
+												{if $smarty.section.foos.index=='12'}
+												<option value='{$smarty.section.foos.index}' selected>Desember</option>
+												{/if}	
+										 
+										 {else}
+												{if $smarty.section.foos.index=='1'}
+												<option value='{$smarty.section.foos.index}' >January</option>
+											
+												{/if}
+												{if $smarty.section.foos.index=='2'}
+												<option value='{$smarty.section.foos.index}' >Febuary</option>
+												{/if}
+												{if $smarty.section.foos.index=='3'}
+												<option value='{$smarty.section.foos.index}' >March</option>
+												{/if}
+												{if $smarty.section.foos.index=='4'}
+												<option value='{$smarty.section.foos.index}'  >April</option>
+												{/if}
+												{if $smarty.section.foos.index=='5'}
+												<option value='{$smarty.section.foos.index}'  >Mei</option>
+												{/if}
+												{if $smarty.section.foos.index=='6'}
+												<option value='{$smarty.section.foos.index}' >Juni</option>
+												{/if}
+												{if $smarty.section.foos.index=='7'}
+												<option value='{$smarty.section.foos.index}'  >Juli</option>
+												{/if}
+												{if $smarty.section.foos.index=='8'}
+												<option value='{$smarty.section.foos.index}' >Agustus</option>
+												{/if}
+												{if $smarty.section.foos.index=='9'}
+												<option value='{$smarty.section.foos.index}' >September</option>
+												{/if}
+												{if $smarty.section.foos.index=='10'}
+												<option value='{$smarty.section.foos.index}'  >Oktober</option>
+												{/if}
+												{if $smarty.section.foos.index=='11'}
+												<option value='{$smarty.section.foos.index}'>November</option>
+												{/if}
+												{if $smarty.section.foos.index=='12'}
+												<option value='{$smarty.section.foos.index}'>Desember</option>
+												{/if}	
+											
+										  {/if}
+										  {/section}		
+                                          </select>
+                                          </div>
+                                          <div class="w20 center">
+                                          -
+                                          </div>
+                                          <div class="selectbox w50 dateBox">
+                                          <select name="yearend[]">
+                                            <option>Year</option>
+											{section name=tahun1 start=1964 loop=$tahunsekarang step=1}
+												
+														{if  $yearend==$smarty.section.tahun1.index}
+														<option value='{$smarty.section.tahun1.index}' selected>{$smarty.section.tahun1.index}</option>
+														{else}
+														<option value='{$smarty.section.tahun1.index}' >{$smarty.section.tahun1.index}</option>
+														{/if}
+														  
+												  {/section}
+                                          </select>
+                                          </div>
+                                          <div class="selectbox w50 monthBox">
+                                          <select name="monthend[]">
+                                            <option>Month</option>
+											 {section name=foos start=1 loop=13 step=1}
+										  {if $monthend==$smarty.section.foos.index}
+										  
+												{if $smarty.section.foos.index=='1'}
+												<option value='{$smarty.section.foos.index}' selected>January</option>
+												{/if}
+												{if $smarty.section.foos.index=='2'}
+												<option value='{$smarty.section.foos.index}' selected>Febuary</option>
+											
+												{/if}
+												{if $smarty.section.foos.index=='3'}
+												<option value='{$smarty.section.foos.index}' selected>March</option>
+												{/if}
+												{if $smarty.section.foos.index=='4'}
+												<option value='{$smarty.section.foos.index}' selected >April</option>
+												{/if}
+												{if $smarty.section.foos.index=='5'}
+												<option value='{$smarty.section.foos.index}' selected >Mei</option>
+												{/if}
+												{if $smarty.section.foos.index=='6'}
+												<option value='{$smarty.section.foos.index}' selected>Juni</option>
+												{/if}
+												{if $smarty.section.foos.index=='7'}
+												<option value='{$smarty.section.foos.index}' selected >Juli</option>
+												{/if}
+												{if $smarty.section.foos.index=='8'}
+												<option value='{$smarty.section.foos.index}' selected>Agustus</option>
+												{/if}
+												{if $smarty.section.foos.index=='9'}
+												<option value='{$smarty.section.foos.index}' selected>September</option>
+												{/if}
+												{if $smarty.section.foos.index=='10'}
+												<option value='{$smarty.section.foos.index}' selected >Oktober</option>
+												{/if}
+												{if $smarty.section.foos.index=='11'}
+												<option value='{$smarty.section.foos.index}' selected>November</option>
+												{/if}
+												{if $smarty.section.foos.index=='12'}
+												<option value='{$smarty.section.foos.index}' selected>Desember</option>
+												{/if}	
+										 
+										 {else}
+												{if $smarty.section.foos.index=='1'}
+												<option value='{$smarty.section.foos.index}' >January</option>
+											
+												{/if}
+												{if $smarty.section.foos.index=='2'}
+												<option value='{$smarty.section.foos.index}' >Febuary</option>
+												{/if}
+												{if $smarty.section.foos.index=='3'}
+												<option value='{$smarty.section.foos.index}' >March</option>
+												{/if}
+												{if $smarty.section.foos.index=='4'}
+												<option value='{$smarty.section.foos.index}'  >April</option>
+												{/if}
+												{if $smarty.section.foos.index=='5'}
+												<option value='{$smarty.section.foos.index}'  >Mei</option>
+												{/if}
+												{if $smarty.section.foos.index=='6'}
+												<option value='{$smarty.section.foos.index}' >Juni</option>
+												{/if}
+												{if $smarty.section.foos.index=='7'}
+												<option value='{$smarty.section.foos.index}'  >Juli</option>
+												{/if}
+												{if $smarty.section.foos.index=='8'}
+												<option value='{$smarty.section.foos.index}' >Agustus</option>
+												{/if}
+												{if $smarty.section.foos.index=='9'}
+												<option value='{$smarty.section.foos.index}' >September</option>
+												{/if}
+												{if $smarty.section.foos.index=='10'}
+												<option value='{$smarty.section.foos.index}'  >Oktober</option>
+												{/if}
+												{if $smarty.section.foos.index=='11'}
+												<option value='{$smarty.section.foos.index}'>November</option>
+												{/if}
+												{if $smarty.section.foos.index=='12'}
+												<option value='{$smarty.section.foos.index}'>Desember</option>
+												{/if}	
+											
+										  {/if}
+										  {/section}	
+                                          </select>
+                                          </div>
+                                      </td>
+                                      </tr>
+                                      <tr>
+                                        <td colspan="3">
+                                        	<textarea name="detail_exp[]" class="mceEditor"> 
+											{$selectcategory[n].arrayexp[p].detail_exp}
+											
+											</textarea>
+                                        </td>
+                                      </tr>
+									  
+									  </table>
+									  {/section}
+									  {else}
+									  <table width="100%" border="0" cellspacing="0" cellpadding="0" class='categorytableexp{$smarty.section.n.index}'>
+                                   
+                                      <tr>
+                                        <td colspan="3">
+										
+										  
+										  {assign var="yearstart" value="2014"}
+										  {assign var="monthstart" value="31"}
+										
+										  {assign var="yearend" value="2014"}
+										  {assign var="monthend" value="31"}
+										  
+                                          <div class="selectbox w50 dateBox">
+                                          <select name="yearstart[]">
+                                            <option >Year</option>
+											{section name=tahun1 start=1964 loop=$tahunsekarang step=1}
+												
+														{if  $yearstart==$smarty.section.tahun1.index}
+														<option value='{$smarty.section.tahun1.index}' selected>{$smarty.section.tahun1.index}</option>
+														{else}
+														<option value='{$smarty.section.tahun1.index}' >{$smarty.section.tahun1.index}</option>
+														{/if}
+														  
+												  {/section}
+                                          </select>
+                                          </div>
+                                          <div class="selectbox w50 monthBox">
+                                          <select name="monthstart[]">
+                                            <option>Month</option>
+											 {section name=foos start=1 loop=13 step=1}
+										  {if $monthstart==$smarty.section.foos.index}
+										  
+												{if $smarty.section.foos.index=='1'}
+												<option value='{$smarty.section.foos.index}' selected>January</option>
+												{/if}
+												{if $smarty.section.foos.index=='2'}
+												<option value='{$smarty.section.foos.index}' selected>Febuary</option>
+											
+												{/if}
+												{if $smarty.section.foos.index=='3'}
+												<option value='{$smarty.section.foos.index}' selected>March</option>
+												{/if}
+												{if $smarty.section.foos.index=='4'}
+												<option value='{$smarty.section.foos.index}' selected >April</option>
+												{/if}
+												{if $smarty.section.foos.index=='5'}
+												<option value='{$smarty.section.foos.index}' selected >Mei</option>
+												{/if}
+												{if $smarty.section.foos.index=='6'}
+												<option value='{$smarty.section.foos.index}' selected>Juni</option>
+												{/if}
+												{if $smarty.section.foos.index=='7'}
+												<option value='{$smarty.section.foos.index}' selected >Juli</option>
+												{/if}
+												{if $smarty.section.foos.index=='8'}
+												<option value='{$smarty.section.foos.index}' selected>Agustus</option>
+												{/if}
+												{if $smarty.section.foos.index=='9'}
+												<option value='{$smarty.section.foos.index}' selected>September</option>
+												{/if}
+												{if $smarty.section.foos.index=='10'}
+												<option value='{$smarty.section.foos.index}' selected >Oktober</option>
+												{/if}
+												{if $smarty.section.foos.index=='11'}
+												<option value='{$smarty.section.foos.index}' selected>November</option>
+												{/if}
+												{if $smarty.section.foos.index=='12'}
+												<option value='{$smarty.section.foos.index}' selected>Desember</option>
+												{/if}	
+										 
+										 {else}
+												{if $smarty.section.foos.index=='1'}
+												<option value='{$smarty.section.foos.index}' >January</option>
+											
+												{/if}
+												{if $smarty.section.foos.index=='2'}
+												<option value='{$smarty.section.foos.index}' >Febuary</option>
+												{/if}
+												{if $smarty.section.foos.index=='3'}
+												<option value='{$smarty.section.foos.index}' >March</option>
+												{/if}
+												{if $smarty.section.foos.index=='4'}
+												<option value='{$smarty.section.foos.index}'  >April</option>
+												{/if}
+												{if $smarty.section.foos.index=='5'}
+												<option value='{$smarty.section.foos.index}'  >Mei</option>
+												{/if}
+												{if $smarty.section.foos.index=='6'}
+												<option value='{$smarty.section.foos.index}' >Juni</option>
+												{/if}
+												{if $smarty.section.foos.index=='7'}
+												<option value='{$smarty.section.foos.index}'  >Juli</option>
+												{/if}
+												{if $smarty.section.foos.index=='8'}
+												<option value='{$smarty.section.foos.index}' >Agustus</option>
+												{/if}
+												{if $smarty.section.foos.index=='9'}
+												<option value='{$smarty.section.foos.index}' >September</option>
+												{/if}
+												{if $smarty.section.foos.index=='10'}
+												<option value='{$smarty.section.foos.index}'  >Oktober</option>
+												{/if}
+												{if $smarty.section.foos.index=='11'}
+												<option value='{$smarty.section.foos.index}'>November</option>
+												{/if}
+												{if $smarty.section.foos.index=='12'}
+												<option value='{$smarty.section.foos.index}'>Desember</option>
+												{/if}	
+											
+										  {/if}
+										  {/section}		
+                                          </select>
+                                          </div>
+                                          <div class="w20 center">
+                                          -
+                                          </div>
+                                          <div class="selectbox w50 dateBox">
+                                          <select name="yearend[]">
+                                            <option>Year</option>
+											{section name=tahun1 start=1964 loop=$tahunsekarang step=1}
+												
+														{if  $yearend==$smarty.section.tahun1.index}
+														<option value='{$smarty.section.tahun1.index}' selected>{$smarty.section.tahun1.index}</option>
+														{else}
+														<option value='{$smarty.section.tahun1.index}' >{$smarty.section.tahun1.index}</option>
+														{/if}
+														  
+												  {/section}
+                                          </select>
+                                          </div>
+                                          <div class="selectbox w50 monthBox">
+                                          <select name="monthend[]">
+                                            <option>Month</option>
+											 {section name=foos start=1 loop=13 step=1}
+										  {if $monthend==$smarty.section.foos.index}
+										  
+												{if $smarty.section.foos.index=='1'}
+												<option value='{$smarty.section.foos.index}' selected>January</option>
+												{/if}
+												{if $smarty.section.foos.index=='2'}
+												<option value='{$smarty.section.foos.index}' selected>Febuary</option>
+											
+												{/if}
+												{if $smarty.section.foos.index=='3'}
+												<option value='{$smarty.section.foos.index}' selected>March</option>
+												{/if}
+												{if $smarty.section.foos.index=='4'}
+												<option value='{$smarty.section.foos.index}' selected >April</option>
+												{/if}
+												{if $smarty.section.foos.index=='5'}
+												<option value='{$smarty.section.foos.index}' selected >Mei</option>
+												{/if}
+												{if $smarty.section.foos.index=='6'}
+												<option value='{$smarty.section.foos.index}' selected>Juni</option>
+												{/if}
+												{if $smarty.section.foos.index=='7'}
+												<option value='{$smarty.section.foos.index}' selected >Juli</option>
+												{/if}
+												{if $smarty.section.foos.index=='8'}
+												<option value='{$smarty.section.foos.index}' selected>Agustus</option>
+												{/if}
+												{if $smarty.section.foos.index=='9'}
+												<option value='{$smarty.section.foos.index}' selected>September</option>
+												{/if}
+												{if $smarty.section.foos.index=='10'}
+												<option value='{$smarty.section.foos.index}' selected >Oktober</option>
+												{/if}
+												{if $smarty.section.foos.index=='11'}
+												<option value='{$smarty.section.foos.index}' selected>November</option>
+												{/if}
+												{if $smarty.section.foos.index=='12'}
+												<option value='{$smarty.section.foos.index}' selected>Desember</option>
+												{/if}	
+										 
+										 {else}
+												{if $smarty.section.foos.index=='1'}
+												<option value='{$smarty.section.foos.index}' >January</option>
+											
+												{/if}
+												{if $smarty.section.foos.index=='2'}
+												<option value='{$smarty.section.foos.index}' >Febuary</option>
+												{/if}
+												{if $smarty.section.foos.index=='3'}
+												<option value='{$smarty.section.foos.index}' >March</option>
+												{/if}
+												{if $smarty.section.foos.index=='4'}
+												<option value='{$smarty.section.foos.index}'  >April</option>
+												{/if}
+												{if $smarty.section.foos.index=='5'}
+												<option value='{$smarty.section.foos.index}'  >Mei</option>
+												{/if}
+												{if $smarty.section.foos.index=='6'}
+												<option value='{$smarty.section.foos.index}' >Juni</option>
+												{/if}
+												{if $smarty.section.foos.index=='7'}
+												<option value='{$smarty.section.foos.index}'  >Juli</option>
+												{/if}
+												{if $smarty.section.foos.index=='8'}
+												<option value='{$smarty.section.foos.index}' >Agustus</option>
+												{/if}
+												{if $smarty.section.foos.index=='9'}
+												<option value='{$smarty.section.foos.index}' >September</option>
+												{/if}
+												{if $smarty.section.foos.index=='10'}
+												<option value='{$smarty.section.foos.index}'  >Oktober</option>
+												{/if}
+												{if $smarty.section.foos.index=='11'}
+												<option value='{$smarty.section.foos.index}'>November</option>
+												{/if}
+												{if $smarty.section.foos.index=='12'}
+												<option value='{$smarty.section.foos.index}'>Desember</option>
+												{/if}	
+											
+										  {/if}
+										  {/section}	
+                                          </select>
+                                          </div>
+                                      </td>
+                                      </tr>
+                                      <tr>
+                                        <td colspan="3">
+                                        	<textarea class="mceEditor" name="detail_exp[]"> 
+											
+											
+											</textarea>
+                                        </td>
+                                      </tr>
+									  
+									  </table>
+									  {/if}
+									   <table width="100%" border="0" cellspacing="0" cellpadding="0" class='tablesubmitexp{$smarty.section.n.index}'> 
+                                      <tr >
+                                        <td colspan="3">
+										
+                                        	<a href="#" class="addbtn" id="addexperience{$smarty.section.n.index}">+ ADD MORE EXPERIENCE</a>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td colspan="3">
+                                            <div class="smallbtn">
+											<input type="hidden" name="editexperience" value="{$uid}" >
+											<input type="hidden" name="category" value="{$selectcategory[n].category_id}" >
+                                                <input type="submit" value="SAVE" class="button1" />
+                                                <input type="button" value="CANCEL" class="button2" />
+                                            </div>
+                                        </td>
+                                      </tr>
+                                    </table>
+								</form>
+                                </div><!-- END .rows -->
+                            </div><!-- END .sections -->
+                        </div><!-- END .sectionsrow -->
+						
+						 
+						 
+						 
+						 
+						 
+						 
+						 
+						 
+                    </div><!-- END .tabentry -->
+                  </div><!-- END .tab-content -->
+				  	<div id="popup-thks-experience" class="popup mfp-hide" style="width:300px;">
+					<div class="popupfullcontent">
+						<h3 class="title">Edit <span class="red">Experience</span></h3>
+						<p>Proses Edit Experience Berhasil</p>
+					</div>
+				</div><!-- END .popup -->		
+				<div id="popup-thks-category" class="popup mfp-hide" style="width:300px;">
+					<div class="popupfullcontent">
+						<h3 class="title">Edit <span class="red">Category</span></h3>
+						<p>Proses Edit Category Berhasil</p>
+					</div>
+				</div><!-- END .popup -->		
+                  {/section}
+				  {/if}
+				  
+			{if $selectcategory != ''}
+	{section name=n loop=$selectcategory}
+
+	<script>
+	var countnya_cat{$smarty.section.n.index}={$selectcategory[n].categorydetail|@count};
+
+	var categoryinject={$smarty.section.n.index};
+	console.log(countnya_cat{$smarty.section.n.index});
+	var tambah=0;
+	{literal}
+
+	
+ $(document).ready(function() {
+		
+        $("#addexperience{/literal}{$smarty.section.n.index}{literal}").click(function() {
+		tambah=tambah+1;
+		
+           var n = $( '.categorytableexp{/literal}{$smarty.section.n.index}{literal}' ).length;
+           if(n==4) {$(this).hide();}
+		  
+          $('.categorytableexp{/literal}{$smarty.section.n.index}{literal}:last').clone(true).insertBefore('.tablesubmitexp{/literal}{$smarty.section.n.index}{literal}');
+		  
+          return false;
+        });
+    });			
+		$(document).ready(function(e){
+	
+				
+                $('#experience'+ {/literal}{$smarty.section.n.index}{literal}).submit(function(e){
+				
+				
+                    e.preventDefault();
+                    $.ajax({
+                        'type': 'POST',
+                        'url': basedomain+'personal/editpersonal',
+                        'data': $(this).serialize(),
+						'dataType':'json',
+                        'success': function(result){
+									setTimeout(function() {
+									 if ($('#popup-thks-experience').length) {
+									   $.magnificPopup.open({
+										items: {
+											src: '#popup-thks-experience' 
+										},
+										type: 'inline'
+										  });
+									   }
+									 }, 0);
+							
+									location.reload();
+									}
+});
+});
+});
+	
+
+	
+ $(document).ready(function() {
+		
+        $("#addcategory{/literal}{$smarty.section.n.index}{literal}").click(function() {
+		countnya_cat{/literal}{$smarty.section.n.index}{literal}=countnya_cat{/literal}{$smarty.section.n.index}{literal}+1;
+		console.log(countnya_cat{/literal}{$smarty.section.n.index}{literal});
+           var n = $( '.categorytable{/literal}{$smarty.section.n.index}{literal}' ).length;
+           if(n==4) {$(this).hide();}
+		  
+		$('.categorytable{/literal}{$smarty.section.n.index}{literal}:last').clone(true).insertBefore('.tablesubmit{/literal}{$smarty.section.n.index}{literal}');
+		   console.log( $('.categorytable{/literal}{$smarty.section.n.index}{literal}:last').find('.lookingfor{/literal}{$smarty.section.n.index}{literal}'));
+		   
+	
+			  
+			  
+		   $('.categorytable{/literal}{$smarty.section.n.index}{literal}:last').find('.lookingfor{/literal}{$smarty.section.n.index}{literal}').attr('name','lookingfor['+countnya_cat{/literal}{$smarty.section.n.index}{literal}+'][]');
+		    $('.categorytable{/literal}{$smarty.section.n.index}{literal}:last').find('.openfor{/literal}{$smarty.section.n.index}{literal}').attr('name','openfor['+countnya_cat{/literal}{$smarty.section.n.index}{literal}+'][]');
+          return false;
+        });
+    });		
+	
+	$(document).ready(function(e){
+	
+				
+                $('#categoryuser'+ {/literal}{$smarty.section.n.index}{literal}).submit(function(e){
+				
+			
+                    e.preventDefault();
+                    $.ajax({
+                        'type': 'POST',
+                        'url': basedomain+'personal/editpersonal',
+                        'data': $(this).serialize(),
+						'dataType':'json',
+                        'success': function(result){
+										setTimeout(function() {
+									 if ($('#popup-thks-category').length) {
+									   $.magnificPopup.open({
+										items: {
+											src: '#popup-thks-category' 
+										},
+										type: 'inline'
+										  });
+									   }
+									 }, 0);
+									$('.viewcategory{/literal}{$smarty.section.n.index}{literal}').show();
+									$('.inputcategory{/literal}{$smarty.section.n.index}{literal}').hide();
+									
+									location.reload();
+									
+									
+									}
+});
+});
+});
+	
+	
+	
+	{/literal}
+</script>		
+
+{/section}
+{/if}	  
+                   <div id="my-portfolio" class="tab-content">
+                  	<div class="tabentry">
+                        <div class="sectionsrow">
+                            <a class="btnadd showpopup" href="#popup-upload-photo"><i class="icon-plus">&nbsp;</i> Add more photos</a>
+                        	{include file='application/web/widgets/popup-upload-photo.html'}
+                            <div class="sectionbox">
+                                <div class="rows rows5">
+								{if $images}
+								{section name=k loop=$images}
+                                    <div class="box">
+                                        <div class="boximg">
+                                            <a href="{$basedomain}portofolio?images={$images[k].id}&id={$images[k].user_id}" class="thumbbox"><img src="{$basedomain}public_assets/portofolio/{$images[k].images}"></a>  
+                                        </div><!-- end .boximg -->    
+                                        <div class="caption">
+                                            <div class="desc-box">
+                                                <h4><a href="{$basedomain}portofolio?images={$images[k].id}&id={$images[k].user_id}">{$images[k].title}</a></h4>
+                                            </div><!-- end .author-box -->    
+                                            <h5><a href="{$basedomain}portofolio?images={$images[k].id}&id={$images[k].user_id}">{$images[k].description}</a></h5>
+                                        </div>
+                                    </div><!-- END .box -->
+                                 {/section}
+                                 {else}<p> There are no portfolio(s) yet</p>
+                                   
+								 {/if}
+                                </div><!-- END .rows -->
+                            </div><!-- END .sectionbox -->
+                        </div><!-- END .sectionsrow -->
+                        <h3 class="sectiontitle">Videos</h3>
+                        <div class="sectionsrow">
+                            <a class="btnadd showpopup" href="#popup-upload-video"><i class="icon-plus">&nbsp;</i> Add more Videos</a>
+                        	{include file='application/web/widgets/popup-upload-video.html'}
+                            <div class="sectionbox">
+                                <div class="rows rows5">
+                                  	{if $listvideo}
+										{section name=kv loop=$listvideo}
+											<div class="box">
+												<div class="boximg">
+													<a href="{$basedomain}portofolio?video={$listvideo[kv].id}&id={$listvideo[kv].user_id}" class="thumbbox">
+														<img src="{$basedomain}public_assets/portofolio/{$listvideo[kv].images}" width="400" height="200">
+														<i class="icon-play-circle-o">&nbsp;</i>
+													</a>  
+												</div><!-- end .boximg -->    
+												<div class="caption">
+													<div class="desc-box">
+														<h4><a href="{$basedomain}portofolio?video={$listvideo[kv].id}&id={$listvideo[kv].user_id}">{$listvideo[kv].title}</a></h4>
+													</div><!-- end .author-box -->    
+													<h5><a href="{$basedomain}portofolio?video={$listvideo[kv].id}&id={$listvideo[kv].user_id}">{$listvideo[kv].description}</a></h5>
+												</div>
+											</div><!-- END .box -->
+										 {/section}
+                                 		{else}<p> There are no portfolio(s) yet</p>  
+									{/if}
+                                   
+                                </div><!-- END .rows -->
+                            </div><!-- END .sectionbox -->
+                        </div><!-- END .sectionsrow -->
+                        <h3 class="sectiontitle">Audios</h3>
+                        <div class="sectionsrow">
+                            <a class="btnadd showpopup" href="#popup-upload-audio"><i class="icon-plus">&nbsp;</i> Add more Audios</a>
+                        	{include file='application/web/widgets/popup-upload-audio.html'}
+                            <div class="sectionbox">
+                                <div class="rows rows5">
+                                   {if $listaudio}
+										{section name=ka loop=$listaudio}
+											<div class="box">
+												<div class="boximg">
+													<a href="{$basedomain}portofolio?audio={$listaudio[ka].id}&id={$listaudio[ka].user_id}" class="thumbbox">
+														<img src="{$basedomain}public_assets/portofolio/{$listaudio[ka].images}"  width="400" height="200">
+															<i class="icon-play-circle-o">&nbsp;</i>
+													</a>  
+												</div><!-- end .boximg -->    
+												<div class="caption">
+													<div class="desc-box">
+														<h4><a href="{$basedomain}portofolio?audio={$listaudio[ka].id}&id={$listaudio[ka].user_id}">{$listaudio[ka].title}</a></h4>
+													</div><!-- end .author-box -->    
+													<h5><a href="{$basedomain}portofolio?audio={$listaudio[ka].id}&id={$listaudio[ka].user_id}">{$listaudio[ka].description}</a></h5>
+												</div>
+											</div><!-- END .box -->
+											
+										 {/section}
+		                                 {else}<p> There are no portfolio(s) yet</p>  
+										 
+									{/if}
+                                  
+                                   
+                                </div><!-- END .rows -->
+                            </div><!-- END .sectionbox -->
+                        </div><!-- END .sectionsrow -->
+                    </div><!-- END .tabentry -->
+                  </div><!-- END .tab-content -->
+                </div><!-- END .widget -->
+            </div><!-- end .cols -->   
+        </div><!-- end .wrapper -->    
+    </div><!-- end #profileboard --> 
+	{/section}
+	{/if}
+</div><!-- end #profilepage -->
+{include file="application/web/widgets/popup-tour-profile.html"}
+<div id="bg-popup2"></div>
+{literal}
+<script>
+	  $(document).ready(function(){
+				$('.untuklike').click(function(e){
+									
+								var likenya=$(this).attr('value');
+								var friendlikes=$(this).attr('folow');
+								//console.log(likenya);
+								//console.log(friendlikes);
+								var thiss=$(this);
+								e.preventDefault();
+								$.ajax({
+								
+									'type': 'POST',
+									'url': basedomain+'talentboard/ajaxlike',
+									'data':{uid:likenya,idnya:friendlikes},
+									'dataType':'json',
+									'success': function(response){
+										var str='';
+										str+=response.countnya;
+										$('.likesnya').html(str);
+										$('.untuklike').hide();
+									}
+									
+									
+									
+									});
+								});
+							});
+		$('.clicksharemail').click(function()
+		{
+			$('.sharemail').show();
+
+		});
+		$('.submit').click(function(){
+				var email=$('.emailshare').val();
+				var userid=$('.idusershare').val();
+				 $.ajax({
+							
+									'type': 'POST',
+									'url': ''+basedomain+'share/emailShare',
+									'data': {userid:userid,type:'profile',email:email},
+									'dataType':'json',
+								   'success': function(result){
+										if(result.status==1)
+										{
+												$('.msgerorr').html('proses share berhasil');
+
+										}
+										else
+										{
+											 $('.msgerorr').html('proses share gagal coba ulang lagi');
+										}
+								   }
+							   });
+		   
+		})	
+	
+	{/literal}
+	</script>

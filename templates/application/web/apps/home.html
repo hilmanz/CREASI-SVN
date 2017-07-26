@@ -1,0 +1,496 @@
+
+    <div id="homeBanner">
+        <div id="bannerwrapper">
+            <div class="flexslider">
+              <ul class="slides">
+			  {if $load}
+			  {section name=i loop=$load}
+			
+			  <li><a { if $load[i].link} href="http://{$load[i].link|replace:'http://':''}"  {else} href="" {/if} ><img src="{$basedomain}public_assets/banner/{$load[i].images}" /></a></li>
+			  {/section}
+			  {/if}{*}
+                	<li><a href="#"><img src="{$basedomain}assets/content/1.jpg" /></a></li>{/*}
+                
+              </ul>
+            </div><!-- end .flexslider -->
+        </div> <!-- end #bannerwrapper -->
+    </div><!-- end #homeBanner -->
+    <div id="welcometext" class="section"> 
+        <div class="wrapper center">
+        	<div class="titlebox">   
+                <h2><strong>Looking for jobs or talents in the creative industry?</strong></h2>
+                <p>We really understand how hard it is to get a job or a gig in the creative industry.<br />Ironically, Talent Seekers face quite a challenge in finding the right Creative Talent. We bridge them in our website.</p>
+            </div><!-- end .titlebox -->
+			{if !$user}
+			<a class="button1" href="{$basedomain}registration">CREATE CV</a>
+			<a class="button2" href="{$basedomain}postjobs">POST JOB</a>
+			{/if}
+        </div><!-- end .wrapper -->    
+    </div><!-- end #welcometext --> 
+    <div id="howto" class="section effect"> 
+        <div class="wrapper center">   
+        	<div class="col3">
+            	<div class="boxcircle">
+                	<div class="circleImage circle-im1"></div>
+                    <h3><strong>Join The Society</strong></h3>
+                    <p>Quick & Easy</p>
+                </div><!-- end .boxcircle -->
+            </div><!-- end .col3 -->
+            <div class="boxcat zeroPad" >
+                <i class="ico"></i>
+                <span>>></span>
+            </div><!-- end .boxcat -->
+        	<div class="col3">
+            	<div class="boxcircle">
+                	<div class="circleImage circle-im2"></div>
+                    <h3><strong>Create Profile / Post Project</strong></h3>
+                    <p>Within Minutes</p>
+                </div><!-- end .boxcircle -->
+            </div><!-- end .col3 -->
+            <div class="boxcat zeroPad" >
+                <i class="ico"></i>
+                <span>>></span>
+            </div><!-- end .boxcat -->
+        	<div class="col3">
+            	<div class="boxcircle">
+                	<div class="circleImage circle-im3"></div>
+                    <h3><strong>Discover Talents / Projects</strong></h3>
+                    <p>Your Journey Begin</p>
+                </div><!-- end .boxcircle -->
+            </div><!-- end .col3 -->
+        </div><!-- end .wrapper -->    
+    </div><!-- end #howto --> 
+    <div id="categorybox" class="section effect"> 
+        <div class="wrapper center">
+        	<div class="titlebox">
+                <h2>Our <span class="red">Categories</span></h2>
+                <p>With our 12 growing categories in the creative industry, we magnify your opportunities to get hired and collaborate<br />between Talent Seekers and Creative Talents.</p
+            ></div><!-- end .titlebox -->
+			 {*} {if $mycategory}
+			  {section name=cj loop=$mycategory}
+			
+				  <a class="boxcat" href="{$basedomain}jobboard/{$mycategory[cj].category_id}">
+					<i class="ico icon-camera">&nbsp;</i>
+					<span>{$mycategory[cj].category_name}</span>
+				</a><!-- end .boxcat -->
+			  {/section}
+			 {/if}
+           {/*}
+            <div class="boxcat" >
+                <i class="ico"><img src="{$basedomain}assets/images/cat/actor.png" /></i>
+                <span>Actor</span>
+            </div><!-- end .boxcat -->
+            <div class="boxcat zeroPad" >
+                <i class="ico"></i>
+                <span>-</span>
+            </div><!-- end .boxcat -->
+            <div class="boxcat">
+                <i class="ico"><img src="{$basedomain}assets/images/cat/dancer.png" /></i>
+                <span>Dancer</span>
+            </div><!-- end .boxcat -->
+            <div class="boxcat zeroPad" >
+                <i class="ico"></i>
+                <span>-</span>
+            </div><!-- end .boxcat -->
+            <div class="boxcat" >
+                <i class="ico"><img src="{$basedomain}assets/images/cat/designer.png" /></i>
+                <span>Visual Designer </span>
+            </div><!-- end .boxcat -->
+            <div class="boxcat zeroPad" >
+                <i class="ico"></i>
+                <span>-</span>
+            </div><!-- end .boxcat -->
+            <div class="boxcat">
+                <i class="ico"><img src="{$basedomain}assets/images/cat/editor.png" /></i>
+                <span>Visual Editor </span>
+            </div><!-- end .boxcat -->
+            <div class="boxcat zeroPad" >
+                <i class="ico"></i>
+                <span>-</span>
+            </div><!-- end .boxcat -->
+            <div class="boxcat" >
+                <i class="ico"><img src="{$basedomain}assets/images/cat/hair.png" /></i>
+                <span>Hair Stylist</span>
+            </div><!-- end .boxcat -->
+            <div class="boxcat zeroPad" >
+                <i class="ico"></i>
+                <span>-</span>
+            </div><!-- end .boxcat -->
+            <div class="boxcat">
+                <i class="ico"><img src="{$basedomain}assets/images/cat/makeup.png" /></i>
+                <span>Makeup Artist</span>
+            </div><!-- end .boxcat -->
+          <br />
+            <div class="boxcat">
+                <i class="ico"><img src="{$basedomain}assets/images/cat/model.png" /></i>
+                <span>Model</span>
+            </div><!-- end .boxcat -->
+             <div class="boxcat zeroPad" >
+                <i class="ico"></i>
+                <span>-</span>
+            </div><!-- end .boxcat -->
+            <div class="boxcat">
+                <i class="ico"><img src="{$basedomain}assets/images/cat/music.png" /></i>
+                <span>Musician</span>
+            </div><!-- end .boxcat -->
+            <div class="boxcat zeroPad" >
+                <i class="ico"></i>
+                <span>-</span>
+            </div><!-- end .boxcat -->
+            <div class="boxcat" >
+                <i class="ico"><img src="{$basedomain}assets/images/cat/fashion.png" /></i>
+                <span>Fashion Designer</span>
+            </div><!-- end .boxcat -->
+            <div class="boxcat zeroPad" >
+                <i class="ico"></i>
+                <span>-</span>
+            </div><!-- end .boxcat -->
+            <div class="boxcat" >
+                <i class="ico"><img src="{$basedomain}assets/images/cat/photographer.png" /></i>
+                <span>Photographer</span>
+            </div><!-- end .boxcat -->
+            <div class="boxcat zeroPad" >
+                <i class="ico"></i>
+                <span>-</span>
+            </div><!-- end .boxcat -->
+            <div class="boxcat">
+                <i class="ico"><img src="{$basedomain}assets/images/cat/film.png" /></i>
+                <span>Film, TV or Video Production</span>
+            </div><!-- end .boxcat -->
+            <div class="boxcat zeroPad" >
+                <i class="ico"></i>
+                <span>-</span>
+            </div><!-- end .boxcat -->
+            <div class="boxcat">
+                <i class="ico"><img src="{$basedomain}assets/images/cat/writer.png" /></i>
+                <span>Writer</span>
+            </div><!-- end .boxcat -->
+        </div><!-- end .wrapper -->    
+    </div><!-- end #categorybox --> 
+	
+    <div id="adslandscape" class="section section-bordered effect"> 
+        <div class="wrapper center">
+        	<div class="ads1000x200">
+        	<a><img src="{$basedomain}assets/content/ads/ads_creasi.jpg" /></a>
+            </div>
+        </div><!-- end .wrapper -->    
+    </div><!-- end #adslandscape --> 
+	
+    <div id="featurejobs" class="section section-bordered effect"> 
+        <div class="wrapper center">
+        	<div class="titlebox">
+            	<h2>Newest  <span class="red">Jobs</span></h2>
+            </div><!-- end .titlebox -->
+            <div class="listbox">
+			 {if $listfeaturejobs}
+			  {section name=j loop=$listfeaturejobs}
+			
+            	<div class="box">
+                	<div class="boximg">
+                    	<a href="{$basedomain}jobboard/detail_jobboard/{$listfeaturejobs[j].id_job}" class="thumbbox">
+						{if $listfeaturejobs[j].applicantresult != ''} 
+						<img src=  "{$basedomain}public_assets/personal/{$listfeaturejobs[j].applicantresult}" width="400" height="200"    />
+						{else}
+						<img src=  "{$basedomain}public_assets/personal/ts.png" width="400" height="200"    />
+						{/if}
+						</a>
+                    	
+						<div class="captionhide">
+                        	<div class="author-box">
+                            	<a class="author-name" href="{$basedomain}jobboard/detail_jobboard/{$listfeaturejobs[j].id_job}">{$listfeaturejobs[j].nama_perusahaan}</a>
+                                
+								 <span class="author-location">{$listfeaturejobs[j].city}</span>
+                            </div><!-- end .author-box -->    
+                            <div class="meta-info">
+							
+							
+                                <a class="newIcon-view" ><span>{$listfeaturejobs[j].view_count}</span></a>
+                                <a class="newIcon-like"><span>{$listfeaturejobs[j].love_count}</span></a>
+                               <!-- <a href="#"><i class="ico icon-calendar">&nbsp;</i> <span>{$listfeaturejobs[j].tanggal}</span></a> -->
+                            </div><!-- end .meta-info -->   
+                        </div><!-- end .captionhide -->   
+{*}<div class="ribbon">Most Popular</div> {/*}
+						
+                    </div><!-- end .boximg -->    
+                    <div class="caption"><h4><a href="{$basedomain}jobboard/detail_jobboard?id={$listfeaturejobs[j].id_job}">{$listfeaturejobs[j].job_title|truncate:50}</a></h4></div>
+                   <!--  <div class="ribbon">Popular</div> -->
+                </div><!-- end .box -->  
+				
+				
+				
+				
+            	{/section}
+			{/if}
+            </div><!-- end .listbox -->    
+            <div class="row-btn">
+            	<a class="button2" href="{$basedomain}jobboard">SHOW MORE</a>
+            </div><!-- end .row-btn -->  
+        </div><!-- end .wrapper -->    
+    </div><!-- end #categorybox --> 
+    <div id="popularTalents" class="popularTalentHome section section-bordered effect"> 
+        <div class="wrapper center">
+        	<div class="titlebox">
+            	<h2>Most Popular <span class="red">Talents</span></h2>
+            </div><!-- end .titlebox -->
+            <div class="talent-list">
+                <div class="carousel1">
+                  <ul class="slides">
+				   {if $listfeatureuser}
+					{section name=k loop=$listfeatureuser}
+						<li>
+							
+							<div style="width:auto;" class="box">
+								<div class="boximg profilethumb thumb boxpop">
+								{if $uid==$listfeatureuser[k].id}
+									<a href="{$basedomain}personal/view?id={$listfeatureuser[k].id}" class="thumbbox"><img  class="avatar" src= {if $listfeatureuser[k].img_avatar } "{$basedomain}public_assets/personal/{$listfeatureuser[k].img_avatar}" {else}  "{$basedomain}public_assets/personal/images.jpg" {/if} width="400" height="200" /></a>  <!-- <button type="button" class="editPop edit-avatar btn btn-info">Edit</button> -->
+								{else}
+								<a href="{$basedomain}personal/view?id={$listfeatureuser[k].id}" class="thumbbox"><img src= {if $listfeatureuser[k].img_avatar } "{$basedomain}public_assets/personal/{$listfeatureuser[k].img_avatar}" {else}  "{$basedomain}public_assets/personal/images.jpg" {/if} width="400" height="200" /></a> 
+								{/if}
+								
+								{*}
+									<div class="captionhide">    
+										<div class="meta-info">
+											<a href="#" class="button2">UNLIKE</a>
+											<a href="#" class="button2">FOLLOW</a>
+										</div><!-- end .meta-info -->   
+									</div><!-- end .captionhide -->  
+                                    {/*}
+								</div><!-- end .boximg -->    
+								<div class="caption">
+									<div class="author-box">
+										<a class="author-name" href="{$basedomain}personal/view/{$listfeatureuser[k].id}">{$listfeatureuser[k].name} {$listfeatureuser[k].lastname|truncate:50}</a>
+										<span class="author-talent">
+										
+										{section name=s loop=$listfeatureuser[k].catuser}
+{if $smarty.section.s.index==0}
+										{$listfeatureuser[k].catuser[s].category_name}
+										{else}
+										& {$listfeatureuser[k].catuser[s].category_name}
+										{/if}
+										
+										{/section}
+										</span>
+									</div><!-- end .author-box -->    
+									<div class="meta-info">
+										<a class="newIcon-view-grey" ><span>{$listfeatureuser[k].view_count}</span></a>
+										<a class="newIcon-like-grey" > <span class="likesnya daribtn{$listfeatureuser[k].id}">{$listfeatureuser[k].love_count}</span></a>
+										 {*}<a href="#" class="c-friends"><i class="ico icon-users">&nbsp;</i> <span>{$listfeatureuser[k].follow_count}</span></a>
+										 <a href="#" class="btn-like" 	{if $listfeatureuser[k].likenyauser == ''} data-type='0' {else} data-type='1' {/if} value='{$uidlike}' folow='{$listfeatureuser[k].id}'><i class="ico icon-thumbs-o-up">&nbsp;</i> Like</a>{/*}
+										{if $listfeatureuser[k].likenyauser == ''}
+                                        <a href="#" class="btn-like" value='{$uidlike}' data-type='0' folow='{$listfeatureuser[k].id}'>Like</a>
+										{else}
+										 <a href="#" class="btn-like redbtn" value='{$uidlike}' data-type='1'  folow='{$listfeatureuser[k].id}'>Like</a>
+										{/if}
+									</div><!-- end .meta-info -->  
+								</div>
+								{section name=s loop=$popularlist}
+								{if $popularlist[s].id == $listfeatureuser[k].id }
+								<div class="ribbon-yellow">&nbsp;</div>
+								{/if}
+								
+								{/section}
+								
+							</div><!-- end .box --> 
+							
+						</li>
+					 {/section}
+					 {/if}
+                   
+                  </ul>
+                </div><!-- end .flexslider -->
+            </div><!-- end .talent-list -->
+            <div class="row-btn">
+            	<a class="button2" href="{$basedomain}talentboard">SHOW MORE</a>
+            </div><!-- end .row-btn -->  
+        </div><!-- end .wrapper -->    
+    </div><!-- end #popularTalents --> 
+    {*} 
+    <div id="testimonials" class="section effect"> 
+        <div class="wrapper center">
+        	<div class="titlebox">
+            	<h2>Our <span class="red">Testimonials</span></h2>
+            </div><!-- end .titlebox -->
+            <div class="testicontainer">
+                <div class="testislide">
+                  <ul class="slides">
+                        <li>
+                        	<div class="testibox">
+                                <i class="ico icon-quote-left">&nbsp;</i>
+                                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+                                <div class="authortesti">
+                                    <a href="#" class="thumb-55"><img src="{$basedomain}assets/content/3.jpg" /></a>
+                                    <span class="testiname">John Doe</span>
+                                    <span class="testicompany">Google Inc</span>
+                                </div>
+                                <i class="ico icon-quote-right">&nbsp;</i>
+                        	</div><!-- end .testibox -->
+                        </li>
+                        <li>
+                        	<div class="testibox">
+                                <i class="ico icon-quote-left">&nbsp;</i>
+                                <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum</p>
+                                <div class="authortesti">
+                                    <a href="#" class="thumb-55"><img src="{$basedomain}assets/content/4.jpg" /></a>
+                                    <span class="testiname">Emily Doe</span>
+                                    <span class="testicompany">Telkom Indonesia</span>
+                                </div>
+                                <i class="ico icon-quote-right">&nbsp;</i>
+                        	</div><!-- end .testibox -->
+                        </li>
+                  </ul>
+                </div><!-- end .testislide -->
+            </div><!-- end .testicontainer -->
+            <div class="row-btn">
+            	<a class="button2" href="#">SHOW MORE</a>
+            </div><!-- end .row-btn -->    
+        </div><!-- end .wrapper -->    
+    </div><!-- end #testimonials --> 
+    {/*}
+    <div id="adsBoard" class="section section-bordered effect"> 
+        <div class="wrapper center">
+        	<div class="ads400x200">
+        		<a><img src="{$basedomain}assets/content/ads/Adjie-lubie.jpg" /></a>
+            </div><!-- end .ads400x200 -->   
+        	<div class="ads400x200">
+        		<a><img src="{$basedomain}assets/content/ads/gianti-gladic.jpg" /></a>
+            </div><!-- end .ads400x200 -->   
+        	<div class="ads400x200">
+        		<a><img src="{$basedomain}assets/content/ads/kansil-imbb.jpg" /></a>
+            </div><!-- end .ads400x200 -->   
+        	<div class="ads400x200">
+        		<a><img src="{$basedomain}assets/content/ads/Pi-gi.jpg" /></a>
+            </div><!-- end .ads400x200 -->   
+        </div><!-- end .wrapper -->    
+    </div><!-- end #adsBoard --> 
+	
+    <div id="participants" class="section effect"> 
+        <div class="wrapper center">
+        	<div class="titlebox">
+                <h2>Our <span class="red">Participants</span></h2>
+                <p>We open ourselves to all companies, schools & educational institutions, communities and groups who share the passion to grow the creative industry in Indonesia. Display your profile here. It's free!</p>
+            </div><!-- end .titlebox -->
+            <div class="participantsContainer">
+                <div class="flexslider">
+                    <ul class="slides">
+                        <li>
+                            <div class="logobox">
+                                <a href="http://www.idseducation.com" target="_blank"><img src="{$basedomain}assets/content/logo1.png" /></a>
+                            </div><!-- end .logobox -->
+                        
+                            <div class="logobox">
+                                <a href="http://www.skenario.org" target="_blank"><img src="{$basedomain}assets/content/logo2.png" /></a>
+                            </div><!-- end .logobox -->
+                         
+                            <div class="logobox">
+                                <a href="http://www.gigiartofdance.com" target="_blank"><img src="{$basedomain}assets/content/logo3.png" /></a>
+                            </div><!-- end .logobox -->
+                         
+                            <div class="logobox">
+                                <a href="http://www.plotpointkreatif.blogspot.com" target="_blank"><img src="{$basedomain}assets/content/logo4.png" /></a>
+                            </div><!-- end .logobox -->
+                         
+                            <div class="logobox">
+                                <a href="http://www.sekolahmusikindonesia.co.id" target="_blank"><img src="{$basedomain}assets/content/logo5.png" /></a>
+                            </div><!-- end .logobox -->
+                         </li>
+                         <li>
+                            <div class="logobox">
+                                <a href="http://www.stmbi.ac.id" target="_blank"><img src="{$basedomain}assets/content/logo6.png" /></a>
+                            </div><!-- end .logobox -->
+                        
+                            <div class="logobox">
+                                <a href="http://www.ajielubisschool.com" target="_blank"><img src="{$basedomain}assets/content/ajielubisschool.png" /></a>
+                            </div><!-- end .logobox -->
+                         
+                            <div class="logobox">
+                                <a href="http://www.darwistriadischoolofphotography.com" target="_blank"><img src="{$basedomain}assets/content/darwistriadischoolofphotography.png" /></a>
+                            </div><!-- end .logobox -->
+                         
+                            <div class="logobox">
+                                <a href="http://www.facebook.com/RudyHadisuwarnoModelling" target="_blank"><img src="{$basedomain}assets/content/RudyHadisuwarnoModelling.png" /></a>
+                            </div><!-- end .logobox -->
+                         
+                            <div class="logobox">
+                                <a href="http://www.imbindonesia.com" target="_blank"><img src="{$basedomain}assets/content/burgo.png" /></a>
+                            </div><!-- end .logobox -->
+                         </li>
+                         <li>
+                            <div class="logobox">
+                                <a href="http://www.interstudi.edu/stdi" target="_blank"><img src="{$basedomain}assets/content/stdi.png" /></a>
+                            </div><!-- end .logobox -->
+                          
+                            <div class="logobox">
+                                <a href="http://www.oqmodellingschool.com" target="_blank"><img src="{$basedomain}assets/content/oq.png" /></a>
+                            </div><!-- end .logobox -->
+                        
+                            <div class="logobox">
+                                <a href="http://www.raffles-indonesia.com" target="_blank"><img src="{$basedomain}assets/content/raffles.png" /></a>
+                            </div><!-- end .logobox -->
+                         
+                            <div class="logobox">
+                                <a href="http://www.s-s-r.com" target="_blank"><img src="{$basedomain}assets/content/ssr.png" /></a>
+                            </div><!-- end .logobox -->
+                         
+                            <div class="logobox">
+                                <a href="http://www.sekolahpoppy.net84.net" target="_blank"><img src="{$basedomain}assets/content/sekolahpoppy.png" /></a>
+                            </div><!-- end .logobox -->
+                          </li>
+                          <li>
+                            <div class="logobox">
+                                <a href="http://www.sjm.sch.id" target="_blank"><img src="{$basedomain}assets/content/sjm.png" /></a>
+                            </div><!-- end .logobox -->
+                          
+                            <div class="logobox">
+                                <a href="http://www.smkn1depok.sch.id" target="_blank"><img src="{$basedomain}assets/content/smkndepok.png" /></a>
+                            </div><!-- end .logobox -->
+                        </li>
+                    </ul>
+                </div><!-- end .logoslide -->
+            </div><!-- end .participantsContainer -->
+        </div><!-- end .wrapper -->    
+    </div><!-- end #participants --> 
+<script>
+{literal}
+  $(document).ready(function(){
+				$('.btn-like').click(function(e){
+									
+								var likenya=$(this).attr('value');
+								var friendlikes=$(this).attr('folow');
+								//console.log(likenya);
+								//console.log(friendlikes);
+								var thiss=$(this);
+								e.preventDefault();
+								$.ajax({
+								
+									'type': 'POST',
+									'url': basedomain+'talentboard/ajaxlike',
+									'data':{uid:likenya,idnya:friendlikes},
+									'dataType':'json',
+									'success': function(response){
+									if(response.status==true)
+										{
+										var str='';
+										str+=response.countnya;
+										$('.daribtn'+friendlikes).text(str);
+										if(thiss.data('type')==1)
+										{
+											thiss.removeClass('redbtn');
+											//console.log(thiss.data('type'));
+											thiss.data('type',0);
+										}
+										else
+										{
+											thiss.addClass('redbtn');
+												thiss.data('type',1);
+										}
+										}
+										
+									}
+									
+									
+									
+									});
+								});
+							});		
+	{/literal}
+</script>

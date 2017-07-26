@@ -1,0 +1,113 @@
+
+<head>
+	<meta charset="utf-8">
+	<title>CREASI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="CREASI">
+	  <link href="http://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css" />
+  	
+    <!-- // IE  // -->
+	<!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+    <!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+    
+    <link href="{$basedomain}assets/css/bootstrap-select.css" rel="stylesheet" type="text/css" />
+    <link href="{$basedomain}assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="{$basedomain}assets/css/superfish.css" rel="stylesheet" type="text/css" />
+    <link href="{$basedomain}assets/css/flexslider.css" rel="stylesheet" type="text/css" />
+    <link href="{$basedomain}assets/css/flexslider2.css" rel="stylesheet" type="text/css" />
+    <link href="{$basedomain}assets/css/flexslider3.css" rel="stylesheet" type="text/css" />
+    <link href="{$basedomain}assets/css/magnific-popup.css" rel="stylesheet" type="text/css" />
+    <link href="{$basedomain}assets/css/normalize.css" rel="stylesheet" type="text/css" />
+    <link href="{$basedomain}assets/css/melon.datepicker.css" rel="stylesheet" type="text/css" />
+    <link href="{$basedomain}assets/css/tooltipster.css" rel="stylesheet" type="text/css" />
+    <link href="{$basedomain}assets/css/creasi.css" rel="stylesheet" type="text/css" />
+    <link href="{$basedomain}assets/css/jquery.jscrollpane.css" rel="stylesheet" type="text/css" />
+    <link rel="shortcut icon" href="{$basedomain}assets/images/favicon.ico">
+    <link href="{$basedomain}assets/css/jquery.Jcrop.css" rel="stylesheet" type="text/css" />
+	  <link href="{$basedomain}assets/css/imgpicker.css" rel="stylesheet" type="text/css" />
+	 <!-- //UNTUK IMAGE CROP NYA  // -->
+	
+	<link rel="stylesheet" type="text/css" href="{$basedomain}assets/css/coverstyle/font.css" />
+	<link rel="stylesheet" type="text/css" href="{$basedomain}assets/css/coverstyle/styles.css" />
+	
+    <!-- // IE  // -->
+	<!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+    <!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+    
+    <script type="text/javascript" src="{$basedomain}assets/js/jquery.10.1.min.js"></script>
+	<script type="text/javascript" src="{$basedomain}assets/js/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript" src="{$basedomain}assets/js/jquery-ui.min.js"></script>
+	<script>
+		var basedomain = "{$basedomain}" ;
+		var basedomainpath = "{$basedomainpath}" ;
+		var pages = "{$pages}" ;
+		var locale = {$locale|@json_encode};
+	</script> 
+    <!-- // PLUGIN  // -->  
+	 <script type="text/javascript" src="{$basedomain}assets/js/jquery.Jcrop.js"></script>
+		<script>
+	{literal}
+		$(function() {
+			// Avatar
+			$('.edit-avatar').imgPicker({
+				el: '.avatar',
+				type: 'avatar',
+				//aspectRatio: '1:1', // The aspect ratio is done automatically but you can set it manually
+				minWidth: 90,
+				minHeight: 90,
+				title: 'Change your profile picture' 
+			});
+
+			// Cover
+			$('.edit-cover').imgPicker({
+				el: '.cover',
+				type: 'cover',
+			
+				title: 'Change your cover picture',
+				webcam: false
+			});
+
+			// Background
+			$('.edit-bg').imgPicker({
+				el: '', // No element	
+				type: 'background',
+				title: 'Change background',
+				webcam: false,
+				// Success callback
+				complete: function(imageUrl) {
+					// Set body background
+					$('body').css('background-image', 'url("' + imageUrl + '")');
+				}
+			});
+		});
+	{/literal}
+	</script>
+
+			<script type="text/javascript" src="{$basedomain}assets/js/imgPicker.js"></script>
+	<script type="text/javascript" src="{$basedomain}assets/js/creasisearch.js"></script>
+	<script type="text/javascript" src="{$basedomain}assets/js/modernizr.custom.js"></script>
+    <script type="text/javascript" src="{$basedomain}assets/js/bootstrap.min.js"></script>  
+    <script type="text/javascript" src="{$basedomain}assets/js/bootstrap-select.js"></script>  
+    <!-- // PLUGIN  // -->  
+
+	
+	<script type="text/javascript" src="{$basedomain}assets/js/tinymce/js/tinymce/tinymce.min.js"></script>
+	<script type="text/javascript" src="{$basedomain}assets/js/jquery.tooltipster.js"></script>
+    <script type="text/javascript" src="{$basedomain}assets/js/jquery-ui-sliderAccess.js"></script>
+	<script type="text/javascript" src="{$basedomain}assets/js/jquery-ui-timepicker-addon.js"></script>
+	<script type="text/javascript" src="{$basedomain}assets/js/jquery.easing.js"></script>
+    <script type="text/javascript" src="{$basedomain}assets/js/jquery.mousewheel.js"></script>
+    <script type="text/javascript" src="{$basedomain}assets/js/jquery.jscrollpane.js"></script>
+    <script type="text/javascript" src="{$basedomain}assets/js/jquery.flexslider.js"></script>
+	<script type="text/javascript" src="{$basedomain}assets/js/jquery.fadethis.js"></script>
+    <script type="text/javascript" src="{$basedomain}assets/js/superfish.js"></script>  
+    <script type="text/javascript" src="{$basedomain}assets/js/hoverIntent.js"></script>  
+	<script type="text/javascript" src="{$basedomain}assets/js/animate.js"></script>  
+	<script type="text/javascript" src="{$basedomain}assets/js/jquery.magnific-popup.js"></script>  
+    <script type="text/javascript" src="{$basedomain}assets/js/creasi.js"></script>
+	<script type="text/javascript" src="{$basedomain}assets/js/kipagination.js"></script>
+	<script type="text/javascript" src="{$basedomain}assets/js/contentHelper.js"></script>
+	<script type="text/javascript" src="{$basedomain}assets/js/contentviews.js"></script>
+	<script type="text/javascript" src="{$basedomain}assets/js/jquery.pages.js"></script>
+	<script type="text/javascript" src="{$basedomain}assets/js/imgPicker.js"></script>
+</head>

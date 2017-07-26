@@ -1,0 +1,13 @@
+ <div class="col-sidebar">
+                <div class="dashborad-menu">
+                    <h3 class="dashboradmenu-title">My Dashboard</h3>
+                    <div class="dashboradmenu-content">
+                      <ul>
+                          <li><a href="{$basedomain}dashboard" {if $pages=='dashboard'  && $act=='' } class="active" {/if}>- My Jobs </a></li>
+                           <li><a href="{$basedomain}dashboard/setting" {if $pages=='dashboard' && $act=='setting' } class="active" {/if} >- Settings</a></li>
+                          <li><a href="{$basedomain}help" {if $pages=='help' && $act=='' } class="active" {/if}>- Help</a></li>
+                          <li><a href="{$basedomain}deactive" {if $pages=='deactive' && $act=='' } class="active" {/if}>- Deactive Account</a></li>
+                        </ul>
+                    </div><!-- END .widget-content -->
+                </div><!-- END .widget -->
+            </div><!-- end .col-sidebar --> 

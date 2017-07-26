@@ -1,0 +1,227 @@
+<div class="page_section" id="jobBoard">
+    <div id="metapage">
+        <div class="wrapper">
+            <h1 class="page-title fl">Job Board</h1>
+            <div class="breadcumb fr">
+                <a href="index.php">Home</a> <span>/</span> <a>Job Board</a>
+            </div>
+        </div><!-- end .wrapper -->   
+    </div><!-- end #metapage -->
+    <div id="jobBoardList" class="section"> 
+        <div class="wrapper">
+        	<div class="col-sidebar">
+                
+                <div class="widget">
+                    <h3 class="widget-title">Our <span class="red">Categories</span></h3>
+                    <div class="widget-content">
+                   		<form class="forms">
+					
+						{section name=j loop=$s_cat} 
+                            <div class="rowd">
+                                <input type="checkbox" class='joincategory' value='{$s_cat[j].id}' name="ok[1][]"/> <label>{$s_cat[j].category_name} ({$s_cat[j].nilaijumlah} )</label>
+                            </div><!-- END .rowd -->
+                           
+                   		</form>{/section}
+                    </div><!-- END .widget-content -->
+                </div><!-- END .widget -->
+				<div class="widget">
+                    <h3 class="widget-title">Advance <span class="red">Search</span></h3>
+              
+				
+				
+				
+                 <div class="widget-content">
+				
+                   			<form class="forms" id="formadvsearchcat" method="POST" action="">
+							<div class="roww">
+								<input type="text" class='required show-tick' placeholder="Name Search Here..." name='nama'>
+							</div><!-- END .roww -->
+                            <div class="roww">
+                              <select id="advsearchcat" name="cetegory" class="selectpicker selectpicker show-tick" data-width="250">
+                              	<option value=''>Any Category</option>
+								 {if $cat}			
+									{section name=h loop=$cat} 
+									<option value='{$cat[h].id}'>{$cat[h].cat}</option>
+									{/section}
+								{/if}
+                                	
+                              </select>
+                            </div><!-- END .roww -->
+							
+                            <div class="roww" >
+							 <select class="selectpicker selectpicker show-tick stairs" id='stairs' name='subcat' data-width="250">
+                        <option value=''>Please select one sub-category</option>
+                      </select>
+                            
+                            </div><!-- END .roww -->
+                            <div class="roww">
+                              <select name="city" class="selectpicker selectpicker show-tick categorylist" data-live-search="true" data-width="250">
+                              	<option value=''>Any City</option>
+                    		
+									{section name=k loop=$citynya} 
+									<option value='{$citynya[k].city}'>{$citynya[k].city}</option>
+									{/section}
+                                	
+                              </select>
+                            </div><!-- END .roww -->
+                           <!--  <div class="roww">
+                              <select class="selectpicker selectpicker show-tick" data-width="250">
+                              	<option>Any Gender</option>
+                              	<option>Male</option>
+                              	<option>Female</option>
+                              </select>
+                            </div><!-- END .roww -->
+                        
+                            <div class="roww">
+                                <div class="col2">
+                                    <input type="checkbox" name='checkadv[]' value='fulltime' /> <label>Full time</label>
+                                </div><!-- END .rowd -->
+                                <div class="col2">
+                                    <input type="checkbox" name='checkadv[]' value='parttime'/> <label>Part time</label>
+                                </div><!-- END .rowd -->
+                                <div class="col2">
+                                    <input type="checkbox" name='checkadv[]' value='freelancer'/> <label>Freelance</label>
+                                </div><!-- END .rowd -->
+                                <div class="col2">
+                                    <input type="checkbox" name='checkadv[]' value='inter'/> <label>Intership</label>
+                                </div><!-- END .rowd -->
+                            </div><!-- END .roww -->
+                            <div class="rowBtn center">
+                            	<input type="button" value="RESET" class="button2" />
+								<input type="hidden" value="1" name='advasearch' class="button2" />
+                            	<button type="submit" name='submit' value="submit" class="button1" />SEARCH </button>
+                            </div><!-- END .rowBtn -->
+                   		</form>
+                    </div><!-- END .widget-content -->
+               <!--  <div class="widget">
+                    <h3 class="widget-title">Popular <span class="red">Tags</span></h3>
+                    <div class="widget-content">
+                    	<div class="tag-widget">
+                        	<a href="#">Web Design</a>
+                        	<a href="#">Video</a>
+                        	<a href="#">Editing</a>
+                        	<a href="#">Wordpress</a>
+                        	<a href="#">Animation</a>
+                        	<a href="#">Indie</a>
+                        	<a href="#">Guitarist</a>
+                        	<a href="#">Drummer</a>
+                        	<a href="#">Journalist</a>
+                        	<a href="#">Composser</a>
+                        	<a href="#">Music</a>
+                        	<a href="#">Photoshop</a>
+                        	<a href="#">Blogger</a>
+                        	<a href="#">Art</a>
+                        	<a href="#">Wall</a>
+                        </div>
+                    </div>
+                </div> -->
+            </div><!-- end .col-sidebar -->   
+			  </div><!-- END .widget -->
+        	<div class="col-content">
+            	<div class="shorter">
+                    <form class="forms fl">
+                          <select class="selectpicker selectpicker show-tick" data-width="150" id="sortby">
+                            <option value='last'>Lastest</option>
+                            <option value='end'>Ending soon</option>
+                           
+                            <option value='popular'>Most Popular</option>
+                          </select>
+                    </form>
+                  <div  id="paging_of_jobboard_list" class="paging fr paging_of_jobboard_list">
+                    	<a href="#">&laquo; First</a>
+                    	<a href="#">&lsaquo;</a>
+                    	<a href="#">1</a>
+                    	<a href="#" class="current">2</a>
+                    	<a href="#">3</a>
+                    	<a href="#">4</a>
+                    	<a href="#">5</a>
+                    	<a href="#">&rsaquo;</a>
+                    	<a href="#">LAST &raquo;</a>
+                    </div>
+                </div><!-- END .shorter -->
+                <div class="job-list searchingstatus">
+                   
+					
+					
+					     {section name=i loop=$load}
+						  {if $load[i].hari > 0}
+						  <div class="rowjob ">
+						
+                        <div class="boximg">
+						{if $load[i].file != ''}
+                            <a href="{$basedomain}jobboard/detail_jobboard?id={$load[i].id_job}" class="thumbbox"><img src="{$basedomain}public_assets/postjob/{$load[i].file}" height="200px" width="200px"/></a>
+						{else}
+								<a href="{$basedomain}jobboard/detail_jobboard?id={$load[i].id_job}" class="thumbbox"><img src="{$basedomain}public_assets/postjob/images.jpg" /></a>
+						{/if}
+                            <div class="caption">
+                                <i>No. of shares : 12</i>
+                                <i>No. of likes: 40</i>
+                            </div>    
+                        </div><!-- end .boximg -->    
+                        <div class="entry">
+                            <h3><a href="{$basedomain}jobboard/detail_jobboard?id={$load[i].id_job}">{$load[i].job_title}</a></h3>
+                            <div class="meta-post">
+                                <a href="#" class="company-name"><i class="icon-suitcase">&nbsp;</i>{$load[i].nama_perusahaan}</a>
+								{if $load[i].status_jobs == 1}
+                                <a href="#" class="company-status"><i class="icon-check-circle">&nbsp;</i> Verified</a>
+								{/if}
+								
+                                <a href="#" class="location-name"/><i class="icon-map-marker">&nbsp;</i> {$load[i].provinsi}, {$load[i].city}</a>
+								<a href="{$basedomain}share/twitterShare/jobs/{$load[i].id}/jobboard" class="location-name"/><i class="glyphicon icon-log-out">&nbsp;</i> twitter share</a>
+                            </div>
+                            <p align='justify'>{$load[i].deskripsi|substr:0:150}...(more)</p>
+                        </div><!-- end .entry -->  
+                        <div class="jobInfo">
+                            <a class="label bggreen" href="{$basedomain}jobboard/detail_jobboard?id={$load[i].id_job}"> OPEN</a>
+                            <div class="countdown-job">
+                                <h4><b>{$load[i].hari}</b></h4>
+                                <span>DAYS LEFT TO APPLY</span>
+                            </div>
+                            <span class="applicantsNo">No. of Applicants:{$load[i].registrant}</span>
+                        </div><!-- end .jobInfo -->  
+						</div><!-- end .rowjob -->		
+						{/if}	
+ 	
+ 
+						{/section}
+					
+
+						
+                     
+                    
+                </div><!-- end .job-list -->
+                <div class="row-paging">
+                    <div id="paging_of_jobboard_list"  class="paging paging_of_jobboard_list">
+                    	<a href="#">&laquo; First</a>
+                    	<a href="#">&lsaquo;</a>
+                    	<a href="#">1</a>
+                    	<a href="#" class="current">2</a>
+                    	<a href="#">3</a>
+                    	<a href="#">4</a>
+                    	<a href="#">5</a>
+                    	<a href="#">&rsaquo;</a>
+                    	<a href="#">LAST &raquo;</a>
+                    </div>
+                </div>
+				
+            </div><!-- end .col-content -->   
+        </div><!-- end .wrapper -->    
+    </div><!-- end #jobBoardList --> 
+</div><!-- end #jobBoard -->
+
+
+
+<script type="text/javascript">
+					getpaging(0,{$total},"paging_of_jobboard_list","paging_ajax_jobboard",10);
+					//getpaging(0,{$total},"paging_of_talent_list2","paging_ajax_talent",16);
+					
+</script>
+
+
+{literal}
+<script>
+mainboardsearch();
+			
+</script>
+
+{/literal}

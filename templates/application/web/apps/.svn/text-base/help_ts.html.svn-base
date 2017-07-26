@@ -1,0 +1,54 @@
+<div class="page_section" id="jobBoard">
+    <div id="metapage">
+        <div class="wrapper">
+            <h1 class="page-title fl">{$rolenya} Dashboard</h1>
+            <div class="breadcumb fr">
+                <a href="{$basedomain}">Home</a> <span>/</span> <a href="{$basedomain}dashboard">{$rolenya} Dashboard</a> <span>/</span> <a href="{$basedomain}help">Help</a>
+            </div>
+        </div><!-- end .wrapper -->   
+    </div><!-- end #metapage -->
+    <div id="jobBoardList" class="section"> 
+        <div class="wrapper">
+    {include file="application/web/widgets/left_menudashboard.html"}  
+        	<div class="col-content">
+             {include file="application/web/widgets/notibar.html"}  
+                <div class="containers">
+                    <form class="theforms" id="contactForm" method="post" action="">
+
+                        <h4>You could read  our <a href ="{$basedomain}/faqhome" > FAQ  here</a>, chat with us during our office hours (10:00 AM - 06:00 PM) or drop us a message here.</h4>
+                         <label  class="red msg">{$msg}</label>
+                        <div class="rows">
+                            <div class="col3">
+                              <input type="text" placeholder="Your Name" name="name" class="name" id="name" value="{$name}" />
+                              <label  class="red name_no">{$name_no}</label>
+                            </div><!-- end .col2 -->    
+                            <div class="col3">
+                              <input type="text" placeholder="Email Address" name="email" class="email" id="email" value="{$email}"  />
+                               <label  class="red email_no">{$email_no}</label>
+                            </div><!-- end .col2 -->    
+                            <div class="col3">
+                              <input type="text" placeholder="Subject" name="subject" class="subject" id="subject" value="{$subject}" />
+                              <label  class="red subject_no">{$subject_no}</label>
+                            </div><!-- end .col2 -->    
+                         </div><!-- end .rows -->    
+                        <div class="rows">
+                            <div class="col">
+                              <textarea placeholder="Message" name="message" class="message" id="message">{$message}</textarea>
+                             <label class="red message_no">{$message_no}</label>
+                            </div><!-- end .col -->      
+                         </div><!-- end .rows -->  
+                        <div class="rows">
+                            <span><img src="{$basedomainpath}public_assets/cptcha/{$captcha}.jpg"> = </span></span>
+                            <input type="text" class="captchavalue" name="captchavalue"/>
+                             <label  class="red captcha_no">{$captcha_no}</label>
+                        </div><!-- end .rows -->  
+                        <div class="rows">
+                             <input type="hidden"  name="submit" value="1" />
+                            <input type="submit" class="button1" value="SEND" />
+                         </div><!-- end .rows -->    
+                    </form>
+                </div><!-- end .containers -->    
+            </div><!-- end .col-content -->   
+        </div><!-- end .wrapper -->    
+    </div><!-- end #jobBoardList --> 
+</div><!-- end #jobBoard -->

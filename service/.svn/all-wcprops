@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 33
+/creasi/!svn/ver/47/trunk/service
+END
+.htaccess
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/creasi/!svn/ver/47/trunk/service/.htaccess
+END
+index.php
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/creasi/!svn/ver/47/trunk/service/index.php
+END
+common.php
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/creasi/!svn/ver/47/trunk/service/common.php
+END

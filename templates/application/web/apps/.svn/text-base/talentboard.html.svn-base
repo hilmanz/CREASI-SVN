@@ -1,0 +1,1703 @@
+<div class="page_section" id="talentBoard">
+    <div id="metapage">
+        <div class="wrapper">
+            <h1 class="page-title fl">Talent Board</h1>
+            <div class="breadcumb fr">
+                <a href="{$basedomain}home/">Home</a> <span>/</span> <a href="">Talent Board</a>
+            </div>
+        </div><!-- end .wrapper -->   
+    </div><!-- end #metapage -->
+    <div id="popularTalents" class="section"> 
+        <div class="wrapper">
+        	<div class="col-sidebar">
+                <div class="widget">
+                   
+                </div><!-- END .widget -->
+                <div class="widget">
+                    <h3 class="widget-title">Our <span class="red">Categories</span></h3>
+                    <div class="widget-content">
+                   		<form class="forms">
+						<div class="rowd">
+				<INPUT type="checkbox" id='sortbys' value="popular" name="chk[]" checked/><label>All Categories</label>
+				</div>
+				
+          {if $loopcat}			
+		{section name=i loop=$loopcat} 
+		
+		
+							<div class="rowd">
+                            <input type="checkbox" class='joincategory' value='{$loopcat[i].category_name}' name="ok[1][]"/>		
+							 <label>
+							 
+							
+								{$loopcat[i].category_name} ( {if $loopcat[i].total} {$loopcat[i].total}{else}0{/if})
+						
+								</label>
+                            </div><!-- END .rowd -->
+		
+				
+					
+
+				
+		
+			{/section}
+			{/if}
+                   		</form>
+                    </div><!-- END .widget-content -->
+                </div><!-- END .widget -->
+                <div class="widget">
+                    <h3 class="widget-title advanMargin">Advanced <span class="red">Search</span></h3>
+                    <div class="widget-content">
+                   		<form class="forms" id="formadvsearchcat" method="POST" action="">
+							<div class="rowws">
+								<input type="text"  placeholder="Enter a Creative Talent's name" name='nama'>
+							</div><!-- END .roww -->
+                            <div class="roww">
+                              <select id="advsearchcat" name="cetegory" class="selectpicker selectpicker show-tick" data-live-search="true" data-width="250">
+                              	<option value=''>Any category</option>
+								 {if $s_cat}			
+									{section name=a loop=$s_cat} 
+									<option value='{$s_cat[a].id}'>{$s_cat[a].cat}</option>
+									{/section}
+								{/if}
+                                	
+                              </select>
+                            </div><!-- END .roww -->
+                            <div class="roww " >
+                              <select name="subcat" id="stairs" class="selectpicker selectpicker show-tick stairs" data-live-search="true"  data-width="250">
+                              	<option value=''>Any sub category</option>
+                              </select>
+                            </div><!-- END .roww -->
+                            <div class="roww">
+                              <select name="city" class="selectpicker selectpicker show-tick categorylist" data-live-search="true" data-width="250">
+                              	<option value=''>Any city</option>
+                              	{section name=k loop=$citynya} 
+									<option value='{$citynya[k].city}'>{$citynya[k].city}</option>
+									{/section}
+                                	
+                              </select>
+                            </div><!-- END .roww -->
+                           <!--  <div class="roww">
+                              <select class="selectpicker selectpicker show-tick" data-width="250">
+                              	<option>Any Gender</option>
+                              	<option>Male</option>
+                              	<option>Female</option>
+                              </select>
+                            </div><!-- END .roww -->
+                            <div class="roww">
+                            	<div class="colshort">
+                                  <select class="selectpicker agetalent1 selectpicker show-tick" data-live-search="true" data-width="100" name="from">
+								  
+                                    <option value=''>Any age</option>
+									 {section name=foos start=1 loop=100 step=1}
+                                    <option value="{$smarty.section.foos.index}">{$smarty.section.foos.index}</option>
+									{/section}
+                                   
+                                  </select>
+                                </div>
+                            	<div class="dividers">
+                                	TO
+                                </div>
+                            	<div class="colshort">
+                                  <select class="selectpicker agetalent2 selectpicker show-tick" data-live-search="true" data-width="100" name="to">
+                                    <option value=''>Any age</option>
+                                   {section name=foos start=100 loop=100 step=-1}
+                                    <option value="{$smarty.section.foos.index}">{$smarty.section.foos.index}</option>
+									{/section}
+                                  </select>
+                                </div>
+                            </div><!-- END .roww -->
+                            <div class="roww">
+                              <select class="selectpicker selectpicker show-tick" data-width="250" name="sex">
+                              	<option value=''>Any gender</option>
+                              	<option value="male">Male</option>
+                              	<option value="female">Female</option>
+                              </select>
+                            </div><!-- END .roww -->
+                           <div class="roww">
+                                <div class="col2">
+                                    <input type="checkbox" name='checkadv[]' value='1' /> <label>Full time</label>
+                                </div>
+                                <div class="col2">
+                                    <input type="checkbox" name='checkadv[]' value='2'/> <label>Part time</label>
+                                </div>
+                                <div class="col2">
+                                    <input type="checkbox" name='checkadv[]' value='3'/> <label>Freelance</label>
+                                </div>
+                                <div class="col2">
+                                    <input type="checkbox" name='checkadv[]' value='4'/> <label>Intership</label>
+                                </div>
+                            </div>
+                            <div class="rowBtn center">
+                            	<button type="submit" name='submit' value="submit" class="button1" />SEARCH </button>
+                            		<button type="submit" name='RESET' value="RESET" class="button2 reset" onclick="location.reload();"/>RESET </button>
+                            </div><!-- END .rowBtn -->
+                   		</form>
+                    </div><!-- END .widget-content -->
+                </div><!-- END .widget -->
+				<!-- 
+                <div class="widget">
+                    <h3 class="widget-title">Popular <span class="red">Tags</span></h3>
+                    <div class="widget-content">
+                    	<div class="tag-widget">
+                        	<a href="#">Web Design</a>
+                        	<a href="#">Video</a>
+                        	<a href="#">Editing</a>
+                        	<a href="#">Wordpress</a>
+                        	<a href="#">Animation</a>
+                        	<a href="#">Indie</a>
+                        	<a href="#">Guitarist</a>
+                        	<a href="#">Drummer</a>
+                        	<a href="#">Journalist</a>
+                        	<a href="#">Composser</a>
+                        	<a href="#">Music</a>
+                        	<a href="#">Photoshop</a>
+                        	<a href="#">Blogger</a>
+                        	<a href="#">Art</a>
+                        	<a href="#">Wall</a>
+                        </div>
+                    </div><!-- END .widget-content 
+                </div> -->
+            </div><!-- end .col-sidebar -->   
+			
+			{literal}		
+			<script>
+			function resetfunction() {
+				$('.categorylist').val('');
+				$('.selectpicker').selectpicker('refresh');
+				
+				document.getElementById("formadvsearchcat").reset();
+				//$('#formadvsearchcat').trigger("reset");
+			}
+			$(document).ready(function(){
+			$(".reset").on("click", function(){
+				$('select[name=city]').val('');
+				$('.selectpicker').selectpicker('refresh');
+					});
+				});
+			
+
+			</script>		
+			{/literal}
+        	<div class="col-content">
+            	<div class="shorter">
+                    <form class="forms fl">
+                          <select id="sortby" class="selectpicker selectpicker show-tick" data-width="150">
+							<option value=''>Sort by</option>
+                            <option value="{$valsort[3]}">Latest</option>
+                            <option value="{$valsort[2]}">Most Viewed</option>
+                            <option value="{$valsort[1]}">Most Liked</option>
+                          <!--   <option value="{$valsort[2]}">Most Followed</option> -->
+                          </select>
+                    </form>
+                 <div id="" class="paging_of_talent_list paging fr">
+					
+                    	
+                    </div>
+                </div><!-- END .shorter -->
+				
+                <div class="talent-list">
+				
+                	<ul class="grid effect-1 pagingtemplates" id="grid">
+            {if $list}
+			{section name=i loop=$list}  
+										
+						<li>
+                            <div class="box">
+                                 <div class="boximg profilethumb thumb boxpop">
+								{if $list[i].img_avatar}
+									{if $user->id == $list[i].id }
+									
+										<a href="{$basedomain}personal" class="thumbbox avatar"><img  height="200px" src="{$basedomain}public_assets/personal/{$list[i].img_avatar}"></img>
+											</a> 
+										<button type="button" class="editPop edit-avatar btn btn-info">Edit</button>	
+									{else}
+											<a href="{$basedomain}personal/view/{$list[i].id}" class="thumbbox avatar"><img height="200px" src="{$basedomain}public_assets/personal/{$list[i].img_avatar}"></img>
+											</a> 
+											
+									{/if}
+							
+								 {else}
+									{if $user->id == $list[i].id }
+										<a href="{$basedomain}personal" class="thumbbox avatar"><img height="200px" src="{$basedomain}public_assets/postjob/images.jpg"></img>
+										</a> 
+									<!-- 	<button type="button" class="editPop edit-avatar btn btn-info">Edit</button> -->
+									{else}
+										<a href="{$basedomain}personal/view/{$list[i].id}" class="thumbbox avatar"><img  height="200px" src="{$basedomain}public_assets/postjob/images.jpg"></img>
+										</a> 
+									{/if}
+								 
+								 {/if}
+                                  
+                                </div><!-- end .boximg -->    
+                                <div class="caption">
+                                    <div class="author-box">
+									{if $user->id == $list[i].id }
+										 <a class="author-name" href="{$basedomain}personal">{$list[i].name} {$list[i].lastname}</a>
+									{else}
+										 <a class="author-name" href="{$basedomain}personal/view/{$list[i].id}">{$list[i].name} {$list[i].lastname}</a>
+									{/if}
+                                       
+                                        <span class="author-talent">
+										
+											{section name=s loop=$list[i].catuser}
+											{if $smarty.section.s.index==0}
+													{$list[i].catuser[s].category_name}
+											{else}
+												& {$list[i].catuser[s].category_name}
+											{/if}
+										
+										{/section}
+										
+										</span>
+                                    </div><!-- end .author-box -->    
+                                    <div class="meta-info">
+                                        <a class="newIcon-view-grey" ><span>
+										{$list[i].view_count}</span></a>
+                                        <a id='likenya' class="newIcon-like-grey" value='{$uidlike}' folow='{$list[i].id}'><span class='count_like likesnya daribtn{$list[i].id}'>{$list[i].love_count} </span></label></a>
+										
+										{if $list[i].likenyauser == ''}
+                                        <a href="#" class="btn-like btn-likes" value='{$uidlike}' data-type='0' folow='{$list[i].id}'>Like</a>
+										{else}
+										 <a href="#" class="btn-like redbtn btn-unlikes" value='{$uidlike}' data-type='0'  folow='{$list[i].id}'> Like</a>
+										{/if}
+                                    <!--     <a href="#" class="c-friends"><i class="ico icon-users">&nbsp;</i> <span>
+										{$list[i].follow_count}</span></a> -->
+                                    </div><!-- end .meta-info -->  
+                                </div>
+								{section name=s loop=$popularlist}
+								{if $popularlist[s].id == $list[i].id }
+								<div class="ribbon-yellow">&nbsp;</div>
+								{/if}
+								
+								{/section}
+                            </div><!-- end .box --> 
+                        </li>
+							
+			{/section}
+			{/if}&nbsp;&nbsp;
+						
+				
+                    </ul>
+                </div><!-- end .talent-list -->
+                <div class="row-paging">
+                    <div id="paging_of_talent_list" class=" paging paging_of_talent_list">
+                    	
+                    </div>
+                </div>
+            </div><!-- end .col-content -->   
+        </div><!-- end .wrapper -->    
+    </div><!-- end #popularTalents --> 
+</div><!-- end #talentBoard -->
+{*}
+<script src="{$basedomain}assets/js/masonry.pkgd.min.js"></script>
+<script src="{$basedomain}assets/js/imagesloaded.js"></script>
+<script src="{$basedomain}assets/js/classie.js"></script>
+<script src="{$basedomain}assets/js/AnimOnScroll.js"></script>
+	{/*}
+<script>
+var role='{$user->role}';
+var xsa='{$user->id}';
+{literal}
+	  $(document).ready(function(){
+				$('.c-like').click(function(e){
+									
+								var likenya=$(this).attr('value');
+								var friendlikes=$(this).attr('folow');
+								//console.log(likenya);
+								//console.log(friendlikes);
+								var thiss=$(this);
+								e.preventDefault();
+								if(likenya  && likenya!='vU9+1KNgzoWf3XejBnbWaqjGC9LKasXq/xNt2d6Ior0=')
+								{
+									$.ajax({
+									
+										'type': 'POST',
+										'url': basedomain+'talentboard/ajaxlike',
+										'data':{uid:likenya,idnya:friendlikes},
+										'dataType':'json',
+										'success': function(response){
+											var str='';
+											str+=response.countnya;
+											thiss.find('.likesnya').text(str);
+										
+										}
+										
+										
+										
+										});
+								}
+								});
+							});
+				  $(document).ready(function(){
+				  
+				$('.btn-likes').click(function(e){
+									
+								var likenya=$(this).attr('value');
+								var friendlikes=$(this).attr('folow');
+								//console.log(likenya);
+								//console.log(friendlikes);
+								var thiss=$(this);
+								e.preventDefault();
+								if(likenya  && likenya!='vU9+1KNgzoWf3XejBnbWaqjGC9LKasXq/xNt2d6Ior0=')
+								{
+									$.ajax({
+									
+										'type': 'POST',
+										'url': basedomain+'talentboard/ajaxlike',
+										'data':{uid:likenya,idnya:friendlikes},
+										'dataType':'json',
+										'success': function(response){
+											var str='';
+											str+=response.countnya;
+											$('.daribtn'+friendlikes).text(str);
+											if(thiss.data('type')==1)
+											{
+												thiss.removeClass('redbtn');
+												//console.log(thiss.data('type'));
+												thiss.data('type',0);
+											}
+											else
+											{
+												thiss.addClass('redbtn');
+													thiss.data('type',1);
+											}
+											
+										}
+										
+										
+										
+										});
+								}
+								});
+							
+							
+				 
+				$('.btn-unlikes').click(function(e){
+									
+								var likenya=$(this).attr('value');
+								var friendlikes=$(this).attr('folow');
+								//console.log(likenya);
+								//console.log(friendlikes);
+								var thiss=$(this);
+								e.preventDefault();
+								
+								$.ajax({
+								
+									'type': 'POST',
+									'url': basedomain+'talentboard/ajaxlike',
+									'data':{uid:likenya,idnya:friendlikes},
+									'dataType':'json',
+									'success': function(response){
+										var str='';
+										str+=response.countnya;
+										$('.daribtn'+friendlikes).text(str);
+										
+										if(thiss.data('type')==1)
+										{
+											thiss.addClass('redbtn');
+											//console.log(thiss.data('type'));
+											thiss.data('type',0);
+										}
+										else
+										{
+												thiss.removeClass('redbtn');
+											//console.log(thiss.data('type'));
+											thiss.data('type',1);
+										}
+										
+										
+									}
+									
+									
+									
+									});
+								});
+								
+							});				
+	{/literal}
+	</script>
+		
+			
+			
+			
+{literal}
+
+						
+<script>
+      $(document).ready(function(){
+                $('#formadvsearchcat').submit(function(e){
+					console.log('sassa');
+				
+                    e.preventDefault();
+                    $.ajax({
+					
+                        'type': 'POST',
+						'url': basedomain+'talentboard/ajaxmostview',
+                        'data':$(this).serialize(),
+						'dataType':'json',
+                        'success': function(response){
+						var str='';
+								if(response.data==false)	
+								{
+									str+='<div class="red">';
+									str+='no result...';
+									str+='</div>';
+									$('.pagingtemplates').html(str);
+									console.log('kosong');
+									getpaging(0,0,"paging_of_talent_list","paging_ajax_talent",20);
+									return false;
+								}
+								$.each(response.data,function(k,v){  
+								
+														
+															 
+											str+='<li>';
+											str+='<div class="box">';
+											str+='<div class="boximg profilethumb thumb boxpop">';
+											if(v.img_avatar)
+											{
+												if(xsa==v.id)
+												{
+													str+='<a href="'+basedomain+'personal" class="thumbbox"> <img src="'+basedomain+'public_assets/personal/'+v.img_avatar+'" height="200px"></img> </a> ';
+												}
+												else
+												{
+													str+='<a href="'+basedomain+'personal/view/'+v.id+'" class="thumbbox"> <img src="'+basedomain+'public_assets/personal/'+v.img_avatar+'"  height="200px"></img> </a> ';
+												}
+												
+											}else{
+												if(xsa==v.id)
+												{
+													str+='<a href="'+basedomain+'personal" class="thumbbox"> <img src="'+basedomain+'public_assets/personal/images.jpg" height="200px"></img> </a> ';
+												}
+												else
+												{
+													str+='<a href="'+basedomain+'personal/view/'+v.id+'" class="thumbbox"> <img src="'+basedomain+'public_assets/personal/images.jpg" height="200px"></img> </a> ';
+												}
+											
+											}
+											
+											str+='</div>';
+											str+='<div class="caption">';
+											str+='<div class="author-box">';
+											
+											nameuser=v.name+' '+v.lastname.substring(0,15);
+											nameuser=nameuser.substring(0,20);
+											if(xsa==v.id)
+												{
+													str+='<a class="author-name" href="'+basedomain+'personal">'+nameuser+'</a>';
+												}
+												else
+												{
+													str+='<a class="author-name" href="'+basedomain+'personal/view/'+v.id+'">'+nameuser+'</a>';
+												}
+											str+='<span class="author-talent">';
+											if(v.catuser)
+											{
+												$.each(v.catuser,function(kk,vv){ 
+													if (vv.category_name)
+													{
+														if(kk==0)
+														{
+															str+=vv.category_name;
+															
+														}
+														else
+														{
+															str+=' & '+vv.category_name;
+															
+														}
+														//str+=vv.category_name;
+													}else{
+														str+=' ';
+													}
+												});
+											}
+											str+='</span>';
+			
+											str+='</div>';
+											str+='<div class="meta-info">';
+											str+='<a class="newIcon-view-grey" ><span>'+v.view_count+'</span></a>';
+											str+='<a class="newIcon-like-grey" > <span class="count_like likesnya daribtn'+v.id+'">'+v.love_count+'</span></a>';
+											if(!v.likenyauser)
+											{
+											str+='<a href="#" class="btn-like" value="'+response.uidlike+'" data-type="0" folow="'+v.id+'"> Like</a>';
+											}else{
+											str+='<a href="#" class="btn-like redbtn" value="'+response.uidlike+'" data-type="1" folow="'+v.id+'">Like</a>';
+											}
+											<!-- str+='<a href="#" class="c-friends"><i class="ico icon-users">&nbsp;</i> <span>'+v.follow_count+'</span></a>'; -->
+											str+='</div>';
+											str+='</div>';
+											if(response.popularlist)
+											{
+												$.each(response.popularlist,function(kk,vv){ 
+													if(vv.id==v.id){
+													str+='<div class="ribbon-yellow">&nbsp;</div>';
+													}
+												});
+											}
+											str+='</div>';
+											str+='</li>';
+									
+										
+												});
+											$('.pagingtemplates').html(str);
+		  $(document).ready(function(){
+				$('.c-likes').click(function(e){
+									
+								var likenya=$(this).attr('value');
+								var friendlikes=$(this).attr('folow');
+								//console.log(likenya);
+								//console.log(friendlikes);
+								var thiss=$(this);
+								e.preventDefault();
+								if(likenya && likenya!='vU9+1KNgzoWf3XejBnbWaqjGC9LKasXq/xNt2d6Ior0=')
+								{
+									$.ajax({
+									
+										'type': 'POST',
+										'url': basedomain+'talentboard/ajaxlike',
+										'data':{uid:likenya,idnya:friendlikes},
+										'dataType':'json',
+										'success': function(response){
+											var str='';
+											str+=response.countnya;
+											thiss.find('.likesnya').text(str);
+												if(thiss.data('type')==1)
+											{
+												thiss.removeClass('redbtn');
+												//console.log(thiss.data('type'));
+												thiss.data('type',0);
+											}
+											else
+											{
+												thiss.addClass('redbtn');
+													thiss.data('type',1);
+											}
+										}
+										
+										
+										
+										});
+								}
+								});
+							});
+				  $(document).ready(function(){
+				$('.btn-like').click(function(e){
+									
+								var likenya=$(this).attr('value');
+								var friendlikes=$(this).attr('folow');
+								//console.log(likenya);
+								//console.log(friendlikes);
+								var thiss=$(this);
+								e.preventDefault();
+								if(likenya  && likenya!='vU9+1KNgzoWf3XejBnbWaqjGC9LKasXq/xNt2d6Ior0=')
+								{
+									$.ajax({
+									
+										'type': 'POST',
+										'url': basedomain+'talentboard/ajaxlike',
+										'data':{uid:likenya,idnya:friendlikes},
+										'dataType':'json',
+										'success': function(response){
+											var str='';
+											str+=response.countnya;
+											$('.daribtn'+friendlikes).text(str);
+												if(thiss.data('type')==1)
+											{
+												thiss.removeClass('redbtn');
+												//console.log(thiss.data('type'));
+												thiss.data('type',0);
+											}
+											else
+											{
+												thiss.addClass('redbtn');
+													thiss.data('type',1);
+											}
+										}
+										
+										
+										
+										});
+									}
+								});
+							});		
+											
+											getpaging(0,response.total,"paging_of_talent_list","paging_ajax_talent",20);
+										
+										
+										
+                     
+                        }
+                    });
+                });
+            });
+
+
+
+
+</script>
+{/literal}
+<script type="text/javascript">
+					getpaging(0,{$total},"paging_of_talent_list","paging_ajax_talent",20);
+					//getpaging(0,{$total},"paging_of_talent_list2","paging_ajax_talent",16);
+</script>
+{literal}
+
+
+<script>
+$(document).ready(function(){
+//apabila terjadi event onchange terhadap object <select id=propinsi>
+
+$("#advsearchcat").change(function(){
+			
+					var okeh = $(this).val();
+				
+					$.ajax({
+							'type': 'POST',
+							'url': basedomain+'talentboard',
+							'data': {advsearch:okeh},
+							'cache': false,
+							'dataType':'json',
+							'success': function(response){
+								if(response.status==1)
+								{
+									$("#stairs option").remove();
+									var str="";
+									str +='<option value="">Select Sub</option>';
+									$.each(response.data,function(kal,val){
+									//console.log(val.id);
+									
+										str +='<option value="'+val.id+'">'+val.name_subcategory+'</option>';
+										
+									});
+									
+									$('#stairs').html(str);
+									$('.stairs').selectpicker("refresh");
+								}
+								
+							}
+							
+							
+							});
+						});
+					});
+							
+</script>
+
+<script type="text/javascript">
+		$(document).ready(function(){
+			$(".joincategory").on("click", function(){
+			$("#sortbys").prop("checked", false);
+			var  category = new Array;
+			$.each($('.joincategory:checked'),function(k,v){  
+			  category.push($(this).val());
+			});
+			
+			var okeh = $("#sortby").val();
+			var search = $("#searching").val();
+			
+		$.ajax({
+							'type': 'POST',
+							'url': basedomain+'talentboard/ajaxmostview',
+							'data': {joincategory:category,search:search,okeh:okeh},
+							'dataType':'json',
+							'success': function(response){
+								
+										var str="";
+								if(response.data==false)	
+								{
+									str+='<div class="red">';
+									str+='no result...';
+									str+='</div>';
+									$('.pagingtemplates').html(str);
+									console.log('kosong');
+									getpaging(0,0,"paging_of_talent_list","paging_ajax_talent",20);
+									return false;
+								}
+											$.each(response.data,function(k,v){  
+								
+														
+															 
+											str+='<li>';
+											str+='<div class="box">';
+											str+='<div class="boximg profilethumb thumb boxpop">';
+											if(v.img_avatar !==null)
+											{
+												if(xsa==v.id)
+												{
+													str+='<a href="'+basedomain+'personal" class="thumbbox"> <img src="'+basedomain+'public_assets/personal/'+v.img_avatar+'"  height="200px"></img> </a> ';
+												}
+												else
+												{
+													str+='<a href="'+basedomain+'personal/view/'+v.id+'" class="thumbbox"> <img src="'+basedomain+'public_assets/personal/'+v.img_avatar+'"  height="200px"></img> </a> ';
+												}
+												
+												
+											}else if (v.img_avatar ===null){
+												if(xsa==v.id)
+												{
+													str+='<a href="'+basedomain+'personal" class="thumbbox"> <img src="'+basedomain+'public_assets/postjob/images.jpg"  height="200px"></img> </a> ';
+												}
+												else
+												{
+													str+='<a href="'+basedomain+'personal/view/'+v.id+'" class="thumbbox"> <img src="'+basedomain+'public_assets/postjob/images.jpg"  height="200px"></img> </a> ';
+												}
+												
+												
+												
+											}
+														
+											str+='</div>';
+											str+='<div class="caption">';
+											str+='<div class="author-box">';
+												if(xsa==v.id)
+												{
+													nameuser=v.name+' '+v.lastname.substring(0,15);
+													nameuser=nameuser.substring(0,20);
+													str+='<a class="author-name" href="'+basedomain+'personal">'+nameuser+'</a>';
+												}
+												else
+												{
+													nameuser=v.name+' '+v.lastname.substring(0,15);
+													nameuser=nameuser.substring(0,20);
+													str+='<a class="author-name" href="'+basedomain+'personal/view/'+v.id+'">'+nameuser+'</a>';
+												}
+											
+											str+='<span class="author-talent">';
+											if(v.catuser)
+											{
+												$.each(v.catuser,function(kk,vv){ 
+													if (vv.category_name)
+													{
+														if(kk==0)
+														{
+															str+=vv.category_name;
+															
+														}
+														else
+														{
+															str+=' & '+vv.category_name;
+															
+														}
+														//str+=vv.category_name;
+													}else{
+														str+=' ';
+													}
+												});
+											}
+											/*if(v.category_name)
+											{
+												str+=v.category_name;
+											}else
+											{
+												str+=' ';
+											}*/
+											str+='</span>';
+											str+='</div>';
+											str+='<div class="meta-info">';
+											str+='<a class="newIcon-view-grey" ><span>'+v.view_count+'</span></a>';
+											str+='<a class="newIcon-like-grey" > <span class="count_like likesnya daribtn'+v.id+'">'+v.love_count+'</span></a>';
+						if(!v.likenyauser)
+						{
+						str+='<a href="#" class="btn-like" value="'+response.uidlike+'" data-type="0" folow="'+v.id+'"> Like</a>';
+						}else{
+			str+='<a href="#" class="btn-like redbtn" value="'+response.uidlike+'" data-type="1" folow="'+v.id+'">Like</a>';
+			}
+											<!-- str+='<a href="#" class="c-friends"><i class="ico icon-users">&nbsp;</i> <span>'+v.follow_count+'</span></a>'; -->
+											str+='</div>';
+											str+='</div>';
+											if(response.popularlist)
+											{
+												$.each(response.popularlist,function(kk,vv){ 
+													if(vv.id==v.id){
+													str+='<div class="ribbon-yellow">&nbsp;</div>';
+													}
+												});
+											}
+											str+='</div>';
+											str+='</li>';
+									
+										
+												});
+												$('.pagingtemplates').html(str);
+		  $(document).ready(function(){
+				$('.c-likes').click(function(e){
+									
+								var likenya=$(this).attr('value');
+								var friendlikes=$(this).attr('folow');
+								//console.log(likenya);
+								//console.log(friendlikes);
+								var thiss=$(this);
+								e.preventDefault();
+								if(likenya  && likenya!='vU9+1KNgzoWf3XejBnbWaqjGC9LKasXq/xNt2d6Ior0=')
+								{
+								$.ajax({
+								
+									'type': 'POST',
+									'url': basedomain+'talentboard/ajaxlike',
+									'data':{uid:likenya,idnya:friendlikes},
+									'dataType':'json',
+									'success': function(response){
+										var str='';
+										str+=response.countnya;
+										thiss.find('.likesnya').text(str);
+											if(thiss.data('type')==1)
+										{
+											thiss.removeClass('redbtn');
+											//console.log(thiss.data('type'));
+											thiss.data('type',0);
+										}
+										else
+										{
+											thiss.addClass('redbtn');
+												thiss.data('type',1);
+										}
+									}
+									
+									
+									
+									});
+									}
+								});
+							});
+				  $(document).ready(function(){
+				$('.btn-like').click(function(e){
+									
+								var likenya=$(this).attr('value');
+								var friendlikes=$(this).attr('folow');
+								//console.log(likenya);
+								//console.log(friendlikes);
+								var thiss=$(this);
+								e.preventDefault();
+								if(likenya  && likenya!='vU9+1KNgzoWf3XejBnbWaqjGC9LKasXq/xNt2d6Ior0=')
+								{
+									$.ajax({
+									
+										'type': 'POST',
+										'url': basedomain+'talentboard/ajaxlike',
+										'data':{uid:likenya,idnya:friendlikes},
+										'dataType':'json',
+										'success': function(response){
+											var str='';
+											str+=response.countnya;
+											$('.daribtn'+friendlikes).text(str);
+												if(thiss.data('type')==1)
+											{
+												thiss.removeClass('redbtn');
+												//console.log(thiss.data('type'));
+												thiss.data('type',0);
+											}
+											else
+											{
+												thiss.addClass('redbtn');
+													thiss.data('type',1);
+											}
+										}
+										
+										
+										
+										});
+									}
+								});
+							});		
+											
+											getpaging(0,response.total,"paging_of_talent_list","paging_ajax_talent",20);
+										
+										
+										
+										}
+				});
+
+				});
+			});
+</script>
+<script type="text/javascript">
+		$(document).ready(function(){
+			$(".btnsearch").on("click", function(){
+				var category = $('input:checkbox:checked').val();
+				var okeh = $("#sortby").val();
+				var search = $("#searching").val();
+				$.ajax({
+							'type': 'POST',
+							'url': basedomain+'talentboard/ajaxmostview',
+							'data': {joincategory:category,search:search,okeh:okeh},
+							'dataType':'json',
+							'success': function(response){
+									
+								var str="";
+								$.each(response.data,function(k,v){  
+					
+											
+												 
+								str+='<li>';
+								str+='<div class="box">';
+								str+='<div class="boximg profilethumb thumb boxpop">';
+								if(v.img_avatar !==null)
+								{
+									if(xsa==v.id)
+												{
+													str+='<a href="'+basedomain+'personal" class="thumbbox"> <img src="'+basedomain+'public_assets/personal/'+v.img_avatar+'"  height="200px"></img> </a> ';
+												}
+												else
+												{
+													str+='<a href="'+basedomain+'personal/view/'+v.id+'" class="thumbbox"> <img src="'+basedomain+'public_assets/personal/'+v.img_avatar+'"  height="200px"></img> </a> ';
+												}
+									
+									
+									
+								}else if (v.img_avatar ===null){
+									
+									if(xsa==v.id)
+												{
+													str+='<a href="'+basedomain+'personal" class="thumbbox"> <img src="'+basedomain+'public_assets/postjob/images.jpg"  height="200px"></img> </a> ';
+												}
+												else
+												{
+													str+='<a href="'+basedomain+'personal/view/'+v.id+'" class="thumbbox"> <img src="'+basedomain+'public_assets/postjob/images.jpg"  height="200px"></img> </a> ';
+												}
+									
+									
+								
+								}
+								
+								str+='</div>';
+								str+='<div class="caption">';
+								str+='<div class="author-box">';
+								nameuser=v.name+' '+v.lastname.substring(0,15);
+													nameuser=nameuser.substring(0,20);
+								str+='<a class="author-name" href="#">'+nameuser+'</a>';
+								str+='<span class="author-talent">';
+								if(v.catuser)
+								{
+									$.each(v.catuser,function(kk,vv){ 
+													if (vv.category_name)
+													{
+														if(kk==0)
+														{
+															str+=vv.category_name;
+															
+														}
+														else
+														{
+															str+=' & '+vv.category_name;
+															
+														}
+														//str+=vv.category_name;
+													}else{
+														str+=' ';
+													}
+												});
+								}
+								
+								str+='</span>';
+								str+='</div>';
+								str+='<div class="meta-info">';
+								str+='<a href="#" class="c-view"><i class="ico icon-eye">&nbsp;</i> <span>'+v.view_count+'</span></a>';
+									str+='<a href="#" class="c-like"><i class="ico icon-thumbs-o-up">&nbsp;</i> <span class="count_like likesnya daribtn'+v.id+'">'+v.love_count+'</span></a>';
+			if(!v.likenyauser)
+			{
+			str+='<a href="#" class="btn-like" value="'+response.uidlike+'" data-type="0" folow="'+v.id+'"><i class="ico icon-thumbs-o-up">&nbsp;</i> Like</a>';
+			}else{
+			str+='<a href="#" class="btn-like redbtn" value="'+response.uidlike+'" data-type="1" folow="'+v.id+'"><i class="ico icon-thumbs-o-up">&nbsp;</i> Like</a>';
+			}
+								<!-- str+='<a href="#" class="c-friends"><i class="ico icon-users">&nbsp;</i> <span>'+v.follow_count+'</span></a>'; -->
+								str+='</div>';
+								str+='</div>';
+								if(response.popularlist)
+											{
+												$.each(response.popularlist,function(kk,vv){ 
+													if(vv.id==v.id){
+													str+='<div class="ribbon-yellow">&nbsp;</div>';
+													}
+												});
+											}
+								str+='</div>';
+								str+='</li>';
+						
+							
+									});
+								$('.pagingtemplates').html(str);
+		  $(document).ready(function(){
+				$('.c-likes').click(function(e){
+									
+								var likenya=$(this).attr('value');
+								var friendlikes=$(this).attr('folow');
+								//console.log(likenya);
+								//console.log(friendlikes);
+								var thiss=$(this);
+								e.preventDefault();
+								if(likenya  && likenya!='vU9+1KNgzoWf3XejBnbWaqjGC9LKasXq/xNt2d6Ior0=')
+								{
+								$.ajax({
+								
+									'type': 'POST',
+									'url': basedomain+'talentboard/ajaxlike',
+									'data':{uid:likenya,idnya:friendlikes},
+									'dataType':'json',
+									'success': function(response){
+										var str='';
+										str+=response.countnya;
+										thiss.find('.likesnya').text(str);
+										if(thiss.data('type')==1)
+										{
+											thiss.removeClass('redbtn');
+											//console.log(thiss.data('type'));
+											thiss.data('type',0);
+										}
+										else
+										{
+											thiss.addClass('redbtn');
+												thiss.data('type',1);
+										}
+									}
+									
+									
+									
+									});
+								}
+								});
+							});
+				  $(document).ready(function(){
+				$('.btn-like').click(function(e){
+									
+								var likenya=$(this).attr('value');
+								var friendlikes=$(this).attr('folow');
+								//console.log(likenya);
+								//console.log(friendlikes);
+								var thiss=$(this);
+								e.preventDefault();
+								if(likenya  && likenya!='vU9+1KNgzoWf3XejBnbWaqjGC9LKasXq/xNt2d6Ior0=')
+								{
+								$.ajax({
+								
+									'type': 'POST',
+									'url': basedomain+'talentboard/ajaxlike',
+									'data':{uid:likenya,idnya:friendlikes},
+									'dataType':'json',
+									'success': function(response){
+										var str='';
+										str+=response.countnya;
+										$('.daribtn'+friendlikes).text(str);
+										if(thiss.data('type')==1)
+										{
+											thiss.removeClass('redbtn');
+											//console.log(thiss.data('type'));
+											thiss.data('type',0);
+										}
+										else
+										{
+											thiss.addClass('redbtn');
+												thiss.data('type',1);
+										}
+									}
+									
+									
+									
+									});
+								}
+								});
+							});	
+								
+								getpaging(0,response.total,"paging_of_talent_list","paging_ajax_talent",20);
+							
+							}
+							
+						});
+				
+				return false;
+				
+			});
+			
+
+		});
+
+
+
+$(document).ready(function(){
+//apabila terjadi event onchange terhadap object <select id=propinsi>
+
+$("#sortby").change(function(){
+					var  category = new Array;
+			$.each($('.joincategory:checked'),function(k,v){  
+			  category.push($(this).val());
+			});
+					var okeh = $("#sortby").val();
+					var search = $("#searching").val();
+					$.ajax({
+							'type': 'POST',
+							'url': basedomain+'talentboard/ajaxmostview',
+							'data': {joincategory:category,okeh:okeh,search:search},
+							'dataType':'json',
+							'success': function(response){
+							
+							
+							
+							
+							
+								var str="";
+								$.each(response.data,function(k,v){  
+					
+											
+											 
+							str+='<li>';
+							str+='<div class="box">';
+							str+='<div class="boximg profilethumb thumb boxpop">';
+							if(v.img_avatar)
+								{
+									if(xsa==v.id)
+												{
+													str+='<a href="'+basedomain+'personal" class="thumbbox"> <img src="'+basedomain+'public_assets/personal/'+v.img_avatar+'"  height="200px"></img> </a> ';
+												}
+												else
+												{
+													str+='<a href="'+basedomain+'personal/view/'+v.id+'" class="thumbbox"> <img src="'+basedomain+'public_assets/personal/'+v.img_avatar+'"  height="200px"></img> </a> ';
+												}
+									
+									
+								}else{
+										if(xsa==v.id)
+												{
+													str+='<a href="'+basedomain+'personal" class="thumbbox"> <img src="'+basedomain+'public_assets/postjob/images.jpg"  height="200px"></img> </a> ';
+												}
+												else
+												{
+													str+='<a href="'+basedomain+'personal/view/'+v.id+'" class="thumbbox"> <img src="'+basedomain+'public_assets/postjob/images.jpg"  height="200px"></img> </a> ';
+												}
+									
+									
+								}
+							console.log('ssss1');
+							str+='</div>';
+							str+='<div class="caption">';
+							str+='<div class="author-box">';
+							nameuser=v.name+' '+v.lastname.substring(0,15);
+							nameuser=nameuser.substring(0,20);
+							str+='<a class="author-name" href="#">'+nameuser+'</a>';
+							str+='<span class="author-talent">';
+							console.log('ssss2');
+							if(v.catuser)
+							{
+								$.each(v.catuser,function(kk,vv){ 
+													if (vv.category_name)
+													{
+														if(kk==0)
+														{
+															str+=vv.category_name;
+															
+														}
+														else
+														{
+															str+=' & '+vv.category_name;
+															
+														}
+														//str+=vv.category_name;
+													}else{
+														str+=' ';
+													}
+												});
+							}
+							console.log('ssss3');
+							str+='</span>';
+							str+='</div>';
+							str+='<div class="meta-info">';
+							str+='<a href="#" class="newIcon-view-grey"><span>'+v.view_count+'</span></a>';
+								str+='<a href="#" class="newIcon-like-grey"><span class="count_like likesnya daribtn'+v.id+'">'+v.love_count+'</span></a>';
+								console.log('ssss4');
+		if(!v.likenyauser)
+			{
+		str+='<a href="#" class="btn-like" value="'+response.uidlike+'" data-type="0" folow="'+v.id+'"> Like</a>';
+		}else{
+			str+='<a href="#" class="btn-like redbtn" value="'+response.uidlike+'" data-type="1" folow="'+v.id+'">Like</a>';
+			}
+							<!-- str+='<a href="#" class="c-friends"><i class="ico icon-users">&nbsp;</i> <span>'+v.follow_count+'</span></a>'; -->
+							str+='</div>';
+							str+='</div>';
+							console.log('ssss5');
+							if(response.popularlist)
+							{
+								$.each(response.popularlist,function(kk,vv){ 
+								if(vv.id==v.id){
+								str+='<div class="ribbon-yellow">&nbsp;</div>';
+								}
+								});
+							}
+							str+='</div>';
+							str+='</li>';
+						console.log('ssss6');
+							
+						});
+							 
+					$('.pagingtemplates').html(str);
+					 $(document).ready(function(){
+				$('.c-likes').click(function(e){
+									
+								var likenya=$(this).attr('value');
+								var friendlikes=$(this).attr('folow');
+								//console.log(likenya);
+								//console.log(friendlikes);
+								var thiss=$(this);
+								e.preventDefault();
+								if(likenya  && likenya!='vU9+1KNgzoWf3XejBnbWaqjGC9LKasXq/xNt2d6Ior0=')
+								{
+								$.ajax({
+								
+									'type': 'POST',
+									'url': basedomain+'talentboard/ajaxlike',
+									'data':{uid:likenya,idnya:friendlikes},
+									'dataType':'json',
+									'success': function(response){
+										var str='';
+										str+=response.countnya;
+										thiss.find('.likesnya').text(str);
+										if(thiss.data('type')==1)
+										{
+											thiss.removeClass('redbtn');
+											//console.log(thiss.data('type'));
+											thiss.data('type',0);
+										}
+										else
+										{
+											thiss.addClass('redbtn');
+												thiss.data('type',1);
+										}
+									}
+									
+									
+									
+									});
+								}
+								});
+							});
+				  $(document).ready(function(){
+				$('.btn-like').click(function(e){
+									
+								var likenya=$(this).attr('value');
+								var friendlikes=$(this).attr('folow');
+								//console.log(likenya);
+								//console.log(friendlikes);
+								var thiss=$(this);
+								e.preventDefault();
+								if(likenya  && likenya!='vU9+1KNgzoWf3XejBnbWaqjGC9LKasXq/xNt2d6Ior0=')
+								{
+									$.ajax({
+									
+										'type': 'POST',
+										'url': basedomain+'talentboard/ajaxlike',
+										'data':{uid:likenya,idnya:friendlikes},
+										'dataType':'json',
+										'success': function(response){
+											var str='';
+											str+=response.countnya;
+											$('.daribtn'+friendlikes).text(str);
+											if(thiss.data('type')==1)
+											{
+												thiss.removeClass('redbtn');
+												//console.log(thiss.data('type'));
+												thiss.data('type',0);
+											}
+											else
+											{
+												thiss.addClass('redbtn');
+													thiss.data('type',1);
+											}
+										}
+										
+										
+										
+										});
+									}
+								});
+							});	
+					getpaging(0,response.total,"paging_of_talent_list","paging_ajax_talent",20);
+					//getpaging(0,16,"paging_of_talent_list","paging_ajax_talent",16);
+								}
+
+							});
+							
+							
+				});
+
+
+});
+ 
+$(document).ready(function(){
+//apabila terjadi event onchange terhadap object <select id=propinsi>
+
+$("#sortbys").change(function(){
+$(".joincategory").prop("checked", false);
+					var  category = new Array;
+			$.each($('.joincategory:checked'),function(k,v){  
+			  category.push($(this).val());
+			});
+					var okeh = $("#sortby").val();
+					var search = $("#searching").val();
+					$.ajax({
+							'type': 'POST',
+							'url': basedomain+'talentboard/ajaxmostview',
+							'data': {joincategory:category,okeh:okeh,search:search},
+							'dataType':'json',
+							'success': function(response){
+							
+							
+							
+							
+							
+								var str="";
+								$.each(response.data,function(k,v){  
+					
+											
+											 
+							str+='<li>';
+											str+='<div class="box">';
+											str+='<div class="boximg profilethumb thumb boxpop">';
+											if(v.img_avatar)
+											{
+												if(xsa==v.id)
+												{
+													str+='<a href="'+basedomain+'personal" class="thumbbox"> <img src="'+basedomain+'public_assets/personal/'+v.img_avatar+'" height="200px"></img> </a> ';
+												}
+												else
+												{
+													str+='<a href="'+basedomain+'personal/view/'+v.id+'" class="thumbbox"> <img src="'+basedomain+'public_assets/personal/'+v.img_avatar+'"  height="200px"></img> </a> ';
+												}
+												
+											}else{
+												if(xsa==v.id)
+												{
+													str+='<a href="'+basedomain+'personal" class="thumbbox"> <img src="'+basedomain+'public_assets/personal/images.jpg" height="200px"></img> </a> ';
+												}
+												else
+												{
+													str+='<a href="'+basedomain+'personal/view/'+v.id+'" class="thumbbox"> <img src="'+basedomain+'public_assets/personal/images.jpg" height="200px"></img> </a> ';
+												}
+											
+											}
+											
+											str+='</div>';
+											str+='<div class="caption">';
+											str+='<div class="author-box">';
+											
+											nameuser=v.name+' '+v.lastname.substring(0,15);
+											nameuser=nameuser.substring(0,20);
+											if(xsa==v.id)
+												{
+													str+='<a class="author-name" href="'+basedomain+'personal">'+nameuser+'</a>';
+												}
+												else
+												{
+													str+='<a class="author-name" href="'+basedomain+'personal/view/'+v.id+'">'+nameuser+'</a>';
+												}
+											str+='<span class="author-talent">';
+											if(v.catuser)
+											{
+												$.each(v.catuser,function(kk,vv){ 
+													if (vv.category_name)
+													{
+														if(kk==0)
+														{
+															str+=vv.category_name;
+															
+														}
+														else
+														{
+															str+=' & '+vv.category_name;
+															
+														}
+														//str+=vv.category_name;
+													}else{
+														str+=' ';
+													}
+												});
+											}
+											str+='</span>';
+			
+											str+='</div>';
+											str+='<div class="meta-info">';
+											str+='<a class="newIcon-view-grey" ><span>'+v.view_count+'</span></a>';
+											str+='<a class="newIcon-like-grey" > <span class="count_like likesnya daribtn'+v.id+'">'+v.love_count+'</span></a>';
+											if(!v.likenyauser)
+											{
+											str+='<a href="#" class="btn-like" value="'+response.uidlike+'" data-type="0" folow="'+v.id+'"> Like</a>';
+											}else{
+											str+='<a href="#" class="btn-like redbtn" value="'+response.uidlike+'" data-type="1" folow="'+v.id+'">Like</a>';
+											}
+											<!-- str+='<a href="#" class="c-friends"><i class="ico icon-users">&nbsp;</i> <span>'+v.follow_count+'</span></a>'; -->
+											str+='</div>';
+											str+='</div>';
+											if(response.popularlist)
+											{
+												$.each(response.popularlist,function(kk,vv){ 
+													if(vv.id==v.id){
+													str+='<div class="ribbon-yellow">&nbsp;</div>';
+													}
+												});
+											}
+											str+='</div>';
+											str+='</li>';
+						
+							
+						});
+							 
+					$('.pagingtemplates').html(str);
+					 $(document).ready(function(){
+				$('.c-likes').click(function(e){
+									
+								var likenya=$(this).attr('value');
+								var friendlikes=$(this).attr('folow');
+								//console.log(likenya);
+								//console.log(friendlikes);
+								var thiss=$(this);
+								e.preventDefault();
+								if(likenya  && likenya!='vU9+1KNgzoWf3XejBnbWaqjGC9LKasXq/xNt2d6Ior0=')
+								{
+									$.ajax({
+									
+										'type': 'POST',
+										'url': basedomain+'talentboard/ajaxlike',
+										'data':{uid:likenya,idnya:friendlikes},
+										'dataType':'json',
+										'success': function(response){
+											var str='';
+											str+=response.countnya;
+											thiss.find('.likesnya').text(str);
+											if(thiss.data('type')==1)
+											{
+												thiss.removeClass('redbtn');
+												//console.log(thiss.data('type'));
+												thiss.data('type',0);
+											}
+											else
+											{
+												thiss.addClass('redbtn');
+													thiss.data('type',1);
+											}
+										}
+										
+										
+										
+										});
+									}
+								});
+							});
+				  $(document).ready(function(){
+				$('.btn-like').click(function(e){
+									
+								var likenya=$(this).attr('value');
+								var friendlikes=$(this).attr('folow');
+								//console.log(likenya);
+								//console.log(friendlikes);
+								var thiss=$(this);
+								e.preventDefault();
+								if(likenya  && likenya!='vU9+1KNgzoWf3XejBnbWaqjGC9LKasXq/xNt2d6Ior0=')
+								{
+									$.ajax({
+									
+										'type': 'POST',
+										'url': basedomain+'talentboard/ajaxlike',
+										'data':{uid:likenya,idnya:friendlikes},
+										'dataType':'json',
+										'success': function(response){
+											var str='';
+											str+=response.countnya;
+											$('.daribtn'+friendlikes).text(str);
+											if(thiss.data('type')==1)
+											{
+												thiss.removeClass('redbtn');
+												//console.log(thiss.data('type'));
+												thiss.data('type',0);
+											}
+											else
+											{
+												thiss.addClass('redbtn');
+													thiss.data('type',1);
+											}
+										}
+										
+										
+										
+										});
+									}
+								});
+							});	
+					getpaging(0,response.total,"paging_of_talent_list","paging_ajax_talent",20);
+					//getpaging(0,16,"paging_of_talent_list","paging_ajax_talent",16);
+								}
+
+							});
+							
+							
+				});
+
+
+});
+</script>
+
+{/literal}
+
+<script type="text/javascript">
+var idfriend={$idnya};
+var uid={$id};
+{literal}		 
+		$(document).ready(function(){
+			$('.krm1').click(function(e){
+		
+				  e.preventDefault();
+					 $.ajax({
+					
+							'type': 'POST',
+							'url': ''+basedomain+'personal/ajaxfollow',
+							'data': 'idnya='+idfriend+'&uid='+uid,
+							'dataType':'json',
+							'success': function(result){
+							if(result.status==true)
+							{
+								
+								$('.krm1').hide();
+								$('.loading').hide();
+								$('.krm2').show();
+								var str="";
+								str +=result.countnya;
+								$('.count_follow').html(str);
+								
+							}
+							
+							
+							}
+						});
+					});
+				 });
+		   
+
+	
+	
+		$(document).ready(function(){
+			$('.krm2').click(function(e){
+			
+				  e.preventDefault();
+					 $.ajax({
+					
+							'type': 'POST',
+							'url': ''+basedomain+'personal/ajaxfollow',
+							'data': 'idnya='+idfriend+'&uid='+uid,
+							'dataType':'json',
+							
+							'success': function(result){
+							if(result.status==true)
+							{
+								
+								$('.krm2').hide();
+								$('.loading').hide();
+								$('.krm1').show();
+								var str="";
+								str +=result.countnya;
+								$('.count_follow').html(str);
+							}
+							
+							
+							}
+						});
+					});
+				 });
+		   
+
+	
+	</script>
+	<script type="text/javascript">
+		 
+		$(document).ready(function(){
+			$('.like').click(function(e){
+			 var idlike = $('.like').attr('likenya');
+				  e.preventDefault();
+					 $.ajax({
+					
+							'type': 'POST',
+							'url': ''+basedomain+'personal/ajaxlike',
+							'data': 'idnya='+idfriend+'&uid='+uid,
+							'dataType':'json',
+							'success': function(result){
+							if(result.status==true)
+							{
+								
+								$('.like').hide();
+								$('.loadinglike').hide();
+								$('.like2').show();
+								var str="";
+								str +=result.countnya;
+								$('.count_like').html(str);
+							}
+							
+							
+							}
+						});
+					});
+				 });
+		   
+
+	
+	</script>
+	
+	<script type="text/javascript">
+		 
+		$(document).ready(function(){
+			$('.like2').click(function(e){
+			 var idfollow = $('.like2').attr('likenya');
+				  e.preventDefault();
+					 $.ajax({
+					
+							'type': 'POST',
+							'url': ''+basedomain+'personal/ajaxlike',
+							'data': 'idnya='+idfriend+'&uid='+uid,
+							'dataType':'json',
+							'success': function(result){
+							if(result.status==true)
+							{
+								
+								$('.like2').hide();
+								$('.loadinglike').hide();
+								$('.like').show();
+								var str="";
+								str +=result.countnya;
+								$('.count_like').html(str);
+							}
+							
+							
+							}
+						});
+					});
+				 });
+		   
+	$('.agetalent1').change(function()
+		{
+			thissY=$(this).val();
+			
+			//$(this).parent().next().next().find('.agetalent2').children().remove();
+			
+			var styyear='';
+			if(thissY==99)
+			{
+				styyear +='<option value=99>99</option>';
+			
+			}
+			else
+			{
+				for (i = thissY; i < 98; i++) {
+						
+						styyear +='<option value='+i+'>'+i+'</option>';
+					}
+			}
+				/*for (i = thissY; i < 98; i++) {
+						
+						styyear +='<option value='+i+'>'+i+'</option>';
+					}*/
+				//$(this).parent().next().next().find('.agetalent2').eq(0).html(styyear).selectpicker('refresh');
+			//$(this).parent().next().next().find('.agetalent2').data('selectpicker', null);
+			//console.log($(this).parent().next().next().find('.agetalent2').eq(0));
+			$(this).parent().next().next().find('.agetalent2').eq(0).html(styyear).selectpicker('refresh');
+			
+			
+		});
+	</script>
+{/literal}
+

@@ -1,0 +1,155 @@
+<div class="page_section" id="newspage">
+    <div id="metapage">
+        <div class="wrapper">
+            <h1 class="page-title fl">News & Press</h1>
+            <div class="breadcumb fr">
+                <a href="{$basedomain}home">Home</a> <span>/</span> <a href="{$basedomain}news">News & Press</a> <span>/</span> <a href="{$basedomain}news">Our News</a>
+            </div>
+        </div><!-- end .wrapper -->   
+    </div><!-- end #metapage -->
+    <div id="newspagelist" class="section"> 
+        <div class="wrapper">
+        	<div class="cols">
+                <div class="singlepost">
+                    <div class="detailimages">
+					{if $list.category==2}
+                        <a href="#newspagelist" class="newsthumbimg">
+						{if $list.images}
+							<img src="{$basedomain}/public_assets/banner/{$list.images}" />
+						{else}
+							<img src="{$basedomain}public_assets/postjob/images.jpg" />
+						{/if}
+						</a>
+                        
+						<div class="datebox">
+                           <span class="day">{$list.date}</span>
+							<span class="month">{$list.month}</span>
+							<span class="year">{$list.year}</span>
+                        </div> 
+					{/if}
+                    </div><!-- end .boximg -->    
+                    <div class="post">
+					<div class="entry-title">
+							<h3>
+							<a>{$list.title}</a>
+							</h3>
+							<div class="meta-post">
+							<span class="author">{if $list.caption}Source:{$list.caption}{else}Source:creasi {/if}</span>
+							</div>
+							</div>
+                        <div class="entry-title">
+                            <h3><a href="#newspagelist">{$list.details}</a></h3>
+                            <div class="meta-post">
+                               {if $list.category==1}
+								 <span class="author">
+								<a href="{$list.link}">
+								{if $list.caption}Source:{$list.caption}{else}Source:creasi {/if}
+								</a>
+								</span>
+								{/if}
+								
+                            </div>
+                        </div><!-- end .entry-title -->
+                        <div class="entry-detail">
+                            <p>{$list.description}</p>
+                        </div><!-- end .entry-summary -->      
+                    </div><!-- end .post --> 
+                    <div class="sharebox">
+                    	<h4>Share This News</h4> 
+                      {*}  <a href="{$basedomain}share/fbShare/news/{$list.id}/news/details"><i class="ico icon-facebook">&nbsp;</i></a> {/*}
+			<a href="javascript:void(0)" onclick="shareFB('Creasi','{$basedomain}news/details/{$list.id}','{$basedomain}/public_assets/banner/{$list.images}','','{$fbnews|escape:'quotes'}')" ><i class="ico icon-facebook">&nbsp;</i></a> 
+                       {*}  <a href="{$basedomain}share/twitterShare/news/{$list.id}/news/details" target="_blank"><i class="ico icon-twitter">&nbsp;</i></a>{/*}
+					   <a href="http://twitter.com/share?text={$fbnews|escape:'quotes'}&url={$basedomain}news/details/{$list.id}" target="_blank"><i class="ico icon-twitter">&nbsp;</i></a>
+                        <a href="javascript:void(0)"><i class="ico icon-envelope clicksharemail">&nbsp;</i></a>
+                        <div id="sharemail" class="rows sharemail" style="display:none">
+                        <div class="rows errorrnya">
+                        	<label style=" " class="red errorNews msgerorr"> </label>
+                        </div>
+                         <label> Add email addresses (separate with commas)</label>
+                        
+                         <input class="emailshare" type="text" name="email" id='email' style="width:400px"/>
+                          <input class="idcontent" type="hidden" name="idcontent" id='idcontent' style="width:400px" value="{$list.id}"/>
+ 
+                         <input class="button1 submit" type="submit" name="submit" value="submit">
+                       
+                        </div>
+                    </div>
+                </div><!-- end .singlepost -->
+            </div><!-- end .cols -->   
+        </div><!-- end .wrapper -->    
+    </div><!-- end #jobBoardList --> 
+</div><!-- end #jobBoard -->
+<script>
+{literal}
+
+$.getScript('//connect.facebook.net/en_US/all.js', function(){
+    FB.init({
+      appId: '1568887560021810',
+    });  
+ });
+var share=0;
+$('.clicksharemail').click(function()
+{
+    $('.sharemail').show();
+
+});
+$('.submit').click(function(){
+	if( share==0)
+	{
+      
+	   var email=$('.emailshare').val();
+	   if(email)
+		{
+			share=1;
+		}
+        var idcontent=$('.idcontent').val();
+         $.ajax({
+                    
+                            'type': 'POST',
+                            'url': ''+basedomain+'news/sharecontent',
+                            'data': {email:email,idcontent:idcontent},
+                            'dataType':'json',
+                           'success': function(result){
+                                if(result.status==1)
+                                {
+                                        $('.msgerorr').html('Share process succeed');
+										$('.emailshare').val('');
+										$('.sharemail').hide();
+										$('.msgerorr').html(' ');
+
+                                }
+                                else
+                                {
+                                    share=0;
+									$('.msgerorr').html('Share process failed, please try again');
+                                }
+                           }
+                       });
+		}
+		else
+		{
+			$('.emailshare').val('');
+										$('.sharemail').hide();
+										$('.msgerorr').html(' ');
+		}
+   
+});
+function shareFB(fb_name,fb_link,fb_img,fb_user,fb_post){
+		$("#bg-popup").fadeOut();
+		$(".popup,.popup2").fadeOut();
+		FB.init();
+		FB.ui({
+			method: 'feed',
+			name: fb_name,
+			link: fb_link,
+			picture: fb_img,
+			caption: fb_user,
+			description: fb_post
+			
+			
+		});
+			 
+	}
+
+{/literal}
+</script>

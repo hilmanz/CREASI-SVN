@@ -1,0 +1,132 @@
+<div class="page_section" id="profilepage">
+    <div id="metapage">
+        <div class="wrapper">
+            <h1 class="page-title fl">Photo Details</h1>
+            <div class="breadcumb fr">
+                              <a href="{$basedomain}home">Home</a> <span>/</span> <a href="{$basedomain}personal">Profile</a> <a href="">Photo Details</a>
+            </div>
+        </div><!-- end .wrapper -->   
+    </div><!-- end #metapage -->
+    <div id="profileboard" class="section"> 
+        <div class="wrapper">
+        	<div class="blockwrapper">
+            	<div id="photo-detail">
+                    <div class="popupcontent">
+                        <form method="post" >
+                            <div class="popupheader">
+                                <input type="text" name="title"  value="{$list.title}" />
+								 <input type="hidden" class="button1" name="submit"  value="SAVE" />
+								 <input type="hidden" class="button1" name="id"  value="{$list.id}" />
+                                <div class="fr">
+                                  <label>Tag in Category</label>
+                                  <div class="selectbox">
+                                      <select name="category">
+									   <option value="0" {if $list.category_id ==0} selected="selected" {/if} >None</option>
+										<option value="99" {if $list.category_id ==99} selected="selected" {/if} >Both</option>
+									  {section name=i loop=$listcategory}  
+                                        <option value="{$listcategory[i].id}" {if $listcategory[i].id==$list.category_id} selected="selected" {/if} >{$listcategory[i].category_name}</option>
+										{/section}
+                                      </select>
+                                  </div><!-- END .selectbox -->
+                                  <input type="submit" class="button1" value="SAVE" />
+								  
+                                  <a href="{$basedomain}portofolio?images={$list.id}&id={$list.user_id}" class="button2">CANCEL</a>
+                               </div>
+                            </div><!-- END .popupheader -->
+                            <div class="imagesdetail">
+                                <div class="imglarge">
+                                   <img src="{$basedomain}public_assets/portofolio/{$list.images}" />
+                                      <div class="imgdirection">
+                                        <a href="#" class="cleft flex-prevs"><i class="icon-chevron-left">&nbsp;</i></a>
+                                        <a href="#" class="cright flex-nexts"><i class="icon-chevron-right">&nbsp;</i></a>
+                                    </div><!-- END .imgdirection -->
+                                </div><!-- END .imglarge -->
+                                <div class="desc">	
+                                    <textarea  name="description">{$list.description}</textarea>
+                                </div><!-- END .desc -->
+                            </div><!-- END .imagesdetail -->
+                            <div class="popupfooter">
+                                <div class="fl">
+                                <a href="#popup-photo-fullscreen" class="showpopup"><i class="icon-arrows">&nbsp;</i> FULLSCREEN</a> -  <a href="{$basedomain}portofolio/deleteportfolio/{$list.id}/{$users->id}">DELETE </a>
+                                </div>
+                                <div class="meta-infos fr">
+                                    <a  class="newIcon-view-grey">{$list.view_count}</span></a>
+                                    <a  class="newIcon-like-grey">{$list.love_count}</span></a>
+                                </div><!-- end .meta-info -->  
+                            </div><!-- END .popupfooter -->
+                        </form>
+                    </div><!-- END .popupcontent -->
+                </div><!-- END .popup -->
+            </div><!-- end .blockwrapper -->   
+        </div><!-- end .wrapper -->    
+    </div><!-- end #profileboard --> 
+</div><!-- end #profilepage -->
+{include file='application/web/widgets/popup-photo-fullscreen.html'}
+<script>
+
+var next='{$next}';
+var prev='{$prev}';
+
+{literal}
+$(document).ready(function(){
+console.log(next);
+console.log(prev);
+if(next=='')
+{
+	$('.flex-nexts').hide();
+
+}
+else
+{
+
+	$('.flex-nexts').show();
+}
+
+if(prev=='')
+{
+	$('.flex-prevs').hide();
+
+}
+else
+{
+
+	$('.flex-prevs').show();
+}
+
+
+$('.flex-prevs').on('click', function(){
+	
+	window.location.href=basedomain+"portofolio/editPortofolio?images="+prev;
+	return false;
+});
+$('.flex-nexts').on('click', function(){
+
+	window.location.href=basedomain+"portofolio/editPortofolio?images="+next;
+	return false;
+});
+
+});
+
+tinymce.init({
+    selector: ".textarea2",
+	plugins: "paste",
+   menubar:false,
+	statusbar:false,
+	file_browser_callback : 'myFileBrowser',
+
+    plugins: [
+        "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+        "searchreplace wordcount visualblocks visualchars code fullscreen",
+        "insertdatetime media nonbreaking save table contextmenu directionality",
+        "emoticons template paste textcolor colorpicker textpattern"
+    ],
+  
+    image_advtab: true,
+    templates: [
+        {title: 'Test template 1', content: 'Test 1'},
+        {title: 'Test template 2', content: 'Test 2'}
+    ]
+});
+
+{/literal}
+	</script>

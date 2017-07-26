@@ -1,0 +1,253 @@
+<div class="page_section" id="project-page">
+    <div id="container">
+        <div class="titlebox">
+            <h2 class="fl"><span class="icon-images">&nbsp;</span> News, Press, & Banner Management</h2>
+               <h2 class="fr"><a href="{$basedomain}contentmanagement/addnews" class="button2">Add New</a></h2>
+        </div><!-- end .titlebox -->
+        <div class="content">
+        	<div class="summary">
+       		<div class="row">
+					<form id="form" action="" method="post">
+					<div class="row">
+						<select  type="text" style="width:200px" placeholder="Search" class='valuenya' name="search">
+							<option value="">-- Sort By --</option>
+							<option  value=3>Banner</option>
+							<option  value=2>News</option>
+							<option  value=1>Press</option>
+						</select>
+					</div>
+					<div class="tempsearch">
+						<input type="text" name="searchtitle" class="searchtitle" value="{$searchtitle}" placeholder="Search" style="width:200px">
+						<div class="fr">
+							<input type="text" name="startdate" value="{$startdate}" placeholder="Start Date" class="startdate">
+							<span> To </span>
+							<input type="text" name="enddate" value="{$enddate}" placeholder="End Date"  class="enddate"  { if $enddate} {else} readonly='readonly' {/if} >
+							<input type="submit" value="GO" class="button3 submitsearch">
+						</div>
+					</div>
+					</form>
+				</div>
+			
+			
+            </div><!-- end .summary -->
+			<table cellpadding="0" cellspacing="0" border="0">
+			<thead>
+				<tr>
+					<th class="head0">No</th>
+					<th class="head0">Images</th> 
+					<th class="head0">Title</th> 
+					
+					<th class="head0">Category</th> 
+					<th width="15%" class="head0">Date Created</th> 
+					<th width="17%" class="head0">Action</th> 
+				</tr>
+			</thead>
+			<tbody class="pagilist">
+			{if $list}
+				{section name=i loop=$list}    
+                    <tr>
+					
+						<td>{$list[i].no}</td>
+						<td><span>{if $list[i].images} <img src="{$basedomainpath}public_assets/banner/{$list[i].images}" width="100"  >{/if}</span></td>
+						<td><span>{$list[i].title}</span></td> 
+						
+						<td><span>{if $list[i].category==1}
+						Press
+						{elseif $list[i].category==2}
+						News
+						{elseif $list[i].category==3}
+						Banner
+						{/if}
+						</span></td> 
+						<td><span>{$list[i].date}</span></td> 
+						
+						<td>	
+{*}
+<a href="{$basedomain}news/contentview?id={$list[i].id_news}"
+ class="button"> <span class="icon-eye"> &nbsp;</span>Publish</a>{/*}
+
+
+						
+                        	<a href="{$basedomain}contentmanagement/editnews/{$list[i].id}" class="button"><span class="icon-pencil">&nbsp;</span> Edit</a>
+                        	{if $list[i].category!=3}
+                        	<a href="javascript:void(0)" class="button" onClick="confirmation('{$basedomain}contentmanagement/delete/{$list[i].id}','Confirm to Delete?')" ><span class="icon-trash">&nbsp;</span> Delete</a>
+                        	{/if}
+                        </td>
+					</tr>
+                {/section}
+			{/if}
+					
+			</tbody>
+			</table>
+            <div id="paging_of_news_list" class="paging">
+              <a href="#"><span class="icon-first">&nbsp;</span></a>
+              <a href="#"><span class="icon-backward2">&nbsp;</span></a>
+              <a href="#">1</a>
+              <a href="#">2</a>
+              <a href="#" class="current">3</a>
+              <a href="#">4</a>
+              <a href="#">5</a>
+              <a href="#"><span class="icon-forward3">&nbsp;</span></a>
+              <a href="#"><span class="icon-last">&nbsp;</span></a>
+            </div>
+        </div><!-- end .content -->
+    </div><!-- end #container -->
+</div><!-- end #home -->
+
+<script type="text/javascript">
+	getpaging(0,{$total},"paging_of_news_list","paging_ajax_news",10);
+	var userid = {$user->id};
+	
+		{literal}
+		
+		
+		$(document).ready(function(){
+			 var $from = $(".startdate").datepicker({dateFormat: 'yy-mm-dd'});
+		 // var $to = $(".enddate").datepicker({dateFormat: 'yy-mm-dd'}).prop('disabled', true);
+		$(".startdate").change(function()
+		{
+			$(".enddate").datepicker({
+				dateFormat: 'yy-mm-dd'
+			}).prop('disabled', false);
+			$(".enddate").removeAttr('readonly');
+		});
+		$('#downloadXls').attr('href',basedomain+"companymanegement/callsheader?search="+$('.searchtitle').val()+'&startdate='+$(".startdate").val()+'&enddate='+$(".enddate").val());
+
+			$(".valuenya").on("change", function(){
+			
+			var sorting=$(".valuenya").val();
+			if(sorting==3)
+			{
+				$('.tempsearch').hide();
+			}
+			else
+			{
+				$('.tempsearch').show();
+			}
+			
+					$.ajax({
+                        'type': 'POST',
+                        'url': basedomain+"contentmanagement/main",
+                        'data': {'sorting':sorting},
+						'dataType':'json',
+                        'success': function(response){
+						if(response){
+						
+						if(response.status==1){
+							var no = 1;
+							var str="";
+							
+							$.each(response.result,function(k,v){  
+							
+								str+='<tr>'+'<td>'+no+'</td>'+'<td ><span>';
+								if (v.images)
+									{
+										str+='<img src="'+basedomainpath+'public_assets/banner/'+v.images+'" width="100" onerror=" this.src=\''+basedomainpath+'public_assets/postjob/images.jpg \'" >';
+									}
+								str+='</span></td>'+
+								'<td><span>'+v.title+'</span></td>'+
+								'<td><span>';
+								if (v.category==1)
+								{
+									str+='Press';
+								}
+								else if(v.category==2)
+								{
+									str+='News';
+								}
+								else if(v.category==3)
+								{
+									str+='Banner';
+								}
+								str+='</span></td> '+
+									'<td><span>'+v.date+'</span></td> '+
+									'<td>'+	
+									'<a href="'+basedomain+'contentmanagement/editnews/'+v.id+'" class="button"><span class="icon-pencil">&nbsp;</span> Edit</a>';
+									if(v.category!=3)
+										{
+											str+='<a href="javascript:void(0)" class="button" onClick="confirmation(\''+basedomain+'contentmanagement/delete/'+v.id+'\',\'Confirm to Delete? \')" ><span class="icon-trash">&nbsp;</span> Delete</a>';
+										}
+									
+									str+='</td>'+
+									'</tr>';
+								no++;
+							});
+							$('.pagilist').html(str);
+							$('.searchtitle').val('');
+							getpaging(0,response.total,"paging_of_news_list","paging_ajax_news",10);
+							
+							//verified();
+							//delct();
+					}else{
+					
+						$('.pagilist').html('<tr><td colspan="5"> No Data</td></tr>');
+			 
+					}
+				}
+						
+						}
+						
+					});
+				});
+			});
+			
+			
+			
+	function paging_ajax_news(fungsi,start){ 
+
+	
+	$.post(basedomain+"contentmanagement/main",{start:start,ajax:1,sorting:$('.valuenya').val(),search:$('.searchtitle').val(),startdate:$('.startdate').val(),enddate:$('.enddate').val()},function(response){
+	//console.log(response);
+		if(response){
+					  if(response.status==1){
+							var no = start+1;
+							var str="";
+							$.each(response.result,function(k,v){  
+							
+								str+='<tr>'+
+							   '<td  >'+no+'</td>'+
+								'<td ><span>';
+								if (v.images)
+									{
+										str+='<img src="'+basedomainpath+'public_assets/banner/'+v.images+'" width="100" onerror=" this.src=\''+basedomainpath+'public_assets/postjob/images.jpg \'" >';
+									}
+								str+='</span></td>'+
+								'<td ><span>'+v.title+'</span></td>'+
+								'<td  ><span>';
+								if (v.category==1)
+								{
+									str+='Press';
+								}
+								else if(v.category==2)
+								{
+									str+='News';
+								}
+								else if(v.category==3)
+								{
+									str+='Banner';
+								}
+								str+='</span></td> '+
+									'<td  ><span>'+v.date+'</span></td> '+
+									'<td >'+	
+									'<a href="'+basedomain+'contentmanagement/editnews/'+v.id+'" class="button"><span class="icon-pencil">&nbsp;</span> Edit</a>';
+									if(v.category!=3)
+									{
+										str+='<a href="javascript:void(0)" class="button" onClick="confirmation(\''+basedomain+'contentmanagement/delete/'+v.id+'\',\'Confirm to Delete? \')" ><span class="icon-trash">&nbsp;</span> Delete</a>';
+									}
+									
+									str+='</td>'+
+									'</tr>';
+								no++;
+							});
+							$('.pagilist').html(str);
+							//verified();
+							//delct();
+					}else{
+						$('.pagilist').html('<tr><td colspan="5"> No Data</td></tr>');
+			 
+					}
+				}
+		},"JSON");
+	}
+	{/literal}
+</script>

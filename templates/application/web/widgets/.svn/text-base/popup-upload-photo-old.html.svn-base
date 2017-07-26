@@ -1,0 +1,337 @@
+<div id="popup-upload-photo" class="popup mfp-hide">
+    <div class="popupcontent">
+    	<h3 class="title">Upload <span class="red">Photos</span></h3>
+        <div class="rows center">
+			<form action="{$basedomain}personal/addportofolioPhoto" method="post" enctype="multipart/form-data" id="formuploadfoto">
+            <div class="boxs boxphoto">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table">
+				
+                   <tr>
+                    <td> 
+						<a href="javascript:void(0)" class="button2 upphoto">BROWSE</a>
+						<input type="file"  name="foto[]"  value="" class="foto" style="display:none">
+						<span class="row tmptfoto" > </span>
+						<span class="row foto_no" > </span> 
+					</td>
+                  </tr>
+                  <tr>
+                    <td><input type="hidden" value="1"  name="type[]"  />
+					<input type="text" value="" class="titlefoto" name="title[]" placeholder="Insert Title Here" />
+					<span class="row titlefoto_no" > </span> 
+					</td>
+                  </tr>
+                  <tr>
+                    <td><input type="text" value=""  class="descfoto" name="desc[]" placeholder="Insert Image Description" />
+						<span class="row descfoto_no" > </span> 
+					</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label>Tag in Category</label>
+                      <div class="selectbox">
+                      <select name="category[]">
+					  {section name=n loop=$listcategory}
+                        <option value="{$listcategory[n].id}">{$listcategory[n].category_name}</option>
+						{/section}
+                      </select>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+            </div><!-- END .boxs -->
+            <div class="boxs boxphoto">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table">
+                    <tr>
+                    <td> 
+						<a href="javascript:void(0)" class="button2 upphoto">BROWSE</a>
+						<input type="file"  name="foto[]"  value="" class="foto" style="display:none">
+						<span class="row tmptfoto" > </span>
+						<span class="row foto_no" > </span> 
+					</td>
+                  </tr>
+                  <tr>
+                    <td><input type="hidden" value="1"  name="type[]"  />
+					<input type="text" value="" class="titlefoto" name="title[]" placeholder="Insert Title Here" />
+					<span class="row titlefoto_no" > </span> 
+					</td>
+                  </tr>
+                  <tr>
+                    <td><input type="text" value=""  class="descfoto" name="desc[]" placeholder="Insert Image Description" />
+						<span class="row descfoto_no" > </span> 
+					</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label>Tag in Category</label>
+                      <div class="selectbox">
+                      <select name="category[]">
+					   {section name=i loop=$listcategory}
+                        <option value="{$listcategory[i].id}">{$listcategory[i].category_name}</option>
+						{/section}
+                      </select>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+            </div><!-- END .boxs -->
+            <div class="boxs boxphoto">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table">
+                    <tr>
+                    <td> 
+						<a href="javascript:void(0)" class="button2 upphoto">BROWSE</a>
+						<input type="file"  name="foto[]"  value="" class="foto" style="display:none">
+						<span class="row tmptfoto" > </span>
+						<span class="row foto_no" > </span> 
+					</td>
+                  </tr>
+                  <tr>
+                    <td><input type="hidden" value="1"  name="type[]"  />
+					<input type="text" value="" class="titlefoto" name="title[]" placeholder="Insert Title Here" />
+					<span class="row titlefoto_no" > </span> 
+					</td>
+                  </tr>
+                  <tr>
+                    <td><input type="text" value=""  class="descfoto" name="desc[]" placeholder="Insert Image Description" />
+						<span class="row descfoto_no" > </span> 
+					</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label>Tag in Category</label>
+                      <div class="selectbox">
+                      <select name="category[]">
+					  {section name=j loop=$listcategory}
+                        <option value="{$listcategory[j].id}">{$listcategory[j].category_name}</option>
+						{/section}
+                      </select>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+            </div><!-- END .boxs -->
+            <div class="smallbtn smallbtnphoto">
+                <input type="submit" value="SAVE" class="button1 saveprotophoto" />
+				<input type="hidden" name="uploadphoto" value="1">
+                <input type="button" value="+ Add More Photos" class="button2 addmore" />
+            </div>
+			</form>
+			<div id="progressbarphoto" style="display:none" ><div class="progress-label"></div></div>
+        </div><!-- END .rows -->
+    </div>
+</div>
+    <script type="text/javascript" src="{$basedomain}assets/js/jquery.form.js"></script>
+<script>
+{literal}
+$(function() {
+	getFiles();
+	duplicatphoto();
+	//clickupload();
+	uploadephoto();
+	
+	
+});
+function getFiles()
+{
+	$('.upphoto').click(function()
+	{
+		
+		thiss= $(this).next('.foto');
+		console.log(thiss);
+		thiss.change(function(e)
+		 {
+		   
+			   e.preventDefault();
+				
+			    $(".upload_no").html('');
+			   if(this.files[0].type=='image/jpeg')
+				{
+					 var reader = new FileReader();
+					 reader.onload = function (ex) {
+						ex.preventDefault();
+						console.log($(thiss).next('.tmptfoto'));
+						$(thiss).next('.tmptfoto').html('<br> <img width="100" class="filimg" hegiht="100" src="'+ex.target.result+'"> ');
+					  }
+				  reader.readAsDataURL(this.files[0]);
+				
+				  end;
+				}
+		});
+		$($(this).next('.foto')).trigger('click');
+	});
+
+}
+function checkFormfoto()
+{
+	var titlefoto_no='.titlefoto_no';
+	$(titlefoto_no).html(' ');
+	var descfoto_no='.descfoto_no';
+	$(descfoto_no).html(' ');
+	var foto_no='.foto_no';
+	$(foto_no).html(' ');
+	var valide='';
+	$.each($('.titlefoto'),function(k,v){
+		if($('.titlefoto').eq(k).val() || $('.descfoto').eq(k).val() ||$('.tmptfoto img').eq(k).attr('src'))
+		{
+			if($('.titlefoto').eq(k).val()=='')
+			{
+				$(titlefoto_no).eq(k).html('You cannot leave this field empty');
+				valide='ada';
+			}
+			if($('.descfoto').eq(k).val()=='')
+			{
+				$(descfoto_no).eq(k).html('You cannot leave this field empty');
+				valide='ada';
+			}
+			if($('.tmptfoto img').eq(k).attr('src')==undefined)
+			{
+				$(foto_no).eq(k).html('You cannot leave this field empty');
+				valide='ada';
+			}
+		}
+		
+	});
+	if(valide)
+	{
+		return false;
+	}
+	else
+	{
+		return true;
+	}
+	
+}
+function uploadephoto()
+{
+	var progressbar='';
+	var progressLabel='';
+	$('#formuploadfoto').ajaxForm({
+		beforeSubmit:checkFormfoto,
+        beforeSend: function(es) {
+          
+            var percentVal = '0%';
+			if($('.tmptfoto img'))
+			{ 
+				//$.each($('.tmptfoto img'),function(k,v){   
+				
+					
+					$('.tmptfoto img:first').parent().html('<div   id="progressbarphoto" ><div class="progress-label"></div></div>');
+					
+				//});
+				 progressbar =$('#progressbarphoto:first'), 
+				progressLabel = $( ".progress-label:first" );
+				
+				progressbar.progressbar({
+					value: false,
+					change: function() {
+						progressLabel.text( progressbar.progressbar( "value" ) + "%" );
+					},
+					complete: function() {
+						progressLabel.text( "Complete!" );
+					}
+				});
+				
+				
+			}
+			
+        },
+        uploadProgress: function(event, position, total, percentComplete) {
+            var percentVal = percentComplete ;
+           
+			progressbar.progressbar( "value",percentVal );
+			console.log(percentVal);
+        },
+        complete: function(xhr) {
+            //status.html(xhr.responseText);
+			console.log('sss');
+			if($('.tmptfoto img').length !=0)
+			{ 
+				console.log($('.tmptfoto img').length);
+				$.each($('.tmptfoto img'),function(k,v){   
+					
+						
+						$(this).parent().html('<div class="progressbarphoto"  id="progressbarphoto" ><div class="progress-label"></div></div>');
+						progressbar =$('.progressbarphoto'), 
+						progressLabel = $( ".progress-label" );
+						
+						progressbar.progressbar({
+							value: false,
+							change: function() {
+								progressLabel.text( progressbar.progressbar( "value" ) + "%" );
+							},
+							complete: function() {
+								progressLabel.text( "Complete!" );
+							}
+						});
+						//location.reload(); 
+						progress();
+						//setTimeout(function(){ location.reload(); }, 200);
+						//setTimeout( , 120 );
+						return false;
+					});
+			}
+			else
+			{
+				//location.reload();
+				return false;
+			}
+        }
+    });
+
+}
+function progress() {
+				var val = $('.progressbarphoto').progressbar( "value" ) || 0;
+				$('.progressbarphoto').progressbar( "value", val + 5 );
+				if ( val < 99 ) {
+					console.log(val);
+					setTimeout( progress, 20 );
+				}
+			}
+
+
+function duplicatphoto()
+{
+	$('.addmore').click(function()
+	{
+	
+		$(".boxphoto:last").clone().insertBefore('.smallbtnphoto');
+		
+		getFiles();
+		$('.tmptfoto:last').html('');
+		$('.titlefoto:last').val('');
+		$('.descfoto:last').val('');
+		
+	});
+}
+ function clickupload()
+{
+	$('.saveprotophoto').click(function()
+	{
+		console.log();die;
+		
+		
+		$('#progressbarphoto').show();
+		$('#formuploadfoto').hide();
+		var progressbar = $( "#progressbarphoto" ),
+			progressLabel = $( ".progress-label" );
+			progressbar.progressbar({
+				value: false,
+				change: function() {
+					progressLabel.text( progressbar.progressbar( "value" ) + "%" );
+				},
+				complete: function() {
+					progressLabel.text( "Complete!" );
+				}
+			});
+			function progress() {
+				var val = progressbar.progressbar( "value" ) || 0;
+				progressbar.progressbar( "value", val + 2 );
+				if ( val < 99 ) {
+					setTimeout( progress, 80 );
+				}
+			}
+			setTimeout( progress, 2000 );
+		
+	});
+}
+{/literal}
+</script>

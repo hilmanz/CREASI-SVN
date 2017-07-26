@@ -1,0 +1,561 @@
+<div class='here'>
+<div class="page_section" id="cmsPage">
+    <div id="metapage">
+        <div class="wrapper">
+            <h1 class="page-title fl">Creasi Management System</h1>
+            <div class="breadcumb fr">
+                <a href="index.php">Home</a> <span>/</span> <a>Creasi Management System</a> <span>/</span> <a>My Applicants</a>
+            </div>
+        </div><!-- end .wrapper -->   
+    </div><!-- end #metapage -->
+    <div id="cmscontainer" class="section"> 
+        <div class="wrapper">
+            <div class="job-wrapper">
+              <div class="rowjob">
+                      
+					{if $load}
+					     {section name=i loop=$load}
+                        <div class="boximg">
+						{if $load[i].file != ''}
+                            <a href="index.php?page=job-detail" class="thumbbox"><img src="{$basedomain}public_assets/postjob/{$load[i].file}" height="200px" width="200px"/></a>
+						{else}
+								<a href="index.php?page=job-detail" class="thumbbox"><img src="{$basedomain}public_assets/postjob/images.jpg"   height="200px" width="200px" /></a>
+						{/if}
+                            <!-- <div class="caption">
+                                <i>No. of shares : {$load[i].job_title}</i>
+                                <i>No. of likes: {$load[i].job_title}</i>
+                            </div>     -->
+                        </div><!-- end .boximg -->    
+                        <div class="entry">
+                            <h3><a href="index.php?page=job-detail">{$load[i].job_title}</a></h3>
+                            <div class="meta-post">
+                                <a href="#" class="company-name"><i class="icon-suitcase">&nbsp;</i>{$load[i].nama_perusahaan}</a>
+                                <a href="#" class="company-status"><i class="icon-check-circle">&nbsp;</i> Verified</a>
+                                <a href="#" class="location-name"/><i class="icon-map-marker">&nbsp;</i> {$load[i].provinsi}, {$load[i].city}</a>
+								<a href="{$basedomain}share/twitterShare/jobs/{$load[i].id}/jobboard/detail_jobboard" class="location-name"/><i class="glyphicon icon-log-out">&nbsp;</i> twitter share</a>
+                            </div>
+                            <p align='justify'>{$load[i].job_description|substr:0:150}</p>
+                        </div><!-- end .entry -->  
+                        <div class="jobInfo">
+                            <a class="label bggreen submitjobs" id="submitjobs" href="#">OPEN</a>
+                            <div class="countdown-job">
+                                <h4><b>{$load[i].hari}</b></h4>
+                                <span>DAYS LEFT TO APPLY</span>
+                            </div>
+                            <span class="applicantsNo">No. of Applicants: {$countmyapp}</span>
+                        </div><!-- end .jobInfo -->   
+						
+                    </div><!-- end .rowjob -->  
+				
+				
+				
+                <div class="notibar">
+                    <a class="close"><i class="icon-times-circle">&nbsp;</i></a>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                </div><!-- notification announcement -->
+                <div class="cmsnav">
+                	<a href="{$basedomain}/jobboard/tscms?id={$load[i].id_job}"><i class="icon-profile2">&nbsp;</i> APPLICANTS</a>
+                	<a href="{$basedomain}/jobboard/tsreviewed?id={$load[i].id_job}"><i class="icon-signup">&nbsp;</i> REVIEWED</a>
+                	<a href="{$basedomain}/jobboard/tsreject?id={$load[i].id_job}"><i class="icon-exclamation-circle">&nbsp;</i> REJECTED</a>
+                </div><!-- END .cmsnav -->
+				{/section}
+				{/if}
+            	<div class="shorter">
+                    <form class="forms fl">
+                          <select class="selectpicker selectpicker show-tick tscms" data-width="150">
+                            <option value="1">Move to reviewed</option>
+                            <option value="2">Move to rejected</option>
+                            <option value="3">Call for interview</option>
+                            <option value="4">Download CV</option>
+                          </select>
+                          <a href='#' value="GO" class="button1" id='Panggils' />GO</a>
+                    </form>
+                    <div class="paging fr">
+                    	<a href="#">&laquo; First</a>
+                    	<a href="#">&lsaquo;</a>
+                    	<a href="#">1</a>
+                    	<a href="#" class="current">2</a>
+                    	<a href="#">3</a>
+                    	<a href="#">4</a>
+                    	<a href="#">5</a>
+                    	<a href="#">&rsaquo;</a>
+                    	<a href="#">LAST &raquo;</a>
+                    </div>
+                </div><!-- END .shorter -->
+            </div><!-- end .job-wrapper -->
+			
+            <div class="interviewlists" id="interview-001" >
+			
+			
+                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table table2">
+                  <tr>
+                    <th width="10">No</th>
+                    <th width="10"><input type="checkbox" id="select-all"/></th>
+                    <th>Name</th>
+                    <th width="120">Date Applied</th>
+                    <th width="50">Age</th>
+                    <th width="50">Agent</th>
+                    <th width="50">Experience</th>
+                    <th width="200">Location</th>
+                    <th width="150">Interview invitation</th>
+                    <th width="120">Respond</th>
+                  </tr>
+				  
+				  
+                  <tr>
+				  	
+					
+					{if $list}
+					{section name=j loop=$list}  
+                    <td align="center">{$list[j].no} <input type='hidden' name='jobid' class='jobsid' value='{$list[j].id_job}'>
+					
+					</td>
+                    <td align="center">
+					<input type="checkbox" name="namecheck[]" class="checkjob" id='{$list[j].user_id}' value="{$list[j].user_id}" attr="{$smarty.section.cu.iteration}">
+					
+					</td>
+                    <td>
+                    <div class="smallthumb">
+					
+					<img src="{$basedomain}public_assets/personal/{$list[j].img_avatar}" />
+					
+					
+					</div>
+                    <h6>{$list[j].name}</h6>
+                    </td>
+                    <td align="center">
+                        <span class="date">{$list[j].enddate|date_format:"%A, %B %e, %Y"}</span>
+                    </td>
+                    <td align="center">
+                        <span class="age">{$list[j].birthday}</span>
+                    </td>
+                    <td align="center">
+                       {if $list[j].agent <> ''}
+					   {$list[j].agent}
+					   {else}
+						NO
+					   {/if}
+					   
+                    </td>
+                    <td align="center">
+                       {if $list[j].experience <> ''}
+					   {$list[j].experience}
+					   {else}
+					   NO
+					   {/if}
+                    </td>
+                    <td align="center"><span class="address">{$list[j].provincy},{$list[j].city}</span></td>
+                    <td align="center">
+					{if $list[j].interview==0}
+					<span class="usent{$list[j].user_id}">Unsent</span>
+					{/if}
+					{if $list[j].interview==1 || $list[j].interview==2 || $list[j].interview==3 }
+					Sent
+					{/if}
+				
+					
+					</td> 
+					
+					<td align="center">
+					{if $list[j].interview==2}
+                    <span class="green">Accepted</span>
+					{/if}
+					{if $list[j].interview==3}
+                    <span class="red">Decline</span>
+					{/if}
+					{if $list[j].interview==0 || $list[j].interview==1}
+                    <span class="grey">Waiting</span>
+					{/if}
+					</td>
+					
+					</tr>
+					{/section}
+					{/if}
+                </table>
+            </div><!-- end .interviewlist -->  
+			
+			
+			
+			
+            <div class="row-paging">
+                <div class="paging">
+                    <a href="#">&laquo; First</a>
+                    <a href="#">&lsaquo;</a>
+                    <a href="#">1</a>
+                    <a href="#" class="current">2</a>
+                    <a href="#">3</a>
+                    <a href="#">4</a>
+                    <a href="#">5</a>
+                    <a href="#">&rsaquo;</a>
+                    <a href="#">LAST &raquo;</a>
+                </div>
+            </div>
+        </div><!-- end .wrapper -->    
+    </div><!-- end #jobBoardList --> 
+</div><!-- end #jobBoard -->
+</div>
+
+
+
+
+
+
+
+{literal}
+<script language="JavaScript">
+$('#select-all').click(function(event) {   
+    if(this.checked) {
+        // Iterate each checkbox
+        $(':checkbox').each(function() {
+            this.checked = true;                        
+        });
+    }
+});
+</script>
+
+
+<script>
+
+	
+	
+	
+	
+$(document).ready(function(){
+   
+   
+                $('#Panggils').click(function(e){
+				//console.log('aaa');
+				if($('.tscms').val() == 3)
+				{
+				
+				 e.preventDefault();
+					
+					var  usernya = new Array;
+					$.each($('.checkjob:checked'),function(k,v){  
+					usernya.push($(this).val());
+					});
+					
+					var jobsid= $('.jobsid').val();
+					
+					//console.log(usernya);
+					
+					
+                    $.ajax({
+						'type': 'POST',
+                        'url': basedomain+'jobboard/checkinterview',
+                        'data': {user:usernya,idjobs:jobsid},
+						'dataType':'json',
+						'beforeSend': function() {
+														
+													
+												 },
+                        'success': function(result){
+									
+										
+								  var str="";
+										if (result.status==1)
+										{
+										$('#cmsPage').hide();
+																				
+										str+='<div class="page_section" id="theformpage">';
+										str+='<div id="metapage">';
+										str+=' <div class="wrapper">';
+										str+='<h1 class="page-title fl">Interview Invitation</h1>';
+										str+='<div class="breadcumb fr">';
+										str+='<a href="index.php">Home</a> <span>/</span> <a>Interview Invitation</a>';
+										str+='</div>';
+										str+='</div>';
+										str+='</div>';
+										str+='<div id="theform" class="section">'; 
+										str+='<div class="wrapper">';
+										str+='<div class="col-content">';
+										str+='<div class="titleboxs">';  
+										str+='<h2>Interview <span class="red">Invitation</span></h2>';
+										str+='<p>Complete this esay and quick form to schedule your interviews</p>';
+										str+='</div>';
+										str+=' <form class="theforms" id="forminput" method="POST" action="">';
+										$.each(result.data,function(k,v){  
+										
+										str+='<div class="rows">';
+										str+='<div class="col2">';
+										str+='<div class="profilebox">';
+										str+='<div class="profilethumb thumb"><img src="'+basedomain+'public_assets/personal/'+v.img_avatar+'"></div>';
+										str+='<div class="profilesum">';
+										str+='<h3>'+v.name+'</h3>';
+										str+='<p>'+v.phone_number+'</p>';
+										str+='<a href="mailto:'+v.email+'">'+v.email+'</a>';
+										str+='</div>';
+										str+='</div>';
+										str+='</div>';   
+										str+='<div class="col2">';
+										str+='<div class="rows">';
+										str+='<label>Date</label>';
+										str+='<input type="text" class="datepicker" name="date[]" placeholder="Date"/>';
+										str+='<input type="hidden" name="iduser[]" value="'+v.user_id+'" placeholder="Date"/>';
+										str+='<input type="hidden"  name="job_id[]" value="'+v.jobboard_id+'" placeholder="Date"/>';
+										str+='</div>'; 
+										str+='<div class="rows">'; 
+										str+='<label>Time</label>';
+										str+='<input type="text"  class="timepicker" name="timepicker[]" placeholder="Time">';
+										str+='</div>'; 
+										str+='<div class="rows"> ';
+										str+='<label>Venue</label>';
+										str+='<textarea placeholder="Address" class="address" name="address[]"></textarea>';
+										str+=' </div>'; 
+										str+=' <div class="rows">';
+										str+='<label>Contact Person</label>';
+										str+='<input type="text" class="contact" name="contact[]" placeholder="Enter fullname"/>';
+										str+='</div>'; 
+										str+='<div class="rows">';
+										str+=' <label>Contact Person Telephone</label>';
+										str+='<input type="text" class="telp" name="telp[]" placeholder="Pefreably mobile number"/>';
+										str+='</div>'; 
+										str+=' </div>';  
+										str+='</div>';   
+										
+										});
+										str+='<div class="rows">';
+										str+='<input type="button" class="button2 fr duplicate" value="DUPLICATE" />';
+										str+='</div>';    
+										str+='<div class="rows">';
+										str+='<input type="submit" class="button1 fr send" value="SEND" />';
+										str+='</div>';   
+										str+=' </form>';
+										str+='</div>';
+										str+=' </div>';
+										str+=' </div> ';
+										str+='</div>';
+										
+									}   $('.here').html(str);
+											
+										
+									$('.duplicate').click(function(e){
+									var datenya=$('.datepicker').val();
+									$('.datepicker').val(datenya);
+									var timepickernya=$('.timepicker').val();
+									$('.timepicker').val(timepickernya);
+									var addressnya=$('.address').val();
+									$('.address').val(addressnya);
+									var contact=$('.contact').val();
+									$('.contact').val(contact);
+									var telp=$('.telp').val();
+									$('.telp').val(telp);
+								
+
+
+									
+									});
+									
+									
+									$( ".datepicker" ).datepicker({
+											inline: true,
+											showOtherMonths: true
+										})
+										.datepicker('widget').wrap('<div class="ll-skin-melon"/>');
+									$('.timepicker').timepicker({
+															hourGrid: 4,
+															minuteGrid: 10,
+															timeFormat: 'hh:mm tt'
+														});
+																								
+									$('#forminput').submit(function(e){
+												e.preventDefault();
+												
+																					
+												//console.log(usernya);
+												
+												
+												$.ajax({
+													'type': 'POST',
+													'url': basedomain+'jobboard/ajaxinterviewjobs',
+													'data': $(this).serialize(),
+													'dataType':'json',
+													'success': function(result){
+													alert('Success');
+													location.reload();
+													}
+													});
+													
+										});
+												
+						
+							
+										
+										
+								
+						}
+					});
+				
+				}
+				
+				
+				
+				 
+				if($('.tscms').val() == 1){
+					e.preventDefault();
+					
+					var  usernya = new Array;
+					
+					$.each($('.checkjob:checked'),function(k,v){  
+					usernya.push($(this).val());
+					
+					});
+					
+					var jobsid= $('.jobsid').val();
+					
+					//console.log(usernya);
+					
+					
+                    $.ajax({
+						'type': 'POST',
+                        'url': basedomain+'jobboard/ajaxmreviewedjobs',
+                        'data': {user:usernya,idjobs:jobsid},
+						'dataType':'json',
+                        'success': function(result){
+						var str='';
+						str +='Sent';
+						$.each(result.idnya,function(k,v){  
+							//console.log(v);
+							//console.log($('.usent'+v));
+							$('.usent'+v).text(str);
+						});
+						alert('Success');
+						location.reload();
+						
+						}
+						});
+				
+				}
+				 if($('.tscms').val() == 2){
+					e.preventDefault();
+					
+					var  usernya = new Array;
+					
+					$.each($('.checkjob:checked'),function(k,v){  
+					usernya.push($(this).val());
+					
+					});
+					
+					var jobsid= $('.jobsid').val();
+					
+					//console.log(usernya);
+					
+					
+                    $.ajax({
+						'type': 'POST',
+                        'url': basedomain+'jobboard/ajaxmrejectjobs',
+                        'data': {user:usernya,idjobs:jobsid},
+						'dataType':'json',
+                        'success': function(result){
+						var str='';
+						str +='Sent';
+						$.each(result.idnya,function(k,v){  
+							//console.log(v);
+							//console.log($('.usent'+v));
+							$('.usent'+v).text(str);
+						});
+						alert('Success');
+						location.reload();
+						
+						}
+						});
+				
+				}
+				if($('.tscms').val() == 4){
+				 e.preventDefault();
+					
+					var  usernya = new Array;
+					$.each($('.checkjob:checked'),function(k,v){  
+					usernya.push($(this).val());
+					});
+					
+					var jobsid= $('.jobsid').val();
+					
+					//console.log(usernya);
+					
+					
+                    $.ajax({
+						'type': 'POST',
+                        'url': basedomain+'jobboard/checkinterview',
+                        'data': {user:usernya,idjobs:jobsid},
+						'dataType':'json',
+						'beforeSend': function() {
+														
+													
+												 },
+                        'success': function(result){
+										
+										
+										var str="";
+										if (result.status==1)
+										{
+										$('#cmsPage').hide();
+																				
+										str+='<div class="page_section" id="theformpage">';
+										str+='<div id="metapage">';
+										str+=' <div class="wrapper">';
+										str+='<h1 class="page-title fl">Download Curiculum Vitae</h1>';
+										str+='<div class="breadcumb fr">';
+										str+='<a href="index.php">Home</a> <span>/</span> <a>TSCMS / Download Curiculum Vitae</a>';
+										str+='</div>';
+										str+='</div>';
+										str+='</div>';
+										str+='<div id="theform" class="section">'; 
+										str+='<div class="wrapper">';
+										str+='<div class="col-content">';
+										str+='<div class="titleboxs">';  
+										str+='<h2>Download <span class="red">Curiculum Vitae</span></h2>';
+										str+='<p>Complete this esay and quick form to Download</p>';
+										str+='</div>';
+										str+=' <form class="theforms" id="formdownload" >';
+										$.each(result.data,function(k,v){  
+										
+										str+='<div class="rows">';
+										str+='<div class="col2">';
+										str+='<div class="profilebox">';
+										str+='<div class="profilethumb thumb"><img src="'+basedomain+'public_assets/personal/'+v.img_avatar+'"></div>';
+										str+='<div class="profilesum">';
+										str+='<h3>'+v.name+'</h3>';
+										str+='<p>'+v.phone_number+'</p>';
+										str+='<a href="mailto:'+v.email+'">'+v.email+'</a>';
+										str+='</div>';
+										str+='</div>';
+										str+='</div>';   
+										str+='<div class="col2">';
+										str+='<div class="rows">';
+										
+										str+='<a href="'+basedomain+'dashboard/download?param='+v.user_id+'"  class="button1 fr" " >Download Curiculum Vitae</a>';
+									;
+										str+='</div>'; 
+										str+=' </div>';  
+										str+='</div>';   
+										
+										});
+									
+										str+=' </form>';
+										str+='</div>';
+										str+=' </div>';
+										str+=' </div> ';
+										str+='</div>';
+										
+									}   $('.here').html(str);
+						
+						
+						}
+						});
+						
+				
+				}
+				
+				 
+				 
+					});
+				});
+	
+	</script>
+	{/literal}
+					
+					
+					
+					
+

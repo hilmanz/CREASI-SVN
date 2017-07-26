@@ -1,0 +1,57 @@
+<div class="popup2" id="popup-tour-profile">
+    <div id="popup2-bg" class="popup2-container">
+        	<div id="tour-pos1" class="tour-box arrow_boxdown">
+                <div class="tour-title">
+                    <h3>Cover Picture</h3>
+                </div>
+                <div class="tour-desc">
+                    <p>Display a picture about yourself or your work; something that shows your personality in a unique way. Don't hard sell yourself.</p>
+                </div>
+            </div><!--end.tourBox-->
+            
+            <div id="tour-pos2" class="tour-box arrow_boxdown">
+                <div class="tour-title">
+                    <h3>Profile Picture</h3>
+                </div>
+                <div class="tour-desc">
+                    <p>Creative Talents want to know who they might work for. Put your company/group logo or identity here.</p>
+                </div>
+            </div><!--end.tourBox-->
+        	
+            <div id="tour-pos3" class="tour-box arrow_boxleft">
+                <div class="tour-title">
+                    <h3>Social Media</h3>
+                </div>
+                <div class="tour-desc">
+                    <p>Let people explore deeper about yourself through your social media presence. Insert the links to your social media here.</p>
+                </div>
+            </div><!--end.tourBox-->
+            
+            <div id="tour-pos4" class="tour-box arrow_boxdown">
+                <div class="tour-title">
+                    <h3>Bio</h3>
+                </div>
+                <div class="tour-desc">
+                    <p>Tell the world about yourself. Keep it short and interesting!</p>
+                </div>
+            </div><!--end.tourBox-->
+            
+            <div id="tour-pos5" class="tour-box arrow_boxdown">
+                <div class="tour-title">
+                    <h3>Category</h3>
+                </div>
+                <div class="tour-desc">
+                    <p>Make sure you fill in all the details, especially your experience for each sub category here!</p>
+                </div>
+            </div><!--end.tourBox-->
+            
+            <div id="tour-pos6" class="tour-box arrow_boxleft">
+                <div class="tour-title">
+                    <h3>Portofolio</h3>
+                </div>
+                <div class="tour-desc">
+                    <p>After telling them, show them! Add all your photos, videos and audios here.</p>
+                </div>
+            </div><!--end.tourBox-->
+    </div><!-- END .popupContainer -->
+</div><!-- END .popup -->

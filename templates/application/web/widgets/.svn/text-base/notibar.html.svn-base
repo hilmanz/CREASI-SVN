@@ -1,0 +1,5 @@
+  <div class="notibar">
+                    <a class="close"><i class="icon-times-circle">&nbsp;</i></a>
+                    <h3>Welcome to Creasi</h3>
+                    <p>{$notifikasibar}</p>
+                </div><!-- notification announcement -->

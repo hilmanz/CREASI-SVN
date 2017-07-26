@@ -1,0 +1,61 @@
+10
+
+dir
+1022
+https://acit@kana.svn.beanstalkapp.com/creasi/trunk
+https://acit@kana.svn.beanstalkapp.com/creasi
+
+
+
+2015-02-05T09:12:05.038968Z
+1022
+febriansyah
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+3e1fc5f1-adf5-4fb6-a025-d227141ef5a3
+
+authentication
+dir
+
+service
+dir
+
+tools
+dir
+
+public_html
+dir
+
+db
+dir
+
+config
+dir
+
+engines
+dir
+
+creasi_html
+dir
+
+admin_html
+dir
+
+templates
+dir
+
+com
+dir
+

@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/creasi/!svn/ver/56/trunk/admin_html/assets/js/tinymce/plugins/moxiemanager/classes/Http
+END
+HttpClient.php
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/creasi/!svn/ver/56/trunk/admin_html/assets/js/tinymce/plugins/moxiemanager/classes/Http/HttpClient.php
+END
+Response.php
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/creasi/!svn/ver/56/trunk/admin_html/assets/js/tinymce/plugins/moxiemanager/classes/Http/Response.php
+END
+Session.php
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/creasi/!svn/ver/56/trunk/admin_html/assets/js/tinymce/plugins/moxiemanager/classes/Http/Session.php
+END
+Context.php
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/creasi/!svn/ver/56/trunk/admin_html/assets/js/tinymce/plugins/moxiemanager/classes/Http/Context.php
+END
+IHandler.php
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/creasi/!svn/ver/56/trunk/admin_html/assets/js/tinymce/plugins/moxiemanager/classes/Http/IHandler.php
+END
+Request.php
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/creasi/!svn/ver/56/trunk/admin_html/assets/js/tinymce/plugins/moxiemanager/classes/Http/Request.php
+END

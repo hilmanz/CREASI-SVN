@@ -1,0 +1,54 @@
+<div class="page_section" id="staticpage">
+    <div id="metapage">
+        <div class="wrapper">
+            <h1 class="page-title fl">Frequently Asked Questions</h1>
+            <div class="breadcumb fr">
+                <a href="{$basedomain}home">Home</a> <span>/</span> <a href="">Frequently Asked Questions</a>
+            </div>
+        </div><!-- end .wrapper -->   
+    </div><!-- end #metapage -->
+    <div id="staticpages" class="section"> 
+        <div class="wrapper">
+        	<div class="cols">
+                <div class="singlepost" id="faqpage">
+                	
+                    <div class="titleboxs">   
+                        <h2>Frequently Asked <span class="red">Questions</span></h2><br />
+                    </div><!-- end .titlebox -->
+                    <div class="boxanchor">
+					{if $list}
+					{section name=i loop=$list}
+					<b><a href="#ask{$list[i].no}">{$list[i].title}</a></b>
+					{/section}
+					{/if}
+             
+                    </div>
+		    <br>
+                    <div class="entries">
+					{section name=i loop=$list}
+					<h3 id="ask{$list[i].no}">{$list[i].title}</h3>
+					{$list[i].description}
+						{/section}
+                    	{*}
+                        <div id="accordiontnc" class="accordion">
+						{if $list}
+							{section name=i loop=$list}  
+							  <h3>{$list[i].title}</h3>
+							  <div class="accContent">
+								<p>{$list[i].description}</p>
+							  </div><!-- end .accContent -->
+							{/section}
+						{/if}
+                        </div><!-- end .accordion -->
+                        {/*}
+                    </div><!-- end .entries -->
+                    <div class="centerbox">   
+                        <div class="circleicon"><img src="{$basedomain}assets/images/icon_phone.png" /></div>
+                        <h3>Anything we did not cover yet? Don't hesitate to <a href="http://demo.creasi.co.id/contactus" class="red">contact us.</a> <br />If you have any other questions, comments or just wanted to say hi!<br />Our chat is always available on normal working days from 10am to 6pm.</p>{*}<p>Anything we did not cover yet? Don't hesitate to contact us at <a href="mailto:info@creasi.co.id" class="red">info@creasi.co.id</a><br />
+if you have any other questions, comments or just wanted to say hi!</p>{/*}</h3>
+                    </div><!-- end .centerbox -->
+                </div><!-- end .singlepost -->
+            </div><!-- end .cols -->   
+        </div><!-- end .wrapper -->    
+    </div><!-- end #staticpages --> 
+</div><!-- end #staticpage -->

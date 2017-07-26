@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/creasi/!svn/ver/995/trunk/templates/application/admin
+END
+login_message.html
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/creasi/!svn/ver/46/trunk/templates/application/admin/login_message.html
+END
+footer.html
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/creasi/!svn/ver/46/trunk/templates/application/admin/footer.html
+END
+sendmailwait.html
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/creasi/!svn/ver/737/trunk/templates/application/admin/sendmailwait.html
+END
+new_folder.html
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/creasi/!svn/ver/46/trunk/templates/application/admin/new_folder.html
+END
+meta.html
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/creasi/!svn/ver/367/trunk/templates/application/admin/meta.html
+END
+header.html
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/creasi/!svn/ver/520/trunk/templates/application/admin/header.html
+END
+home.html
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/creasi/!svn/ver/46/trunk/templates/application/admin/home.html
+END
+login.html
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/creasi/!svn/ver/233/trunk/templates/application/admin/login.html
+END
+master.html
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/creasi/!svn/ver/528/trunk/templates/application/admin/master.html
+END

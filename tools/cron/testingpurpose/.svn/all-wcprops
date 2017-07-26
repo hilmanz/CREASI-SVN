@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/creasi/!svn/ver/55/trunk/tools/cron/testingpurpose
+END
+curl_class.php
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/creasi/!svn/ver/55/trunk/tools/cron/testingpurpose/curl_class.php
+END
+dashboardbot.php
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/creasi/!svn/ver/55/trunk/tools/cron/testingpurpose/dashboardbot.php
+END
+db.php
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/creasi/!svn/ver/55/trunk/tools/cron/testingpurpose/db.php
+END

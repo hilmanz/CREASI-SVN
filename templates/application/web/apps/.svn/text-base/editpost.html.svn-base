@@ -1,0 +1,626 @@
+{if $load}
+					     {section name=i loop=$load}
+						 
+<div class="page_section" id="theformpage">
+    <div id="metapage">
+        <div class="wrapper">
+            <h1 class="page-title fl">Job Posting Form </h1>
+            <div class="breadcumb fr">
+                <a href="index.php">Home</a> <span>/</span> <a>Draft Posting Form </a>
+            </div>
+        </div><!-- end .wrapper -->   
+    </div><!-- end #metapage -->
+	
+    <div id="theform" class="section"> 
+        <div class="wrapper">
+        	<div class="col-content">
+        	<div class="titleboxs">   
+                <h2>Job Posting <span class="red">Form</span></h2>
+                <p>Complete this easy and quick form and start receiving CVs from our Creative Talents. </p>
+            </div><!-- end .titlebox -->
+            <form class="theforms forms" id="forms"  method='POST' action="{$basedomain}postjobs/editdraft" enctype="multipart/form-data">
+            	<div class="rows">
+                	<div class="col2">
+                      <label>Category*  </label>
+                      <select class="selectpicker selectpicker show-tick categorylist" data-live-search="true" name="category"  data-width="100%">
+					  <option value="">Please select one category</option>
+                           {section name=j loop=$category}
+							{if $load[i].category_id==$category[j].id}
+								<option name-cat="{$category[j].category_name}" value="{$category[j].id}" selected='selected'>{$category[j].category_name}</option>
+							{else}
+								<option name-cat="{$category[j].category_name}" value="{$category[j].id}" >{$category[j].category_name}</option>	
+								{/if}
+						    {/section}
+					
+                        <option>Please select one category</option>
+                      </select>
+                    </div><!-- end .col2 -->    
+                	<div class="col2">
+                    	<label class="relative">Sub-Category*</label>
+                      <select class="selectpicker selectpicker show-tick subcategory" id='subcategory' name='subcategory' data-width="100%">
+                        <option>Please select one sub-category</option>
+                      </select>
+                    </div><!-- end .col2 -->    
+                 </div><!-- end .rows -->    
+            	<div class="rows">
+                      <label class="relative">Job Title* <i>(Maximum of 70 characters)</i>
+                      <a href="#" class="tooltip helpicon" title="<h6>Tips</h6> <p>This will be the first thing people read. Make sure you create a clear and attractive title.</p>">?</a></label>
+                       <input id="title" name="title" type="text" class="required title" value='{$load[i].job_title}' placeholder="E.g. 'Graphic Designer' or 'Looking for an actor in a music video clip'"><br><label class="msg_name" style="color: red;" />{$status.msgpr}</label>
+					   
+					   <label class="red title_no"></label>
+                </div><!-- end .rows -->  
+            	<div class="rows">
+                <label class="relative">Job Description*  <i>(Maximum of 1000 characters)</i>
+                      <a href="#" class="tooltip helpicon" title="<h6>Tips</h6> <p>Explain about the responsibilities and results expected in this job.</p>">?</a></label>
+				
+                       <textarea type="text" class="description" placeholder="Maximum of 1000 characters"  id="description" name="description">{$load[i].job_description}</textarea>
+					   <label class="red description_no"></label>
+                </div><!-- end .rows -->    
+            	<div class="rows">
+                	 <label class="relative">Job Requirement*  <i>(Maximum of 1000 characters)</i>
+                      <a href="#" class="tooltip helpicon" title="<h6>Tips</h6> <p>What qualifications are needed to be successful in this job? Try to be specific.</p>">?</a></label>
+					   	<textarea   type="text" placeholder="Maximum of 1000 characters" class="requitment" name="requitment">{$load[i].requitment}</textarea>
+                        <label class="red requitment_no"></label>
+                </div><!-- end .rows -->   
+            	<div class="rows">
+                      <label class="relative">
+                      <div style="position:relative; display:inline-block; padding:0 30px 0 0;">Upload Samples, Helpful Or Supporting  Materials	(Optional) 
+                      <a href="#" style="top:0;" class="tooltip helpicon" title="<h6>Tips</h6> <p>You can upload up to 3 files (JPEG, PNG, PDF or Word). Maximum file size is 2MB each.</p>">?</a>
+                      </div>
+                      </label> 
+					   <div style="display:none">
+					    <input type='hidden' value="{$load[i].file}" name="filelama" />
+						<input type='hidden' value="{$load[i].id_job}" name="idjob" />
+						<input type='hidden' value="{$load[i].talent_seeker_id}" name="talent_seeker_id" />
+						<input type='hidden' value="{$load[i].id_job}" name="param" />
+					   <input type="file" class="myfile" id="myfile"  name="myfile[]" />
+					   
+					   </div>
+                       <a   href="javascript:void(0)" class="button2 button2s browsfile" id="browsfile">BROWSE FILE</a>
+						{section name=iw loop=$userlize.file}
+							{if $userlize.file[iw].type == 'image/jpeg'}
+								<div class="imagePost"><img width="50" height="50"  class="filimg rot{$smarty.section.iw.index}"   src="{$basedomain}public_assets/postjob/{$userlize.file[iw].name}" data-row="{$smarty.section.iw.index}">
+									<label onclick="delimgst({$smarty.section.iw.index})" class="rot{$smarty.section.iw.index}"> x </label></div>
+									<input type="hidden" name="imagessementara[]" value="{$userlize.file[iw].name}" class="rot{$smarty.section.iw.index}">
+									<input type="hidden" name="typeimagessementara[]" value="{$userlize.file[iw].type}" class="rot{$smarty.section.iw.index}">
+							{elseif $userlize.file[iw].type == 'application/msword'}
+									<div class="imagePost"><img width="50" height="50" class="filimg rot{$smarty.section.iw.index}"   src="{$basedomain}assets/images/doc.png" data-row="{$smarty.section.iw.index}">
+										<label onclick="delimgst({$smarty.section.iw.index})" class="rot{$smarty.section.iw.index}"> x </label></div>
+										<input type="hidden" name="imagessementara[]" value="{$userlize.file[iw].name}" class="rot{$smarty.section.iw.index}">
+									<input type="hidden" name="typeimagessementara[]" value="{$userlize.file[iw].type}" class="rot{$smarty.section.iw.index}">
+							{elseif $userlize.file[iw].type == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'}
+									<div class="imagePost"><img width="50" height="50"  class="filimg rot{$smarty.section.iw.index}"  src="{$basedomain}assets/images/doc.png" data-row="{$smarty.section.iw.index}">
+										<label onclick="delimgst({$smarty.section.iw.index})" class="rot{$smarty.section.iw.index}"> x </label></div>
+										<input type="hidden" name="imagessementara[]" value="{$userlize.file[iw].name}" class="rot{$smarty.section.iw.index}">
+									<input type="hidden" name="typeimagessementara[]" value="{$userlize.file[iw].type}" class="rot{$smarty.section.iw.index}">
+							{elseif $userlize.file[iw].type == 'application/pdf'}
+									<div class="imagePost"><img width="50" height="50"  class="filimg rot{$smarty.section.iw.index}"   src="{$basedomain}assets/images/pdf.png" data-row="{$smarty.section.iw.index}">	
+										<label onclick="delimgst({$smarty.section.iw.index})" class="rot{$smarty.section.iw.index}"> x </label></div>
+										<input type="hidden" name="imagessementara[]" value="{$userlize.file[iw].name}" class="rot{$smarty.section.iw.index}">
+									<input type="hidden" name="typeimagessementara[]" value="{$userlize.file[iw].type}" class="rot{$smarty.section.iw.index}">
+							{/if}
+						  {/section}
+						    <label class="red upload_no myfile_no"></label>
+			   </div><!-- end .rows --> 
+            	<div class="rows">
+                	<div class="col2 inprovincy">
+                      <label class="relative">Primary Work Location* 
+                      <a href="#" class="tooltip helpicon" title="<h6>Tips</h6> <p>Some jobs cover more than 1 city. Please choose the city with the longest stay.</p>">?</a></label>
+                      <select class="selectpicker selectpicker show-tick provincy"  data-live-search="true" name="provincy" data-width="100%">
+					  <option class="" value="">Please select your province* </option>
+                        {section name=n loop=$provincy}
+							{if $load[i].provinsi==$provincy[n].province}
+							 <option value="{$provincy[n].province}" selected>{$provincy[n].province}</option>
+							 {else}
+							 <option value="{$provincy[n].province}" >{$provincy[n].province}</option>
+							{/if}
+						{/section}
+                      </select>
+					  
+                    </div><!-- end .col2 -->    
+                	<div class="col2">
+                      <label>&nbsp;</label>
+                      <select class="selectpicker selectpicker show-tick city"   data-live-search="true" id='city' name="city" data-width="100%">
+                        <option class="" value="">Please select your city*</option>
+                      </select>
+                    </div><!-- end .col2 -->   
+ <label class="red city_no"></label>					
+                 </div><!-- end .rows -->
+            	<div class="rows checkboxs">
+                       <label>Looking for*</label> 
+					   
+											   
+						
+						<input type="checkbox" name='check[]' class='subcat' value='Full time' {if in_array('Full timer',$checklist)} checked {/if} /><span>Full time</span>
+					
+						
+						
+                       <input type="checkbox" name='check[]' class='subcat'  value='Part timer' {if  in_array('Part time',$checklist)}checked {/if}/><span>Part time</span>
+					   
+					   
+                       <input type="checkbox" name='check[]' class='subcat'  value='freelancer' {if in_array('freelance',$checklist) }checked{/if} /><span>Freelance</span>
+					   
+					  
+                       <input type="checkbox" name='check[]' class='subcat'  value='Internship'  {if in_array('Internship',$checklist) }checked {/if}/><span>Internship</span>
+					  
+					    <label class="red checkboxs_no"></label>
+                 </div><!-- end .rows -->  
+            	<div class="rows">
+                	<div class="col2">
+                      <label>Is experience required? *</label>
+                      <select class="selectpicker selectpicker show-tick" data-live-search="true"  data-width="100%" name="experience">
+						
+					     <option value=''selected >Please select one option </option>
+						 
+							   {if $load[i].experience == 2}
+								<option value='2' selected>Any</option>
+								{else}
+								<option value='2' >Any</option>
+								{/if}
+
+							 {if $load[i].experience == 1}
+							 
+								<option value='1' selected>Yes</option>
+							  {else}
+								<option value='1' >Yes</option>
+							  {/if}
+							  {if $load[i].experience == 0}
+								<option value='0' selected>No</option>
+								{else}
+								<option value='0' >No</option>
+								{/if}
+							
+						
+                      </select>
+                    </div><!-- end .col2 -->    
+                	<div class="col2">
+                     <label class="relative">Expected pay/ salary* 
+                      <a href="#" class="tooltip helpicon" title="<h6>Tips</h6> <p>Some people are open for unpaid or expenses only pay, others only want paid jobs.</p>">?</a></label>
+                        <select name="salary" class="selectpicker selectpicker show-tick" data-live-search="true" data-width="100%"> 
+											 
+											   {if $load[i].experience}
+											   <option value=''selected >Please select one option </option>
+											   <option value='4' {if $load[i].salary == '4' } selected="selected" {/if}  >Any</option>
+												<option value='1' {if $load[i].salary == 1} selected{/if}>Paid</option>
+												<option value='2' {if $load[i].salary == 2} selected{/if}>Unpaid</option>
+												<option value='3' {if $load[i].salary == 3} selected{/if}>Expense</option>
+											 {else}
+												 <option value='' selected>Please select one option </option>
+												<option value='4'>Any</option>
+												<option value='1'>Paid</option>
+												<option value='2'>Unpaid</option>
+												<option value='3'>Expense</option>
+											{/if}
+
+											 </select>
+                    </div><!-- end .col2 -->    
+                 </div><!-- end .rows -->   
+            	<div class="rows">
+                	<div class="col2">
+                      <label class="relative">Is an agent required?* 
+                      <a href="#" class="tooltip helpicon" title="<h6>Tips</h6> <p>Some Creative Talents require their agents to deal with their jobs. You could choose with (yes) or without.</p>">?</a></label>
+                      <select class="selectpicker selectpicker show-tick" data-live-search="true" data-width="100%" name="agent">
+					     
+						 
+						 <option value=''selected >Please select one option </option>
+						   {if $load[i].agent == 2}
+							<option value='2' selected>Any</option>
+						   {else}
+							<option value='2' >Any</option>
+						   {/if}
+						   
+						   {if $load[i].agent == 1}
+							<option value='1' selected>Yes</option>
+						   {else}
+							<option value='1' >Yes</option>
+						   {/if}
+						   
+						   {if $load[i].agent == 0}
+						   <option value='0' selected>No</option>
+						   {else}
+						   <option value='0' >No</option>
+						   {/if}
+						   
+						
+                      </select>
+                    </div><!-- end .col2 -->    
+                	<div class="col2">
+                      <label class="relative">Job post closing date* 
+                      <a href="#" class="tooltip helpicon" title="<h6>Tips</h6> <p>You can choose up to 30 days. If you have a tight deadline you may want to choose a shorter period of time.</p>">?</a></label>
+                     <input id="endpublish" readonly name="endpublish" type="text" value='{$load[i].enddate|date_format:"%d-%B-%Y"}' class="datepicker"> 
+                    </div><!-- end .col2 -->    
+                 </div><!-- end .rows -->   
+            	<div class="rows postJobs">
+				<input type="hidden"  value="0" class="postnya"  name="postnya"/> 
+				<input type="hidden"  value="1" class="button2 fr bor-black"  name="saveasdraft"/> 
+                	<input type="submit" class="button1 fr" value="POST"  name="postnya" id='postjb'/>&nbsp;
+					{if $uid !=''}
+					<input type="submit" class="button2 fr bor-black" value="Save As Draft"/>
+					{/if}
+                 </div><!-- end .rows -->   
+            </form>
+            </div><!-- end .col-content -->   
+        </div><!-- end .wrapper -->    
+    </div><!-- end #theform --> 
+</div><!-- end #theformpage -->
+
+{/section}
+{/if}
+
+
+
+
+
+
+
+{literal}
+ <script>
+$(function() {
+$( ".datepicker" ).datepicker({dateFormat: 'dd-M-yy'});
+
+
+});
+</script>
+{/literal}
+
+<script>
+var subcategory={$subcategory};
+var citynya='{$city}';
+var urt=0;
+{literal}
+
+	var id = $('.provincy option:selected').val(); 
+	
+	
+	$.ajax ({
+				type	 : 'POST', 
+				url	 :  basedomain+'postjobs/ajaxcity' , 
+				data:{id:id},
+				dataType:'json',
+				success	: function (result) 
+				{ 
+					if(result.status==1)
+								{
+									$("#city option").remove();
+									var str="";
+									str +='<option value="">Please select your city</option>';
+									$.each(result.data,function(kal,val){
+										if(citynya==val.city)
+										{
+										str +='<option value="'+val.city+'" selected>'+val.city+'</option>';
+										}else{
+										str +='<option value="'+val.city+'">'+val.city+'</option>';
+										}
+										
+									});
+									
+									$('#city').append(str);
+									$('.city').selectpicker("refresh");
+								}
+				}
+			});
+
+			
+		var id = $('.categorylist option:selected').val();
+		
+	
+	$.ajax ({
+				type	 : 'POST', 
+				url	 :  basedomain+'postjobs/ajaxsub' , 
+				data:{id:id},
+				dataType:'json',
+				success	: function (result) 
+				{ 
+					if(result.status==1)
+								{
+									$("#subcategory option").remove();
+									var str="";
+									$.each(result.data,function(kal,val){
+									if(subcategory==val.id)
+										{
+										str +='<option value="'+val.id+'" selected>'+val.name_subcategory+'</option>';
+										}else{
+										str +='<option value="'+val.id+'">'+val.name_subcategory+'</option>';
+										}
+										
+									});
+									
+									$('#subcategory').append(str);
+									$('.subcategory').selectpicker("refresh");
+								}
+				}
+			});
+
+</script>
+
+<script>
+$('.provincy').change(function(){
+	var id = $('.provincy option:selected').val();
+	console.log(id);
+	$.ajax ({
+				type	 : 'POST', 
+				url	 :  basedomain+'postjobs/ajaxcity' , 
+				data:{id:id},
+				dataType:'json',
+				success	: function (result) 
+				{ 
+					if(result.status==1)
+								{
+									$("#city option").remove();
+									var str="";
+									$.each(result.data,function(kal,val){
+						
+										str +='<option value="'+val.city+'">'+capitalise(val.city)+'</option>';
+										
+									});
+									
+									$('#city').append(str);
+									$('.city').selectpicker("refresh");
+								}
+				}
+			});
+
+})
+
+$('.categorylist').change(function(){
+	var id = $('.categorylist option:selected').val();
+	console.log(id);
+	$.ajax ({
+				type	 : 'POST', 
+				url	 :  basedomain+'postjobs/ajaxsub' , 
+				data:{id:id},
+				dataType:'json',
+				success	: function (result) 
+				{ 
+					if(result.status==1)
+								{
+									$("#subcategory option").remove();
+									var str="";
+									str +='<option value="">Please select one sub-category *</option>';
+									$.each(result.data,function(kal,val){
+						
+										str +='<option value="'+val.id+'">'+val.name_subcategory+'</option>';
+										
+									});
+									
+									$('#subcategory').append(str);
+									$('.subcategory').selectpicker("refresh");
+								}
+				}
+			});
+
+});
+ function delimgs(rows)
+		{
+			
+			$('.ros'+rows).remove();
+		
+		}
+ function delimgst(rows)
+		{
+			
+			$('.rot'+rows).remove();
+		
+		}
+ var id = $('.categorylist option:selected').val();
+$('.browsfile').click(function(e)
+ {
+	console.log($('.filimg').length);
+	console.log($('.myfile').length);
+	if($('.filimg').length < 3  )
+	{
+		console.log($('.filimg').length);
+		console.log('sss');
+		if(($('.myfile').length >1 && $('.myfile').length<=3) || ($('.browsfile').length >1 && $('.browsfile').length<=3 ))
+		{
+			$(".myfile:last").trigger('click');
+			thiss= $(".myfile:last");
+		}
+		else if($('.myfile').length==1)
+		{
+			$(".myfile").trigger('click');
+			thiss= $(".myfile");
+		}
+		else
+		{
+			
+			$(".upload_no").html('Sorry, you can only upload up to 3 files');
+		}
+	}
+	else
+	{
+		$(".upload_no").html('Sorry, you can only upload up to 3 files');
+	}
+	if($('.myfile').length<=3)
+	{
+		thiss.change(function(e)
+		 {
+		   
+			    e.preventDefault();
+				
+			    $(".upload_no").html('');
+				
+				var dataup = $('.filimg').length;
+				if(this.files[0].size > 2000000)
+				{
+				
+					$(".upload_no").html('Sorry, maximum file size is 2 MB');
+					
+				}
+				else
+				{
+					++urt;
+					   if(this.files[0].type=='image/jpeg' || this.files[0].type=='image/png' )
+						{
+							 var reader = new FileReader();
+							 reader.onload = function (ex) {
+								ex.preventDefault();
+								
+								$('.browsfile').after(' <div class="imagePost"><img width="50" data-row="'+urt+'"  class="filimg ros'+urt+'" hegiht="50" src="'+ex.target.result+'"><label class="ros'+urt+'" onclick="delimgs('+urt+')" > x </label></div>  ');
+							  }
+						  reader.readAsDataURL(this.files[0]);
+						  
+						  $(this).after(' <input type="file" class="myfile ros'+urt+'" data-row="'+urt+'" id="myfile" name="myfile[]" />');
+						  end;
+						}
+					   else if(this.files[0].type=='application/msword' || this.files[0].type=='application/vnd.openxmlformats-officedocument.wordprocessingml.document' )
+					   {
+						   $('.browsfile').after('<div class="imagePost"> <img width="50" class="filimg ros'+urt+'" data-row="'+urt+'" hegiht="50" src="'+basedomain+'assets/images/doc.png"> <label class="ros'+urt+'" onclick="delimgs('+urt+')" > x </label></div> ');
+						   $(this).after(' <input type="file" class="myfile ros'+urt+'" data-row="'+urt+'" id="myfile" name="myfile[]" />');
+						   end;
+					   }
+					   else if(this.files[0].type=='application/pdf')
+					   {
+						   $('.browsfile').after('<div class="imagePost"> <img width="50" class="filimg ros'+urt+'" data-row="'+urt+'"   hegiht="50" src="'+basedomain+'assets/images/pdf.png"> <label class="ros'+urt+'" onclick="delimgs('+urt+')" > x </label></div> ');
+						   $(this).after(' <input type="file" class="myfile ros'+urt+'" data-row="'+urt+'"   id="myfile" name="myfile[]" />');
+							end;
+					   }
+					  
+					   else
+					   {
+					   
+						 $(".upload_no").html('Sorry, we can only support JPG/PNG, PDF and DOC files');
+					   }
+					  
+			   }
+
+		 });
+	 }
+ });
+ $('#postjb').click(function(e)
+		{
+			e.preventDefault();
+			console.log($('.checkboxs:checked').length);
+			var title_no='.title_no';
+			$(title_no).html(' ');
+			var description_no='.description_no';
+			$(description_no).html(' ');
+			var requitment_no='.requitment_no';
+			$(requitment_no).html(' ');
+			var provincy_no='.provincy_no';
+			$(provincy_no).html(' ');
+			var city_no='.city_no';
+			$(city_no).html(' ');
+			
+			var endpublish_no='.endpublish_no';
+			$(endpublish_no).html(' ');
+			
+			var checkboxs_no='.checkboxs_no';
+			$(checkboxs_no).html(' ');
+			
+			var salary_no='.salary_no';
+			$(salary_no).html(' ');
+			var valid='';
+			  var strip = (tinymce.get('requitment').getContent()).replace(/(<([^>]+)>)/ig,"");
+			     strip = strip.replace(/\s+/g, '');
+				strip = strip.replace(/^\s\s*/,'').replace(/\s\s*$/,'');
+				strip = strip.replace(/(\r\n|\n|\r)/gm,"");
+               var lenghtreq = strip.length;
+			   
+			 var strip = (tinymce.get('description').getContent()).replace(/(<([^>]+)>)/ig,"");
+			     strip = strip.replace(/\s+/g, '');
+				strip = strip.replace(/^\s\s*/,'').replace(/\s\s*$/,'');
+				strip = strip.replace(/(\r\n|\n|\r)/gm,"");
+               var lenghdes = strip.length;
+		
+			if($('.title').val()=='')
+			{
+				$(title_no).html('You cannot leave this field empty');
+				valid='ada';
+			}
+			else if($('.title').val().length > 70)
+			{
+				$(title_no).html('Maximum of 70 Characters ');
+				valid='ada';
+			}
+			if(tinymce.get('description').getContent()=='')
+			{
+				$(description_no).html('You cannot leave this field empty');
+				valid='ada';
+			}
+			else if(lenghdes >= 1001)
+			{
+				$(description_no).html('Maximum of 1000 Characters');
+				valid='ada';
+			}
+			if(tinymce.get('requitment').getContent()=='')
+			{
+				$(requitment_no).html('You cannot leave this field empty');
+				valid='ada';
+			}
+			else if(lenghtreq >= 1001)
+			{
+				$(requitment_no).html('Maximum of 1000 Characters');
+				valid='ada';
+			}
+			if($('.provincy').val()=='')
+			{
+				$(provincy_no).html('You cannot leave this field empty');
+				valid='ada';
+			}
+			if($('.city').val()=='')
+			{
+				$(city_no).html('You cannot leave this field empty');
+				valid='ada';
+			}
+			if($('.endpublish').val()=='')
+			{
+				$(endpublish_no).html('You cannot leave this field empty');
+				valid='ada';
+			}
+			if($('.salary').val()=='')
+			{
+				$(salary_no).html('You cannot leave this field empty');
+				valid='ada';
+			}
+			if($('.checkboxs').find('.subcat:checked').length ==0)
+				{
+				
+					$(checkboxs_no).html('You cannot leave this field empty');
+					valid='ada';
+				}
+			if(valid)
+			{
+				return false;
+			
+			}
+			else
+			{
+				$('.postnya').val('1');
+				$('.saveasdraft').val('0');
+				
+				$('#forms').trigger('submit');
+			}
+		});
+
+
+{/literal}
+</script>
+
+{literal}
+	<script>
+	tinymce.init({selector:'textarea',
+plugins: "paste",
+    theme: "modern",
+	file_browser_callback : 'myFileBrowser',
+	menubar:false,
+    statusbar: false,
+    plugins: [
+        "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+        "searchreplace wordcount visualblocks visualchars code fullscreen",
+        "insertdatetime media nonbreaking save table contextmenu directionality",
+        "emoticons template paste textcolor colorpicker textpattern"
+    ],
+  toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+    image_advtab: true,
+    templates: [
+        {title: 'Test template 1', content: 'Test 1'},
+        {title: 'Test template 2', content: 'Test 2'}
+    ]
+	});
+	function capitalise(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+}
+
+	</script>
+{/literal}

@@ -1,0 +1,591 @@
+<!-- ki -->
+<div class="page_section" id="project-page">
+    <div id="container">
+        <div class="titlebox">
+            <h2 class="fl"><span class="icon-books">&nbsp;</span> Profile Info</h2>
+       <h2 class="fr"><a href="{$basedomain}personalmanagement" class="button2">Back</a></h2>
+        </div><!-- end .titlebox -->
+        <div class="content">
+            <div class="summary">
+           
+            </div><!-- end .summary -->
+
+            <form id="forms" class="forms" method="post" action="">
+            <div id="new-project" class="boxcontent">
+            	<div class="tittleText">
+                	<h2>Cover Image</h2>
+                </div>
+				{if $profile.img_cover}
+                	<div class="coverImage">
+				 
+						<img src='{$basedomainpath}public_assets/personal/{$profile.img_cover}' class="gambarcover"  width="100%" ></img>	
+                   		
+                        <div class="deleteCover">
+                        <input type="button" data-id="{$profile.id}" class="delCover  deletecover" name="Delete" value="Delete">
+                        </div>
+                   </div>
+				{else}
+                	<div class="coverImage">
+				 
+						<img src='{$basedomainpath}public_assets/postjob/cover.jpg'  class="gambarcover"  width="100%"></img>	
+					</div>
+				{/if}
+                <div class="profile-Info">
+                    <div class="tittleText">
+                        <h2>Profile</h2>
+                    </div>
+                    {if $profile.img_avatar}
+                    <div class='profilePicture'>
+                     
+                    <img src='{$basedomainpath}public_assets/personal/{$profile.img_avatar}'   class="gambaravatar"   width="200" height="250" ></img>	
+                    <div class="deleteCover">
+                    <input type="button" data-id="{$profile.id}" class="delCover  deleteavatar" name="Delete" value="Delete">
+                    </div>
+                    </div>
+                    {else}
+                    <div class='profilePicture'>
+                     
+                    <img src='{$basedomainpath}public_assets/postjob/cover.jpg' class="gambaravatar"  width="200" height="250" ></img>	
+                    
+                    </div>
+                    {/if}
+                    <div class="detailProf">
+                    <div class='row'>
+                        <label>Name : </label>
+                        <span class='edit' style="display:none"><input type="hidden" name="iduser" value="{$profile.id}"><input type="text" name="name" value="{$profile.name}" class="string"></span><span class='count_view'>{$profile.name}</span>
+                    </div>
+					
+                    <div class='row'>
+                        <label>Province : </label>
+						<span class='edit' style="display:none">
+						 <select class="selectpicker selectpicker show-tick provincy"  data-live-search="true" name="provincy" data-width="100%">
+							<option class=" ">Select Your Province*</option>
+								{section name=i loop=$provincy}
+									<option value="{$provincy[i].province}" {if $profile.provincy == $provincy[i].province } selected="selected" {/if}>{$provincy[i].province}</option>
+								{/section}
+						 </select>
+						</span>
+						<span class='count_view'>{$profile.provincy}</span>
+                    </div>
+					 <div class='row'>
+                        <label>City : </label>
+						<span class='edit' style="display:none">
+							<select class="selectpicker selectpicker show-tick city"   data-live-search="true" id='city' name="city" data-width="100%">
+								<option class="">Select Your City*</option>
+							</select>
+					  </span><span class='count_view'>{$profile.city}</span>
+                    </div>
+                    <div class='row'>
+                        <label>Phone : </label><span class='edit' style="display:none"><input type="text" name="phone" class="number" value="{$profile.phone_number}"></span><span class='count_view '>{$profile.phone_number}</span>
+                    </div>
+                    <div class='row'>
+                        <label>Email : </label><span class='edit' style="display:none"><input type="text" name="email" value="{$profile.email}"></span><span class='count_view'>{$profile.email}</span>
+                    </div>
+					 <div class='row'>
+                        <label>Facebook : </label><span class='edit' style="display:none"><input type="text" name="fb_link" value="{$profile.fb_link}"></span><span class='count_view'>{$profile.fb_link}</span>
+                    </div>
+                    <div class='row'>
+                        <label>Twitter : </label><span class='edit' style="display:none"><input type="text" name="twitter_link" value="{$profile.twitter_link}"></span><span class='count_view'>{$profile.twitter_link}</span>
+                    </div>
+					 <div class='row'>
+                        <label>Youtube : </label><span class='edit' style="display:none"><input type="text" name="youtube_link" value="{$profile.youtube_link}"></span><span class='count_view'>{$profile.youtube_link}</span>
+                    </div>
+                     <div class='row'>
+                        <label>Instagram : </label><span class='edit' style="display:none"><input type="text" name="instagram_link" value="{$profile.instagram_link}"></span><span class='count_view'>{$profile.instagram_link}</span>
+                    </div>
+                
+                
+                <input type="button" class="fr button3 editprofile" name="Edit" value="Edit">
+				<input type="checkbox" attr=""  data-status="{$profile.marking}" data-id="{$profile.id}" value="26" id="26" { if $profile.marking=='2' || $profile.marking=='1' } checked="checked"  {/if} class="marking"> Not Show
+				 {*} <input type="button" class="fr button3 marking" data-id="{$profile.id}" name="marking" value="Marking">{/*}
+				  <label class="red notshow"></label>
+                <input type="hidden" class="submit" name="submit" value="1">
+                    <input type="submit" class="fr button3 submitprofile" name="Submit" value="Save" style="display:none">
+                    <a href="{$basedomain}personalmanagement/detail?id={$profile.id}" class="fr button4 cancelprofile" style="display:none; margin:0 10px;">Cancel</a>
+                </div><!-- end #detailProf -->
+            </div>
+            </form>
+			<div class="row">
+			  <div class="tittleText">
+                        <h2>Portfolio</h2>
+                    </div>
+				<table cellpadding="0" cellspacing="0" border="0">
+				<thead>
+					<tr>
+						<th class="head0">No</th>
+						
+						<th class="head0">Portfolio Type</th> 
+						<th class="head0">Title</th> 
+						<th class="head0">Portfolio</th> 
+						<th style=" width:255px;" class="head0">Date</th> 
+						<th style="width:335px;" class="head0">Action</th> 
+					</tr>
+				</thead>
+				<tbody class="pagilist">
+				{if $portofolio}
+					{section name=i start=0  loop=$portofolio}    
+					
+
+						<tr>
+							
+							<td  width="10%">  {$portofolio[i].no}</td>
+							
+							<td width="10%"><span>
+							{if $portofolio[i].type==1}
+								Picture
+							{elseif $portofolio[i].type==2}
+								video
+							{elseif $portofolio[i].type==3}
+								audio
+							{/if}
+							
+							</span></td> 
+							<td width="5%"><span>{$portofolio[i].title}</span></td> 
+							<td  width="5%"><span>
+							{if $portofolio[i].type ==1}
+								{if $portofolio[i].images}
+									<img width="200" data-type="{$portofolio[i].type}"  data-referance="{$portofolio[i].refrance}" data-url="{$basedomainpath}public_assets/portofolio/{$portofolio[i].images}" class="popupimgs" src="{$basedomainpath}public_assets/portofolio/{$portofolio[i].images}" onerror="this.src ='{$basedomainpath}public_assets/postjob/images.jpg'" />
+								{else}
+									<img width="200" data-type="{$portofolio[i].type}"  data-referance="{$portofolio[i].refrance}"  data-url="{$basedomainpath}public_assets/postjob/images.jpg" class="popupimgs" src="{$basedomainpath}public_assets/postjob/images.jpg" />
+								{/if}
+								
+							{elseif $portofolio[i].type==2}
+								{if $portofolio[i].images}
+									<img width="200" data-type="{$portofolio[i].type}" data-referance="{$portofolio[i].refrance}" data-url="{$portofolio[i].video_url}" class="popupimgs" src="{$basedomainpath}public_assets/portofolio/{$portofolio[i].images}"  onerror="this.src ='{$basedomainpath}public_assets/postjob/images.jpg'" />
+								{else}
+									<img width="200" data-type="{$portofolio[i].type}"  data-referance="{$portofolio[i].refrance}" data-url="{$portofolio[i].video_url}" class="popupimgs" src="{$basedomainpath}public_assets/postjob/images.jpg" />  
+								{/if}
+
+							
+							{elseif $portofolio[i].type==3}
+								{if $portofolio[i].images}
+									<img width="200" data-type="{$portofolio[i].type}" data-referance="{$portofolio[i].refrance}" data-url="{$portofolio[i].audio}" class="popupimgs" src="{$basedomainpath}public_assets/portofolio/{$portofolio[i].images}"  onerror="this.src ='{$basedomainpath}public_assets/postjob/images.jpg'" />
+								{else}
+									<img width="200" data-type="{$portofolio[i].type}" data-referance="{$portofolio[i].refrance}" data-url="{$portofolio[i].audio}" class="popupimgs" src="{$basedomainpath}public_assets/postjob/images.jpg" />
+								{/if}
+							{/if}
+							
+							</span></td> 
+							<td  width="10%"><span>{$portofolio[i].date}</span></td> 
+							
+							<td  width="50%">	
+								{*} <a href="javascript:void(0)" {if $portofolio[i].n_status ==1} data-true='1' {else}  data-true='2' {/if}  data-id="{$portofolio[i].id}" 	class=" {if $portofolio[i].n_status ==1} button2 {else}  button {/if} publish" > <span class="icon-eye"> &nbsp;</span>Publish</a>
+								<a href="javascript:void(0)" {if $portofolio[i].n_status ==0} data-true='1' {else}  data-true='2' {/if}	 data-id="{$portofolio[i].id}" class="{if $portofolio[i].n_status ==0} button2 {else}  button {/if} unpublish" > <span class="icon-eye"> &nbsp;</span>UnPublish</a>
+								{/*}
+								<a href="javascript:void(0)" class="button publish"  data-true='1' data-status="{$portofolio[i].n_status}" data-id="{$portofolio[i].id}"> <span class="icon-eye"> &nbsp;</span>{if $portofolio[i].n_status == 0 } Publish {else} UnPublish {/if}</a>
+								<a href="javascript:void(0)" class="button delct" data-id="{$portofolio[i].id}" ><span class="icon-trash">&nbsp;</span> Delete</a>
+								
+							</td>
+						</tr>
+					{/section}
+					{else}
+					 <tr>
+						<td colspan="7">Tidak ada Portofolio</td>
+					 </tr>
+				{/if}
+				</tbody>
+				</table>
+			</div>
+        </div><!-- end .content -->
+    </div><!-- end #container -->
+</div><!-- end #home -->
+<div id="popup-porto-images" class=" mfp-hide">
+					<div class="popupfullcontent">
+						<img width="100%" class="imgurls" src="" onerror="this.src ='{$basedomainpath}public_assets/postjob/images.jpg'" />
+					</div>
+				</div><!-- END .popup -->
+<div id="popup-porto-video" class=" mfp-hide">
+					<div class="popupfullcontent youtube">
+						 <iframe class="youtubeurl" width="420" height="420"
+										src="http://www.youtube.com/embed/">
+									</iframe> 
+					</div>
+					<div class="popupfullcontent vimeo">
+						<iframe class="vimeourl" src="http://player.vimeo.com/video/" width="420" height="420" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
+									</iframe>
+					</div>
+				</div><!-- END .popup -->		
+<div id="popup-porto-audio" class=" mfp-hide">
+					<div class="popupfullcontent">
+						 <iframe class="soundcloude" width="100%" height="420" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url={$list.audio}&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>
+                                
+					</div>
+				</div><!-- END .popup -->			
+
+<script type="text/javascript">
+ var city = '{$profile.city}';
+ var provincesid=$('.provincy option:selected').val();
+{literal}		 
+		$(document).ready(function(){
+			 popup();
+			 publiseh();
+			 marking();
+			$('.editprofile').click(function(e){
+					$('.edit').show();
+					$('.submitprofile').show();
+					$('.cancelprofile').show();
+					$('.editprofile').hide();
+					$('.count_view').hide();
+						$.ajax ({
+								type	 : 'POST', 
+								url	 :  basedomain+'companymanegement/ajaxcity' , 
+								data:{id:provincesid},
+								dataType:'json',
+								success	: function (result) 
+								{ 
+									if(result.status==1)
+												{
+													$("#city option").remove();
+													var str="";
+													$.each(result.data,function(kal,val){
+														if(val.city==city)
+														{
+															checkeds='selected="selected"';
+														}
+														else
+														{
+															checkeds="";
+														
+														}
+														str +='<option value="'+val.city+'"  '+checkeds+' >'+val.city+'</option>';
+														
+													});
+													
+													$('#city').append(str);
+													//$('.city').selectpicker("refresh");
+												}
+								}
+							});
+
+					
+					
+				 });
+		   $('.deleteavatar').click(function(e){
+						var idCt =$(this).data('id');
+						thiss=$(this);
+							$.ajax({
+							'type': 'POST',
+							'url': basedomain+'personalmanagement/delavatar',
+							'data': {id:idCt},
+							'dataType':'json',
+							'success': function(response){
+								$('.gambaravatar').attr('src',basedomainpath+"public_assets/postjob/cover.jpg");
+								 $('.deleteavatar').remove();
+							}
+							
+						});
+				 });
+			 $('.deletecover').click(function(e){
+						var idCt =$(this).data('id');
+						thiss=$(this);
+							$.ajax({
+							'type': 'POST',
+							'url': basedomain+'personalmanagement/delcover',
+							'data': {id:idCt},
+							'dataType':'json',
+							'success': function(response){
+								$('.gambarcover').attr('src',basedomainpath+"public_assets/postjob/cover.jpg");
+								 $('.deletecover').remove();
+							}
+							
+						});
+				 });
+		});
+	
+	
+		
+	
+	</script>
+	
+{/literal}
+
+<script type="text/javascript">
+
+	//getpaging(0,{$total},"paging_of_news_list","paging_ajax_news",10);
+	var userid = {$user->id};
+	{literal}
+	function popup()
+	{
+		$('.popupimgs').click(function()
+		{
+			console.log($(this).data('url'));
+			if($(this).data('type')==1)
+			{
+					$('#popup-porto-images').find('.imgurls').attr('src',$(this).data('url'));
+				$.magnificPopup.open({
+										items: {
+											src: '#popup-porto-images' 
+										},
+										type: 'inline'
+										  });
+			}
+			else if($(this).data('type')==2)
+			{
+				if($(this).data('referance')=='youtube')
+				{
+					$('.youtube').show();
+					$('.vimeo').hide();
+					$('#popup-porto-video').find('.popupfullcontent').attr('src','http://www.youtube.com/embed/'+$(this).data('url'));
+				}
+				else
+				{
+				
+					$('.youtube').hide();
+					$('.vimeo').show();
+					$('#popup-porto-video').find('.popupfullcontent').attr('src','http://player.vimeo.com/video/'+$(this).data('url'));
+				}
+				
+				$.magnificPopup.open({
+										items: {
+											src: '#popup-porto-video' 
+										},
+										type: 'inline'
+										  });
+										  
+			}
+			else if($(this).data('type')==3)
+			{
+				$('#popup-porto-audio').find('.soundcloude').attr('src','https://w.soundcloud.com/player/?url='+$(this).data('url')+'&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true');
+				$.magnificPopup.open({
+										items: {
+											src: '#popup-porto-audio' 
+										},
+										type: 'inline'
+										  });
+			}
+			
+			
+		});
+	}
+	$('.delct').click(function()
+	{
+		var idCt =$(this).data('id');
+		thiss=$(this);
+			$.ajax({
+							'type': 'POST',
+							'url': basedomain+'personalmanagement/deleteprtofolio',
+							'data': {id:idCt},
+							'dataType':'json',
+							'success': function(response){
+								if(response.status==1)
+								{
+									console.log(thiss.parents('tr').remove());
+								}
+							}
+							
+						});
+		
+	
+	});
+	function publish()
+	{
+		$('.publish').click(function()
+		{
+			var idprotofolio= $(this).data('id');
+			var clicktrue= $(this).data('true');
+			var thiss=$(this);
+		
+			var status='1';
+			if(clicktrue==2)
+			{
+				$.ajax({
+									'type': 'POST',
+									'url': basedomain+'personalmanagement/unpublishprtofolio',
+									'data': {id:idprotofolio,status:status},
+									'dataType':'json',
+									'success': function(response){
+										if(response.status==1)
+										{
+											thiss.removeClass('button');
+											thiss.addClass('button2');
+											thiss.attr('data-true',1);
+											thiss.parent('td').find('.unpublish').removeClass('button2');
+											thiss.parent('td').find('.unpublish').addClass('button');
+											thiss.parent('td').find('.unpublish').attr('data-true',2);
+										}
+									}
+									
+								});
+			}
+		});
+	}
+	$('.number').keyup(function () {  
+		if(this.value)
+		{
+			this.value = this.value.replace(/[^0-9\.]/g,''); 
+			
+		}
+	});
+	$('.string').keyup(function () {  
+		if(this.value)
+		{
+			this.value = this.value.replace(/[^a-zA-Z]/g,''); 
+			
+		}
+	});	
+	$('.unpublish').click(function()
+	{
+		var idprotofolio= $(this).data('id');
+		var clicktrue= $(this).data('true');
+		var thiss=$(this);
+		var status='0';
+		console.log(clicktrue);
+		if(clicktrue==2)
+		{
+			$.ajax({
+								'type': 'POST',
+								'url': basedomain+'personalmanagement/unpublishprtofolio',
+								'data': {id:idprotofolio,status:status},
+								'dataType':'json',
+								'success': function(response){
+									if(response.status==1)
+									{
+										thiss.removeClass('button');
+										thiss.addClass('button2');
+										thiss.attr('data-true',1);
+										thiss.parent('td').find('.publish').removeClass('button2');
+										thiss.parent('td').find('.publish').addClass('button');
+												thiss.parent('td').find('.publish').attr('data-true',2);
+									}
+								}
+								
+							});
+		}
+	});
+	function publiseh()
+	{
+		$('.publish').click(function()
+		{
+			var idjobs =$(this).data('id');
+			thiss=$(this);
+			var publish= $(this).attr('data-status');
+			if(publish==1)
+				{
+					status=0;
+				}
+			else
+				{
+					status=1;
+				}
+				$.ajax({
+								'type': 'POST',
+								'url': basedomain+'personalmanagement/unpublishprtofolio',
+								'data': {id:idjobs,status:status},
+								'dataType':'json',
+								'success': function(response){
+									if(response.status==1)
+									{
+										//console.log(thiss.parents('tr').remove());
+										console.log(thiss.has('span'));
+										if(publish==1)
+										{
+											console.log(publish);
+											thiss.removeAttr('data-status');
+											thiss.attr('data-status','0');
+											//thiss.removeClass('button2');
+											thiss.html('<span class="icon-eye">  </span> Publish');
+										}
+										else
+										{
+											console.log('ss'+publish);
+											thiss.removeAttr('data-status');
+											thiss.attr('data-status','1');
+											//thiss.removeClass('button');
+											thiss.html('<span class="icon-eye">  </span> UnPublish');
+										}
+									}
+								}
+								
+							});
+			
+		
+		});
+	}
+	function marking()
+	{
+		$('.marking').click(function()
+		{
+			var idCt =$(this).data('id');
+			thiss=$(this);
+			var blockstatus= $(this).attr('data-status');
+			if(blockstatus==2 || blockstatus==1)
+				{
+					status=0;
+				}
+			else
+				{
+					status=1;
+				}
+				$.ajax({
+								'type': 'POST',
+								'url': basedomain+'marking/upmarking',
+								'data': {id:idCt,markingstatus:status},
+								'dataType':'json',
+								'success': function(response){
+									if(response.status==1)
+									{
+										console.log(thiss.parents('tr').find('.markinginfo'));
+										if(blockstatus==2 || blockstatus==1)
+										{
+											
+											thiss.removeAttr('data-status');
+											thiss.attr('data-status','0');
+											thiss.removeClass('button2');
+											//thiss.addClass('button');
+											//thiss.parents('tr').find('.markinginfo').html('-');
+										}
+										else
+										{
+											
+											thiss.removeAttr('data-status');
+											thiss.attr('data-status','1');
+											thiss.removeClass('button');
+										//	thiss.addClass('button2');
+										//	thiss.parents('tr').find('.markinginfo').html('Not Show');
+										}
+									}
+								}
+								
+							});
+			
+		});
+	}
+	$('.provincy').change(function(){
+		//var id = $('#province option:selected').val();
+		 var provincesid=$('.provincy option:selected').val();
+		
+			$.ajax ({
+								type	 : 'POST', 
+								url	 :  basedomain+'companymanegement/ajaxcity' , 
+								data:{id:provincesid},
+								dataType:'json',
+								success	: function (result) 
+								{ 
+									if(result.status==1)
+												{
+													$("#city option").remove();
+													var str="";
+													$.each(result.data,function(kal,val){
+														if(val.city==city)
+														{
+															checkeds='selected="selected"';
+														}
+														else
+														{
+															checkeds="";
+														
+														}
+														str +='<option value="'+val.city+'"  '+checkeds+' >'+val.city+'</option>';
+														
+													});
+													
+													$('#city').append(str);
+													//$('.city').selectpicker("refresh");
+												}
+								}
+							});
+		
+	})		
+{/literal}
+</script>
+

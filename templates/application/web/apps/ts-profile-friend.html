@@ -1,0 +1,151 @@
+<div class="page_section" id="profilepage">
+    <div id="metapage">
+        <div class="wrapper">
+            <h1 class="page-title fl">Talent Seeker Profile</h1>
+            <div class="breadcumb fr">
+                  <a href="{$basedomain}home/">Home</a> <span>/</span> <a href="">Talent Seeker Profile</a>
+            </div>
+        </div><!-- end .wrapper -->   
+    </div><!-- end #metapage -->
+	
+    <div id="profileboard" class="section"> 
+        <div class="wrapper">
+        	{*}<div class="rows">
+                <div class="helpButton fr">
+                    <a href="#popup-tour-profileTs" class="helpPopup showPopup2"><i class="icon-question-circle">&nbsp;</i></a>
+                </div>
+            </div>{/*}
+        	<div class="cols">
+			{if $list}
+				{section name=i loop=$list}
+                
+				{include file='application/web/widgets/popup-photo-thumb.html'} 
+                <div class="sectionsrow profilebox">
+                  <div class="profilethumb thumb">
+				    {if $list[i].img_avatar <> ''}
+                    
+                    <a href="#popup-photo-thumb" class="showpopup">
+				  <img src="{$basedomain}public_assets/personal/{$list[i].img_avatar}" />
+                  </a>
+				  {else}
+				   <img src="{$basedomain}public_assets/personal/ts.png" />
+				  {/if}
+				  </div>
+                  <div class="profileentry">
+                  	<div class="rowhead">
+			<h3 class="profilename"><label class='namanok'>{$list[i].nama_perusahaan}</label> <label class='nameok'></label>  <label class="red lastnameok" id='lasnya'></label> {if $list[i].verified==1}
+                           <a class="company-status"><i class="icon-check-circle">&nbsp;</i> Verified</a>
+		
+						  
+						  {/if} </h3>
+                       
+                    </div><!-- END .rowhead -->
+                  	<div class="rowentry">
+                        <div class="meta-post">
+						
+                        </div><!-- END .meta-info -->
+						<p><i class="icon-map-marker">&nbsp;</i>{$list[i].provinsi}, {$list[i].city}</i>
+						
+						
+                      <div class="socialbox">
+                           <a class='fbok ico icon-facebook' {if $list[i].fb_link} href="https://www.facebook.com/{$list[i].fb_link|replace:'https://www.facebook.com/':''}" target="_blank"  {else} href="#fblinks" id="fblinks" {/if} ><i class="ico icon-facebook">&nbsp;</i></a>
+                            <a  class='twok ico icon-twitter' {if $list[i].twitter_link}  href="https://twitter.com/{$list[i].twitter_link|replace:'https://twitter.com/':''}" target="_blank" {else} href="#twitterlinks" id="twitterlinks" {/if}  ><i class="">&nbsp;</i></a>
+                            <a  class='yook ico icon-instagram' {if $list[i].instagram_link}  href="http://instagram.com/{$list[i].instagram_link|replace:'http://instagram.com/':''}" target="_blank" {else} href="#instagramlinks" id="instagramlinks" {/if} ><i class="ico ">&nbsp;</i></a>
+                            <a class='inok ico icon-youtube' {if $list[i].youtube_link}  href="https://www.youtube.com/{$list[i].youtube_link|replace:'https://www.youtube.com/':''}" target="_blank" {else} href="#youtubelinks" id="youtubelinks" {/if} ><i class="ico ">&nbsp;</i></a>
+                            <a class='websiteok sphere' {if $list[i].website_link}  href="http://{$list[i].website_link|replace:'http://':''}" target="_blank" {else} href="#websitelinks" id="websitelinks" {/if} ><i class="ico ">&nbsp;</i></a>
+                        </div><!-- END .socialbox -->
+                    </div><!-- END .rowentry -->
+                  </div><!-- END .profileentry -->
+                </div><!-- END .sectionsrow -->
+				 <h3 class="sectiontitle">
+	About
+	<span class="red">Us</span>
+	</h3>
+			
+            	<div class="euTab">
+                  <ul>
+                    <li><a href="#my-bio">BIO</a></li>
+                  
+                  </ul>
+                  <div id="my-bio" class="tab-content">
+                  	<div class="tabentry">
+                        <div class="sectionsrow">
+                        
+                          <div class="sections">
+						
+                                <p><label class="testimoniok">{$list[i].testimoni}</label></p>
+								{if $userid==$id}
+								 <div class="rows">
+                                	<h4 class="aboutTitle red"><strong>Contact Person Info :</strong></h4>
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                      <tr>
+                                        <td width="220"><strong>Name</strong></td>
+                                        <td width="10">:</td>
+                                        <td><label class="namecpok">{$list[i].name} {$list[i].last_name}</label></td>
+                                      </tr>
+                                      <tr>
+                                        <td><strong>Email</strong></td>
+                                        <td width="10">:</td>
+                                        <td><label  class="emailok">{$list[i].email}</label></td>
+                                      </tr>
+                                      <tr>
+                                        <td><strong>Telephone</strong></td>
+                                        <td>:</td>
+                                        <td><label  class="phonecpok">{$list[i].phone_number}</label></td>
+                                      </tr>
+                                   
+                                    </table>
+                                </div><!-- END .rows -->
+								{/if}
+                                <div class="rows">
+                                	<h4 class="aboutTitle red"><strong>	{if $list[i].jenis_perusahaan=='coorporate'}
+									Company {else} Organization {/if} Info :</strong></h4>
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                      <tr>
+                                        <td width="220"><strong>Name</strong></td>
+                                        <td width="10">:</td>
+                                        <td><label class="brandok">{$list[i].nama_perusahaan}</label></td>
+                                      </tr>
+                                      <tr>
+                                        <td><strong>Email</strong></td>
+                                        <td width="10">:</td>
+                                        <td><label  class="emailok">{$list[i].email}</label></td>
+                                      </tr>
+                                      <tr>
+                                        <td><strong>Telephone</strong></td>
+                                        <td>:</td>
+                                        <td><label  class="phoneok">{$list[i].no_tlp}</label></td>
+                                      </tr>
+                                      <tr>
+                                        <td valign="top"><strong>Address</strong></td>
+                                        <td valign="top">:</td>
+                                        <td><label  class="addressok">{$list[i].alamat_perusahaan} </label>
+                                       <!--<br /><a href="#" class="red">View Maps</a> !--></td>
+                                      </tr>
+                                    </table>
+                                </div><!-- END .rows -->
+                            </div><!-- END .sections -->
+                        </div><!-- END .sectionsrow -->
+						
+							
+                        <h3 class="sectiontitle">Why Join <span class="red">With Us</span></h3>
+                        <div class="sectionsrow">
+                          
+                            <div class="sections">
+                                <div class="rows">
+                                    <p>{$list[i].whyjoinus}</p>
+                                </div><!-- END .rows -->
+                            </div><!-- END .sections -->
+                        </div><!-- END .sectionsrow -->
+                    </div><!-- END .tabentry -->
+                  </div><!-- END .tab-content -->
+				  {/section}
+				{/if}
+                 
+                </div><!-- END .widget -->
+            </div><!-- end .cols -->   
+        </div><!-- end .wrapper -->    
+    </div><!-- end #profileboard --> 
+</div><!-- end #profilepage -->
+{include file="application/web/widgets/popup-tour-profileTs.html"}
+<div id="bg-popup2"></div>

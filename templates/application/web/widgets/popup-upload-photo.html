@@ -1,0 +1,534 @@
+<div id="popup-upload-photo" class="popup mfp-hide">
+    <div class="popupcontent">
+    	<h3 class="title">Upload <span class="red">Photos</span></h3>
+        <div class="rows center">
+			<form action="{$basedomain}personal/addportofolioPhoto" method="post" enctype="multipart/form-data" id="formuploadfoto">
+            <div class="boxs boxphoto">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table">
+				
+                   <tr>
+                    <td> 
+						<a href="javascript:void(0)" class="button2 upphoto">BROWSE</a>
+						<input type="file"  name="foto[]"  value="" class="foto" style="display:none">
+						<span class="row tmptfoto" style="color:red"> </span>
+						<span class="row foto_no" style="color:red" > </span> 
+					</td>
+                  </tr>
+                  <tr>
+                    <td><input type="hidden" value="1"  name="type[]"  />
+					<input type="text" value="" class="titlefoto" autocomplete="off" name="title[]" placeholder="Insert Title Here" />
+					<span class="row titlefoto_no" style="color:red"> </span> 
+					</td>
+                  </tr>
+                  <tr>
+                    <td><input type="text" value=""  class="descfoto" autocomplete="off" name="desc[]" placeholder="Insert Image Description" />
+						<span class="row descfoto_no" style="color:red" > </span> 
+					</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label>Tag in Category</label>
+                      <div class="selectbox">
+                      <select name="category[]" class="categoryfoto">
+					 <option value="0">None</option>
+					  <option value="99">Both</option>
+					  {section name=n loop=$listcategory}
+                        <option value="{$listcategory[n].id}">{$listcategory[n].category_name}</option>
+						{/section}
+                      </select>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+            </div><!-- END .boxs -->
+            <div class="boxs boxphoto">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table">
+                    <tr>
+                    <td> 
+						<a href="javascript:void(0)" class="button2 upphoto">BROWSE</a>
+						<input type="file"  name="foto[]"  value="" class="foto" style="display:none">
+						<span class="row tmptfoto" style="color:red"> </span>
+						<span class="row foto_no" style="color:red" > </span> 
+					</td>
+                  </tr>
+                  <tr>
+                    <td><input type="hidden" value="1"  name="type[]"  />
+					<input type="text" value="" class="titlefoto" autocomplete="off" name="title[]" placeholder="Insert Title Here" />
+					<span class="row titlefoto_no" style="color:red" > </span> 
+					</td>
+                  </tr>
+                  <tr>
+                    <td><input type="text" value=""  class="descfoto" autocomplete="off" name="desc[]" placeholder="Insert Image Description" />
+						<span class="row descfoto_no" style="color:red" > </span> 
+					</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label>Tag in Category</label>
+                      <div class="selectbox">
+                      <select name="category[]" class="categoryfoto">
+					   <option value="0">None</option>
+					  <option value="99">Both</option>
+					   {section name=i loop=$listcategory}
+                        <option value="{$listcategory[i].id}">{$listcategory[i].category_name}</option>
+						{/section}
+                      </select>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+            </div><!-- END .boxs -->
+            <div class="boxs boxphoto">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table">
+                    <tr>
+                    <td> 
+						<a href="javascript:void(0)" class="button2 upphoto">BROWSE</a>
+						<input type="file"  name="foto[]"  value="" class="foto" style="display:none">
+						<span class="row tmptfoto" style="color:red" > </span>
+						<span class="row foto_no" style="color:red"> </span> 
+					</td>
+                  </tr>
+                  <tr>
+                    <td><input type="hidden" value="1"  name="type[]"  />
+					<input type="text" value="" class="titlefoto" autocomplete="off" name="title[]" placeholder="Insert Title Here" />
+					<span class="row titlefoto_no" style="color:red" > </span> 
+					</td>
+                  </tr>
+                  <tr>
+                    <td><input type="text" value=""  class="descfoto" autocomplete="off" name="desc[]" placeholder="Insert Image Description" />
+						<span class="row descfoto_no" style="color:red"> </span> 
+					</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label>Tag in Category</label>
+                      <div class="selectbox">
+                      <select name="category[]" class="categoryfoto">
+					   <option value="0">None</option>
+					  <option value="99">Both</option>
+					  {section name=j loop=$listcategory}
+                        <option value="{$listcategory[j].id}">{$listcategory[j].category_name}</option>
+						{/section}
+                      </select>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+            </div><!-- END .boxs -->
+            <div class="smallbtn smallbtnphoto">
+                <input type="submit" value="SAVE" class="button1 saveprotophoto" />
+				<input type="hidden" name="uploadphoto" value="1">
+                <input type="button" value="+ Add More Photos" class="button2 addmore" />
+            </div>
+			</form>
+			<div id="progressbarphoto" style="display:none" ><div class="progress-label"></div></div>
+        </div><!-- END .rows -->
+    </div>
+</div>
+<div id="popup-maxfoto" class="popup mfp-hide" style="width:300px; text-align:center;">
+			<div class="popupfullcontent">
+				<h3 class="title">Portfolio <span class="red">Photo</span></h3>
+				<p>Maximum Upload 20 photo</p>
+				
+			</div>
+</div><!-- END .popup -->
+    <script type="text/javascript" src="{$basedomain}assets/js/jquery.form.js"></script>
+<script>
+{literal}
+$(function() {
+	
+	getFiles();
+	duplicatphoto();
+	//clickupload();
+	uploadephoto();
+	
+});
+function getFiles()
+{
+	$('.upphoto').click(function()
+	{
+		
+		thiss= $(this).next('.foto');
+		console.log(thiss);
+		thiss.change(function(e)
+		 {
+		   
+			   e.preventDefault();
+				
+			    $(".upload_no").html('');
+				console.log(this.files[0].size);
+				$(thiss).next().next('.foto_no').html('');
+				$(thiss).next('.tmptfoto').html('');
+				if(this.files[0].size > 2100000)
+				{
+				
+					$(thiss).next().next('.foto_no').html('Maximum file size 2MB');
+					
+					thiss.replaceWith('<input type="file" style="display:none" class="foto" value="" name="foto[]">');
+					
+				}
+				else
+				{
+				   if(this.files[0].type=='image/jpeg' ||  this.files[0].type=='image/png')
+					{
+						 var reader = new FileReader();
+						 reader.onload = function (ex) {
+							ex.preventDefault();
+							console.log($(thiss).next('.tmptfoto'));
+							$(thiss).next('.tmptfoto').html('<br> <img width="100" class="filimg"  src="'+ex.target.result+'"> ');
+						  }
+					  reader.readAsDataURL(this.files[0]);
+					
+					  //end;
+					}
+					else
+					{
+						$(thiss).next().next('.foto_no').html(' Sorry, we can only support PNG,JPEG/JPG files ');
+					
+						thiss.replaceWith('<input type="file" style="display:none" class="foto" value="" name="foto[]">');
+						
+					}
+				}
+		});
+		$($(this).next('.foto')).trigger('click');
+	});
+
+}
+function checkFormfoto()
+{
+	var titlefoto_no='.titlefoto_no';
+	$(titlefoto_no).html(' ');
+	var descfoto_no='.descfoto_no';
+	$(descfoto_no).html(' ');
+	var foto_no='.foto_no';
+	$(foto_no).html(' ');
+	var valide='';
+	$.each($('.titlefoto'),function(k,v){
+		if($('.titlefoto').eq(k).val() || $('.descfoto').eq(k).val() ||$('.tmptfoto img').eq(k).attr('src'))
+		{
+			if($('.titlefoto').eq(k).val()=='')
+			{
+				$(titlefoto_no).eq(k).html('You cannot leave this field empty');
+				valide='ada';
+			}
+			if($('.descfoto').eq(k).val()=='')
+			{
+				$(descfoto_no).eq(k).html('You cannot leave this field empty');
+				valide='ada';
+			}
+			if($('.tmptfoto img').eq(k).attr('src')==undefined)
+			{
+				$(foto_no).eq(k).html('You cannot leave this field empty');
+				valide='ada';
+			}
+			
+		}
+		
+	});
+	if(valide)
+	{
+		return false;
+	}
+	else
+	{
+		return true;
+	}
+	
+}
+function uploadephoto()
+{
+	$('.saveprotophoto').click(function()
+	{
+		
+		
+			var titlefoto_no='.titlefoto_no';
+			$(titlefoto_no).html(' ');
+			var jumlahkirim =0;
+	
+			var descfoto_no='.descfoto_no';
+			$(descfoto_no).html(' ');
+			var foto_no='.foto_no';
+			$(foto_no).html(' ');
+			var youtubeformat = /^(?:https?:\/\/)?(?:www\.)?youtube\.com\/watch\?(?=.*v=((\w|-){11}))(?:\S+)?$/; 
+			var vimeoformat = /http:\/\/(?:www.)?(?:(vimeo).com\/(.*)|(youtube).com\/watch\?v=(.*?)&)/;
+			var valide='';
+			var jumlahup=0;
+			//console.log($('.tmptfoto img'));
+			$.each($('.titlefoto'),function(k,v){
+				if($('.titlefoto').eq(k).val() || $('.descfoto').eq(k).val() ||$('.tmptfoto img').eq(k).attr('src'))
+				{
+					if($('.titlefoto').eq(k).val()=='')
+					{
+						$(titlefoto_no).eq(k).html('You cannot leave this field empty');
+						valide='ada';
+					}
+					
+					
+					
+					if($('.tmptfoto').eq(k).find('img').attr('src')==undefined)
+					{
+						$(foto_no).eq(k).html('You cannot leave this field empty');
+						valide='ada';
+						
+					}
+					
+					++jumlahup;
+				}
+				
+			});
+			if(valide)
+			{
+				jumlahup=0;
+				return false;
+			}
+			
+		
+		//$.each($('.titlefoto'),function(kx,vx){
+			
+			if($('.titlefoto').eq(0).val()!='')
+			{
+				
+				datas = new FormData();
+				datas.append("title", $('.titlefoto').eq(0).val());
+			
+				datas.append("desc", $('.descfoto').eq(0).val());
+				datas.append("category", $('.categoryfoto option:selected').eq(0).val());
+				datas.append("foto", $('.foto').eq(0)[0].files[0]);
+				datas.append('uploadphoto',1);
+				datas.append('ajax',1);
+				$('.tmptfoto').eq(0).html('<div id="progressbarphoto" class="progressbarphoto fl"><div class="progress-label"></div></div>');
+				
+				
+				
+				$.ajax({
+						   xhr: function(){
+							   var xhr = new window.XMLHttpRequest();
+							   //Upload progress
+							   xhr.upload.addEventListener("progress", function(evt){
+							   if (evt.lengthComputable) {
+								 percentComplete = Math.round(100 * evt.loaded / evt.total);
+								 //Do something with upload progress
+									progressbar = $( ".progressbarphoto" ).eq(0),
+									progressl = $( ".progress-label" ).eq(0),
+									$(progressl).text(percentComplete+ '%');
+									  $(progressbar).css('width', '' + percentComplete+ '%');
+								 }
+							   }, false);
+							 
+							   return xhr;
+							 },
+
+
+
+							url: basedomain+"personal/addportofolioPhoto",
+						   type: "POST",
+						   data: datas,
+						   processData: false,
+						   contentType: false,
+						   success: function(response) {
+							response= jQuery.parseJSON(response );
+						
+							++jumlahkirim;
+							
+							
+							if(response.status==0)
+							{
+								
+								
+								//$('.tmptfoto').eq(kx).html(response.msg);
+								$('.mfp-close').trigger('click');
+								$.magnificPopup.open({
+										items: {
+											src: '#popup-maxfoto' 
+										},
+										type: 'inline'
+										  });
+								setTimeout(function(){ window.location.assign(basedomain+'/personal#my-portfolio'); }, 500);
+								
+							}
+							
+							if(jumlahkirim==jumlahup)
+							{
+									if(window.location.href.indexOf("#my-portfolio") > -1) {
+										location.reload();
+									}
+									else
+									{
+										
+											location.href = basedomain+"personal/#my-portfolio";
+									}
+									console.log('sdsdsds');
+									return false;
+								
+							}
+							 //return false;
+							goupload(jumlahkirim,jumlahup);
+							
+							console.log(jumlahkirim+'=='+jumlahup);
+						   },
+						   error: function(jqXHR, textStatus, errorMessage) {
+							   console.log(errorMessage); // Optional
+						   }
+						});
+				
+			}
+		
+		//});
+		console.log( $('.tmptfoto img').attr('src'));
+		if($('.titlefoto').val()=='' && $('.tmptfoto img').attr('src')==undefined)
+				{
+					console.log('ssss');
+					$('#popup-upload-photo').magnificPopup('close');
+					return false;
+				}
+			else
+				{
+					return false;
+				}
+	});
+}
+function goupload(numberkirim,numberjumlahup)
+{
+	jumlahkirim=numberkirim
+	datas = new FormData();
+				datas.append("title", $('.titlefoto').eq(numberkirim).val());
+			
+				datas.append("desc", $('.descfoto').eq(numberkirim).val());
+				datas.append("category", $('.categoryfoto option:selected').eq(numberkirim).val());
+				datas.append("foto", $('.foto').eq(numberkirim)[0].files[0]);
+				datas.append('uploadphoto',1);
+				datas.append('ajax',1);
+				$('.tmptfoto').eq(numberkirim).html('<div id="progressbarphoto" class="progressbarphoto fl"><div class="progress-label"></div></div>');
+				
+				
+				
+				$.ajax({
+						   xhr: function(){
+							   var xhr = new window.XMLHttpRequest();
+							   //Upload progress
+							   xhr.upload.addEventListener("progress", function(evt){
+							   if (evt.lengthComputable) {
+								 percentComplete = Math.round(100 * evt.loaded / evt.total);
+								 //Do something with upload progress
+									progressbar = $( ".progressbarphoto" ).eq(numberkirim),
+									progressl = $( ".progress-label" ).eq(numberkirim),
+									$(progressl).text(percentComplete+ '%');
+									  $(progressbar).css('width', '' + percentComplete+ '%');
+								 }
+							   }, false);
+							 
+							   return xhr;
+							 },
+
+
+
+							url: basedomain+"personal/addportofolioPhoto",
+						   type: "POST",
+						   data: datas,
+						   processData: false,
+						   contentType: false,
+						   success: function(response) {
+							response= jQuery.parseJSON(response );
+						
+							++jumlahkirim;
+							
+							
+							if(response.status==0)
+							{
+								
+								
+								//$('.tmptfoto').eq(kx).html(response.msg);
+								$('.mfp-close').trigger('click');
+								$.magnificPopup.open({
+										items: {
+											src: '#popup-maxfoto' 
+										},
+										type: 'inline'
+										  });
+							setTimeout(function(){ window.location.assign(basedomain+'/personal#my-portfolio'); }, 500);
+								
+							}
+							
+							if(jumlahkirim==numberjumlahup)
+							{
+									if(window.location.href.indexOf("#my-portfolio") > -1) {
+										location.reload();
+									}
+									else
+									{
+										
+											location.href = basedomain+"personal/#my-portfolio";
+									}
+									console.log('sdsdsds');
+									return false;
+								
+							}
+							
+							goupload(jumlahkirim,numberjumlahup);
+						   },
+						   error: function(jqXHR, textStatus, errorMessage) {
+							   console.log(errorMessage); // Optional
+						   }
+						});
+}
+function progress() {
+				var val = $('.progressbarphoto').progressbar( "value" ) || 0;
+				$('.progressbarphoto').progressbar( "value", val + 5 );
+				if ( val < 99 ) {
+					console.log(val);
+					setTimeout( progress, 20 );
+				}
+			}
+
+
+function duplicatphoto()
+{
+	$('.addmore').click(function()
+	{
+	
+		$(".boxphoto:last").clone().insertBefore('.smallbtnphoto');
+		
+		getFiles();
+		$('.tmptfoto:last').html('');
+		$('.titlefoto:last').val('');
+		$('.descfoto:last').val('');
+		$('.titlefoto_no:last').html('');
+		$('.descfoto_no:last').html('');
+		$('.foto_no:last').html('');
+		console.log($('.foto:last'));
+		$('.foto:last').replaceWith('<input type="file" style="display:none" class="foto" value="" name="foto[]">');
+	});
+}
+ function clickupload()
+{
+	$('.saveprotophoto').click(function()
+	{
+		console.log();die;
+		
+		
+		$('#progressbarphoto').show();
+		$('#formuploadfoto').hide();
+		var progressbar = $( "#progressbarphoto" ),
+			progressLabel = $( ".progress-label" );
+			progressbar.progressbar({
+				value: false,
+				change: function() {
+					progressLabel.text( progressbar.progressbar( "value" ) + "%" );
+				},
+				complete: function() {
+					progressLabel.text( "Complete!" );
+				}
+			});
+			function progress() {
+				var val = progressbar.progressbar( "value" ) || 0;
+				progressbar.progressbar( "value", val + 2 );
+				if ( val < 99 ) {
+					setTimeout( progress, 80 );
+				}
+			}
+			setTimeout( progress, 2000 );
+		
+	});
+}
+{/literal}
+</script>

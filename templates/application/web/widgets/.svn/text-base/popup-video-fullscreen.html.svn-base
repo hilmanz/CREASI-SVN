@@ -1,0 +1,14 @@
+<div id="popup-photo-fullscreen" class="popupfull mfp-hide">
+	<div class="popupfullcontent">
+    	<a class="closepopup" href="#"><i class="icon-times-circle">&nbsp;</i></a>
+	  {if $list.refrance=='youtube'}
+									 <iframe width="420" height="420"
+										src="http://www.youtube.com/embed/{$list.video_url}">
+									</iframe> 
+									{else if $list.refrance=='vimeo'}
+									<iframe src="http://player.vimeo.com/video/{$list.video_url}" width="420" height="420" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
+									</iframe>
+									{/if}                     
+									
+    </div>
+</div><!-- END .popup -->

@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/creasi/!svn/ver/49/trunk/engines/Utility/PHPMailer
+END
+LICENSE
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/creasi/!svn/ver/49/trunk/engines/Utility/PHPMailer/LICENSE
+END
+changelog.txt
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/creasi/!svn/ver/49/trunk/engines/Utility/PHPMailer/changelog.txt
+END
+docs.ini
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/creasi/!svn/ver/49/trunk/engines/Utility/PHPMailer/docs.ini
+END
+class.phpmailer.php
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/creasi/!svn/ver/49/trunk/engines/Utility/PHPMailer/class.phpmailer.php
+END
+class.pop3.php
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/creasi/!svn/ver/49/trunk/engines/Utility/PHPMailer/class.pop3.php
+END
+README.md
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/creasi/!svn/ver/49/trunk/engines/Utility/PHPMailer/README.md
+END
+class.smtp.php
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/creasi/!svn/ver/49/trunk/engines/Utility/PHPMailer/class.smtp.php
+END

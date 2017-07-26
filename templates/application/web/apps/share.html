@@ -1,0 +1,68 @@
+<!-- ki -->
+<div class="page_section" id="project-page">
+    <div id="container">
+        <div class="titlebox">
+            <h2 class="fl"><span class="icon-books">&nbsp;</span> Homepage - About Shinkenjuku</h2>
+        
+        </div><!-- end .titlebox -->
+        <div class="content">
+            <div class="summary">
+           
+            </div><!-- end .summary -->
+
+            <form id="forms" class="forms" method="post" action="">
+            <div id="new-project" class="boxcontent">
+              
+			  <div class="chat" style="overflow:auto; padding:5px; width:400px; height:100px; background-color: rgb(255, 255, 255); border:1px solid #ccc;">
+			 Chating
+			  
+			  </div> 
+			  
+			<br>
+			<form id="FormInput">
+			<input type='text' name="message"><input type='submit' value='send'><div class='loading' style="display:none;"> Loading...</div>
+			</form>
+			  
+			
+            </div><!-- end #wizard -->
+            </form>
+        </div><!-- end .content -->
+    </div><!-- end #container -->
+</div><!-- end #home -->
+{literal}
+<script>
+    $().ready(function(){
+        $('#forms').submit(function(e){
+            e.preventDefault();
+            $.ajax({
+                'type': 'POST',
+                'url': 'share/ajaxchat',
+                'dataType': 'json',
+                'data': $(this).serialize(),
+				'beforeSend' : 
+				function() {
+      $('.loading').show();
+    },
+				
+                'success': function(data){
+                   	var str="";
+					//console.log(data.data);
+					$.each(data.data.result,function(k,v){  
+						
+						 str+=v.pesan+'<br>';
+					
+				});
+					$('.loading').hide();
+					$('.chat').html(str);
+					 
+                }
+            });
+        });
+		setInterval(function(){
+		
+		
+		}, 3000);
+    });
+</script>
+{/literal}
+

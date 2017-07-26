@@ -1,0 +1,161 @@
+<!-- ki -->
+<div class="page_section" id="project-page">
+    <div id="container">
+        <div class="titleboxs">
+            <h2 class="fl"><span class="icon-books">&nbsp;</span> MESSAGE</h2>
+		<!--	<h2 class="fr"><a href="#" class="button2 addmessage">Compose Message</a></h2>
+			<h2 class="fr"><a href="#" class="button2 viewinbox backlistx">View Inbox</a></h2> -->
+        </div><!-- end .titleboxs -->
+        <div class="content">
+            <div class="summary">
+           
+            </div><!-- end .summary -->
+
+            <form id="forms" class="forms" method="post" action="">
+            <div id="new-project" class="boxcontent">
+			 <img src="{$basedomain}assets/img/loading.gif" class="loading" style="display:none;">
+			 
+			<div  class="newmessage" style="display:none;">
+			
+			<h3>Compose Message</h3>
+			   <div class="row">
+                        <label for="name">To<br></label>
+                        <input id="name" name="name" type="text" value='{$list[i].name}' class="required mandatory" ><br><label class="msg_name" style="color: red;"></label>
+                    </div><!-- end .row -->
+					  <div class="row">
+                        <label for="alamat">Message<br></label>
+                       <textarea class="required mandatory" name="message" style="width: 615px; height: 122px;"></textarea>
+                    </div><!-- end .row -->
+					
+					<div class="row">
+					    <input type="hidden" name="submit" value="1">
+                        <input type="submit" value="SAVE" class="button3"  />
+						<a href="{$basedomain}users" class="button4">CANCEL</a>
+                   </div><!-- end .row -->
+			</div>
+			
+			<div  class="boxinbox">
+              <table class='inbox'>
+			  <tr><th>Dari</th><th>Date</th> <th>Message</th></tr>
+			   <tr>
+			  	{if $list}
+				{section name=i loop=$list}  
+					 {if $list[i].n_status==1}
+					
+						<td> <a href="#" style="color:#000;" idpesan="{$list[i].id}" class="read"> {$list[i].from}</td>
+						<td> <a href="#" style="color:#000;" idpesan="{$list[i].id}" class="read"> {$list[i].date}</td>
+						<td>  <a href="#" style="color:#000;" idpesan="{$list[i].id}" class="read">{$list[i].message} </td>
+				
+					{else}
+						
+						<td><strong><a href="#" style="color:#000;" value="{$list[i].id}" class="read2">{$list[i].from}</a></strong></td>
+						<td><strong><a href="#" style="color:#000;" value="{$list[i].id}" class="read2">{$list[i].date}</a></strong></td>	
+						<td><strong><a href="#" style="color:#000;" value="{$list[i].id}" class="read2"> {$list[i].message} </a></strong></td>		
+						
+					{/if}		  
+			  </tr>
+			  {/section}
+			 {/if}
+			 
+			  </table>
+			  
+			  
+			 
+			  </div>
+            </div><!-- end #wizard -->
+            </form>
+        </div><!-- end .content -->
+    </div><!-- end #container -->
+</div><!-- end #home -->
+
+{literal}
+<script type="text/javascript">
+$(document).ready(function(){
+			$('.read').click(function(e){
+			var idpesan = $(this).attr('idpesan');
+			messageread(idpesan);
+		});
+});
+
+$(document).ready(function(){
+			$('.read2').click(function(e){
+			 var idpesan = $(this).attr('value');
+			 messageinread(idpesan);
+			 });
+});
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+			$('.addmessage').click(function(e){
+			$('.boxinbox').hide();
+			$('.newmessage').show();
+		});
+});
+$(document).ready(function(){
+				$('.backlistx').click(function(e){
+									
+										  e.preventDefault();
+										  $link = $(this);
+											 $.ajax({
+											
+													'type': 'POST',
+													'url': ''+basedomain+'message/ajaxlist',
+													'data': 'mydata',
+													'dataType':'json',
+													'beforeSend':function(){    
+																				$('.newmessage').hide();
+																				$(".hasilinbox").hide();
+																				$(".loading").show();
+																					
+																			},
+													'success': function(result){
+															$(".loading").hide();
+															$(".hasilinbox").show();
+															$(".boxinbox").show();
+															var str="";
+															str+='<table class="tabpag"><tr><th>Dari</th><th>Date</th><th>Message</th></tr>';
+															$.each(result.data,function(k,v){  
+															
+															
+																	if(v.n_status==1)
+																	{
+																	str+='<tr>';
+																	str+='<td><span><a href="#" style="color:#000;" idpesan="'+v.id+'" class="read">'+v.from+'</span></td> ';
+																	str+='<td><span><a href="#" style="color:#000;" idpesan="'+v.id+'" class="read">'+v.date+'</span></td> ';
+																	str+='<td><span><a href="#" style="color:#000;" idpesan="'+v.id+'" class="read">'+v.message+'</span></td> ';
+																	str+='<tr> ';
+																	}else{
+																	str+='<tr>';
+																	str+='<td><strong><span><a href="#" style="color:#000;" value="'+v.id+'" class="read2">'+v.from+'</span></td> ';
+																	str+='<td><strong><span><a href="#" style="color:#000;" value="'+v.id+'" class="read2">'+v.date+'</span></td> ';
+																	str+='<td><strong><span><a href="#" style="color:#000;" value="'+v.id+'" class="read2">'+v.message+'</span></td> ';
+																	str+='<tr> ';
+																	
+																	}
+																
+																
+															});
+															
+															
+															$('.boxinbox').html(str); 
+															$('.read').click(function(e){
+																var idpesan = $(this).attr('idpesan');
+																$('.tabpag').hide();
+																messageread(idpesan);
+															});	
+															 $('.read2').click(function(e){
+																 var idpesan = $(this).attr('value');
+																 $('.tabpag').hide();
+																 messageinread(idpesan);
+																 });
+													}
+												},"JSON");
+											});
+			
+		});
+
+
+</script>
+
+
+{/literal}

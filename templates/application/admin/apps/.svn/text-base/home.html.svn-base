@@ -1,0 +1,21 @@
+<!-- ki -->
+<div class="page_section" id="project-page">
+    <div id="container">
+        <div class="titlebox">
+            <h2 class="fl"><span class="icon-books">&nbsp;</span> Creasi - Content Management System </h2>
+        
+        </div><!-- end .titlebox -->
+        <div class="content">
+            <div class="summary">
+           
+            </div><!-- end .summary -->
+
+            <form id="forms" class="forms" method="post" action="">
+            <div id="new-project" class="boxcontent">
+              <h3>Welcome to Creasi CMS</h3>
+		CREASI - Creative Society Indonesia - adalah situs online job search pertama yang dirancang khusus untuk industri kreatif di Indonesia.		  
+            </div><!-- end #wizard -->
+            </form>
+        </div><!-- end .content -->
+    </div><!-- end #container -->
+</div><!-- end #home -->

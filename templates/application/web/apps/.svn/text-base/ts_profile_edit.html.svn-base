@@ -1,0 +1,321 @@
+<div class="page_section" id="profilepage">
+    <div id="metapage">
+        <div class="wrapper">
+{include file='application/web/widgets/popup-upload-profilepic.html'}  
+  <h1 class="page-title fl">Talent Seeker Profile</h1>
+            <div class="breadcumb fr">
+                <a href="index.php">Home</a> <span>/</span> <a>Creative Talent Profile</a>
+            </div>
+        </div><!-- end .wrapper -->   
+    </div><!-- end #metapage -->
+
+    <div id="profileboard" class="section"> 
+      {if $list}
+		{section name=i loop=$list} 
+        <div class="wrapper">
+        	<div class="cols">
+            	<form  class="theforms" id="bioinput">
+           
+                <div class="sectionsrow profilebox">
+                   <div class="profilethumb thumb boxpop">
+				    {if $list[i].img_avatar <> ''}
+				  <img src="{$basedomain}public_assets/personal/{$list[i].img_avatar}" />
+				  {else}
+				   <img src="{$basedomain}public_assets/personal/ts.png" />
+				  {/if}
+				   <a href="#popup-upload-profilepic" class="showpopup editPop">
+                        <i class="icon-pencil">&nbsp;</i> Edit</a>
+				  </div>
+				  
+				  
+				  
+				
+                  <div class="profileentry">
+                  	<div class="rows">
+                        <div class="col2">
+                            <label>First Name</label>
+                            <input id="name" name="name" type="text" name="first" value="{$list[i].name}" />
+                        </div>
+                        <div class="col2">
+                            <label>Last Name</label>
+                            <input id="lastname" name="lastname" type="text" name="last" value="{$list[i].lastname}" />
+                        </div>
+                    </div>
+                  	<div class="rows">
+                        <label>Location</label>
+                        <div class="rowin">
+                            <div class="col2">
+                                <div class="selectbox">
+								 <select class="provincy"   name="provincy">
+									{section name=n loop=$provincy}
+										{if $provincy[n].province==$list[i].provinsi}
+										<option value="{$provincy[n].province}" selected=selected>{$provincy[n].province}</option>
+										{else}
+										<option value="{$provincy[n].province}" >{$provincy[n].province}</option>
+										{/if}
+										{/section}
+									 </select>
+                                </div>
+                            </div>
+                            <div class="col2">
+                                <div class="selectbox">
+                                <select class="city" id='city' name="city">
+                                 <option> {$list[i].city}</option>
+                                </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  	<div class="rows">
+                         <div class="socialbox">
+                            <div class="col2">
+                                 <a href="#" target="_blank"><i class="ico icon-facebook">&nbsp;</i></a>
+                                 <input type="text" name='fb' value="{$list[i].fb_link}" />
+                            </div>
+                            <div class="col2">
+                                 <a href="#" target="_blank"><i class="ico icon-twitter">&nbsp;</i></a>
+                                <input type="text" name='twitter'  value="{$list[i].twitter_link}" />
+                            </div>
+                        </div><!-- END .socialbox -->
+                    </div><!-- END .rows -->
+                  	<div class="rows">
+                        <div class="socialbox">
+                            <div class="col2">
+                                 <a href="#" target="_blank"><i class="ico icon-youtube">&nbsp;</i></a>
+                                 <input type="text" name='youtube'  value="{$list[i].youtube_link}" />
+                            </div>
+                            <div class="col2">
+                                 <a href="#" target="_blank"><i class="ico icon-instagram">&nbsp;</i></a>
+                                <input type="text" name='instagram'  value="{$list[i].instagram_link}" />
+                            </div>
+                        </div><!-- END .socialbox -->
+                    </div><!-- END .rows -->
+                  	<div class="rows">
+					 <input type='hidden' name='bioinput' value='{$list[i].user_id}'>
+                    	<input type="submit" value="SAVE" class="button1" />
+                    	<a href="{$basedomain}personal/personalts" type="button" value="" class="button2" />CANCEL</a>
+                    </div><!-- END .rows -->
+                  </div><!-- END .profileentry -->
+                </div><!-- END .sectionsrow -->
+               </form>
+			    
+                <div class="sharebox">
+                    <h4>Share This Profile</h4> 
+                    <a href="#"><i class="ico icon-facebook">&nbsp;</i></a>
+                    <a href="#"><i class="ico icon-twitter">&nbsp;</i></a>
+                    <a href="#"><i class="ico icon-envelope">&nbsp;</i></a>
+                </div>
+	<div id="popup-thks-profile" class="popup mfp-hide" style="width:300px;">
+		<div class="popupfullcontent">
+			<h3 class="title">Edit <span class="red">Profile</span></h3>
+			<p>Process</p>
+		</div>
+	</div><!-- END .popup -->
+{literal}
+<script>
+$().ready(function(){
+$('.provincy').change(function(){
+	var id = $('.provincy option:selected').val();
+	console.log(id);
+	$.ajax ({
+				type	 : 'POST', 
+				url	 :  basedomain+'personal/ajaxcity' , 
+				data:{id:id},
+				dataType:'json',
+				success	: function (result) 
+				{ 
+					if(result.status==1)
+								{
+									
+									var str="";
+									$.each(result.data,function(kal,val){
+						
+										str +='<option value="'+val.city+'">'+val.city+'</option>';
+										
+									});
+									
+									$('#city').html(str);
+								
+								}
+				}
+			});
+
+		});
+	});
+
+$().ready(function(){
+                $('#bioinput').submit(function(e){
+	
+                    e.preventDefault();
+                    $.ajax({
+                        'url': basedomain+'personal/editpersonalts',
+                        'type': 'POST',
+                        'data': $(this).serialize(),
+						'dataType':'json',
+                        'success': function(result){
+						
+							setTimeout(function() {
+							 if ($('#popup-thks-info').length) { 
+							   $.magnificPopup.open({
+								items: {
+									src: '#popup-thks-info' 
+								},
+								type: 'inline'
+								  });
+							   }
+							 }, 0);
+						
+						}
+					});
+				});
+			});
+
+</script>
+{/literal}	
+				
+	
+            	<div class="euTab">
+                  <ul>
+                    <li><a href="#my-bio">BIO</a></li>
+                 
+                  </ul>
+                  <div id="my-bio" class="tab-content">
+                  	<div class="tabentry">
+                        <div class="sectionsrow">
+                            <div class="sections">
+            					<form class="theforms" id="companyinfo">
+                                <div class="rows">
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                        <td width="220"><strong>Testimoni</strong></td>
+                                        <td width="10">:</td>
+                                        <td><input type="text" name="testimoni" value="{$list[i].testimoni}" /></td>
+                                      </tr>
+                                      <tr>
+                                        <td width="220"><strong>Brand Name</strong></td>
+                                        <td width="10">:</td>
+                                        <td><input type="text" name="brand" value="{$list[i].nama_perusahaan}" /></td>
+                                      </tr>
+                                      <tr>
+                                        <td><strong>Email</strong></td>
+                                        <td>:</td>
+                                        <td><input type="text" value="{$list[i].email}" name="email"/></td>
+                                      </tr>
+                                      <tr>
+                                        <td><strong>Telephone</strong></td>
+                                        <td>:</td>
+                                        <td><input type="text" value="{$list[i].no_tlp}" name="phone"/></td>
+                                      </tr>
+									   <tr>
+                                        <td><strong>Address</strong></td>
+                                        <td>:</td>
+                                        <td><textarea name="address">{$list[i].alamat_perusahaan} </textarea></td>
+                                      </tr>
+                                      <tr>
+                                        <td colspan="3">
+                                            <div class="smallbtn">
+											 <input type='hidden' name='companyinf' value='{$list[i].user_id}'>
+                                                <input type="submit" value="SAVE" class="button1" />
+                                             <a href="{$basedomain}personal/personalts" type="button" class="button2" />CANCEL</a>
+                                            </div>
+                                        </td>
+                                      </tr>
+                                    </table>
+                                    </form>
+                                </div><!-- END .rows -->
+		<div id="popup-thks-bio" class="popup mfp-hide" style="width:300px;">
+		<div class="popupfullcontent">
+			<h3 class="title">Edit <span class="red">Bidata</span></h3>
+			<p>Process</p>
+		</div>
+	</div>
+{literal}
+	<script>
+	$().ready(function(){
+                $('#companyinfo').submit(function(e){
+	
+                    e.preventDefault();
+                    $.ajax({
+                        'url': basedomain+'personal/editpersonalts',
+                        'type': 'POST',
+                        'data': $(this).serialize(),
+						'dataType':'json',
+                        'success': function(result){
+						
+							setTimeout(function() {
+							 if ($('#popup-thks-bio').length) { 
+							   $.magnificPopup.open({
+								items: {
+									src: '#popup-thks-bio' 
+								},
+								type: 'inline'
+								  });
+							   }
+							 }, 0);
+						
+						}
+					});
+				});
+			});
+
+</script>
+{/literal}
+                            </div><!-- END .sections -->
+                        </div><!-- END .sectionsrow -->
+                        <h3 class="sectiontitle">Why <span class="red">Join US</span></h3>
+                        <div class="sectionsrow">
+                            <div class="sections">
+                                <div class="rows">
+            					<form class="theforms" id="whyjoinus">
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                      <tr>
+                                        <td width="220"><strong>Why Join US</strong></td>
+                                        <td width="10">:</td>
+                                        <td><input type="text" name="whyjoinuss" value="{$list[i].whyjoinus}" /></td>
+                                      </tr>
+                                     
+                                        <td colspan="3">
+                                            <div class="smallbtn">
+											 <input type='hidden' name='whyjoin' value='{$list[i].user_id}'>
+                                                <input type="submit" value="SAVE" class="button1" />
+                                               <a href="{$basedomain}personal/personalts" type="button" value="" class="button2" />CANCEL</a>
+                                            </div>
+                                        </td>
+                                      </tr>
+                                    </table>
+                                    </form>
+                                </div><!-- END .rows -->
+                            </div><!-- END .sections -->
+                        </div><!-- END .sectionsrow -->
+{literal}
+	<script>
+	$().ready(function(){
+                $('#whyjoinus').submit(function(e){
+	
+                    e.preventDefault();
+                    $.ajax({
+                        'url': basedomain+'personal/editpersonalts',
+                        'type': 'POST',
+                        'data': $(this).serialize(),
+						'dataType':'json',
+                        'success': function(result){
+						
+							alert('Success !');
+						
+						}
+					});
+				});
+			});
+
+</script>
+{/literal}
+						{/section}
+		{/if}
+                    </div><!-- END .tabentry -->
+                  </div><!-- END .tab-content -->
+                  
+                </div><!-- END .widget -->
+            </div><!-- end .cols -->   
+        </div><!-- end .wrapper -->    
+    </div><!-- end #profileboard --> 
+</div><!-- end #profilepage -->

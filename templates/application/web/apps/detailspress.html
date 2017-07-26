@@ -1,0 +1,43 @@
+<div class="page_section" id="newspage">
+    <div id="metapage">
+        <div class="wrapper">
+            <h1 class="page-title fl">News & Press</h1>
+            <div class="breadcumb fr">
+                <a href="{$basedomain}home">Home</a> <span>/</span> <a href="{$basedomain}news">News & Press</a> <span>/</span> <a href="{$basedomain}news">Our News</a>
+            </div>
+        </div><!-- end .wrapper -->   
+    </div><!-- end #metapage -->
+    <div id="newspagelist" class="section"> 
+        <div class="wrapper">
+        	<div class="cols">
+                <div class="singlepost">
+                   <div class="detailimages">
+                        <a href="index.php?page=news-detail" class="newsthumbimg"><img src="content/newsdetail.jpg" /></a>
+                        <div class="datebox">
+                           <span class="day">{$list.date}</span>
+							<span class="month">{$list.month}</span>
+							<span class="year">{$list.year}</span>
+                        </div> 
+                    </div><!-- end .boximg -->   
+                    <div class="post">
+                        <div class="entry-title">
+                            <h3><a href="index.php?page=news-detail">{$list.details}</a></h3>
+                            <div class="meta-post">
+                                <span class="author">by: www.creasi.co.id</span>
+                            </div>
+                        </div><!-- end .entry-title -->
+                        <div class="entry-detail">
+                            <p>{$list.description}</p>
+                        </div><!-- end .entry-summary -->      
+                    </div><!-- end .post --> 
+                    <div class="sharebox">
+                    	<h4>Share This News</h4> 
+                        <a href="#"><i class="ico icon-facebook">&nbsp;</i></a>
+                        <a href="{$basedomain}share/twitterShare/news/{$list.id}/news/details"><i class="ico icon-twitter">&nbsp;</i></a>
+                        <a href="#"><i class="ico icon-envelope">&nbsp;</i></a>
+                    </div>
+                </div><!-- end .singlepost -->
+            </div><!-- end .cols -->   
+        </div><!-- end .wrapper -->    
+    </div><!-- end #jobBoardList --> 
+</div><!-- end #jobBoard -->

@@ -1,0 +1,41 @@
+<div class="popup2" id="popup-tour-profileTs">
+    <div id="popup2-bg" class="popup2-container">
+        	<div id="tour-profTs1" class="tour-box arrow_boxdown">
+                <div class="tour-title">
+                    <h3>Profile Picture</h3>
+                </div>
+                <div class="tour-desc">
+                    <p>Creative Talents want to know who they might work for. Put your company/group logo or identity here.</p>
+                </div>
+            </div><!--end.tourBox-->
+            
+        	<div id="tour-profTs2" class="tour-box arrow_boxleft">
+                <div class="tour-title">
+                    <h3>Social Media</h3>
+                </div>
+                <div class="tour-desc">
+                    <p> Let people explore deeper about yourself through your social media presence. Insert the links to your social media here.</p>
+                </div>
+            </div><!--end.tourBox-->
+            
+            <div id="tour-profTs3" class="tour-box arrow_boxdown">
+                <div class="tour-title">
+                    <h3>Bio</h3>
+                </div>
+                <div class="tour-desc">
+                    <p>Creative Talents love to see an interesting profile. Tell them why working for you is a great experience and career builder!</p>
+                </div>
+            </div><!--end.tourBox-->
+            
+            <div id="tour-profTs4" class="tour-box arrow_boxleft">
+                <div class="tour-title">
+                    <h3>Gallery</h3>
+                </div>
+                <div class="tour-desc">
+                    <p>After telling, it's always a great thing to show them. Upload pictures of what it's like working for you or you even show your own portfolios here.</p>
+                </div>
+            </div><!--end.tourBox-->
+            
+    </div><!-- END .popupContainer -->
+</div><!-- END .popup -->
+	

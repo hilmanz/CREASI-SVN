@@ -1,0 +1,107 @@
+<div class="page_section" id="jobBoard">
+    <div id="metapage">
+        <div class="wrapper">
+            <h1 class="page-title fl">{$rolenya}  Dashboard</h1>
+            <div class="breadcumb fr">
+               <a href="{$basedomain}">Home</a> <span>/</span> <a href="{$basedomain}dashboard">{$rolenya} Dashboard</a> <span>/</span> <a href="{$basedomain}deactive">Deactive Account</a>
+            </div>
+        </div><!-- end .wrapper -->   
+    </div><!-- end #metapage -->
+    <div id="jobBoardList" class="section"> 
+        <div class="wrapper">
+		 {include file="application/web/widgets/left_menudashboard.html"}
+          
+          <div class="col-content">
+                {include file="application/web/widgets/notibar.html"}  
+                <div class="containers">
+                    <div class="headingform">
+                        <h3>Are you sure you want to deactive your account?</h3>
+                        <h4>Deactivating your account will disable your profile and remove most things you have on Creasi.
+Your account will be deleted if you don't reactivate it in 12 months.</h4>
+            </div>
+              <label color="black" class="msg">{$msg}</label>
+                        <form class="theforms centerform" id="centerformdeac" method="post" action="" >
+                            <div class="rows">
+                                <div class="col2">
+                                  <label>Reason for leaving</label> 
+                                 </div>
+                                <div class="col2">
+                                      <div class="selectbox">
+                                      <select name="reason" class="reason" >
+                                        <option value="1">I don't find Creasi useful.</option>
+                                        <option value="2">My account was hacked.</option>
+                                        <option value="3">I have another Creasi account.</option>
+                                        <option value="4">I don't understand how to use Creasi.</option>
+                                        <option value="5">This is temporary. I'll be back.</option>
+                                        <option value="6">I spend too much time using Creasi.</option>
+                                        <option value="7">I get too many email, invitations and request from Creasi.</option>
+                                        <option value="8">I don't feel safe on Creasi.</option>
+                                        <option value="9">I have a privacy concern.</option>
+                                        <option value="10">Other.</option>
+                                      </select>
+                                      </div>
+                                </div><!-- end .col2 -->
+                             </div><!-- end .rows -->
+                            <div class="rows">
+                                <div class="col2">
+                                  <label>Please explain further :</label> 
+                                 </div>
+                                <div class="col2">
+                               <textarea name="explain" class="explain" >{$explain}</textarea>
+                                 <label color="red" class="explain_no">{$explain_no}</label>
+                                </div><!-- end .col2 -->
+                             </div><!-- end .rows -->    
+                            <div class="rows">
+                               <input type="hidden"  name="submit" value="1" /> 
+							     <input type="submit" class="button1 smbdeactives" style="display:none"  value="DEACTIVE" />
+                                <input type="submit" class="button1 smbdeactive"  value="DEACTIVE" />
+                             </div><!-- end .rows -->    
+                        </form>
+                </div><!-- end .containers -->    
+            </div><!-- end .col-content -->   
+        </div><!-- end .wrapper -->    
+    </div><!-- end #jobBoardList --> 
+</div><!-- end #jobBoard -->
+<div id="popup-confirmdeactive" class="popup mfp-hide" style="width:300px; text-align:center;">
+			<div class="popupfullcontent">
+				<h3 class="title">Confirm <span class="red">Deactive</span></h3>
+				<p>Are you sure?</p>
+				<div class="row" style="margin:0 auto;">
+					<input type="button" name="Yes" class="button1 submitcofrm" value="Yes">
+					<input type="button" name="no" class=" button2 submitcofrm" value="no">
+				</div>
+			</div>
+</div><!-- END .popup -->
+<script>
+{literal}
+
+	$('.smbdeactive').click(function()
+	{
+		
+		$.magnificPopup.open({
+								items: {
+									src: '#popup-confirmdeactive' 
+								},
+								type: 'inline'
+								
+								  });
+		return false;
+	});
+	$('.submitcofrm').click(function()
+			{
+				var nilai=$(this).val();
+				if(nilai=='no')
+				{
+					$('.mfp-close').trigger('click');
+					
+					
+				}
+				else
+				{
+					console.log(nilai);
+					$('.smbdeactives').trigger('click');
+				}
+				
+			});
+{/literal}
+</script>

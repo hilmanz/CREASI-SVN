@@ -1,0 +1,118 @@
+{literal}
+<script type="text/javascript" id="sourcecode">
+	$(function()
+	{
+		$('.scroll-pane').jScrollPane();
+	});
+</script>
+{/literal}
+
+<h3 class="sectiontitle">Related <span class="red">Projects</span></h3>
+<div class="sectionsrows">
+    <div class="euTab">
+      <ul>
+        <li><a href="#tab-photo">Photos</a></li>
+        <li><a href="#tab-video">Videos</a></li>
+        <li><a href="#tab-audio">Audios</a></li>
+      </ul>
+      <div id="tab-photo" class="tab-content">
+        <div class="tabentry">
+            <div class="sectionbox">
+                <div class="rows rows5">
+                <div class="scroll-pane">
+				{if $selectcategory[n].related}
+				{section name=c loop=$selectcategory[n].related}
+					
+					{if $selectcategory[n].related[c].type==1}
+                    <div class="box">
+                        <div class="boximg">
+                            <a href="{$basedomain}portofolio?images={$selectcategory[n].related[c].id}&id={$selectcategory[n].related[c].user_id}" class="thumbbox"><img  src="{$basedomain}public_assets/portofolio/{$selectcategory[n].related[c].images}"  onerror="this.src='{$basedomain}assets/content/press-porto.jpg'"></a>  
+                        </div><!-- end .boximg -->    
+                        <div class="caption">
+                            <div class="desc-box">
+                                <h4><a href="{$basedomain}portofolio?images={$selectcategory[n].related[c].id}&id={$selectcategory[n].related[c].user_id}">{$selectcategory[n].related[c].title|truncate:45}</a></h4>
+                            </div><!-- end .author-box -->    
+                            <h5><a href="{$basedomain}portofolio?images={$selectcategory[n].related[c].id}&id={$selectcategory[n].related[c].user_id}">{$selectcategory[n].related[c].description|truncate:75}</a></h5>
+                        </div>
+                       
+                    </div><!-- END .box -->
+                    
+					{/if}
+					
+				{/section} 
+                 {else}<p> There are no related project(s) yet</p>  
+				 {/if}
+				</div><!-- END .scroll-pane --> 
+                </div><!-- END .rows -->
+            </div><!-- END .sectionbox -->
+        </div><!-- END .tabentry -->
+      </div><!-- END .tab-content -->
+      <div id="tab-video" class="tab-content">
+        <div class="tabentry">
+            <div class="sectionbox">
+                <div class="rows rows5">
+				
+                <div class="scroll-pane2">
+                {if $selectcategory[n].related}
+				{section name=c loop=$selectcategory[n].related}
+					
+					{if $selectcategory[n].related[c].type==2}
+                    <div class="box">
+                        <div class="boximg">
+                            <a href="{$basedomain}portofolio?video={$selectcategory[n].related[c].id}&id={$selectcategory[n].related[c].user_id}" class="thumbbox"><img  src="{$basedomain}public_assets/portofolio/{$selectcategory[n].related[c].images}"  onerror="this.src='{$basedomain}assets/content/press-porto.jpg'"><i class="icon-play-circle-o">&nbsp;</i></a>  
+                        </div><!-- end .boximg -->    
+                        <div class="caption">
+                           <div class="desc-box">
+                                <h4><a href="{$basedomain}portofolio?video={$selectcategory[n].related[c].id}&id={$selectcategory[n].related[c].user_id}">{$selectcategory[n].related[c].title|truncate:45}</a></h4>
+                            </div><!-- end .author-box -->    
+                            <h5><a href="{$basedomain}portofolio?video={$selectcategory[n].related[c].id}&id={$selectcategory[n].related[c].user_id}">{$selectcategory[n].related[c].description|truncate:75}</a></h5>
+                        </div>
+                    </div><!-- END .box -->
+                   {/if}
+					
+				{/section} 
+				   {else}<p> There are no related project(s) yet</p>  
+				 {/if}
+				</div><!-- END .rows -->   
+                </div><!-- END .rows -->
+            </div><!-- END .sectionbox -->
+        </div><!-- END .tabentry -->
+      </div><!-- END .tab-content -->
+      <div id="tab-audio" class="tab-content">
+        <div class="tabentry">
+            <div class="sectionbox">
+                <div class="rows rows5">
+                <div class="scroll-pane3">
+                
+                {if $selectcategory[n].related}
+				{section name=c loop=$selectcategory[n].related}
+					
+					{if $selectcategory[n].related[c].type==3}
+				
+                    <div class="box">
+                        <div class="boximg">
+                         <a href="{$basedomain}portofolio?audio={$selectcategory[n].related[c].id}&id={$selectcategory[n].related[c].user_id}" class="thumbbox"><img   onerror="this.src='{$basedomain}assets/content/press-porto.jpg'" src="{$basedomain}public_assets/portofolio/{$selectcategory[n].related[c].images}"><i class="icon-play-circle-o">&nbsp;</i></a>  
+                        </div><!-- end .boximg -->    
+                        <div class="caption">
+                           <div class="caption">
+                           <div class="desc-box">
+                                <h4><a href="{$basedomain}portofolio?audio={$selectcategory[n].related[c].id}&id={$selectcategory[n].related[c].user_id}">{$selectcategory[n].related[c].title|truncate:45}</a></h4>
+                            </div><!-- end .author-box -->    
+                            <h5><a href="{$basedomain}portofolio?audio={$selectcategory[n].related[c].id}&id={$selectcategory[n].related[c].user_id}">{$selectcategory[n].related[c].description|truncate:75}</a></h5>
+                        </div>
+                        </div>
+                    </div><!-- END .box -->
+                        {/if}
+					
+				{/section} 
+                {else}<p> There are no related project(s) yet</p>  
+				 {/if}
+				  
+				  
+				</div><!-- END .rows -->  
+                </div><!-- END .rows -->
+            </div><!-- END .sectionbox -->
+        </div><!-- END .tabentry -->
+      </div><!-- END .tab-content -->
+    </div><!-- END .euTab -->
+</div><!-- END .sectionsrow -->

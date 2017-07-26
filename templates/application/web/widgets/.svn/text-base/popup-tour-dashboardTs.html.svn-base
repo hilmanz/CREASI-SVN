@@ -1,0 +1,32 @@
+<div class="popup2" id="popup-tour-dashboardTs">
+    <div id="popup2-bg" class="popup2-container">
+        	<div id="tour-dash1" class="tour-box arrow_boxdown">
+                <div class="tour-title">
+                    <h3>My Job Posts</h3>
+                </div>
+                <div class="tour-desc">
+                    <p>Keep track of all your job posts and manage all applicants here.</p>
+                </div>
+            </div><!--end.tourBox-->
+            
+        	<div id="tour-dash2" class="tour-box arrow_boxleft">
+                <div class="tour-title">
+                    <h3>MY INTERVIEW</h3>
+                </div>
+                <div class="tour-desc">
+                    <p> Once you have confirmed an interview session, keep track of it here.</p>
+                </div>
+            </div><!--end.tourBox-->
+            
+            <div id="tour-dashTs3" class="tour-box arrow_boxdown">
+                <div class="tour-title">
+                    <h3>post new job</h3>
+                </div>
+                <div class="tour-desc">
+                    <p>Quickly post a new job here!</p>
+                </div>
+            </div><!--end.tourBox-->
+            
+    </div><!-- END .popupContainer -->
+</div><!-- END .popup -->
+	

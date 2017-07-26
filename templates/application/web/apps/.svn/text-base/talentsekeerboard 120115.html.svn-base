@@ -1,0 +1,157 @@
+<div class="page_section" id="talentBoard">
+    <div id="metapage">
+        <div class="wrapper">
+            <h1 class="page-title fl">Talent Seeker Board</h1>
+            <div class="breadcumb fr">
+                <a href="index.php">Home</a> <span>/</span> <a>Talent Seeker Board</a>
+            </div>
+        </div><!-- end .wrapper -->   
+    </div><!-- end #metapage -->
+    <div id="popularTalents" class="section"> 
+        <div class="wrapper"> 
+        	<div class="blockwrapper" id="talentSeeker">
+            	<div class="shorter">
+                    <form class="searchform fl">
+                        <input type="text" placeholder="Search Here..." class="searching"/>
+                        <input type="submit" value="GO"  class="search"/>
+                    </form>
+                    <div class="paging fr pagingtalentseeker">
+                    	<a href="#">&laquo; First</a>
+                    	<a href="#">&lsaquo;</a>
+                    	<a href="#">1</a>
+                    	<a href="#" class="current">2</a>
+                    	<a href="#">3</a>
+                    	<a href="#">4</a>
+                    	<a href="#">5</a>
+                    	<a href="#">&rsaquo;</a>
+                    	<a href="#">LAST &raquo;</a>
+                    </div>
+                </div><!-- END .shorter -->
+                <div class="talent-list">
+                	<ul class="grid effect-1 tsputhere" id="grid">
+					{if $load}
+					{section name=i loop=$load}
+				
+                    	<li>
+                            <div class="box">
+                                <div class="boximg">
+                                    <a href="#" class="thumbbox">
+									{if $load[i].img_avatar}
+									<img src="{$basedomain}public_assets/personal/{$load[i].img_avatar}" width="200" height="200" />
+									{else}
+									<img src="{$basedomain}public_assets/postjob/images.jpg" />
+									{/if}
+									
+									</a> 
+                                </div><!-- end .boximg -->    
+                                <div class="caption">
+                                    <div class="author-box center">
+                                        <a class="author-name" href="#">{$load[i].nama_perusahaan}</a>
+                                        <span class="author-talent">{$load[i].city}</span>
+                                    </div><!-- end .author-box -->      
+                                </div>
+                            </div><!-- end .box --> 
+                        </li>
+                   
+					{/section}
+					
+					{/if}
+                    </ul>
+                </div><!-- end .talent-list -->
+                <div class="row-paging">
+                    <div class="paging pagingtalentseeker">
+                    	<a href="#">&laquo; First</a>
+                    	<a href="#">&lsaquo;</a>
+                    	<a href="#">1</a>
+                    	<a href="#" class="current">2</a>
+                    	<a href="#">3</a>
+                    	<a href="#">4</a>
+                    	<a href="#">5</a>
+                    	<a href="#">&rsaquo;</a>
+                    	<a href="#">LAST &raquo;</a>
+                    </div>
+                </div>
+            </div><!-- end .col-content -->   
+        </div><!-- end .wrapper -->    
+    </div><!-- end #popularTalents --> 
+</div><!-- end #talentBoard -->
+
+
+<script type="text/javascript">
+	var sorting=$(".searching").val();
+	getpaging(0,{$total},"pagingtalentseeker","paging_ajax_talentseeker",8);
+	
+</script>
+
+<script>
+{literal}
+$(document).ready(function(){
+			$(".search").on("click", function(e){
+			var searching=$(".searching").val();
+			
+			 e.preventDefault();
+                    $.ajax({
+                        'type': 'POST',
+                        'url': basedomain+"talentsekeerboard/ajaxpaging",
+                        'data':{sorting:searching},
+						'dataType':'json',
+                        'success': function(response){
+						
+						var str="";
+								$.each(response.data.result,function(k,v){
+								
+									str+='<li>';
+									str+='<div class="box">';
+									str+='<div class="boximg">';
+									str+='<a href="#" class="thumbbox">';
+									if(v.img_avatar)
+									{
+									str+='<img src="'+basedomain+'public_assets/personal/'+v.img_avatar+'" width="200" height="200" />';
+									}else{
+									str+='<img src="'+basedomain+'public_assets/postjob/images.jpg" />';
+									}
+									str+='</a> ';
+									str+='</div> ';
+									str+='<div class="caption">';
+									str+='<div class="author-box center">';
+									str+='<a class="author-name" href="#">'+v.nama_perusahaan+'</a>';
+									str+='<span class="author-talent">'+v.city+'</span>';
+									str+='</div> ';
+									str+='</div>';
+									str+='</div>';
+									str+='</li>';
+								
+								});  $('.tsputhere').html(str);
+								getpaging(0,response.total,"pagingtalentseeker","paging_ajax_talentseeker",8);
+								new AnimOnScroll( document.getElementById( 'grid' ), {
+										minDuration : 0.4,
+										maxDuration : 0.7,
+										viewportFactor : 0.2
+									} );
+											
+							
+						
+						}
+});
+			
+			
+			
+			});
+			});
+			
+			{/literal}
+			</script>
+<script src="{$basedomain}assets/js/masonry.pkgd.min.js"></script>
+<script src="{$basedomain}assets/js/imagesloaded.js"></script>
+<script src="{$basedomain}assets/js/classie.js"></script>
+<script src="{$basedomain}assets/js/AnimOnScroll.js"></script>
+{literal}
+<script>
+	new AnimOnScroll( document.getElementById( 'grid' ), {
+		minDuration : 0.4,
+		maxDuration : 0.7,
+		viewportFactor : 0.2
+	} );
+</script>
+{/literal}
+

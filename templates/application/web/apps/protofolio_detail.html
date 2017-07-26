@@ -1,0 +1,469 @@
+<div class="page_section" id="profilepage">
+    <div id="metapage">
+        <div class="wrapper">
+            <h1 class="page-title fl">Photo Details</h1>
+            <div class="breadcumb fr">
+                <a href="{$basedomain}">Home</a> <span>/</span> <a {if $user == $id_user } href="{$basedomain}personal#my-portfolio" {else}  href="{$basedomain}personal/view/{$user}#my-portfolio" {/if} >Portfolio</a> <span>/</span> <a href="">Photo Details</a>
+            </div>
+        </div><!-- end .wrapper -->   
+    </div><!-- end #metapage -->
+    <div id="profileboard" class="section"> 
+        <div class="wrapper">
+        	<div class="blockwrapper">
+            	<div id="photo-detail">
+                    <div class="popupcontent">
+                            <div class="photoheader">
+                                <h3>{$list.title}</h3>
+								{if $users}
+									{if $users->id == $list.user_id}
+									<a class="button1 btnedit" href="{$basedomain}portofolio/editPortofolio?images={$list.id}"><i class="icon-pencil">&nbsp;</i> Edit</a>
+								   {/if}
+								 {/if}
+							   <div class="fr">
+                                 <p class="postdate">Uploaded {$list.date|date_format:"%e %B %Y"}</p>
+				 <p class="tagin">Tagged in : {if $list.category_id==99 } Both {elseif $list.category_id==0} None {else} {$list.category_name} {/if}</p>
+                               </div>
+                            </div><!-- END .popupheader -->
+                            <div class="imagesdetail">
+                                <div class="imglarge">
+                                    <img src="{$basedomain}public_assets/portofolio/{$list.images}" />
+                                    <div class="imgdirection">
+                                        <a href="#" class="cleft flex-prevs"><i class="icon-chevron-left">&nbsp;</i></a>
+                                        <a href="#" class="cright flex-nexts"><i class="icon-chevron-right">&nbsp;</i></a>
+                                    </div><!-- END .imgdirection -->
+                                </div><!-- END .imglarge -->
+                                <div class="desc">	
+                                    <p>{$list.description}</p>
+                                </div><!-- END .desc -->
+                            </div><!-- END .imagesdetail -->
+                            <div class="popupfooter">
+                                <div class="fl">
+                                <a href="#popup-photo-fullscreen" class="fullScreen showpopup">FULLSCREEN</a> &bull; 
+									
+									{*}
+										{if $selectlikes_img == ''}
+											<a href="#" class="c-like untuklike" images="{$idpro}" friend="{$user}" user_id="{$id_user}"><label class="likeawal">LIKE</label></a>
+											<span class="red likesnya" style="display:none;">LIKED</span>
+										{else}
+											<span class="red likesnya" >LIKED</span>
+										{/if}
+									{/*}
+									
+									{if $selectlikes_img == ''}
+											<a href="#" class="c-like untuklike" data-type='0' images="{$idpro}" friend="{$user}" user_id="{$id_user}">LIKE</a>
+											
+										{else}
+											<a href="#" class="c-like untuklike red" data-type='1' images="{$idpro}" friend="{$user}" user_id="{$id_user}">LIKED</a>
+										{/if}
+								&bull; {if $users->id == $list.user_id}  <a href="{$basedomain}portofolio/deleteportfolio/{$list.id}/{$users->id}">DELETE </a> {/if}
+                                </div>
+                                <div class="meta-infos fr">
+                                	<a class="newIcon-view-grey"><span>{$list.view_count}</span></a>
+                                    {*}
+                                    <a href="#" class="c-view"><i class="ico icon-eye">&nbsp;</i> <span>{$list.view_count}</span></a>{/*}
+                                    <a class="newIcon-like-grey"><span class="likesnya">{$list.love_count}</span></a>
+                                   {*}<a href="#" class="c-view"><i class="ico icon-thumbs-o-up ">&nbsp;</i> <span class="untuklikes">{$list.love_count}</span></a>{/*}
+                                </div><!-- end .meta-info -->  
+                            </div><!-- END .popupfooter -->
+							   <div class="sharebox">
+								<h4>Share This Photo</h4> 
+								
+								 <a href="javascript:void(0)" onclick="shareFB('Creasi','{$basedomain}portofolio?images={$list.id}&id={$list.user_id}','{$basedomain}public_assets/portofolio/{$list.images}','','{$fbproto|escape:'quotes'}')"><i class="ico icon-facebook">&nbsp;</i></a>
+								  <a href="http://twitter.com/share?text={$twitproto|escape:'quotes'}&url={$basedomain}portofolio?images={$list.id}%26id={$list.user_id}" target="_blank"><i class="ico icon-twitter">&nbsp;</i></a>
+								 <a href="javascript:void(0)"><i class="ico icon-envelope clicksharemail">&nbsp;</i></a>
+									<div id="sharemail" class="rows sharemail" style="display:none">
+									 <label> Add email addresses (separate with commas)</label>
+									
+									 <input class="emailshare" type="text" name="email" id='email' style="width:400px"/>
+									  <input class="idusershare" type="hidden" name="idusershare" id='idusershare' style="width:400px" value="{$list.id}"/>
+
+									 <input class="button1 submit" type="submit" name="submit" value="submit">
+									 <br>
+									<label style="red" class="msgerorr"> </label>
+									</div>
+							</div>
+                    </div><!-- END .popupcontent -->
+                    <div class="photo-list">
+                        <div class="carousel2">
+						
+                          <ul class="slides">
+						  {if $slide}
+							{section name=i loop=$slide.result}
+                            <li class="" >
+							{section name=j loop=$slide.result[i]}
+                                <div class="box">
+                                    <div class="boximg"> 
+                                        <a href="{$basedomain}portofolio?images={$slide.result[i][j].id}&id={$user}" class="thumbbox"><img src="{$basedomain}public_assets/portofolio/small_{$slide.result[i][j].images}" onerror="this.src='{$basedomain}assets/content/press-portoDetail.jpg'" /></a> 
+                                    </div><!-- end .boximg -->    
+                                    <div class="meta-desc">
+                                        <p>{$slide.result[i][j].title|truncate:75}</p>
+                                    </div><!-- end .meta-info -->  
+                                </div><!-- end .box --> 
+                              {/section} 
+                            </li>
+                           {/section}  
+						{/if}
+						</ul>
+						 
+                         
+                        </div><!-- end .flexslider -->
+						
+                    </div><!-- end .photo-list -->
+                </div><!-- END #photo-detail -->
+                <div id="respond">
+                	<h2> <span class="jumlahcomment" > {$jumlahcomment} </span> thoughts on <span class="red">"{$list.title}"</span></h2>
+                    <div class="respondlist">
+						{if $listcomment}           
+						 {section name=k loop=$listcomment}
+						   <div class="rows">
+								<div class="comment-author">
+									<div class="smallthumb">
+									{if $listcomment[k].img_avatar}
+									<a  {if $users->id == $listcomment[k].user_id} href="{$basedomain}personal#my-portfolio" {else} href="{$basedomain}personal/view/{$listcomment[k].user_id}" {/if} ><img src="{$basedomain}public_assets/personal/{$listcomment[k].img_avatar}" /></a>
+									{else}
+									<a  {if $users->id == $listcomment[k].user_id} href="{$basedomain}personal#my-portfolio" {else} href="{$basedomain}personal/view/{$listcomment[k].user_id}" {/if} >	<img src="{$basedomain}public_assets/postjob/images.jpg" /></a>
+									{/if}
+									</div>
+								</div><!-- end .comment-author -->
+								<div class="comment-text">
+									<h6><a  {if $users->id == $listcomment[k].user_id} href="{$basedomain}personal#my-portfolio" {else} href="{$basedomain}personal/view/{$listcomment[k].user_id}" {/if} > {$listcomment[k].name} </a></h6>
+                                    <p>{if $users->id == $listcomment[k].user_id}</p>
+                                    <span class='delcomment' id="delcomment" data-comment="{$listcomment[k].id_comment}"><a href="#delcomment" class="icon-trash-o">&nbsp;</a> </span>{/if}
+								   <p>{$listcomment[k].comment} </p>
+								</div><!-- end .comment-text -->
+							</div><!-- end .rows -->
+						 {/section}
+                       {/if}
+					  
+					   
+                    </div><!-- end .respondlist -->
+                </div><!-- end #respond --> 
+				{if $users}
+                <div id="comment">
+                	<h2>Leave a <span class="red">Comment</span></h2>
+                    <form class="commentform theform">
+                    	<textarea  placeholder="Message" name="comment"  id="comment" class="commenttext"></textarea>
+						<input type="hidden" value="{$idpro}" name="id_portofolio" >
+						<input type="hidden" value="{$users->id}" name="id_user" >
+						<input type="hidden" value="1" name="submit" >
+                        <input type="submit" value="SUBMIT" class="button1 fr" />
+                    </form>
+                </div><!-- end #comment --> 
+				{/if}
+            </div><!-- end .blockwrapper -->   
+        </div><!-- end .wrapper -->    
+    </div><!-- end #profileboard --> 
+</div><!-- end #profilepage -->
+{include file='application/web/widgets/popup-photo-fullscreen.html'}
+<script>
+var first='{$first}';
+var last='{$last}';
+var idpro='{$idpro}';
+var user='{$user}';
+var start='{$start}';
+var next='{$next}';
+var prev='{$prev}';
+var tokenzie='{$tokenize}';
+var xsa ='{$users->id}';
+var share=0;
+var jumlahcomment='';
+{literal}
+$(document).ready(function(){
+$.getScript('//connect.facebook.net/en_US/all.js', function(){
+    FB.init({
+      appId: '1568887560021810',
+    });  
+ });
+delcomment();
+ $('.flexsliders').flexslider({
+        animation: "slide",
+		controlNav: false,             
+		slideshow: false,
+		startAt: start,
+		slideshowSpeed: 300,        
+		animationSpeed: 600
+		
+      });
+if(next=='')
+{
+	$('.flex-nexts').hide();
+
+}
+else
+{
+
+	$('.flex-nexts').show();
+}
+
+if(prev=='')
+{
+	$('.flex-prevs').hide();
+
+}
+else
+{
+
+	$('.flex-prevs').show();
+}
+
+
+$('.flex-prevs').on('click', function(){
+	
+	window.location.href=basedomain+"portofolio?images="+(prev)+'&id='+user;
+	return false;
+});
+$('.flex-nexts').on('click', function(){
+
+	window.location.href=basedomain+"portofolio?images="+(next)+'&id='+user;
+	return false;
+});
+
+$('.theform').submit(function(e){
+e.preventDefault();
+var str='';
+
+console.log($(this).serialize());
+ $.ajax({
+                        'url': basedomain+'portofolio/comment',
+                        'type': 'POST',
+                        'data': $(this).serialize()+'&tokenize='+tokenzie,
+						'dataType':'json',
+                        'success': function(result){
+							if(result.status==1)
+							{
+								jumlahcomment=result.data.length;
+								$.each(result.data,function(k,v){	
+									str+=' <div class="rows">'+
+										'<div class="comment-author">'+
+											'<div class="smallthumb">';
+											if(v.img_avatar)
+											{
+												
+												if(xsa==v.user_id)
+												{
+													str+='<a href="'+basedomain+'personal" ><img src="'+basedomain+'public_assets/personal/'+v.img_avatar+'" /></a> ';
+												}
+												else
+												{
+													str+='<a href="'+basedomain+'personal/view/'+v.user_id+'" ><img src="'+basedomain+'public_assets/personal/'+v.img_avatar+'" /></a>';
+												}
+												
+												
+												str +='</div>';
+											}
+											else
+											{
+												str +='<img src="'+basedomain+'public_assets/postjob/images.jpg" /></div>';
+											}
+											
+										str+='</div>'+
+										'<div class="comment-text">';
+											
+											
+											if(xsa==v.user_id)
+											{
+												str+='<h6><a href="'+basedomain+'personal" >'+v.name+'</a> </h6>';
+											}
+											else
+											{
+												str+='<h6><a href="'+basedomain+'personal/view/'+v.user_id+'" >'+v.name+'</a> </h6>';
+											}
+											
+											
+											
+											if(xsa==v.user_id)
+											{
+												str+='<span class="delcomment" id="delcomment" data-comment="'+v.id_comment+'"><a href="#delcomment" class="icon-trash-o">&nbsp;</a> </span>';
+											}
+											
+										  str+=' <p>'+v.comment+'</p>'+
+										'</div>'+
+									'</div>';
+									
+								});
+							
+								$('.jumlahcomment').html(jumlahcomment);
+								
+								$('textarea.commenttext').val(' ' );
+								$('.respondlist').html(str);
+									delcomment();
+							}
+						}
+					});
+});
+$('.clicksharemail').click(function()
+		{
+			console.log('sss');
+			$('.sharemail').show();
+			
+		});
+	 $('.submit').click(function(){
+			if( share==0)
+			{
+				
+				var email=$('.emailshare').val();
+				  $(this).val('Sending...');
+				thisss=$(this);
+				if(email)
+				{
+					share=1;
+				}
+				var userid=$('.idusershare').val();
+				 $.ajax({
+							
+									'type': 'POST',
+									'url': ''+basedomain+'share/emailShare',
+									'data': {userid:userid,type:'portofolio',email:email},
+									'dataType':'json',
+								   'success': function(result){
+										if(result.status==1)
+										{
+												$('.msgerorr').html('Share process succeed');
+												$('.emailshare').val('');
+												$('.sharemail').hide();
+												$('.msgerorr').html(' ');
+												thisss.val('submit');
+										}
+										else
+										{
+											share=0;
+											 $('.msgerorr').html('Share process failed, please try again');
+											thisss.val('submit');
+										}
+								   }
+							   });
+							   
+			}
+			else
+			{
+				$('.emailshare').val('');
+				$('.sharemail').hide();
+				$('.msgerorr').html(' ');
+			
+			}
+		   
+		});
+	function delcomment()
+	{
+		$('.delcomment').click(function()
+			{
+				var idcomment=$(this).data('comment');
+				$thiss= $(this);
+				$.ajax({
+							'url': basedomain+'portofolio/deleteComment',
+							'type': 'POST',
+							'data': {idcomment: idcomment},
+							'dataType':'json',
+							'success': function(result){
+								if(result.status==1)
+								{
+										$thiss.parent().parent().remove();
+										jumlahcomment=jumlahcomment-1;
+										$('.jumlahcomment').html(jumlahcomment);
+										location.reload();
+								}
+								
+									
+								}
+							
+						});
+			});
+	}
+});
+</script>
+<script>
+	  $(document).ready(function(){
+				$('.untuklike').click(function(e){
+									
+								var id_images=$(this).attr('images');
+								var id_friend=$(this).attr('friend');
+								var user_id=$(this).attr('user_id');
+								
+								//console.log(friendlikes);
+								var thiss=$(this);
+								e.preventDefault();
+								if(user_id)
+								{
+								console.log('sss');
+								console.log(user_id);
+								console.log(xsa);
+									//if(user_id!=xsa)
+									//{
+										$.ajax({
+									
+											'type': 'POST',
+											'url': basedomain+'portofolio/ajaxlike',
+											'data':{'id_images':id_images,'id_friend':id_friend,'user_id':user_id},
+											'dataType':'json',
+											'success': function(response){
+												var str='';
+												str+=response.countnya;
+											
+											
+											
+											
+											//	$('.untuklike').hide();
+												
+												$('.likesnya').html(str);
+												if(thiss.data('type')==1)
+												{
+													thiss.removeClass('red');
+													thiss.html('LIKE');
+													thiss.data('type',0);
+												}
+												else
+												{
+													thiss.addClass('red');
+														thiss.html('LIKED');
+														thiss.data('type',1);
+												}
+											}
+											
+											
+											
+											});
+									//}
+								}
+								});
+							});
+	function shareFB(fb_name,fb_link,fb_img,fb_user,fb_post){
+		$("#bg-popup").fadeOut();
+		$(".popup,.popup2").fadeOut();
+		FB.init();
+		FB.ui({
+			method: 'feed',
+			name: fb_name,
+			link: fb_link,
+			picture: fb_img,
+			caption: fb_user,
+			description: fb_post
+			
+			
+		});
+			 
+	}
+	tinymce.init({
+    selector: ".textarea2",
+	plugins: "paste",
+    theme: "modern",
+	menubar:false,
+	statusbar:false,
+	file_browser_callback : 'myFileBrowser',
+ menubar : false,
+    plugins: [
+        "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+        "searchreplace wordcount visualblocks visualchars code fullscreen",
+        "insertdatetime media nonbreaking save table contextmenu directionality",
+        "emoticons template paste textcolor colorpicker textpattern"
+    ],
+    toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+
+    image_advtab: true,
+    templates: [
+        {title: 'Test template 1', content: 'Test 1'},
+        {title: 'Test template 2', content: 'Test 2'}
+    ]
+});
+</script>
+{/literal}
+

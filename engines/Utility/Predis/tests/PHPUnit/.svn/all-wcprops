@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/creasi/!svn/ver/49/trunk/engines/Utility/Predis/tests/PHPUnit
+END
+CommandTestCase.php
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/creasi/!svn/ver/49/trunk/engines/Utility/Predis/tests/PHPUnit/CommandTestCase.php
+END
+ConnectionTestCase.php
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/creasi/!svn/ver/49/trunk/engines/Utility/Predis/tests/PHPUnit/ConnectionTestCase.php
+END
+DistributionStrategyTestCase.php
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/creasi/!svn/ver/49/trunk/engines/Utility/Predis/tests/PHPUnit/DistributionStrategyTestCase.php
+END
+ArrayHasSameValuesConstraint.php
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/creasi/!svn/ver/49/trunk/engines/Utility/Predis/tests/PHPUnit/ArrayHasSameValuesConstraint.php
+END
+ServerVersionTestCase.php
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/creasi/!svn/ver/49/trunk/engines/Utility/Predis/tests/PHPUnit/ServerVersionTestCase.php
+END

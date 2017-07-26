@@ -1,0 +1,416 @@
+<div class="page_section" id="project-page">
+    <div id="container">
+        <div class="titlebox">
+            <h2 class="fl"><span class="icon-profile">&nbsp;</span> Portfolio</h2>
+             <h2 class="fr"><a class="button2 downloadXls" id="downloadXls" href="#downloadXls">Download</a></h2>
+        </div><!-- end .titlebox -->
+        <div class="content">
+        	<div class="summary">
+       		<div class="row">
+				
+				</div>
+            </div><!-- end .summary -->
+			<table cellpadding="0" cellspacing="0" border="0">
+			<thead>
+				<tr>
+					<th class="head0">No</th>
+					<th class="head0">CT Name</th> 
+					<th class="head0">Title</th> 
+					<th class="head0">Type</th> 
+					<th class="head0">Portfolio</th> 
+					
+					<th class="head0">Created Date</th> 
+					<th style="text-align:center" class="head0">Action</th> 
+				</tr>
+			</thead>
+			<tbody class="pagilist">
+			{if $list}
+				{section name=i loop=$list}    
+                    <tr>
+					
+						<td >{$list[i].no}</td>
+						<td><span>{$list[i].nickname}</span></td> 
+						<td><span>{$list[i].title}</span></td> 
+						<td><span>
+						{if $list[i].type==1}
+							Picture
+						{elseif $list[i].type==2}
+							video
+						{elseif $list[i].type==3}
+							audio
+						{/if}
+						</span></td> 
+						<td><span>
+						{if $list[i].type ==1}
+							{if $list[i].images}
+								<img width="200" data-type="{$list[i].type}"  data-referance="{$list[i].refrance}" data-url="{$basedomainpath}public_assets/portofolio/{$list[i].images}" class="popupimgs" src="{$basedomainpath}public_assets/portofolio/{$list[i].images}" onerror="this.src ='{$basedomainpath}public_assets/postjob/images.jpg'" />
+							{else}
+								<img width="200" data-type="{$list[i].type}"  data-referance="{$list[i].refrance}"  data-url="{$basedomainpath}public_assets/postjob/images.jpg" class="popupimgs" src="{$basedomainpath}public_assets/postjob/images.jpg" />
+							{/if}
+							
+						{elseif $list[i].type==2}
+							{if $list[i].images}
+								<img width="200" data-type="{$list[i].type}" data-referance="{$list[i].refrance}" data-url="{$list[i].video_url}" class="popupimgs" src="{$basedomainpath}public_assets/portofolio/{$list[i].images}"  onerror="this.src ='{$basedomainpath}public_assets/postjob/images.jpg'" />
+							{else}
+								<img width="200" data-type="{$list[i].type}"  data-referance="{$list[i].refrance}" data-url="{$list[i].video_url}" class="popupimgs" src="{$basedomainpath}public_assets/postjob/images.jpg" />  
+							{/if}
+
+						
+						{elseif $list[i].type==3}
+							{if $list[i].images}
+								<img width="200" data-type="{$list[i].type}" data-referance="{$list[i].refrance}" data-url="{$list[i].audio}" class="popupimgs" src="{$basedomainpath}public_assets/portofolio/{$list[i].images}"  onerror="this.src ='{$basedomainpath}public_assets/postjob/images.jpg'" />
+							{else}
+								<img width="200" data-type="{$list[i].type}" data-referance="{$list[i].refrance}" data-url="{$list[i].audio}" class="popupimgs" src="{$basedomainpath}public_assets/postjob/images.jpg" />
+							{/if}
+						{/if}
+						</span></td> 
+						<td ><span>{$list[i].tanggal}</span></td> 
+						
+						<td>	
+							{*} <a href="javascript:void(0)" {if $list[i].n_status ==1} data-true='1' {else}  data-true='2' {/if}  data-id="{$list[i].idportofolio}" 	class=" {if $list[i].statuspot ==1} button2 {else}  button {/if} publish" > <span class="icon-eye"> &nbsp;</span>Publish</a>
+							<a href="javascript:void(0)" {if $list[i].n_status ==0} data-true='0' {else}  data-true='2' {/if}	 data-id="{$list[i].idportofolio}" class="{if $list[i].statuspot ==0} button2 {else}  button {/if} unpublish" > <span class="icon-eye"> &nbsp;</span>UnPublish</a>
+							{/*}
+							<a href="javascript:void(0)" class="button publish" data-status="{$list[i].statuspot}" data-id="{$list[i].idportofolio}"> <span class="icon-eye"> &nbsp;</span>{if $list[i].statuspot == 0 } Publish {else} UnPublish {/if}</a>
+
+							<a href="javascript:void(0)" class="delct {if $list[i].statuspot ==2} button2 {else}  button {/if}" data-id="{$list[i].idportofolio}" ><span class="icon-trash">&nbsp;</span> Delete</a>
+                        	
+                        </td>
+					</tr>
+                {/section}
+			{/if}
+					
+			</tbody>
+			</table>
+            <div id="paging_of_proto_list" class="paging">
+              <a href="#"><span class="icon-first">&nbsp;</span></a>
+              <a href="#"><span class="icon-backward2">&nbsp;</span></a>
+              <a href="#">1</a>
+              <a href="#">2</a>
+              <a href="#" class="current">3</a>
+              <a href="#">4</a>
+              <a href="#">5</a>
+              <a href="#"><span class="icon-forward3">&nbsp;</span></a>
+              <a href="#"><span class="icon-last">&nbsp;</span></a>
+            </div>
+        </div><!-- end .content -->
+    </div><!-- end #container -->
+</div><!-- end #home -->
+	<div id="popup-porto-images" class=" mfp-hide">
+					<div class="popupfullcontent">
+						<img width="100%" class="imgurls" src="" onerror="this.src ='{$basedomainpath}public_assets/postjob/images.jpg'" />
+					</div>
+				</div><!-- END .popup -->
+<div id="popup-porto-video" class=" mfp-hide">
+					
+					<div class="popupfullcontent vimeo">
+						<iframe class="vimeourl" src="http://player.vimeo.com/video/" width="420" height="420" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
+									</iframe>
+					</div>
+					<div class="popupfullcontent youtube">
+						 <iframe class="youtubeurl" width="420" height="420"
+										src="http://www.youtube.com/embed/">
+									</iframe> 
+					</div>
+				</div><!-- END .popup -->		
+<div id="popup-porto-audio" class=" mfp-hide">
+					<div class="popupfullcontent">
+						 <iframe class="soundcloude" width="100%" height="420" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url={$list.audio}&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>
+                                
+					</div>
+				</div><!-- END .popup -->					
+<script type="text/javascript">
+
+	getpaging(0,{$total},"paging_of_proto_list","paging_ajax_proto",10);
+	
+	{literal}
+	
+	$(document).ready(function(){
+		
+		 var $from = $(".startdate").datepicker({dateFormat: 'dd-mm-yy'});
+		//  var $to = $(".enddate").datepicker({dateFormat: 'dd-mm-yy'}).prop('disabled', true);
+		$(".startdate").change(function()
+		{
+			$(".enddate").datepicker({
+				dateFormat: 'dd-mm-yy'
+			}).prop('disabled', false);
+			$(".enddate").removeAttr('readonly');
+		});
+		$('#downloadXls').attr('href',basedomain+"portofoliomanagement/callsheader?search="+$(".search").val()+'&startdate='+$(".startdate").val()+'&enddate='+$(".enddate").val());
+		 
+		  delct();
+		 
+		  publiseh();
+		  popup();
+		  
+		  
+		  
+	});
+	function popup()
+	{
+		$('.popupimgs').click(function()
+		{
+			console.log($(this).data('url'));
+			var thisss=$(this);
+			if($(this).data('type')==1)
+			{
+					$('#popup-porto-images').find('.imgurls').attr('src',$(this).data('url'));
+				$.magnificPopup.open({
+										items: {
+											src: '#popup-porto-images' 
+										},
+										type: 'inline'
+										  });
+			}
+			else if($(this).data('type')==2)
+			{
+				if($(this).data('referance')=='youtube')
+				{
+					$('.youtube').show();
+					$('.vimeo').hide();
+					console.log('hhh');
+					console.log(thisss.data('url'));
+					$('#popup-porto-video').find('.popupfullcontent').attr('src','http://www.youtube.com/embed/'+thisss.data('url'));
+				}
+				else
+				{
+				
+					$('.youtube').hide();
+					$('.vimeo').show();
+					$('#popup-porto-video').find('.popupfullcontent').attr('src','http://player.vimeo.com/video/'+thisss.data('url'));
+				}
+				
+				$.magnificPopup.open({
+										items: {
+											src: '#popup-porto-video' 
+										},
+										type: 'inline'
+										  });
+										  
+			}
+			else if($(this).data('type')==3)
+			{
+				$('#popup-porto-audio').find('.soundcloude').attr('src','https://w.soundcloud.com/player/?url='+$(this).data('url')+'&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true');
+				$.magnificPopup.open({
+										items: {
+											src: '#popup-porto-audio' 
+										},
+										type: 'inline'
+										  });
+			}
+			
+			
+		});
+	}
+	function delct()
+	{
+		$('.delct').click(function()
+		{
+			var idCt =$(this).data('id');
+			thiss=$(this);
+				$.ajax({
+								'type': 'POST',
+								'url': basedomain+'personalmanagement/deleteprtofolio',
+								'data': {id:idCt},
+								'dataType':'json',
+								'success': function(response){
+									if(response.status==1)
+									{
+										console.log(thiss.parents('tr').remove());
+									}
+									//thiss.parent('td').find('.publish').removeClass('button2');
+									//thiss.parent('td').find('.publish').addClass('button');
+								}
+								
+							});
+			
+		
+		});
+	}
+	function publish()
+	{
+		$('.publish').click(function()
+		{
+			var idprotofolio= $(this).data('id');
+			var clicktrue= $(this).data('true');
+			var thiss=$(this);
+				console.log(clicktrue);
+			var status='1';
+			if(clicktrue==2)
+			{
+				$.ajax({
+									'type': 'POST',
+									'url': basedomain+'personalmanagement/unpublishprtofolio',
+									'data': {id:idprotofolio,status:status},
+									'dataType':'json',
+									'success': function(response){
+										if(response.status==1)
+										{
+											thiss.removeClass('button');
+											thiss.addClass('button2');
+											thiss.attr('data-true',1);
+											thiss.parent('td').find('.unpublish').removeClass('button2');
+											thiss.parent('td').find('.unpublish').addClass('button');
+											thiss.parent('td').find('.unpublish').attr('data-true',2);
+										}
+									}
+									
+								});
+			}
+		});
+	}
+	function unpublish()
+	{
+		$('.unpublish').click(function()
+		{
+			var idprotofolio= $(this).data('id');
+			var clicktrue= $(this).data('true');
+			var thiss=$(this);
+			var status='0';
+			console.log(clicktrue);
+			if(clicktrue==2)
+			{
+				$.ajax({
+									'type': 'POST',
+									'url': basedomain+'personalmanagement/unpublishprtofolio',
+									'data': {id:idprotofolio,status:status},
+									'dataType':'json',
+									'success': function(response){
+										if(response.status==1)
+										{
+											thiss.removeClass('button');
+											thiss.addClass('button2');
+											thiss.attr('data-true',1);
+											thiss.parent('td').find('.publish').removeClass('button2');
+											thiss.parent('td').find('.publish').addClass('button');
+													thiss.parent('td').find('.publish').attr('data-true',2);
+										}
+									}
+									
+								});
+			}
+		});
+	}
+	function paging_ajax_proto(fungsi,start){ 
+
+	
+	$.post(basedomain+"portofoliomanagement/main",{start:start,ajax:1,search:$('.search').val(),startdate:$('.startdate').val(),enddate:$('.enddate').val()},function(response){
+	console.log(response);
+		if(response){
+					  if(response.status==1){
+							var no = start+1;
+							var str="";
+							$.each(response.result,function(k,v){  
+							
+								str+='<tr>'+
+							   '<td>'+no+'</td>'+
+									'<td><span>'+v.nickname+'</span></td> '+
+									'<td><span>'+v.title+'</span></td> ';
+									if(v.type==1)
+									{
+										str+='<td><span>Picture</span></td> '+
+											'<td ><span><img width="200" class="popupimgs" data-type="'+v.type+'"  data-referance="'+v.refrance+'" data-url="'+basedomainpath+'public_assets/portofolio/'+v.images+'" src="'+basedomainpath+'public_assets/portofolio/'+v.images+'" onerror="this.src=\''+basedomainpath+'public_assets/postjob/images.jpg \'"></span></td>';
+									}
+									else if(v.type==2)
+									{
+										str+='<td><span>Video</span></td> '+
+											'<td ><span><img width="200" class="popupimgs" data-type="'+v.type+'" data-referance="'+v.refrance+'" data-url="'+v.video_url+'" src="'+basedomainpath+'public_assets/portofolio/'+v.images+'" onerror="this.src=\''+basedomainpath+'public_assets/postjob/images.jpg \'"></span></td>';
+											'';
+									}
+									else if(v.type==3)
+									{
+										str+='<td ><span>Audio</span></td> '+
+											'<td ><span><img width="200" class="popupimgs" data-type="'+v.type+'" data-referance="'+v.refrance+'" data-url="'+v.audio+'" src="'+basedomainpath+'public_assets/portofolio/'+v.images+'" onerror="this.src=\''+basedomainpath+'public_assets/postjob/images.jpg \'"></span></td>';
+									} 
+									str+='<td><span>'+v.date+'</span></td> '+
+									
+									'<td>	'+
+										'<a href="javascript:void(0)" class="button publish" data-status="'+v.statuspot+'" data-id="'+v.idportofolio+'"> <span class="icon-eye"> &nbsp;</span>';
+											if(v.statuspot==0)
+											{
+											 str +='Publish';
+											}
+											else
+											{
+												 str +='UnPublish';
+											}
+										str+='<a href="javascript:void(0)" class="delct'; 
+										if(v.statuspot ==2)
+										{
+											str+=' button2 '; 
+										}
+										else
+										{
+											str+=' button ';    
+										}
+
+										str+='" data-id="'+v.idportofolio+'" ><span class="icon-trash">&nbsp;</span> Delete</a>'+
+                        	
+									'</td>'+
+									
+								'</tr>'; 
+								no++;
+							});
+							$('.pagilist').html(str);
+							//verified();
+							//delct();
+					}else{
+						$('.pagilist').html('<tr><td colspan="5"> No Data</td></tr>');
+			 
+					}
+					  delct();
+					  publiseh()
+					  popup();
+				}
+		},"JSON");
+	}
+	function publiseh()
+	{
+		$('.publish').click(function()
+		{
+			var idjobs =$(this).data('id');
+			thiss=$(this);
+			var publish= $(this).attr('data-status');
+			if(publish==1)
+				{
+					status=0;
+				}
+			else
+				{
+					status=1;
+				}
+				$.ajax({
+								'type': 'POST',
+								'url': basedomain+'personalmanagement/unpublishprtofolio',
+								'data': {id:idjobs,status:status},
+								'dataType':'json',
+								'success': function(response){
+									if(response.status==1)
+									{
+										//console.log(thiss.parents('tr').remove());
+										console.log(thiss.has('span'));
+										if(publish==1)
+										{
+											console.log(publish);
+											thiss.removeAttr('data-status');
+											thiss.attr('data-status','0');
+											//thiss.removeClass('button2');
+											thiss.html('<span class="icon-eye">  </span> Publish');
+										}
+										else
+										{
+											console.log('ss'+publish);
+											thiss.removeAttr('data-status');
+											thiss.attr('data-status','1');
+											//thiss.removeClass('button');
+											thiss.html('<span class="icon-eye">  </span> UnPublish');
+										}
+									}
+								}
+								
+							});
+			
+		
+		});
+	}
+{/literal}
+</script>

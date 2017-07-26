@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html class="no-js">
+{$meta}
+<body>
+  <div id="page">
+
+     
+      {$header}
+      
+         <div class="page_section" id="home">
+             {$mainContent}
+        </div><!-- /#thecontent -->
+		  {$footer}
+  
+  </div><!-- end #body -->    
+  
+</body>
+</html>

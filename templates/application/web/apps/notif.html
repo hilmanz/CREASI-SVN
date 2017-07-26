@@ -1,0 +1,84 @@
+<div class="page_section" id="staticpage">
+    <div id="metapage">
+        <div class="wrapper">
+            <h1 class="page-title fl">Notifications</h1>
+            <div class="breadcumb fr">
+                <a href="index.php">Home</a> <span>/</span> <a href="">Notifications</a>
+            </div>
+        </div><!-- end .wrapper -->   
+    </div><!-- end #metapage -->
+    <div id="staticpages" class="section"> 
+        <div class="wrapper">
+        	<div class="cols">
+                <div class="singlepost">
+                    <div class="titleboxs">   
+                        <h2>Your <span class="red">Notifications</span></h2><br />
+                    </div><!-- end .titlebox -->
+                    <div class="entries" id="notifbox">
+					    {if $listnotif }			
+							{section name=i loop=$listnotif} 
+								<div class="row-date">
+									<strong>{$listnotif[i].tanggal}</strong>
+								</div>
+								{section name=j loop=$listnotif[i]} 
+									{if $listnotif[i][j].id}
+									
+									<div class="row-notif {if $listnotif[i][j].n_status==0}open{/if}">
+										<span class="read" data-id='{$listnotif[i][j].id}'>{$listnotif[i][j].detail}</span><span class="times">{$listnotif[i][j].timess}</span>
+									</div><!-- end .row-notif -->
+									{/if}
+								{/section}
+							{/section}
+						{else}
+                        <div class="welcomebox center">  
+                            <span>You have no notification(s).</span>
+                        </div><!-- end .welcomebox -->   
+						{/if}
+                    	
+                    
+                    </div><!-- end .entries -->
+                </div><!-- end .singlepost -->
+            </div><!-- end .cols -->   
+        </div><!-- end .wrapper -->    
+    </div><!-- end #staticpages --> 
+</div><!-- end #staticpage -->
+
+{literal}
+<script type="text/javascript">
+$(document).ready(function(){
+	$('.read').click(function(e){
+									console.log($(this));
+										  e.preventDefault();
+										  var $id=$(this).data('id');
+										 var links= $(this).find('a').attr('href');
+										var thiss=$(this);
+										thiss.parent().addClass('open');
+											 $.ajax({
+											
+													'type': 'POST',
+													'url': basedomain+'notification/opens',
+													'data': {id:$id},
+													'dataType':'json',
+													'success': function(result){
+														thiss.parent().addClass('open');
+														if(links)
+														{
+															window.location.href = links;
+															
+															//console.log(thiss.find('a').trigger('click'));
+															//win = window.open(links, '_blank', 'toolbar=yes, location=yes, status=yes, menubar=yes, scrollbars=yes');
+															// win.focus();
+															//return true;	
+														}
+													}
+												},"JSON");
+											});
+			
+		
+
+});
+
+</script>
+
+
+{/literal}

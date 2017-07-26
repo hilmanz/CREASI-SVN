@@ -1,0 +1,550 @@
+<div id="popup-upload-video" class="popup mfp-hide">
+    <div class="popupcontent">
+    	<h3 class="title">Upload <span class="red">Videos</span></h3>
+        <div class="rows center">
+		<form action="{$basedomain}personal/addportofoliovideo" method="post" enctype="multipart/form-data" id="formuploadvideo">
+                      
+		  <div class="boxs boxvideos">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table">
+                  <tr>
+                    <td> 
+						<a href="javascript:void(0)" class="button2 upvideo"> UPLOAD THUMBNAIL </a>
+						<input type="file"  name="foto[]"  value="" class="fotovideo" style="display:none">
+						<span class="row tmptvideo" style="color:red"> </span>
+						<span class="row fotovideo_no" style="color:red" > </span> 
+					</td>
+                  </tr>
+				  <tr>
+                    <td><input type="hidden" value="2"  name="type[]"  />
+					<input type="text" class="urlvideo"  name="url[]" value="" placeholder="Paste Url From Youtube or Vimeo Here" />
+					<span class="row urlvideo_no" style="color:red"> </span> 
+					</td>
+                  </tr>
+                  <tr>
+                    <td><input type="text" class="titlevideo" autocomplete="off" name="title[]" value="" placeholder="Insert Title Here" />
+					<span class="row titlevideo_no" style="color:red"> </span> 
+				</td>
+                  </tr>
+                  <tr>
+                    <td><input type="text" class="descvideo" autocomplete="off" name="desc[]" value="" placeholder="Insert Video Description" />
+						<span class="row descvideo_no" style="color:red"> </span> 
+					</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label>Tag in Category</label>
+                      <div class="selectbox">
+						<select name="category[]" class="categoryvideo">
+						 <option value="0">None</option>
+					  <option value="99">Both</option>
+						{section name=j loop=$listcategory}
+							<option value="{$listcategory[j].id}">{$listcategory[j].category_name}</option>
+						{/section}
+						</select>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+            </div><!-- END .boxs -->
+            <div class="boxs boxvideos">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table">
+				  <tr>
+                    <td> 
+						<a href="javascript:void(0)" class="button2 upvideo"> UPLOAD THUMBNAIL </a>
+						<input type="file"  name="foto[]"  value="" class="fotovideo" style="display:none">
+						<span class="row tmptvideo" style="color:red"> </span>
+						<span class="row fotovideo_no" style="color:red" > </span> 
+					</td>
+                  </tr>
+				  <tr>
+                    <td><input type="hidden" value="2"  name="type[]"  />
+					<input type="text" class="urlvideo" autocomplete="off"  name="url[]" value="" placeholder="Paste Url From Youtube or Vimeo Here" />
+					<span class="row urlvideo_no" style="color:red"> </span> 
+					</td>
+                  </tr>
+                  <tr>
+                    <td><input type="text" class="titlevideo" autocomplete="off" name="title[]" value="" placeholder="Insert Title Here" />
+					<span class="row titlevideo_no" style="color:red"style="color:red" > </span> 
+				</td>
+                  </tr>
+                  <tr>
+                    <td><input type="text" class="descvideo" autocomplete="off" name="desc[]" value="" placeholder="Insert Video Description" />
+						<span class="row descvideo_no" style="color:red"> </span> 
+					</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label>Tag in Category</label>
+                      <div class="selectbox">
+                      <select name="category[]" class="categoryvideo">
+					   <option value="0">None</option>
+					  <option value="99">Both</option>
+						{section name=i loop=$listcategory}
+							<option value="{$listcategory[i].id}">{$listcategory[i].category_name}</option>
+						{/section}
+						</select>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+            </div><!-- END .boxs -->
+            <div class="boxs boxvideos">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table">
+				  <tr>
+                    <td> 
+						<a href="javascript:void(0)" class="button2 upvideo"> UPLOAD THUMBNAIL </a>
+						<input type="file"  name="foto[]"  value="" class="fotovideo" style="display:none">
+						<span class="row tmptvideo" style="color:red"> </span>
+						<span class="row fotovideo_no"style="color:red" > </span> 
+					</td>
+                  </tr>
+				  <tr>
+                    <td><input type="hidden" value="2" autocomplete="off"  name="type[]"  />
+					<input type="text" class="urlvideo" autocomplete="off"  name="url[]" value="" placeholder="Paste Url From Youtube or Vimeo Here" />
+					<span class="row urlvideo_no"style="color:red" > </span> 
+					</td>
+                  </tr>
+                  <tr>
+                    <td><input type="text" class="titlevideo" autocomplete="off" name="title[]" value="" placeholder="Insert Title Here" />
+					<span class="row titlevideo_no" style="color:red"> </span> 
+				</td>
+                  </tr>
+                  <tr>
+                    <td><input type="text" class="descvideo" autocomplete="off" name="desc[]" value="" placeholder="Insert Video Description" />
+						<span class="row descvideo_no" style="color:red"> </span> 
+					</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label>Tag in Category</label>
+                      <div class="selectbox">
+                     <select name="category[]" class="categoryvideo">
+					  <option value="0">None</option>
+					  <option value="99">Both</option>
+						{section name=ve loop=$listcategory}
+							<option value="{$listcategory[ve].id}">{$listcategory[ve].category_name}</option>
+						{/section}
+						</select>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+            </div><!-- END .boxs -->
+            <div class="smallbtn videolists">
+                <input type="submit" value="SAVE" class="button1 saveprotovideo" />
+				<input type="hidden" name="uploadphoto" value="1">
+                <input type="button" value="+ Add More Videos" class="button2 addmorevideo" />
+            </div>
+			</form>
+			<div id="progressbarvideo" style="display:none" ><div class="progress-label"></div></div>
+        </div><!-- END .rows -->
+    </div>
+</div>
+<div id="popup-maxvideo" class="popup mfp-hide" style="width:300px; text-align:center;">
+			<div class="popupfullcontent">
+				<h3 class="title">Portfolio <span class="red">Video</span></h3>
+				<p>Maximum Upload 20 video</p>
+				
+			</div>
+</div><!-- END .popup -->
+<script>
+{literal}
+
+$(function() {
+	getFilesvideo();
+	duplicatvideo();
+	//clickuploadvideo();
+	imgdelvideo()
+	uploadevideo();
+});
+function getFilesvideo()
+{
+	$('.upvideo').click(function()
+	{
+		thiss= $(this).next('.fotovideo');
+		console.log(thiss);
+		thiss.change(function(e)
+		 {
+		   
+			   e.preventDefault();
+				
+			    $(".upload_no").html('');
+				console.log(this.files[0].size);
+				$(thiss).next().next('.fotovideo_no').html('');
+				$(thiss).next('.tmptvideo').html('');
+				if(this.files[0].size > 2100000)
+				{
+				
+					$(thiss).next().next('.fotovideo_no').html('Maximum file size 2MB');
+					
+					thiss.replaceWith('<input type="file" style="display:none" class="fotovideo" value="" name="foto[]">');
+					
+				}
+				else
+				{
+				   if(this.files[0].type=='image/jpeg' ||  this.files[0].type=='image/png')
+					{
+						 var reader = new FileReader();
+						 reader.onload = function (ex) {
+							ex.preventDefault();
+							console.log($(thiss).next('.tmptvideo'));
+							$(thiss).next('.tmptvideo').html('<br> <img width="100" class="filimg"  src="'+ex.target.result+'"> ');
+						  }
+					  reader.readAsDataURL(this.files[0]);
+					
+					  end;
+					}
+					else
+					{
+						$(thiss).next().next('.fotovideo_no').html(' Sorry, we can only support PNG,JPEG/JPG files ');
+					
+						thiss.replaceWith('<input type="file" style="display:none" class="fotovideo" value="" name="foto[]">');
+						
+					}
+				}
+		});
+		$($(this).next('.fotovideo')).trigger('click');
+	});
+
+}
+function imgdelvideo()
+{
+	$('.tmptvideo').click(function(){
+		$(this).parent().find('.fotovideo')
+		$(this).parent().find('.fotovideo').replaceWith('<input type="file" style="display:none" class="fotovideo" value="" name="foto[]">');
+		$(this).html('');
+	});
+}
+function duplicatvideo()
+{
+	$('.addmorevideo').click(function(e)
+	{
+		e.preventDefault();
+		console.log($(".boxvideo:last"));
+		$(".boxvideos:last").clone().insertBefore('.videolists');
+		
+		$('.urlvideo:last').val('');
+		$('.tmptvideo:last').html('');
+		$('.titlevideo:last').val('');
+		$('.descvideo:last').val('');
+		$('.fotovideo_no:last').html('');
+		$('.urlvideo_no:last').html('');
+		$('.titlevideo_no:last').html('');
+		$('.descvideo_no:last').html('');
+		$('.fotovideo:last').replaceWith('<input type="file" style="display:none" class="fotovideo" value="" name="foto[]">');
+		getFilesvideo();
+		end;
+	});
+}
+function checkFormvideo()
+{
+	var titlevideo_no='.titlevideo_no';
+	$(titlevideo_no).html(' ');
+	var urlvideo_no='.urlvideo_no';
+	$(urlvideo_no).html(' ');
+	var descvideo_no='.descvideo_no';
+	$(descvideo_no).html(' ');
+	var fotovideo_no='.fotovideo_no';
+	$(fotovideo_no).html(' ');
+	var youtubeformat = /^(?:https?:\/\/)?(?:www\.)?youtube\.com\/watch\?(?=.*v=((\w|-){11}))(?:\S+)?$/; 
+	var vimeoformat = /http:\/\/(?:www.)?(?:(vimeo).com\/(.*)|(youtube).com\/watch\?v=(.*?)&)/;
+	var valide='';
+	$.each($('.titlevideo'),function(k,v){
+		if($('.titlevideo').eq(k).val() || $('.descvideo').eq(k).val() ||$('.tmptvideo img').eq(k).attr('src') ||$('.urlvideo').eq(k).val())
+		{
+			if($('.titlevideo').eq(k).val()=='')
+			{
+				$(titlevideo_no).eq(k).html('You cannot leave this field empty');
+				valide='ada';
+			}
+			if($('.urlvideo').eq(k).val()=='')
+			{
+				$(urlvideo_no).eq(k).html('You cannot leave this field empty');
+				valide='ada';
+			}
+			else if(!$('.urlvideo').eq(k).val().match(youtubeformat) && !$('.urlvideo').eq(k).val().match(vimeoformat) )
+			{
+				$(urlvideo_no).eq(k).html('Url not Match');
+				valide='ada';
+			}
+			if($('.descvideo').eq(k).val()=='')
+			{
+				$(descvideo_no).eq(k).html('You cannot leave this field empty');
+				valide='ada';
+			}
+			if($('.tmptvideo').eq(k).find('img').attr('src')==undefined)
+			{
+				$(fotovideo_no).eq(k).html('You cannot leave this field empty');
+				valide='ada';
+			}
+		}
+		
+	});
+	if(valide)
+	{
+		return false;
+	}
+	else
+	{
+		return true;
+	}
+	
+}
+function uploadevideo()
+{
+	$('.saveprotovideo').click(function()
+	{
+		
+		
+			var titlevideo_no='.titlevideo_no';
+			$(titlevideo_no).html(' ');
+			var urlvideo_no='.urlvideo_no';
+			$(urlvideo_no).html(' ');
+			var descvideo_no='.descvideo_no';
+			$(descvideo_no).html(' ');
+			var fotovideo_no='.fotovideo_no';
+			$(fotovideo_no).html(' ');
+			var youtubeformat = /^(?:https?:\/\/)?(?:www\.)?youtube\.com\/watch\?(?=.*v=((\w|-){11}))(?:\S+)?$/; 
+			var vimeoformat = /http:\/\/(?:www.)?(?:(vimeo).com\/(.*)|(youtube).com\/watch\?v=(.*?)&)/;
+			var valide='';
+			var jumlahup=0;
+			$.each($('.titlevideo'),function(k,v){
+				if($('.titlevideo').eq(k).val() || $('.descvideo').eq(k).val() ||$('.tmptvideo img').eq(k).attr('src') ||$('.urlvideo').eq(k).val())
+				{
+					if($('.titlevideo').eq(k).val()=='')
+					{
+						$(titlevideo_no).eq(k).html('You cannot leave this field empty');
+						valide='ada';
+					}
+					if($('.urlvideo').eq(k).val()=='')
+					{
+						$(urlvideo_no).eq(k).html('You cannot leave this field empty');
+						valide='ada';
+					}
+					else if(!$('.urlvideo').eq(k).val().match(youtubeformat) && !$('.urlvideo').eq(k).val().match(vimeoformat) )
+					{
+						$(urlvideo_no).eq(k).html('Url not Match');
+						valide='ada';
+					}
+					
+					
+					++jumlahup;
+				}
+				
+			});
+			if(valide)
+			{
+				jumlahup=0;
+				return false;
+			}
+		
+		var jumlahkirim =0;
+		
+			if($('.urlvideo').eq(0).val()!='')
+			{
+					
+				datas = new FormData();
+				datas.append("title", $('.titlevideo').eq(0).val());
+				datas.append("url", $('.urlvideo').eq(0).val());
+				datas.append("desc", $('.descvideo').eq(0).val());
+				datas.append("foto", $('.fotovideo').eq(0)[0].files[0]);
+				datas.append("category", $('.categoryvideo option:selected').eq(0).val());
+				datas.append('uploadphoto',1);
+				datas.append('ajax',1);
+				$('.tmptvideo').eq(0).html('<div id="progressbarphoto" class="progressbarphoto fl"><div class="progress-label"></div></div>');
+				
+				
+				
+				$.ajax({
+						   xhr: function(){
+							   var xhr = new window.XMLHttpRequest();
+							   //Upload progress
+							   xhr.upload.addEventListener("progress", function(evt){
+							   if (evt.lengthComputable) {
+								 percentComplete = Math.round(100 * evt.loaded / evt.total);
+								 //Do something with upload progress
+									progressbar = $( ".progressbarphoto" ).eq(0),
+									progressl = $( ".progress-label" ).eq(0),
+									$(progressl).text(percentComplete+ '%');
+									  $(progressbar).css('width', '' + percentComplete+ '%');
+								 }
+							   }, false);
+							 
+							   return xhr;
+							 },
+
+
+
+							url: basedomain+"personal/addportofoliovideo",
+						   type: "POST",
+						   data: datas,
+						   processData: false,
+						   contentType: false,
+						   success: function(response) {
+						  // return false;
+							response= jQuery.parseJSON(response);
+						
+							++jumlahkirim;
+							if(response.status==0)
+							{
+									  console.log('ssdsss');
+								$('.mfp-close').trigger('click');
+								$.magnificPopup.open({
+										items: {
+											src: '#popup-maxvideo'  
+										},
+										type: 'inline'
+										  });
+										  console.log('ssss');
+								setTimeout(function(){ window.location.assign(basedomain+'personal#my-portfolio'); }, 500); 
+								
+							}
+							if(jumlahkirim==jumlahup)
+							{
+									var urls= basedomain+"personal#my-portfolio";
+									if(window.location.href.indexOf("#my-portfolio") > -1) {
+										location.reload();
+									}
+									else
+									{
+										
+											location.href = basedomain+"personal/#my-portfolio";
+									}
+									return false;
+							}
+							// return false;
+							gouploadvideo(jumlahkirim,jumlahup)
+						   },
+						   error: function(jqXHR, textStatus, errorMessage) {
+							   console.log(errorMessage); // Optional
+						   }
+						});
+				
+			}
+		
+		//});
+		
+		if($('.titlevideo').val()=='' && $('.urlvideo').val()=='')
+				{
+					
+					$('#popup-upload-video').magnificPopup('close');
+					return false;
+				}
+			else
+				{
+					return false;
+				}
+		
+	});
+}
+function gouploadvideo(numberkirim,numberjumlahup)
+{
+	jumlahkirim=numberkirim
+		datas = new FormData();
+				datas.append("title", $('.titlevideo').eq(numberkirim).val());
+				datas.append("url", $('.urlvideo').eq(numberkirim).val());
+				datas.append("desc", $('.descvideo').eq(numberkirim).val());
+				datas.append("foto", $('.fotovideo').eq(numberkirim)[0].files[0]);
+				datas.append("category", $('.categoryvideo option:selected').eq(numberkirim).val());
+				datas.append('uploadphoto',1);
+				datas.append('ajax',1);
+				$('.tmptvideo').eq(numberkirim).html('<div id="progressbarphoto" class="progressbarphoto fl"><div class="progress-label"></div></div>');
+				
+				
+				
+				$.ajax({
+						   xhr: function(){
+							   var xhr = new window.XMLHttpRequest();
+							   //Upload progress
+							   xhr.upload.addEventListener("progress", function(evt){
+							   if (evt.lengthComputable) {
+								 percentComplete = Math.round(100 * evt.loaded / evt.total);
+								 //Do something with upload progress
+									progressbar = $( ".progressbarphoto" ).eq(numberkirim),
+									progressl = $( ".progress-label" ).eq(numberkirim),
+									$(progressl).text(percentComplete+ '%');
+									  $(progressbar).css('width', '' + percentComplete+ '%');
+								 }
+							   }, false);
+							 
+							   return xhr;
+							 },
+
+
+
+							url: basedomain+"personal/addportofoliovideo",
+						   type: "POST",
+						   data: datas,
+						   processData: false,
+						   contentType: false,
+						   success: function(response) {
+						  // return false;
+							response= jQuery.parseJSON(response);
+						
+							++jumlahkirim;
+							if(response.status==0)
+							{
+									  console.log('ssdsss');
+								$('.mfp-close').trigger('click');
+								$.magnificPopup.open({
+										items: {
+											src: '#popup-maxvideo'  
+										},
+										type: 'inline'
+										  });
+										  console.log('ssss');
+								setTimeout(function(){ window.location.assign(basedomain+'personal#my-portfolio'); }, 500); 
+								
+							}
+							if(jumlahkirim==numberjumlahup)
+							{
+									var urls= basedomain+"personal#my-portfolio";
+									if(window.location.href.indexOf("#my-portfolio") > -1) {
+										location.reload();
+									}
+									else
+									{
+										
+											location.href = basedomain+"personal/#my-portfolio";
+									}
+									return false;
+							}
+							
+							gouploadvideo(jumlahkirim,numberjumlahup)
+						   },
+						   error: function(jqXHR, textStatus, errorMessage) {
+							   console.log(errorMessage); // Optional
+						   }
+						});
+}
+
+ function clickuploadvideo()
+{
+	$('.saveprotovideo').click(function()
+	{
+		$('#progressbarvideo').show();
+		$('#formuploadvideo').hide();
+		var progressbar = $( "#progressbarvideo" ),
+			progressLabel = $( ".progress-label" );
+			progressbar.progressbar({
+				value: false,
+				change: function() {
+					progressLabel.text( progressbar.progressbar( "value" ) + "%" );
+				},
+				complete: function() {
+					progressLabel.text( "Complete!" );
+				}
+			});
+			function progress() {
+				var val = progressbar.progressbar( "value" ) || 0;
+				progressbar.progressbar( "value", val + 2 );
+				if ( val < 99 ) {
+					setTimeout( progress, 80 );
+				}
+			}
+			setTimeout( progress, 2000 );
+		
+	});
+}
+{/literal}
+</script>

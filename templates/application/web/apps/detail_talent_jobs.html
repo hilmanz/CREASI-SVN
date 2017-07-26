@@ -1,0 +1,308 @@
+{literal}
+<SCRIPT>
+$(function() {
+$( ".datepicker" ).datepicker();
+});
+</SCRIPT>
+{/literal}
+<div class="page_section" id="talentBoard">
+    <div id="metapage">
+        <div class="wrapper">
+            <h1 class="page-title fl">Talent Board</h1>
+            <div class="breadcumb fr">
+                <a href="index.php">Home</a> <span>/</span> <a>Talent Board</a>
+            </div>
+        </div><!-- end .wrapper -->   
+    </div><!-- end #metapage -->
+    <div id="popularTalents" class="section"> 
+        <div class="wrapper">
+        	<div class="col-sidebar">
+                <div class="dashborad-menu">
+                    <h3 class="dashboradmenu-title">My Dashboard</h3>
+                    <div class="dashboradmenu-content">
+                    	<ul>
+                        	<li><a href="{$basedomain}dashboard" class="active">My Jobs</a></li>
+                        	<li><a href="#">Settings</a></li>
+                        	<li><a href="#">Help</a></li>
+                        	<li><a href="#">My Jobs</a></li>
+                        	<li><a href="#">Deactive Account</a></li>
+                        </ul>
+                    </div><!-- END .widget-content -->
+                </div><!-- END .widget -->
+            </div><!-- end .col-sidebar -->   
+        	<div class="colcol7">
+            <form id='dtjobs' action="#">	
+                <div class="talent-list">
+                	<ul class="grid effect-1 interviews" id="grid">
+				
+                    	{if $list}
+						{section name=i loop=$list}  
+			
+						<li class="segmenloading ">
+                            <div class="box">
+                                <div class="boximg">
+								<a href="{$basedomain}personal/view?id={$list[i].id}" class="thumbbox"> &nbsp;<img width="200px" height="200px" src="{$basedomain}public_assets/personal/{$list[i].img_avatar}"></img>
+                                   </a> 
+                                    <div class="captionhide">    
+                                        <div class="meta-info">
+                                            <a href="#" class="button2">UNLIKE</a>
+                                            
+                                        </div><!-- end .meta-info -->   
+                                    </div><!-- end .captionhide -->  
+                                </div><!-- end .boximg -->    
+                                <div class="caption">
+                                    <div class="author-box">
+                                        <a class="author-name" ><input type="checkbox" name="namecheck[]" class="coba" id='{$list[i].user_id}' value="{$list[i].user_id}" attr="{$smarty.section.cu.iteration}">{$list[i].name}</a>
+										 <span class="loading{$list[i].user_id}" style="display:none;"><img src='{$basedomain}assets/images/loader.gif'></span>
+                                        <span class="author-talent">{$list[i].category_name}</span>
+                                    </div><!-- end .author-box -->    
+									<div class='download{$list[i].user_id}'></div>
+                                    <div class="meta-info emblem{$list[i].user_id}">
+                                        <a href="#" class="c-view"><i class="ico icon-eye">&nbsp;</i> <span>
+										{$list[i].view_count}</span></a>
+                                        <a href="#" class="c-like"><i class="ico icon-thumbs-o-up">&nbsp;</i> <span>{$list[i].love_count}</span></a>
+                                       
+                                    </div><!-- end .meta-info -->  
+                                </div>
+                            </div><!-- end .box --> 
+                        </li>
+			
+			{/section}
+			{/if}&nbsp;&nbsp;
+				<li style="display:none;" class="loading"> Loading .....</li>
+				
+				<span class="hasil"></span>
+				
+               </ul>
+                </div><!-- end .talent-list -->
+                <div class="row-paging">
+						<input type='hidden' name='jobid' class='jobsid' value='{$jobsid}'>
+						
+						<input type="submit"  name='print' class="button1" value='Cetak' >
+						
+						<a href="#" class="button2 Panggil"  value='Panggil'  name='print' >Panggil Interview</a>
+						<a href="#" class="button2 Panggils" style="display:none;" >Panggil Interview</a>
+                </div>
+				</form>
+            </div><!-- end .col-content -->   
+			
+        </div><!-- end .wrapper -->    
+    </div><!-- end #popularTalents --> 
+</div><!-- end #talentBoard -->
+<script src="{$basedomain}assets/js/masonry.pkgd.min.js"></script>
+<script src="{$basedomain}assets/js/imagesloaded.js"></script>
+<script src="{$basedomain}assets/js/classie.js"></script>
+<script src="{$basedomain}assets/js/AnimOnScroll.js"></script>
+{literal}
+<script>
+
+
+                $('.Panggil').click(function(e){
+                    e.preventDefault();
+					
+					var  usernya = new Array;
+					$.each($('.coba:checked'),function(k,v){  
+					usernya.push($(this).val());
+					});
+					
+					var jobsid= $('.jobsid').val();
+					
+					//console.log(usernya);
+					
+					
+                    $.ajax({
+						'type': 'POST',
+                        'url': basedomain+'dashboard/checkinterview',
+                        'data': {user:usernya,jobsid:jobsid},
+						'dataType':'json',
+						'beforeSend': function() {
+														$('.segmenloading').hide();
+														$('.loading').show();
+														
+												 },
+                        'success': function(result){
+										$('.loading').hide();
+										$('.Panggil').hide();
+										$('.Panggils').show();
+										if (result.status==1)
+										{
+										
+										var str="";
+											str+='<li class="segmenloading shown">';
+											str+='<div class="box">';
+										str+='<h2>List <span class="red">Check</span></h2>';
+																	
+											str+='<div id="theform" class="section col7"> ';
+																str+='<div class="wrapper">';
+																str+='<div class="col-content">';
+																str+='<div class="titleboxs"> ';  
+																
+																str+='<p>Complete this easy and quick form and start receiving CVs from our Creative Talents.</p>';
+																str+='<div class="rows">';
+																str+='<div class="col7">';
+																str+='<table style="width: 100%;display: table; " border="0"><tr><th >Nama Lengkap</th><th>Gambar/Image</th><th>Email User </th><th>Jenis Kelamin/Sex</th><th>Kota / City</th></tr><tr></tr>';
+																						$.each(result.data,function(k,v){  
+																					
+																						
+																							str+='<tr><td>'+v.name+'</td><td><img width="80px" height="80px" align="center" src="'+basedomain+'public_assets/personal/'+v.img_avatar+'"></td><td>'+v.email+'</td><td>'+v.sex+'</td><td>'+v.city+'</td></tr>';
+																						
+																						
+																							
+																							});
+																							
+																							str+='</table>';
+															
+																
+																str+='</div></div></div><br><br>';
+																str+='<form class="theforms forms" id="forms"  method="POST" action="{$basedomain}postjobs" enctype="multipart/form-data">';
+																str+='<div class="rows">';
+																str+='<div class="col2">';
+																str+='<label>Date*</label>';
+																str+='<input id="title" name="title" type="text" class="datepicker" value="" placeholder="Date & Time"><br><label class="msg_name" style="color: red;" /></label>';
+																str+='</div>';
+																str+='<div class="col2">';
+																str+='<label>Time*</label>';
+																str+='<select class="selectpicker selectpicker show-tick subcategory"  data-width="100%">';
+																str+='<option>Please select one sub-category</option>';
+																str+='</select>';
+																str+='</div>'
+															
+																str+='</div>';
+																str+='<div class="rows">';
+																str+='<div class="col2">';
+																str+='<label>Address*</label>';
+																str+='<textarea id="description" name="description" placeholder="Maximum of 1000 characters" type="text"></textarea>';
+																str+='</div>';
+																str+='</div>';
+																str+='<div class="rows">';
+																
+																str+='<div class="col2">';
+																str+='<label>Contact Person*</label>';
+																str+='<input id="title" name="title" type="text" class="required" value="" placeholder="Contact Person"><br><label class="msg_name" style="color: red;" /></label>';
+																str+='</div>';
+																str+='<div class="col2">';
+																str+='<label>Telephone*</label>';
+																str+='<input id="title" name="title" type="text" class="required" value="" placeholder="Masukkan Telephone"><br><label class="msg_name" style="color: red;" /></label>';
+																str+='</div>';
+																str+='</div>';
+																
+																
+															str+='</div>';
+														str+='</div>';
+													str+='</div>';		
+												str+='</div>';
+											str+='</li>';
+															
+											//console.log(str);
+											$('.hasil').html(str);
+											$(function() {
+															$( ".datepicker" ).datepicker();
+															});
+										}
+											
+						
+							
+										
+										
+								
+				}
+			});
+		});
+	
+	 
+
+   $(document).ready(function(){
+   
+   
+                $('.Panggils').click(function(e){
+				//console.log('aaa');
+                    e.preventDefault();
+					
+					var  usernya = new Array;
+					$.each($('.coba:checked'),function(k,v){  
+					usernya.push($(this).val());
+					});
+					
+					var jobsid= $('.jobsid').val();
+					
+					//console.log(usernya);
+					
+					
+                    $.ajax({
+						'type': 'POST',
+                        'url': basedomain+'dashboard/ajaxinterviewjobs',
+                        'data': {user:usernya,idjobs:jobsid},
+						'dataType':'json',
+                        'success': function(result){
+						
+						alert ('Interview Has Been Sent')
+								
+						}
+						});
+					});
+				});
+				
+				
+
+					
+					
+					
+    $(document).ready(function(){
+                $('#dtjobs').submit(function(e){
+								
+					
+					e.preventDefault();
+                    $.ajax({
+                        'type': 'POST',
+                        'url': basedomain+'dashboard/ajaxdtjobs',
+                        'data': $(this).serialize(),
+						'dataType':'json',
+						'beforeSend':function(){    						
+																			  var coba=''
+																			  $('.coba:checked').each(function(){
+																									coba=$(this).val();
+																								
+																									$("#"+coba).hide();					
+																									$(".loading"+coba).show();
+																									});
+																				
+																					
+																			},
+                        'success': function(result){
+																			 var str='';
+																			 var coba='';
+																			  $('.coba:checked').each(function(){
+																									coba=$(this).val();
+																									$(".loading"+coba).hide();
+																									$("#"+coba).remove();	
+																									$(".emblem"+coba).hide();
+																									
+																								
+																									
+													if(result.status==1)
+														{
+															$.each(result.data,function(k,v){  
+															str+="<a href='"+basedomain+"dashboard/download?param="+v+"' id='download' name='print' class='button1 download"+v+"' value='print' >Download File</a>"
+															});
+															
+															$('.download'+coba).html(str);	
+														}												
+																									
+												});
+								}
+							
+							});
+
+						});
+					return false;
+				});
+</script>
+
+<script>
+	new AnimOnScroll( document.getElementById( 'grid' ), {
+		minDuration : 0.4,
+		maxDuration : 0.7,
+		viewportFactor : 0.2
+	} );
+</script>
+{/literal}

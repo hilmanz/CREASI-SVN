@@ -1,0 +1,1067 @@
+<div class="page_section" id="jobBoard">
+    <div id="metapage">
+        <div class="wrapper">
+            <h1 class="page-title fl">{$rolenya} Talent Dashboard</h1>
+            <div class="breadcumb fr">
+                <a href="index.php">Home</a> <span>/</span> <a>{$rolenya} Talent Dashboard</a>
+            </div>
+        </div><!-- end .wrapper -->   
+    </div><!-- end #metapage -->
+    <div id="jobBoardList" class="section"> 
+        <div class="wrapper">
+        	{include file="application/web/widgets/left_menudashboard.html"}  
+        	<div class="col-content">
+                <div class="notibar">
+                    <a class="close"><i class="icon-times-circle">&nbsp;</i></a>
+                    <h3>Welcome to Creasi</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                </div><!-- notification announcement -->
+                
+            	<div class="euTab">
+                  <ul>
+                    <li><a href="#my-applications">My Applications</a></li>
+                    <li><a href="#my-interviews">My Interviews</a></li>
+                  </ul>
+                  <div id="my-applications" class="tab-content">
+                        <div class="shorter">
+                            <form class="forms fl">
+							{if $user->role == 1}
+                                  <select class="selectpicker selectpicker show-tick shortdashboardappuser" data-width="150">
+								  <option value="">Choice</option>
+                                    <option value="new">Recent</option>
+                                  </select>
+							{else}	
+									<select class="selectpicker selectpicker show-tick shortdashboardapp" data-width="150">
+								  <option value="">Choice</option>
+                                    <option value="new">Recent</option>
+                                  </select>							
+							{/if}
+								  <input type="hidden" class="uidnyah" value="{$uid}">
+                            </form>
+                            <div class="paging fr paging_of_dashboard_list">
+                                <a href="#">&laquo; First</a>
+                                <a href="#">&lsaquo;</a>
+                                <a href="#">1</a>
+                                <a href="#" class="current">2</a>
+                                <a href="#">3</a>
+                                <a href="#">4</a>
+                                <a href="#">5</a>
+                                <a href="#">&rsaquo;</a>
+                                <a href="#">LAST &raquo;</a>
+                            </div>
+                        </div><!-- END .shorter -->
+                        <div class="job-list shorting_myapp">
+						
+						 {if $load}
+					     {section name=i loop=$load}
+                            <div class="rowjob">
+							<div class="boximg">
+                            
+                        
+						{if $load[i].img_avatar != ''}
+						{if $user->role == 1}
+                            <a href="{$basedomain}jobboard/detail_jobboard?id={$load[i].id_job}" class="thumbbox"><img src="{$basedomain}public_assets/personal/{$load[i].img_avatar}" height="200px" width="200px"/></a>
+						{/if}
+						{if $user->role == 2}
+							<a href="{$basedomain}jobboard/detail_jobboard?id={$load[i].id_job}" class="thumbbox"><img src="{$basedomain}public_assets/personal/{$load[i].img_avatar}" height="200px" width="200px"/></a>
+						{/if}
+						{else}
+						{if $user->role == 1}
+								<a href="{$basedomain}jobboard/detail_jobboard?id={$load[i].id_job}" class="thumbbox"><img src="{$basedomain}public_assets/postjob/images.jpg" /></a>
+						{/if}
+						{if $user->role == 2}
+								<a href="{$basedomain}jobboard/detail_jobboard?id={$load[i].id_job}" class="thumbbox"><img src="{$basedomain}public_assets/postjob/images.jpg" /></a>
+						{/if}
+						{/if}
+						
+						
+                                    <div class="caption">
+                                        
+                                        <i>No. of likes: {$load[i].love_count}</i>
+                                    </div>    
+									
+									{section name=k loop=$popularlist}	
+									{if $popularlist[k].id_job == $load[i].id_job}
+									<div class="ribbon">Popular</div>
+									{/if}
+									{/section}  
+                                  
+                                </div><!-- end .boximg -->    
+                                 <div class="entry">
+										<h3><a href="{$basedomain}jobboard/detail_jobboard?id={$load[i].id_job}">{$load[i].job_title}</a></h3>
+										<div class="meta-post">
+											<a href="#" class="company-name"><i class="icon-suitcase">&nbsp;</i>{$load[i].nama_perusahaan}</a>
+											{if $load[i].verified == 1}
+											<a href="#" class="company-status"><i class="icon-check-circle">&nbsp;</i> Verified</a>
+											{/if}
+											
+											<a href="#" class="location-name"/><i class="icon-map-marker">&nbsp;</i> DKI Jakarta, Jakarta Selatan</a>
+										</div>
+										<p align='justify'>{$load[i].job_description|substr:0:150}...(more)</p>
+									</div><!-- end .entry -->  
+                                <div class="jobInfo">
+                                   {if $user->role == 2}
+											{if $load[i].n_status==6}
+												<h4 class="draft">DRAFT</h4>
+												<p><a href="{$basedomain}postjobs/editdraft?param={$load[i].id_job}" class="button2"><span>EDIT JOB</span></a></p>
+												 <span class="applicantsNo">No. of Applicants: {$load[i].registrant}</span>
+											{/if}
+											{if $load[i].n_status==1 && $load[i].hari > 0 && $load[i].n_status_interview != 1}
+												<a class="label bggreen" href="{$basedomain}jobboard/detail_jobboard?id={$load[i].id_job}"> OPEN</a>
+												  <div class="countdown-job">
+													<h4><b>{if $load[i].hari < 0}
+													0
+													{else}
+													{$load[i].hari}
+													{/if}
+													
+													</b></h4>
+													<span>DAYS LEFT TO APPLY</span>
+												</div>
+												<span class="applicantsNo">No. of Applicants:{$load[i].registrant}</span>
+											{/if}
+											{if $load[i].n_status==1 && $load[i].n_status_interview==1}
+												<span class="label bgyellow">INTERVIEW</span>
+												<div class="countdown-job">
+												<h4><b>{if $load[i].hari < 0}
+													0
+													{else}
+													{$load[i].hari}
+													{/if}</b></h4>
+												<span>DAYS LEFT TO APPLY</span>
+												</div>
+												<span class="applicantsNo">No. of Applicants: {$load[i].registrant}</span>
+											{/if}
+											{else}
+												{if $load[i].n_status==1 && $load[i].n_status_interview==1}
+												<span class="label bgyellow">INTERVIEW</span>
+												<div class="countdown-job">
+												<h4><b>{if $load[i].hari < 0}
+													0
+													{else}
+													{$load[i].hari}
+													{/if}</b></h4>
+												<span>DAYS LEFT TO APPLY</span>
+												</div>
+												<span class="applicantsNo">No. of Applicants: {$load[i].registrant}</span>
+												{else}
+										
+												<a class="label bggreen" href="{$basedomain}jobboard/detail_jobboard?id={$load[i].id_job}"> OPEN</a>
+												  <div class="countdown-job">
+													<h4><b>{if $load[i].hari < 0}
+													0
+													{else}
+													{$load[i].hari}
+													{/if}
+													
+													</b></h4>
+													<span>DAYS LEFT TO APPLY</span>
+												</div>
+												<span class="applicantsNo">No. of Applicants:{$load[i].registrant}</span>
+											
+											{/if}
+											
+										{/if}
+                                   
+                                </div><!-- end .jobInfo -->    
+								{if $load[i].n_status==2}
+								<div class="redbox errorjob">
+									<div class="redbox-entry">
+									<h3>UNSUCCSESSFULL :(</h3>
+									<p>JOB ID : {$load[i].id_job}</p>
+									<p>
+									</div>
+								</div>
+								{/if}
+								{if $load[i].n_status==0}
+								<div class="redbox errorjob">
+									<div class="redbox-entry">
+									<h3>IN MODERATION ..</h3>
+									<p>JOB ID : {$load[i].id_job}</p>
+									<p>
+									</div>
+								</div>
+								{/if}
+                            </div><!-- end .rowjob -->  
+							{/section}
+							{/if}
+							
+							
+							
+							
+                            
+                        </div><!-- end .job-list -->
+                        <div id="paging_of_dashboard_list" class="row-paging ">
+                            <div class="paging paging_of_dashboard_list">
+                                <a href="#">&laquo; First</a>
+                                <a href="#">&lsaquo;</a>
+                                <a href="#">1</a>
+                                <a href="#" class="current">2</a>
+                                <a href="#">3</a>
+                                <a href="#">4</a>
+                                <a href="#">5</a>
+                                <a href="#">&rsaquo;</a>
+                                <a href="#">LAST &raquo;</a>
+                            </div>
+                        </div>
+                  </div><!-- END .tab-content -->
+
+<script type="text/javascript">
+var role={$user->role};
+	getpaging(0,{$total},"paging_of_dashboard_list","paging_ajax_dashboard",5);
+</script>
+
+
+<script>
+var role={$user->role};
+{literal}
+	$(document).ready(function(){
+			$(".shortdashboardapp").change(function(){
+
+				var okeh = $(".shortdashboardapp").val();
+				var uid = $(".uidnyah").val();
+			
+		$.ajax({
+						'type': 'POST',
+						'url': basedomain+'dashboard/ajaxmostview',
+						'data': {uid:uid,sortir:okeh},
+						'dataType':'json',
+						'success': function(response){
+						var str="";
+						$.each(response.data.result,function(k,v){  
+						
+							
+                        str+='<div class="rowjob">';
+						str+='<div class="boximg">';
+                            
+                        
+					if (v.img_avatar !== '' || v.img_avatar !=='null' )
+						{
+						if (response.role == 1)
+						{
+						str+='<a href="'+basedomain+'jobboard/detail_jobboard?id='+v.id_job+'" class="thumbbox"><img src="'+basedomain+'public_assets/personal/'+v.img_avatar+'" height="200px" width="200px"/></a>';
+						}
+						if(response.role == 2)
+						{
+						str+='<a href="'+basedomain+'jobboard/detail_jobboard?id='+v.id_job+'" class="thumbbox"><img src="'+basedomain+'public_assets/personal/'+v.img_avatar+'" height="200px" width="200px"/></a>';
+						}
+						
+						}else{
+						if (response.role == 1)
+						{
+						str+='<a href="'+basedomain+'jobboard/detail_jobboard?id='+v.id_job+'" class="thumbbox"><img src="'+basedomain+'public_assets/postjob/images.jpg" height="200px" width="200px"/></a>';
+						}
+						if(response.role == 2)
+						{
+						str+='<a href="'+basedomain+'jobboard/detail_jobboard?id='+v.id_job+'" class="thumbbox"><img src="'+basedomain+'public_assets/postjob/images.jpg" height="200px" width="200px"/></a>';
+						}
+						
+						
+						}
+						
+						str+='<div class="caption">';
+                        str+='<i>No. of likes: '+v.love_count+'</i>';
+                        str+='</div>';   
+									
+									$.each(response.popularlist,function(kk,vv){  
+									if (vv.id_job ==v.id_job)
+									{
+									str+='<div class="ribbon">Popular</div>';
+									}
+								
+									});
+                                  
+                        str+='</div>';
+                        str+='<div class="entry">';
+					    str+='<h3><a href="'+basedomain+'jobboard/detail_jobboard?id='+v.id_job+'">'+v.job_title+'</a></h3>';
+					    str+='<div class="meta-post">';
+						str+='<a href="#" class="company-name"><i class="icon-suitcase">&nbsp;</i>'+v.nama_perusahaan+'</a>';
+											if (v.verified == 1){
+											str+='<a href="#" class="company-status"><i class="icon-check-circle">&nbsp;</i> Verified</a>';
+											}
+											
+						str+='<a href="#" class="location-name"/><i class="icon-map-marker">&nbsp;</i> DKI Jakarta, Jakarta Selatan</a>';
+						str+='</div>';
+						str+='<p align="justify">'+v.job_description.substring(0,150)+' (more..)</p>';
+						str+='</div>';
+                        str+=' <div class="jobInfo">';
+                                   if(role === 2)
+								   {
+											if (v.n_status==6){
+											str+='<h4 class="draft">DRAFT</h4>';
+											str+='<p><a href="'+basedomain+'postjobs/editdraft?param='+v.id_job+'" class="button2"><span>EDIT JOB</span></a></p>';
+											str+='<span class="applicantsNo">No. of Applicants: '+v.registrant+'</span>';
+											}
+											
+											if ( v.n_status==1 && v.hari > 0 && v.n_status_interview != 1)
+											{
+											str+='<a class="label bggreen" href="'+basedomain+'jobboard/detail_jobboard?id='+v.id_job+'"> OPEN</a>';
+											str+='<div class="countdown-job">';
+											str+='<h4><b>';
+											if (v.hari < 0)
+											{
+													0
+													}else
+													{
+													str+=v.hari;
+													}
+											str+='</b></h4>';
+											str+='<span>DAYS LEFT TO APPLY</span>';
+											str+='</div>';
+											str+='<span class="applicantsNo">No. of Applicants:'+v.registrant+'</span>';
+											}
+											if ( v.n_status==1 && v.hari > 0 && v.n_status_interview == 1)
+											{
+											str+='<span class="label bgyellow">INTERVIEW</span>';
+											str+='<div class="countdown-job">';
+											str+='<h4><b>';
+												if (v.hari < 0)
+													{
+													0
+													}else
+													{
+													str+=v.hari;
+													}
+											str+='</b></h4>';
+											str+='<span>DAYS LEFT TO APPLY</span>';
+											str+='</div>';
+											str+='<span class="applicantsNo">No. of Applicants:'+v.registrant+'</span>';
+											}if ( v.n_status==1 && v.hari <= 0 && v.n_status_interview == 1)
+											{
+											str+='<span class="label bgyellow">INTERVIEW</span>';
+											str+='<div class="countdown-job">';
+											str+='<h4><b>';
+												if (v.hari < 0)
+													{
+													str+='0';
+													}else
+													{
+													str+=v.hari;
+													}
+											str+='</b></h4>';
+											str+='<span>DAYS LEFT TO APPLY</span>';
+											str+='</div>';
+											str+='<span class="applicantsNo">No. of Applicants:'+v.registrant+'</span>';
+											}
+									}
+                               str+='</div>  ';  
+								if (v.n_status == 2)
+								{
+								str+='<div class="redbox errorjob">';
+								str+='<div class="redbox-entry">';
+								str+='<h3>UNSUCCSESSFULL :(</h3>';
+								str+='<p>JOB ID : '+v.id_job+'</p>';
+								str+='<p>';
+								str+='</div>';
+								str+='</div>';
+								}
+								if (v.n_status == 0)
+								{
+								str+='<div class="redbox errorjob">';
+								str+='<div class="redbox-entry">';
+								str+='<h3>IN MODERATION ..</h3>';
+								str+='<p>JOB ID : '+v.id_job+'</p>';
+								str+='<p>';
+								str+='</div>';
+								str+='</div>';
+								}
+                           str+='</div>';
+							}); $(".shorting_myapp").html(str);
+						}
+							
+							
+							
+					});
+				});
+			});
+</script>	
+{/literal}			  
+<script>
+var role={$user->role};
+{literal}
+	$(document).ready(function(){
+			$(".shortdashboardappuser").change(function(){
+
+				var okeh = $(".shortdashboardappuser").val();
+				var uid = $(".uidnyah").val();
+			
+		$.ajax({
+						'type': 'POST',
+						'url': basedomain+'dashboard/ajaxmostviewuser',
+						'data': {uid:uid,sortir:okeh},
+						'dataType':'json',
+						'success': function(response){
+						var str="";
+						$.each(response.data.result,function(k,v){  
+						
+							
+                        str+='<div class="rowjob">';
+						str+='<div class="boximg">';
+                            
+                        
+						if (v.img_avatar !== '' && v.img_avatar !== null )
+						{
+						if (response.role == 1)
+						{
+						str+='<a href="'+basedomain+'jobboard/detail_jobboard?id='+v.id_job+'" class="thumbbox"><img src="'+basedomain+'public_assets/personal/'+v.img_avatar+'" height="200px" width="200px"/></a>';
+						}
+						if(response.role == 2)
+						{
+						str+='<a href="'+basedomain+'jobboard/detail_jobboard?id='+v.id_job+'" class="thumbbox"><img src="'+basedomain+'public_assets/personal/'+v.img_avatar+'" height="200px" width="200px"/></a>';
+						}
+						
+						}else{
+						if (response.role == 1)
+						{
+						str+='<a href="'+basedomain+'jobboard/detail_jobboard?id='+v.id_job+'" class="thumbbox"><img src="'+basedomain+'public_assets/postjob/images.jpg" height="200px" width="200px"/></a>';
+						}
+						if(response.role == 2)
+						{
+						str+='<a href="'+basedomain+'jobboard/detail_jobboard?id='+v.id_job+'" class="thumbbox"><img src="'+basedomain+'public_assets/postjob/images.jpg" height="200px" width="200px"/></a>';
+						}
+						
+						
+						}
+						
+						str+='<div class="caption">';
+                        str+='<i>No. of likes: '+v.love_count+'</i>';
+                        str+='</div>';   
+									
+									$.each(response.popularlist,function(kk,vv){  
+									if (vv.id_job ==v.id_job)
+									{
+									str+='<div class="ribbon">Popular</div>';
+									}
+								
+									});
+                                  
+                        str+='</div>';
+                        str+='<div class="entry">';
+					    str+='<h3><a href="'+basedomain+'jobboard/detail_jobboard?id='+v.id_job+'">'+v.job_title+'</a></h3>';
+					    str+='<div class="meta-post">';
+						str+='<a href="#" class="company-name"><i class="icon-suitcase">&nbsp;</i>'+v.nama_perusahaan+'</a>';
+											if (v.verified == 1){
+											str+='<a href="#" class="company-status"><i class="icon-check-circle">&nbsp;</i> Verified</a>';
+											}
+											
+						str+='<a href="#" class="location-name"/><i class="icon-map-marker">&nbsp;</i> DKI Jakarta, Jakarta Selatan</a>';
+						str+='</div>';
+						str+='<p align="justify">'+v.job_description.substring(0,150)+';</p>';
+						str+='</div>';
+                        str+=' <div class="jobInfo">';
+                                   if(role === 2)
+								   {
+											if (v.n_status==6){
+											str+='<h4 class="draft">DRAFT</h4>';
+											str+='<p><a href="'+basedomain+'postjobs/editdraft?param='+v.id_job+'" class="button2"><span>EDIT JOB</span></a></p>';
+											str+='<span class="applicantsNo">No. of Applicants: '+v.registrant+'</span>';
+											}
+											
+											if ( v.n_status==1 && v.hari > 0 && v.n_status_interview != 1)
+											{
+											str+='<a class="label bggreen" href="'+basedomain+'jobboard/detail_jobboard?id='+v.id_job+'"> OPEN</a>';
+											str+='<div class="countdown-job">';
+											str+='<h4><b>';
+											if (v.hari < 0)
+											{
+													0
+													}else
+													{
+													str+=v.hari;
+													}
+											str+='</b></h4>';
+											str+='<span>DAYS LEFT TO APPLY</span>';
+											str+='</div>';
+											str+='<span class="applicantsNo">No. of Applicants:'+v.registrant+'</span>';
+											}
+											if ( v.n_status==1 && v.hari > 0 && v.n_status_interview == 1)
+											{
+											str+='<span class="label bgyellow">INTERVIEW</span>';
+											str+='<div class="countdown-job">';
+											str+='<h4><b>';
+												if (v.hari < 0)
+													{
+													0
+													}else
+													{
+													str+=v.hari;
+													}
+											str+='</b></h4>';
+											str+='<span>DAYS LEFT TO APPLY</span>';
+											str+='</div>';
+											str+='<span class="applicantsNo">No. of Applicants:'+v.registrant+'</span>';
+											}if ( v.n_status==1 && v.hari <= 0 && v.n_status_interview == 1)
+											{
+											str+='<span class="label bgyellow">INTERVIEW</span>';
+											str+='<div class="countdown-job">';
+											str+='<h4><b>';
+												if (v.hari < 0)
+													{
+													str+='0';
+													}else
+													{
+													str+=v.hari;
+													}
+											str+='</b></h4>';
+											str+='<span>DAYS LEFT TO APPLY</span>';
+											str+='</div>';
+											str+='<span class="applicantsNo">No. of Applicants:'+v.registrant+'</span>';
+											}
+									}else{
+									if (v.n_status==6){
+											str+='<h4 class="draft">DRAFT</h4>';
+											str+='<p><a href="'+basedomain+'postjobs/editdraft?param='+v.id_job+'" class="button2"><span>EDIT JOB</span></a></p>';
+											str+='<span class="applicantsNo">No. of Applicants: '+v.registrant+'</span>';
+											}
+											
+											if ( v.n_status==1 && v.hari > 0 && v.n_status_interview != 1)
+											{
+											str+='<a class="label bggreen" href="'+basedomain+'jobboard/detail_jobboard?id='+v.id_job+'"> OPEN</a>';
+											str+='<div class="countdown-job">';
+											str+='<h4><b>';
+											if (v.hari < 0)
+											{
+													0
+													}else
+													{
+													str+=v.hari;
+													}
+											str+='</b></h4>';
+											str+='<span>DAYS LEFT TO APPLY</span>';
+											str+='</div>';
+											str+='<span class="applicantsNo">No. of Applicants:'+v.registrant+'</span>';
+											}
+											if ( v.n_status==1 && v.hari > 0 && v.n_status_interview == 1)
+											{
+											str+='<span class="label bgyellow">INTERVIEW</span>';
+											str+='<div class="countdown-job">';
+											str+='<h4><b>';
+												if (v.hari < 0)
+													{
+													0
+													}else
+													{
+													str+=v.hari;
+													}
+											str+='</b></h4>';
+											str+='<span>DAYS LEFT TO APPLY</span>';
+											str+='</div>';
+											str+='<span class="applicantsNo">No. of Applicants:'+v.registrant+'</span>';
+											}if ( v.n_status==1 && v.hari <= 0 && v.n_status_interview == 1)
+											{
+											str+='<span class="label bgyellow">INTERVIEW</span>';
+											str+='<div class="countdown-job">';
+											str+='<h4><b>';
+												if (v.hari < 0)
+													{
+													str+='0';
+													}else
+													{
+													str+=v.hari;
+													}
+											str+='</b></h4>';
+											str+='<span>DAYS LEFT TO APPLY</span>';
+											str+='</div>';
+											str+='<span class="applicantsNo">No. of Applicants:'+v.registrant+'</span>';
+											}
+									
+									}
+                               str+='</div>  ';  
+								if (v.n_status == 2)
+								{
+								str+='<div class="redbox errorjob">';
+								str+='<div class="redbox-entry">';
+								str+='<h3>UNSUCCSESSFULL :(</h3>';
+								str+='<p>JOB ID : '+v.id_job+'</p>';
+								str+='<p>';
+								str+='</div>';
+								str+='</div>';
+								}
+                           str+='</div>';
+							}); $(".shorting_myapp").html(str);
+						}
+							
+							
+							
+					});
+				});
+			});
+</script>	
+{/literal}					  
+				  
+				  
+                  <div id="my-interviews" class="tab-content">
+                        <div class="shorter">
+                            
+							{if $user->role == 2}	
+							<!-- <form class="forms fl">
+                                  <select class="selectpicker selectpicker show-tick" data-width="150">
+                                    <option value="new">New</option>
+                                    <option value="clostest">Closest interview date</option>
+                                    <option>Accepted</option>
+                                  </select>
+                            </form> -->
+                            <div class="paging fr paging_of_interview_list_ts">
+                                <a href="#">&laquo; First</a>
+                                <a href="#">&lsaquo;</a>
+                                <a href="#">1</a>
+                                <a href="#" class="current">2</a>
+                                <a href="#">3</a>
+                                <a href="#">4</a>
+                                <a href="#">5</a>
+                                <a href="#">&rsaquo;</a>
+                                <a href="#">LAST &raquo;</a>
+                            </div>
+							{else}
+							<form class="forms fl">
+                                  <select class="selectpicker selectpicker show-tick" data-width="150">
+                                    <option>New</option>
+                                    <option>Closest interview date</option>
+                                    <option>Accepted</option>
+                                  </select>
+                            </form>
+							  <div class="paging fr paging_of_interview_list_ct">
+                                <a href="#">&laquo; First</a>
+                                <a href="#">&lsaquo;</a>
+                                <a href="#">1</a>
+                                <a href="#" class="current">2</a>
+                                <a href="#">3</a>
+                                <a href="#">4</a>
+                                <a href="#">5</a>
+                                <a href="#">&rsaquo;</a>
+                                <a href="#">LAST &raquo;</a>
+                            </div>
+							{/if}
+                        </div><!-- END .shorter -->
+						
+						 
+						{if $user->role == 2}
+						{if $listts}
+						<div class=" job-list shorting_interview">
+					    {section name=i loop=$listts}
+                         <div class="rowjob">
+						 
+                               <div class="boximg">
+                            
+                        
+						{if $load[i].img_avatar != ''}
+						{if $user->role == 1}
+                            <a href="{$basedomain}jobboard/detail_jobboard?id={$load[i].id_job}" class="thumbbox"><img src="{$basedomain}public_assets/personal/{$load[i].img_avatar}" height="200px" width="200px"/></a>
+						{/if}
+						{if $user->role == 2}
+							<a href="{$basedomain}jobboard/detail_jobboard?id={$load[i].id_job}" class="thumbbox"><img src="{$basedomain}public_assets/personal/{$load[i].img_avatar}" height="200px" width="200px"/></a>
+						{/if}
+						{else}
+						{if $user->role == 1}
+								<a href="{$basedomain}jobboard/detail_jobboard?id={$load[i].id_job}" class="thumbbox"><img src="{$basedomain}public_assets/postjob/images.jpg" /></a>
+						{/if}
+						{if $user->role == 2}
+								<a href="{$basedomain}jobboard/detail_jobboard?id={$load[i].id_job}" class="thumbbox"><img src="{$basedomain}public_assets/postjob/images.jpg" /></a>
+						{/if}
+						{/if}
+						
+						
+						
+                                    <div class="caption">
+                                        
+                                        <i>No. of likes: {$listts[i].registrant}</i>
+                                    </div>    
+									
+									{section name=k loop=$popularlist}	
+									{if $popularlist[k].id_job == $listts[i].id_job}
+									<div class="ribbon ribbonred">Popular</div>
+									{/if}
+									{/section}  
+                                  
+                                </div><!-- end .boximg -->    
+                                <div class="entry">
+                                    <h3><a href="{$basedomain}jobboard/detail_jobboard?id={$listts[i].id_job}">{$listts[i].job_title}</a></h3>
+									<div class="meta-post">
+											<a href="{$basedomain}jobboard/detail_jobboard?id={$listts[i].id_job}" class="company-name"><i class="icon-suitcase">&nbsp;</i>{$listts[i].nama_perusahaan}</a>
+											{if $listts[i].status_jobs == 1}
+											<a href="{$basedomain}jobboard/detail_jobboard?id={$listts[i].id_job}" class="company-status"><i class="icon-check-circle">&nbsp;</i> Verified</a>
+											{/if}
+											
+											<a href="{$basedomain}jobboard/detail_jobboard?id={$listts[i].id_job}" class="location-name"/><i class="icon-map-marker">&nbsp;</i>{$listts[i].provinsi} , {$listts[i].city} </a>
+										</div>
+                                       <p class="interview-detail">
+                                    <span class="interview-date"><strong>Date & Times</strong> : {$listts[i].myapp[0].interview_date|date_format:"%A, %B %e, %Y"}</span>
+                                    <span class="interview-location"><strong>Address</strong> : {$listts[i].myapp[0].interview_address}</span>
+                                    <span class="interview-contact"><strong>Contact Person</strong>: {$listts[i].myapp[0].interview_contact}</span>
+                                   <span class="interview-phone"> <strong>Telephone</strong>: {$listts[i].myapp[0].interview_telp}</span></p>
+                                </div><!-- end .entry -->  
+                                <div class="jobInfo">
+                            		<span class="label bgyellow">INTERVIEW</span>
+                                    <div class="countdown-job">
+                                        <h4><b>{$listts[i].hari}</b></h4>
+                                        <span>DAYS LEFT TO APPLY</span>
+                                    </div>
+                                    <span class="applicantsNo">No. of Applicants: {$listts[i].registrant}</span>
+                                    <a href="#{$listts[i].id_job}" class="openlist icon-chevron-down">OPEN</a>
+                                </div><!-- end .jobInfo -->   
+                                <div class="interviewlist" id="{$listts[i].id_job}">
+                                	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="table table2">
+                                      <tr>
+                                        <th>Status</th>
+                                        <th width="200">Name</th>
+                                        <th width="120">Date/Day</th>
+                                        <th width="50">Time</th>
+                                        <th width="200">Address</th>
+                                        <th>Contact Person</th>
+                                      </tr>
+									
+									
+								{if $listts[i].myapp != ''}
+								{section name=b loop=$listts[i].myapp}
+                                      <tr>
+                                        <td>
+                                          <div class="selectbox">
+                                          <select name='statusperson' class='statusperson' var="{$listts[i].myapp[b].user_id}">
+                                            <option >Select One</option>
+                                            <option value="noshow">No Show</option>
+                                            <option value="hired">Hired</option>
+                                          </select>
+                                          </div>
+                                        </td>
+                                        <td>
+                                        <div class="smallthumb"><img src="{$basedomain}public_assets/personal/{$listts[i].myapp[b].img_avatar}" width="30" height="40"  /></div>
+                                        <h6>{$listts[i].myapp[b].name}</h6>
+                                        </td>
+                                        <td align="center">
+                                        	<span class="date">{$listts[i].myapp[b].interview_date|date_format}</span><br />
+                                        	<span class="day">{$listts[i].myapp[b].interview_date|date_format:"%A"}</span>
+                                        </td>
+                                        <td align="center"><span class="time">{$listts[i].myapp[b].interview_date|date_format:"%I:%M:%S"}</span></td>
+                                        <td><span class="address">{$listts[i].myapp[b].interview_address}</span></td>
+                                        <td align="center"><span class="cp">{$listts[i].myapp[b].interview_contact}</span></td>
+                                      </tr>
+                                  {/section}
+								  {/if}
+								  </table>
+                                </div><!-- end .interviewlist -->     
+                            </div><!-- end .rowjob -->  
+						{/section}
+						</div>
+						{literal}
+						<script>
+					$(document).ready(function(){
+					//apabila terjadi event onchange terhadap object <select id=propinsi>
+
+					$(".statusperson").change(function(){
+								
+					var statusperson = $(this).val();
+					var idnya=$(this).attr('var');
+					 $.ajax({
+                        'type': 'POST',
+                        'url': basedomain+'dashboard/ajaxstatusperson',
+                        'data': {idnya:idnya,statusperson:statusperson},
+						'dataType':'json',
+                        'success': function(result){
+						if(result.status===1)
+						{
+						alert('User ini Sudah Di marking');
+						}else{
+						alert('User ini Sudah Di Hire');
+						}
+						}
+						});
+					});
+				});
+						</script>
+						{/literal}
+						
+						{/if}
+						{/if}
+                     
+						{if $list}
+						<div class="job-list shorting_interview_ct">
+						 
+					     {section name=j loop=$list}
+						 	{if $list[j].interview==1}
+                            <div class="rowjob">
+                                <div class="boximg">
+                                    <a href="{$basedomain}jobboard/detail_jobboard?id={$list[j].jobboard_id}" class="thumbbox">
+									{if $list[j].file != ''}
+									<img src="{$basedomain}public_assets/postjob/{$list[j].file}" height="200px" width="200px"/></a>
+									{else}
+								  	<img src="{$basedomain}public_assets/postjob/images.jpg" height="200px" width="200px"/></a>
+									{/if}
+									</a>
+                                    <div class="caption">
+                                        <i>No. of Applicants:{$list[j].registrant}</i>
+                                    </div>    
+                                   {section name=k loop=$popularlist}	
+									{if $popularlist[k].id_job == $list[j].id_job}
+										<div class="ribbon ribbonred">Popular</div>
+									{/if}
+									{/section}   
+                                </div><!-- end .boximg -->    
+								 <div class="entry">
+                                    <h3><a href="{$basedomain}jobboard/detail_jobboard?id={$list[j].jobboard_id}">{$list[j].job_title}</a></h3>
+                                    <div class="meta-post">
+                                        <a href="#" class="company-name"><i class="icon-suitcase">&nbsp;</i> {$list[j].nama_perusahaan}</a>
+                                        <a href="#" class="company-status"><i class="icon-check-circle">&nbsp;</i> Verified</a>
+                                        <a href="#" class="location-name"/><i class="icon-map-marker">&nbsp;</i> {$list[j].provinsi}, {$list[j].city}</a>
+                                    </div>
+                                    <p class="interview-detail">
+                                    <span class="interview-date"><strong>Date & Times</strong> : {$list[j].myapp.interview_date}</span>
+                                    <span class="interview-location"><strong>Address</strong> : {$list[j].myapp.interview_address}</span>
+                                    <span class="interview-contact"><strong>Contact Person</strong>: {$list[j].myapp.interview_contact}</span>
+                                   <span class="interview-phone"> <strong>Telephone</strong>: {$list[j].myapp.interview_telp}</span></p>
+                                </div><!-- end .entry -->  
+								
+								
+                               <div class="jobInfo" >
+                                    <span class="label bgyellow">INTERVIEW</span>
+                                    <p><a href="{$basedomain}jobboard/detail_jobboard?id={$list[j].jobboard_id}" class="button2 acceptint" value="2" attr="{$list[j].jobboard_id}" idnya="{$uid}"><span>ACCEPT</span></a></p>
+                                    <p>OR</p>
+                                    <p><a href="{$basedomain}jobboard/detail_jobboard?id={$list[j].jobboard_id}" class="button1 decint " value='3' attr="{$list[j].jobboard_id}" idnya="{$uid}"><span>DECLINE</span></a></p>
+                                </div><!-- end .jobInfo -->  
+						 </div>
+                           {/if}
+						   {if $list[j].interview==2}
+							 <div class="rowjob">	
+                                <div class="boximg">
+                                    <a href="{$basedomain}jobboard/detail_jobboard?id={$list[j].jobboard_id}" class="thumbbox">
+									{if $list[j].file != ''}
+									<img src="{$basedomain}public_assets/postjob/{$list[j].file}" height="200px" width="200px"/></a>
+									{else}
+								  	<img src="{$basedomain}public_assets/postjob/images.jpg" height="200px" width="200px"/></a>
+									{/if}
+								  <div class="caption">
+                                        <i>No. of Applicants:{$list[j].registrant}</i>
+                                    </div>    
+								
+							{section name=k loop=$popularlist}	
+							{if $popularlist[k].id_job == $list[j].id_job}
+								<div class="ribbon ribbonred">Popular</div>
+							{/if}
+                            {/section}   
+								</div><!-- end .boximg --> 
+							
+                                <div class="entry">
+                                    <h3><a href="{$basedomain}jobboard/detail_jobboard?id={$list[j].jobboard_id}">{$list[j].job_title}</a></h3>
+                                    <div class="meta-post">
+                                        <a href="#" class="company-name"><i class="icon-suitcase">&nbsp;</i> {$list[j].nama_perusahaan}</a>
+                                        <a href="#" class="company-status"><i class="icon-check-circle">&nbsp;</i> Verified</a>
+                                        <a href="#" class="location-name"/><i class="icon-map-marker">&nbsp;</i> {$list[j].provinsi}, {$list[j].city}</a>
+                                    </div>
+                            <p class="interview-detail">
+                                    <span class="interview-date"><strong>Date & Times</strong> : {$list[j].interview_date}</span>
+                                    <span class="interview-location"><strong>Address</strong> : {$list[j].interview_address}</span>
+                                    <span class="interview-contact"><strong>Contact Person</strong>: {$list[j].interview_contact}</span>
+                                   <span class="interview-phone"> <strong>Telephone</strong>: {$list[j].interview_telp}</span></p>
+                                </div><!-- end .entry -->  
+								  <div class="jobInfo">
+                                    <span class="label bgyellow">INTERVIEW</span>
+                                    <p><a class="button2" onclick="alert('Status Accept OK !')"><span>ACCEPT</span></a></p>
+									</div><!-- end .jobInfo -->  
+								</div>
+								{/if}
+									{if $list[j].interview==3}
+									  <div class="rowjob">
+                                <div class="boximg">
+                                    <a href="{$basedomain}jobboard/detail_jobboard?id={$list[j].jobboard_id}" class="thumbbox">
+									{if $list[j].file != ''}
+									<img src="{$basedomain}public_assets/postjob/{$list[j].file}" height="200px" width="200px"/></a>
+									{else}
+								  	<img src="{$basedomain}public_assets/postjob/images.jpg" height="200px" width="200px"/></a>
+									{/if}
+								  <div class="caption">
+                                        <i>No. of Applicants:{$list[j].registrant}</i>
+                                    </div>    
+								
+							{section name=k loop=$popularlist}	
+							{if $popularlist[k].id_job == $list[j].id_job}
+								<div class="ribbon ribbonred">Popular</div>
+							{/if}
+                            {/section}   
+								</div><!-- end .boximg -->    
+                                <div class="entry">
+                                    <h3><a href="{$basedomain}jobboard/detail_jobboard?id={$list[j].jobboard_id}">{$list[j].job_title}</a></h3>
+                                    <div class="meta-post">
+                                        <a href="#" class="company-name"><i class="icon-suitcase">&nbsp;</i> {$list[j].nama_perusahaan}</a>
+                                        <a href="#" class="company-status"><i class="icon-check-circle">&nbsp;</i> Verified</a>
+                                        <a href="#" class="location-name"/><i class="icon-map-marker">&nbsp;</i> {$list[j].provinsi}, {$list[j].city}</a>
+                                    </div>
+                                 <p class="interview-detail">
+                                    <span class="interview-date"><strong>Date & Times</strong> : {$list[j].interview_date}</span>
+                                    <span class="interview-location"><strong>Address</strong> : {$list[j].interview_address}</span>
+                                    <span class="interview-contact"><strong>Contact Person</strong>: {$list[j].interview_contact}</span>
+                                   <span class="interview-phone"> <strong>Telephone</strong>: {$list[j].interview_telp}</span></p>
+                                </div><!-- end .entry -->  
+								  <div class="jobInfo">
+                                    <span class="label bgyellow">INTERVIEW</span>
+                                     <p><a href="" onclick="alert('Status Decline !')" class="button1"><span>DECLINE</span></a></p>
+                               </div>
+                                </div><!-- end .jobInfo -->  
+								{/if}
+						   {if $list[j].interview==4}
+								 <div class="rowjob">	
+                                <div class="boximg">
+                                    <a href="{$basedomain}jobboard/detail_jobboard?id={$list[j].jobboard_id}" class="thumbbox">
+									{if $list[j].file != ''}
+									<img src="{$basedomain}public_assets/postjob/{$list[j].file}" height="200px" width="200px"/></a>
+									{else}
+								  	<img src="{$basedomain}public_assets/postjob/images.jpg" height="200px" width="200px"/></a>
+									{/if}
+								  <div class="caption">
+                                        <i>No. of Applicants:{$list[j].registrant}</i>
+                                    </div>    
+								
+							{section name=k loop=$popularlist}	
+							{if $popularlist[k].id_job == $list[j].id_job}
+								<div class="ribbon ribbonred">Popular</div>
+							{/if}
+                            {/section}   
+								</div><!-- end .boximg -->    
+                                <div class="entry">
+                                    <h3><a href="{$basedomain}jobboard/detail_jobboard?id={$list[j].jobboard_id}">{$list[j].job_title}</a></h3>
+                                    <div class="meta-post">
+                                        <a href="#" class="company-name"><i class="icon-suitcase">&nbsp;</i> {$list[j].nama_perusahaan}</a>
+                                        <a href="#" class="company-status"><i class="icon-check-circle">&nbsp;</i> Verified</a>
+                                        <a href="#" class="location-name"/><i class="icon-map-marker">&nbsp;</i> {$list[j].provinsi}, {$list[j].city}</a>
+                                    </div>
+                                   <p class="interview-detail">
+                                    <span class="interview-date"><strong>Date & Times</strong> : {$list[j].myapp.interview_date}</span>
+                                    <span class="interview-location"><strong>Address</strong> : {$list[j].myapp.interview_address}</span>
+                                    <span class="interview-contact"><strong>Contact Person</strong>: {$list[j].myapp.interview_contact}</span>
+                                   <span class="interview-phone"> <strong>Telephone</strong>: {$list[j].myapp.interview_telp}</span></p>
+                                </div><!-- end .entry -->  
+								  <div class="jobInfo">
+                                    <span class="label bggreen">OPEN</span>
+                                      <p><a href="" class="button1"><span>MARKING</span></a></p>
+                               
+                                </div><!-- end .jobInfo -->  
+								 </div>
+							
+								{/if}
+								
+						   
+						 {/section}
+						  
+                        </div><!-- end .job-list -->
+						{/if}						 
+					{if $user->role == 2}	
+                        <div class="row-paging ">
+                            <div class="paging paging_of_interview_list_ts">
+                                <a href="#">&laquo; First</a>
+                                <a href="#">&lsaquo;</a>
+                                <a href="#">1</a>
+                                <a href="#" class="current">2</a>
+                                <a href="#">3</a>
+                                <a href="#">4</a>
+                                <a href="#">5</a>
+                                <a href="#">&rsaquo;</a>
+                                <a href="#">LAST &raquo;</a>
+                            </div>
+                        </div>
+					{else}
+					 <div class="row-paging">
+                            <div class="paging paging_of_interview_list_ct">
+                                <a href="#">&laquo; First</a>
+                                <a href="#">&lsaquo;</a>
+                                <a href="#">1</a>
+                                <a href="#" class="current">2</a>
+                                <a href="#">3</a>
+                                <a href="#">4</a>
+                                <a href="#">5</a>
+                                <a href="#">&rsaquo;</a>
+                                <a href="#">LAST &raquo;</a>
+                            </div>
+                        </div>
+					{/if}
+                  </div><!-- END .tab-content -->
+                </div><!-- END .widget -->
+				
+{if $user->role==2}
+				
+<script type="text/javascript">
+var role={$user->role};
+	getpaging(0,{$totalint},"paging_of_interview_list_ts","paging_ajax_interview",5);
+</script>		
+
+{else}
+
+<script type="text/javascript">
+var role={$user->role};
+	getpaging(0,{$total},"paging_of_interview_list_ct","paging_ajax_interview_ct",5);
+</script>		
+{/if}		
+				
+				
+				
+				
+            </div><!-- end .col-content -->   
+        </div><!-- end .wrapper -->    
+    </div><!-- end #jobBoardList --> 
+</div><!-- end #jobBoard -->
+
+{literal}
+<script>
+<!-- Develope Accept and Decline  -->
+$(document).ready(function(){
+                $('.acceptint').click(function(e){
+                    e.preventDefault();
+					var uid=$(this).attr('idnya');
+					var jobid=$(this).attr('attr');
+					var thiss=$(this);
+					e.preventDefault();
+                    $.ajax({
+                        'type': 'POST',
+                        'url': basedomain+'dashboard/decisionajaxinterview',
+                        'data': {uid:uid,jobid:jobid},
+						'dataType':'json',
+                        'success': function(result){
+						//console.log(parent);
+						//console.log(thiss.parent().parent());
+								if(result.status==1)
+								{
+								 var str="";
+						
+                                 str+='<span class="label bgyellow">INTERVIEW</span>';
+                                 str+='<p><a class="button2" onclick="'+alert("Status Accept OK !")+'"><span>ACCEPT</span></a></p>';
+							
+								 
+								 }
+								 thiss.parent().parent().html(str);
+								
+						}
+						});
+						});
+						});
+						
+						
+		$(document).ready(function(){
+                $('.decint').click(function(e){
+                    e.preventDefault();
+					var uid=$(this).attr('idnya');
+					var jobid=$(this).attr('attr');
+					var thiss=$(this);
+					e.preventDefault();
+                    $.ajax({
+                        'type': 'POST',
+                        'url': basedomain+'dashboard/decisionajaxinterviewdec',
+                        'data': {uid:uid,jobid:jobid},
+						'dataType':'json',
+                        'success': function(result){
+						//console.log(parent);
+						//console.log(thiss.parent().parent());
+								if(result.status==1)
+								{
+								 var str="";
+						
+                                 str+='<span class="label bgyellow">INTERVIEW</span>';
+                                 str+='<p><a onclick='+alert("Status Deccept OK !")+' class="button1">DECLINE</span></a></p>';
+							
+								 
+								 }
+								 thiss.parent().parent().html(str);
+								
+						}
+						});
+						});
+						});
+				
+	</script>
+						{/literal}

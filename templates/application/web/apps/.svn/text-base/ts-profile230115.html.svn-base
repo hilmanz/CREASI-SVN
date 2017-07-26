@@ -1,0 +1,890 @@
+ {include file='application/web/widgets/popup-upload-profilepic.html'}
+<div class="page_section" id="profilepage">
+    <div id="metapage">
+        <div class="wrapper">
+            <h1 class="page-title fl">Talent Seeker Profile</h1>
+            <div class="breadcumb fr">
+	    <a href="{$basedomain}home/">Home</a> <span>/</span> <a href="{$basedomain}talentsekeerboard">Talent Seeker Board</a> <span>/</span> <a href="">Talent Seeker Profile</a>
+            </div>
+        </div><!-- end .wrapper -->   
+    </div><!-- end #metapage -->
+	
+    <div id="profileboard" class="section"> 
+        <div class="wrapper">
+        	{*}<div class="rows">
+                <div class="helpButton fr">
+                    <a href="#popup-tour-profileTs" class="helpPopup showPopup2"><i class="icon-question-circle">&nbsp;</i></a>
+                </div>
+            </div>{/*}
+        	<div class="cols">
+			{if $list}
+				{section name=i loop=$list} 
+                <div class="sectionsrow profilebox no_pshow">
+                  <div class="profilethumb thumb">
+				    {if $list[i].img_avatar <> ''}
+				  <img src="{$basedomain}public_assets/personal/{$list[i].img_avatar}" />
+				  {else}
+				   <img src="{$basedomain}public_assets/personal/ts.png" />
+				  {/if}
+				  </div>
+                  <div class="profileentry">
+                  	<div class="rowhead">
+                        <h3 class="profilename "><label class='namanok'>{$list[i].nama_perusahaan}</label> <label class='nameok'></label>  <label class="red lastnameok" id='lasnya'></label> {if $list[i].verified==1} 
+                           <a href="#" class="company-status"><i class="icon-check-circle">&nbsp;</i> Verified</a>
+					{/if}</h3>	
+                       <a class="button1 btnedit editp" ><i class="icon-pencil">&nbsp;</i> Edit</a>
+                    </div><!-- END .rowhead -->
+                  	<div class="rowentry">
+                        <div class="meta-post">
+					
+                        </div><!-- END .meta-info -->
+						<p><i class="icon-map-marker">&nbsp;</i><label class="provincyok">{$list[i].provinsi}</label>, <label class="cityok">{$list[i].city}</label></i>
+						
+						
+                      <div class="socialbox">
+                           <a class='fbok ico icon-facebook' {if $list[i].fb_link} href="https://www.facebook.com/{$list[i].fb_link|replace:'https://www.facebook.com/':''}" target="_blank"  {else} href="#fblinks" id="fblinks" {/if} ><i class="ico icon-facebook">&nbsp;</i></a>
+                            <a  class='twok ico icon-twitter' {if $list[i].twitter_link}  href="https://twitter.com/{$list[i].twitter_link|replace:'https://twitter.com/':''}" target="_blank" {else} href="#twitterlinks" id="twitterlinks" {/if}  ><i class="">&nbsp;</i></a>
+                            <a  class='yook ico icon-instagram' {if $list[i].instagram_link}  href="http://instagram.com/{$list[i].instagram_link|replace:'http://instagram.com/':''}" target="_blank" {else} href="#instagramlinks" id="instagramlinks" {/if} ><i class="ico ">&nbsp;</i></a>
+                            <a class='inok ico icon-youtube' {if $list[i].youtube_link}  href="https://www.youtube.com/user/{$list[i].youtube_link|replace:'https://www.youtube.com/user/':''}" target="_blank" {else} href="#youtubelinks" id="youtubelinks" {/if} ><i class="ico ">&nbsp;</i></a>
+
+			    <a class='websiteok sphere' {if $list[i].website_link}  href="http://{$list[i].website_link|replace:'http://':''}" target="_blank" {else} href="#websitelinks" id="websitelinks" {/if} ><i class="ico ">&nbsp;</i></a>
+
+                               
+                        </div><!-- END .socialbox -->
+                    </div><!-- END .rowentry -->
+                  </div><!-- END .profileentry -->
+                </div><!-- END .sectionsrow -->
+				 <h3 class="sectiontitle">
+	About
+	<label class="red">Us</label>
+	</h3>
+           
+                <div class="sectionsrow profilebox pshow" style="display:none">
+				<form  class="theforms" id="bioinput">
+                   <div class="profilethumb thumb boxpop">
+				    {if $list[i].img_avatar <> ''}
+				  <img src="{$basedomain}public_assets/personal/{$list[i].img_avatar}" />
+				  {else}
+				   <img src="{$basedomain}public_assets/personal/ts.png" />
+				  {/if}
+				   <a href="#popup-upload-profilepic" class="showpopup editPop">
+                        <i class="icon-pencil">&nbsp;</i> Edit</a>
+				  </div>
+				  
+				  
+				  
+				
+                  <div class="profileentry">
+                  	<div class="rows">
+                        <div class="col2">
+                            <label>First Name</label>
+                            <input id="name" name="name" type="text" name="first" value="{$list[i].name}" />
+                        </div>
+                        <div class="col2">
+                            <label>Last Name</label>
+                            <input id="lastname" name="lastname" type="text" name="last" value="{$list[i].lastname}" />
+                        </div>
+                    </div>
+                  	<div class="rows">
+                        <label>Location</label>
+                        <div class="rowin">
+                            <div class="col2">
+                                <div class="selectbox">
+								 <select class="provincy"   name="provincy">
+									{section name=n loop=$provincy}
+										{if $provincy[n].province==$list[i].provinsi}
+										<option value="{$provincy[n].province}" selected=selected>{$provincy[n].province}</option>
+										{else}
+										<option value="{$provincy[n].province}" >{$provincy[n].province}</option>
+										{/if}
+										{/section}
+									 </select>
+                                </div>
+                            </div>
+                            <div class="col2">
+                                <div class="selectbox">
+                                <select class="city" id='city' name="city">
+                                 <option> {$list[i].city}</option>
+                                </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  	<div class="rows">
+                         <div class="socialbox">
+                            <div class="col2">
+                                 <a href="#" target="_blank"><i class="ico icon-facebook">&nbsp;</i></a>
+                                 <div class="inputBox">
+                                 	<input type="text" name='fb' class='fbnok' value="{$list[i].fb_link}" />
+                                 <span class="unit">www.facebook.com/</span>
+                                 </div>
+                            </div>
+                            <div class="col2">
+                                 <a href="#" target="_blank"><i class="ico icon-twitter">&nbsp;</i></a>
+                                 <div class="inputBox">
+                                	<input type="text" name='twitter' class='twnok' value="{$list[i].twitter_link}" />
+                                    <span class="unit">www.twitter.com/</span>
+                                </div>
+                            </div>
+							
+                        </div><!-- END .socialbox -->
+                    </div><!-- END .rows -->
+					 
+                  	<div class="rows">
+                        <div class="socialbox">
+                            <div class="col2">
+                                 <a href="#" target="_blank"><i class="ico icon-youtube">&nbsp;</i></a>
+                                 <div class="inputBox">
+                                 	<input type="text" name='youtube' class='yonok'  value="{$list[i].youtube_link}" />
+                                    <span class="unit">www.youtube.com/</span>
+                                 </div>
+                            </div>
+                            <div class="col2">
+                                 <a href="#" target="_blank"><i class="ico icon-instagram">&nbsp;</i></a>
+                                 <div class="inputBox">
+                                <input type="text" name='instagram'  class='innok' value="{$list[i].instagram_link}" />
+                                <span class="unit">www.instagram.com/</span>
+                                </div>
+                            </div>
+                        </div><!-- END .socialbox -->
+                    </div><!-- END .rows -->
+						<div class="rows">
+                         <div class="socialbox">
+                           
+							 <div class="col2">
+                                 <a href="#" target="_blank" class="websiteok sphereGrey ">&nbsp;</a>
+                                <input type="text" name='website'  value="{$list[i].website_link}" />
+                            </div>
+                        </div><!-- END .socialbox -->
+                    </div><!-- END .rows -->
+                  	<div class="rows">
+					 <input type='hidden' name='bioinput' value='{$list[i].user_id}'>
+                    	<input type="submit" value="SAVE" class="button1" />
+                    	<a  type="button" value="" class="button2 cancelp" />CANCEL</a>
+                    </div><!-- END .rows -->
+                  </div><!-- END .profileentry -->
+				   </form>
+                </div><!-- END .sectionsrow -->
+   <div id="popup-thks-profile" class="popup mfp-hide" style="width:300px;">
+		<div class="popupfullcontent">
+			<h3 class="title">Edit <span class="red">Profile</span></h3>
+			<p>Edit Profile Success</p>
+		</div>
+	</div><!-- END .popup -->           
+			   
+			   
+			   <script>
+			   {literal}
+			   $(document).ready(function(){
+				$(".editp").on("click", function(){
+							$('.pshow').show();
+							$('.no_pshow').hide();
+					
+					});
+				});
+			    $(document).ready(function(){
+				$(".cancelp").on("click", function(){
+							$('.pshow').hide();
+							$('.no_pshow').show();
+					
+					});
+				});
+			   {/literal}
+			   </script>
+			   
+			   {literal}
+<script>
+$().ready(function(){
+$('.provincy').change(function(){
+	var id = $('.provincy option:selected').val();
+	console.log(id);
+	$.ajax ({
+				type	 : 'POST', 
+				url	 :  basedomain+'personal/ajaxcity' , 
+				data:{id:id},
+				dataType:'json',
+				success	: function (result) 
+				{ 
+					if(result.status==1)
+								{
+									
+									var str="";
+									$.each(result.data,function(kal,val){
+						
+										str +='<option value="'+val.city+'">'+val.city+'</option>';
+										
+									});
+									
+									$('#city').html(str);
+								
+								}
+				}
+			});
+
+		});
+	});
+
+$(document).ready(function(){
+                $('#bioinput').submit(function(e){
+	
+                    e.preventDefault();
+                    $.ajax({
+                        'url': basedomain+'personal/editpersonalts',
+                        'type': 'POST',
+                        'data': $(this).serialize(),
+						'dataType':'json',
+                        'success': function(result){
+						
+							setTimeout(function() {
+							 if ($('#popup-thks-profile').length) { 
+							   $.magnificPopup.open({
+								items: {
+									src: '#popup-thks-profile' 
+								},
+								type: 'inline'
+								  });
+							   }
+							 }, 0);
+							
+							$('.pshow').hide();
+							$('.no_pshow').show();
+						
+							$('.namanok').hide();
+							$('#lasnya').html(result.lastname);
+							$('.nameok').html(result.name);
+							$('.lastnameok').html(result.lastname);
+							$('.provincyok').html(result.provincy);
+							$('.cityok').html(result.city);
+							$('.fbok').html(result.fb);
+							$('.twitterok').html(result.twitter);
+							$('.youtubeok').html(result.youtube);
+							$('.instagramok').html(result.instagram);
+							$('.websiteok').html(result.website);
+							$('.websiteok').attr('href',result.website);
+			
+							 
+							 
+						
+						}
+					});
+				});
+			});
+
+</script>
+{/literal}	
+			   
+			   
+			
+            	<div class="euTab">
+                  <ul>
+                    <li><a href="#my-bio">BIO</a></li>
+                    {*}<li><a href="#my-gallery">Gallery</a></li>{/*}
+                  
+                  </ul>
+                  <div id="my-bio" class="tab-content">
+                  	<div class="tabentry">
+                        <div class="sectionsrow inputbio">
+                            <a class="button1 btnedit editbios"><i class="icon-pencil">&nbsp;</i> Edit</a>
+                            <div class="sections">
+						
+                                <p><label class="testimoniok">{$list[i].testimoni}</label></p>
+								 <div class="rows">
+                                	<h4 class="aboutTitle"><strong>Contact Person Info :</strong></h4>
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                      <tr>
+                                        <td width="220"><strong>Name</strong></td>
+                                        <td width="10">:</td>
+                                        <td><label class="namecpok">{$list[i].name} {$list[i].last_name}</label></td>
+                                      </tr>
+                                      <tr>
+                                        <td><strong>Email</strong></td>
+                                        <td width="10">:</td>
+                                        <td><label  class="emailok">{$list[i].email}</label></td>
+                                      </tr>
+                                      <tr>
+                                        <td><strong>Telephone</strong></td>
+                                        <td>:</td>
+                                        <td><label  class="phonecpok">{$list[i].phone_number}</label></td>
+                                      </tr>
+                                   
+                                    </table>
+                                </div><!-- END .rows -->
+                                <div class="rows">
+                                	<h4 class="aboutTitle"><strong>Company Info :</strong></h4>
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                      <tr>
+                                        <td width="220"><strong>Brand Name</strong></td>
+                                        <td width="10">:</td>
+                                        <td><label class="brandok">{$list[i].nama_perusahaan}</label></td>
+                                      </tr>
+                                      <tr>
+                                        <td><strong>Email</strong></td>
+                                        <td width="10">:</td>
+                                        <td><label  class="emailok">{$list[i].email}</label></td>
+                                      </tr>
+                                      <tr>
+                                        <td><strong>Telephone</strong></td>
+                                        <td>:</td>
+                                        <td><label  class="phoneok">{$list[i].no_tlp}</label></td>
+                                      </tr>
+                                      <tr>
+                                        <td valign="top"><strong>Address</strong></td>
+                                        <td valign="top">:</td>
+                                        <td><label  class="addressok">{$list[i].alamat_perusahaan} </label>
+                                       <!--<br /><a href="#" class="red">View Maps</a> !--></td>
+                                      </tr>
+                                    </table>
+                                </div><!-- END .rows -->
+                            </div><!-- END .sections -->
+                        </div><!-- END .sectionsrow -->
+						 <div class="sectionsrow editbio" style="display:none;">
+                            <div class="sections">
+            					<form class="theforms" id="companyinfo">
+                                <div class="rows">
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                        <td width="220"><strong>Testimoni</strong></td>
+                                        <td width="10">:</td>
+                                        <td><input type="text" name="testimoni" value="{$list[i].testimoni}" /></td>
+                                      </tr>
+                                      <tr>
+                                        <td width="220"><strong>Brand Name</strong></td>
+                                        <td width="10">:</td>
+                                        <td><input type="text" name="brand" value="{$list[i].nama_perusahaan}" /></td>
+                                      </tr>
+                                      <tr>
+                                        <td><strong>Email</strong></td>
+                                        <td>:</td>
+                                        <td><input type="text" value="{$list[i].email}" name="email"/></td>
+                                      </tr>
+                                      <tr>
+                                        <td><strong>Telephone</strong></td>
+                                        <td>:</td>
+                                        <td><input type="text" value="{$list[i].no_tlp}" name="phone"/></td>
+                                      </tr>
+									   <tr>
+                                        <td><strong>Address</strong></td>
+                                        <td>:</td>
+                                        <td><textarea name="address">{$list[i].alamat_perusahaan} </textarea></td>
+                                      </tr>
+									   <tr>
+                                        <td><strong>Name Contact Person</strong></td>
+                                        <td>:</td>
+                                        <td><input type="text" value="{$list[i].name}" name="namecp"/></td>
+                                      </tr>
+									   <tr>
+                                        <td><strong>Phone Number Contact Person</strong></td>
+                                        <td>:</td>
+                                        <td><input type="text" value="{$list[i].phone_number}" name="phonecp"/></td>
+                                      </tr>
+                                      <tr>
+                                        <td colspan="3">
+                                            <div class="smallbtn">
+											 <input type='hidden' name='companyinf' value='{$list[i].user_id}'>
+                                                <input type="submit" value="SAVE" class="button1" />
+                                             <a type="button" class="button2 cancelbio" />CANCEL</a>
+                                            </div>
+                                        </td>
+                                      </tr>
+                                    </table>
+                                    </form>
+                                </div><!-- END .rows -->
+								
+					<div id="popup-thks-bio" class="popup mfp-hide" style="width:300px;">
+		<div class="popupfullcontent">
+			<h3 class="title">Edit <span class="red">Profile</span></h3>
+			<p>Edit Profile Biografi Success</p>
+		</div>
+	</div><!-- END .popup -->  			
+								
+								
+	<script>
+	{literal}
+	$(document).ready(function(){
+			$(".editbios").on("click", function(){
+						$('.inputbio').hide();
+						$('.editbio').show();	
+				});
+			});
+		$(document).ready(function(){
+			$(".cancelbio").on("click", function(){
+						$('.inputbio').show();
+						$('.editbio').hide();	
+				});
+			});		
+	{/literal}
+	</script>
+	
+{literal}
+	<script>
+	$().ready(function(){
+                $('#companyinfo').submit(function(e){
+	
+                    e.preventDefault();
+                    $.ajax({
+                        'url': basedomain+'personal/editpersonalts',
+                        'type': 'POST',
+                        'data': $(this).serialize(),
+						'dataType':'json',
+                        'success': function(result){
+						
+							setTimeout(function() {
+							 if ($('#popup-thks-bio').length) { 
+							   $.magnificPopup.open({
+								items: {
+									src: '#popup-thks-bio' 
+								},
+								type: 'inline'
+								  });
+							   }
+							 }, 0);
+							
+							$('.inputbio').show();
+							$('.editbio').hide();	
+							$('.addressok').html(result.address);
+							$('.brandok').html(result.brand);	
+							$('.companyinfok').html(result.companyinf);	
+							$('.testimoniok').html(result.testimoni);	
+							$('.phoneok').html(result.phone);
+							$('.emailok').html(result.email);	
+							$('.phonecpok').html(result.phonecp);
+							$('.namecpok').html(result.namecp);								
+	
+						}
+					});
+				});
+			});
+
+</script>
+{/literal}
+                            </div><!-- END .sections -->
+                        </div><!-- END .sectionsrow -->
+							
+                        <h3 class="sectiontitle">Why Join <span class="red">With Us</span></h3>
+						
+                        <div class="sectionsrow inputwhy">
+                            <a class="button1 btnedit editwhys" ><i class="icon-pencil">&nbsp;</i> Edit</a>
+                            <div class="sections">
+                                <div class="rows">
+                                    <p class="whyjoinussok">{$list[i].whyjoinus}</p>
+                                </div><!-- END .rows -->
+                            </div><!-- END .sections -->
+                        </div><!-- END .sectionsrow -->
+										
+	<div id="popup-thks-why" class="popup mfp-hide" style="width:300px;">
+		<div class="popupfullcontent">
+			<h3 class="title">Edit <span class="red">Profile</span></h3>
+			<p>Edit Profile Biografi Success</p>
+		</div>
+	</div><!-- END .popup -->  	
+	<script>
+	{literal}
+	$(document).ready(function(){
+			$(".editwhys").on("click", function(){
+						$('.inputwhy').hide();
+						$('.editwhy').show();	
+				});
+			});
+			$(document).ready(function(){
+				$(".cancelwhys").on("click", function(){
+						$('.inputwhy').show();
+						$('.editwhy').hide();	
+				});
+			});
+	{/literal}
+	</script>
+						  <div class="sectionsrow editwhy" style="display:none;">
+                            <div class="sections">
+                                <div class="rows">
+            					<form class="theforms" id="whyjoinus">
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                      <tr>
+                                        <td width="220"><strong>Why Join US</strong></td>
+                                        <td width="10">:</td>
+                                        <td><input type="text" name="whyjoinuss" value="{$list[i].whyjoinus}" /></td>
+                                      </tr>
+                                     
+                                        <td colspan="3">
+                                            <div class="smallbtn">
+											 <input type='hidden' name='whyjoin' value='{$list[i].user_id}'>
+                                                <input type="submit" value="SAVE" class="button1" />
+                                               <a  type="button" value="" class="button2 cancelwhys" />CANCEL</a>
+                                            </div>
+                                        </td>
+                                      </tr>
+                                    </table>
+                                    </form>
+                                </div><!-- END .rows -->
+                            </div><!-- END .sections -->
+                        </div><!-- END .sectionsrow -->
+{literal}
+	<script>
+	$().ready(function(){
+                $('#whyjoinus').submit(function(e){
+	
+                    e.preventDefault();
+                    $.ajax({
+                        'url': basedomain+'personal/editpersonalts',
+                        'type': 'POST',
+                        'data': $(this).serialize(),
+						'dataType':'json',
+                        'success': function(result){
+						
+							setTimeout(function() {
+							 if ($('#popup-thks-why').length) { 
+							   $.magnificPopup.open({
+								items: {
+									src: '#popup-thks-why' 
+								},
+								type: 'inline'
+								  });
+							   }
+							 }, 0);
+							$('.inputwhy').show();
+							$('.editwhy').hide();
+							$('.whyjoinussok').html(result.whyjoinuss);
+							
+						}
+					});
+				});
+			});
+
+</script>
+{/literal}
+						
+						
+                    </div><!-- END .tabentry -->
+                  </div><!-- END .tab-content -->
+				  {/section}
+				{/if}
+                 
+                  <div id="my-gallery" class="tab-content">
+                  	<div class="tabentry">
+                            <div class="sectionsrow inputGallery">
+                            
+                            <div class="tabInside">
+                                <ul id="menu-side" class="leftmenu">
+                                    <li><a href="#photoInside">Photos</a></li>
+                                    <li><a href="#videoInside">Videos</a></li>
+                                    <li><a href="#soundIndside">Sounds</a></li>
+                                </ul>
+                                <div id="photoInside">
+                            	<div class="col-content">
+                                <a href="#popup-upload-photo" class="btnadd showpopup"><i class="icon-plus">&nbsp;</i> Add more photos</a>
+                                <div class="sectionbox">
+                                    <div class="rows rows5">
+                                        
+                                            <div class="box">
+                                                <div class="boximg">
+                                                    <a href="#" class="thumbbox"><img src="{$basedomain}assets/content/7.jpg" width="200" height="200"></a>  
+                                                </div><!-- end .boximg -->    
+                                                <div class="caption">
+                                                    <div class="desc-box">
+                                                        <h4><a href="#">Nama Foto</a></h4>
+                                                    </div><!-- end .author-box -->    
+                                                    <h5><a href="#">Executive Team Leader Assets Protection West Suburbs Il</a></h5>
+                                                </div>
+                                            </div><!-- END .box -->
+                                            <div class="box">
+                                                <div class="boximg">
+                                                    <a href="#" class="thumbbox"><img src="{$basedomain}assets/content/7.jpg" width="200" height="200"></a>  
+                                                </div><!-- end .boximg -->    
+                                                <div class="caption">
+                                                    <div class="desc-box">
+                                                        <h4><a href="#">Nama Foto</a></h4>
+                                                    </div><!-- end .author-box -->    
+                                                    <h5><a href="#">Executive Team Leader Assets Protection West Suburbs Il</a></h5>
+                                                </div>
+                                            </div><!-- END .box -->
+                                            <div class="box">
+                                                <div class="boximg">
+                                                    <a href="#" class="thumbbox"><img src="{$basedomain}assets/content/7.jpg" width="200" height="200"></a>  
+                                                </div><!-- end .boximg -->    
+                                                <div class="caption">
+                                                    <div class="desc-box">
+                                                        <h4><a href="#">Nama Foto</a></h4>
+                                                    </div><!-- end .author-box -->    
+                                                    <h5><a href="#">Executive Team Leader Assets Protection West Suburbs Il</a></h5>
+                                                </div>
+                                            </div><!-- END .box -->
+                                            <div class="box">
+                                                <div class="boximg">
+                                                    <a href="#" class="thumbbox"><img src="{$basedomain}assets/content/7.jpg" width="200" height="200"></a>  
+                                                </div><!-- end .boximg -->    
+                                                <div class="caption">
+                                                    <div class="desc-box">
+                                                        <h4><a href="#">Nama Foto</a></h4>
+                                                    </div><!-- end .author-box -->    
+                                                    <h5><a href="#">Executive Team Leader Assets Protection West Suburbs Il</a></h5>
+                                                </div>
+                                            </div><!-- END .box -->
+                                            <div class="box">
+                                                <div class="boximg">
+                                                    <a href="#" class="thumbbox"><img src="{$basedomain}assets/content/7.jpg" width="200" height="200"></a>  
+                                                </div><!-- end .boximg -->    
+                                                <div class="caption">
+                                                    <div class="desc-box">
+                                                        <h4><a href="#">Nama Foto</a></h4>
+                                                    </div><!-- end .author-box -->    
+                                                    <h5><a href="#">Executive Team Leader Assets Protection West Suburbs Il</a></h5>
+                                                </div>
+                                            </div><!-- END .box -->
+                                            <div class="box">
+                                                <div class="boximg">
+                                                    <a href="#" class="thumbbox"><img src="{$basedomain}assets/content/7.jpg" width="200" height="200"></a>  
+                                                </div><!-- end .boximg -->    
+                                                <div class="caption">
+                                                    <div class="desc-box">
+                                                        <h4><a href="#">Nama Foto</a></h4>
+                                                    </div><!-- end .author-box -->    
+                                                    <h5><a href="#">Executive Team Leader Assets Protection West Suburbs Il</a></h5>
+                                                </div>
+                                            </div><!-- END .box -->
+                                            
+                                            <div class="box">
+                                                <div class="boximg">
+                                                    <a href="#" class="thumbbox"><img src="{$basedomain}assets/content/7.jpg" width="200" height="200"></a>  
+                                                </div><!-- end .boximg -->    
+                                                <div class="caption">
+                                                    <div class="desc-box">
+                                                        <h4><a href="#">Nama Foto</a></h4>
+                                                    </div><!-- end .author-box -->    
+                                                    <h5><a href="#">Executive Team Leader Assets Protection West Suburbs Il</a></h5>
+                                                </div>
+                                            </div><!-- END .box -->
+                                            
+                                            <div class="box">
+                                                <div class="boximg">
+                                                    <a href="#" class="thumbbox"><img src="{$basedomain}assets/content/7.jpg" width="200" height="200"></a>  
+                                                </div><!-- end .boximg -->    
+                                                <div class="caption">
+                                                    <div class="desc-box">
+                                                        <h4><a href="#">Nama Foto</a></h4>
+                                                    </div><!-- end .author-box -->    
+                                                    <h5><a href="#">Executive Team Leader Assets Protection West Suburbs Il</a></h5>
+                                                </div>
+                                            </div><!-- END .box -->
+                                            
+                                    </div><!-- END .rows5 -->
+                                </div>
+                       			 </div><!-- END .col-content -->
+                       			 </div><!-- END .PhotoInside -->
+                                 
+                                 
+                                 <div id="videoInside">
+                            	<div class="col-content">
+                                <a href="#popup-upload-photo" class="btnadd showpopup"><i class="icon-plus">&nbsp;</i> Add more Videos</a>
+                                <div class="sectionbox">
+                                    <div class="rows rows5">
+                                        
+                                            <div class="box">
+                                                <div class="boximg">
+                                                    <a href="#" class="thumbbox"><img src="{$basedomain}assets/content/7.jpg" width="200" height="200"></a>  
+                                                </div><!-- end .boximg -->    
+                                                <div class="caption">
+                                                    <div class="desc-box">
+                                                        <h4><a href="#">Nama Foto</a></h4>
+                                                    </div><!-- end .author-box -->    
+                                                    <h5><a href="#">Executive Team Leader Assets Protection West Suburbs Il</a></h5>
+                                                </div>
+                                            </div><!-- END .box -->
+                                            <div class="box">
+                                                <div class="boximg">
+                                                    <a href="#" class="thumbbox"><img src="{$basedomain}assets/content/7.jpg" width="200" height="200"></a>  
+                                                </div><!-- end .boximg -->    
+                                                <div class="caption">
+                                                    <div class="desc-box">
+                                                        <h4><a href="#">Nama Foto</a></h4>
+                                                    </div><!-- end .author-box -->    
+                                                    <h5><a href="#">Executive Team Leader Assets Protection West Suburbs Il</a></h5>
+                                                </div>
+                                            </div><!-- END .box -->
+                                            <div class="box">
+                                                <div class="boximg">
+                                                    <a href="#" class="thumbbox"><img src="{$basedomain}assets/content/7.jpg" width="200" height="200"></a>  
+                                                </div><!-- end .boximg -->    
+                                                <div class="caption">
+                                                    <div class="desc-box">
+                                                        <h4><a href="#">Nama Foto</a></h4>
+                                                    </div><!-- end .author-box -->    
+                                                    <h5><a href="#">Executive Team Leader Assets Protection West Suburbs Il</a></h5>
+                                                </div>
+                                            </div><!-- END .box -->
+                                            <div class="box">
+                                                <div class="boximg">
+                                                    <a href="#" class="thumbbox"><img src="{$basedomain}assets/content/7.jpg" width="200" height="200"></a>  
+                                                </div><!-- end .boximg -->    
+                                                <div class="caption">
+                                                    <div class="desc-box">
+                                                        <h4><a href="#">Nama Foto</a></h4>
+                                                    </div><!-- end .author-box -->    
+                                                    <h5><a href="#">Executive Team Leader Assets Protection West Suburbs Il</a></h5>
+                                                </div>
+                                            </div><!-- END .box -->
+                                            <div class="box">
+                                                <div class="boximg">
+                                                    <a href="#" class="thumbbox"><img src="{$basedomain}assets/content/7.jpg" width="200" height="200"></a>  
+                                                </div><!-- end .boximg -->    
+                                                <div class="caption">
+                                                    <div class="desc-box">
+                                                        <h4><a href="#">Nama Foto</a></h4>
+                                                    </div><!-- end .author-box -->    
+                                                    <h5><a href="#">Executive Team Leader Assets Protection West Suburbs Il</a></h5>
+                                                </div>
+                                            </div><!-- END .box -->
+                                            <div class="box">
+                                                <div class="boximg">
+                                                    <a href="#" class="thumbbox"><img src="{$basedomain}assets/content/7.jpg" width="200" height="200"></a>  
+                                                </div><!-- end .boximg -->    
+                                                <div class="caption">
+                                                    <div class="desc-box">
+                                                        <h4><a href="#">Nama Foto</a></h4>
+                                                    </div><!-- end .author-box -->    
+                                                    <h5><a href="#">Executive Team Leader Assets Protection West Suburbs Il</a></h5>
+                                                </div>
+                                            </div><!-- END .box -->
+                                            
+                                            <div class="box">
+                                                <div class="boximg">
+                                                    <a href="#" class="thumbbox"><img src="{$basedomain}assets/content/7.jpg" width="200" height="200"></a>  
+                                                </div><!-- end .boximg -->    
+                                                <div class="caption">
+                                                    <div class="desc-box">
+                                                        <h4><a href="#">Nama Foto</a></h4>
+                                                    </div><!-- end .author-box -->    
+                                                    <h5><a href="#">Executive Team Leader Assets Protection West Suburbs Il</a></h5>
+                                                </div>
+                                            </div><!-- END .box -->
+                                            
+                                            <div class="box">
+                                                <div class="boximg">
+                                                    <a href="#" class="thumbbox"><img src="{$basedomain}assets/content/7.jpg" width="200" height="200"></a>  
+                                                </div><!-- end .boximg -->    
+                                                <div class="caption">
+                                                    <div class="desc-box">
+                                                        <h4><a href="#">Nama Foto</a></h4>
+                                                    </div><!-- end .author-box -->    
+                                                    <h5><a href="#">Executive Team Leader Assets Protection West Suburbs Il</a></h5>
+                                                </div>
+                                            </div><!-- END .box -->
+                                            
+                                    </div><!-- END .rows5 -->
+                                </div>
+                       			 </div><!-- END .col-content -->
+                       			 </div><!-- END .PhotoInside -->
+                                 
+                                 <div id="soundInside">
+                            	<div class="col-content">
+                                <a href="#popup-upload-photo" class="btnadd showpopup"><i class="icon-plus">&nbsp;</i> Add more Sounds</a>
+                                <div class="sectionbox">
+                                    <div class="rows rows5">
+                                        
+                                            <div class="box">
+                                                <div class="boximg">
+                                                    <a href="#" class="thumbbox"><img src="{$basedomain}assets/content/7.jpg" width="200" height="200"></a>  
+                                                </div><!-- end .boximg -->    
+                                                <div class="caption">
+                                                    <div class="desc-box">
+                                                        <h4><a href="#">Nama Foto</a></h4>
+                                                    </div><!-- end .author-box -->    
+                                                    <h5><a href="#">Executive Team Leader Assets Protection West Suburbs Il</a></h5>
+                                                </div>
+                                            </div><!-- END .box -->
+                                            <div class="box">
+                                                <div class="boximg">
+                                                    <a href="#" class="thumbbox"><img src="{$basedomain}assets/content/7.jpg" width="200" height="200"></a>  
+                                                </div><!-- end .boximg -->    
+                                                <div class="caption">
+                                                    <div class="desc-box">
+                                                        <h4><a href="#">Nama Foto</a></h4>
+                                                    </div><!-- end .author-box -->    
+                                                    <h5><a href="#">Executive Team Leader Assets Protection West Suburbs Il</a></h5>
+                                                </div>
+                                            </div><!-- END .box -->
+                                            <div class="box">
+                                                <div class="boximg">
+                                                    <a href="#" class="thumbbox"><img src="{$basedomain}assets/content/7.jpg" width="200" height="200"></a>  
+                                                </div><!-- end .boximg -->    
+                                                <div class="caption">
+                                                    <div class="desc-box">
+                                                        <h4><a href="#">Nama Foto</a></h4>
+                                                    </div><!-- end .author-box -->    
+                                                    <h5><a href="#">Executive Team Leader Assets Protection West Suburbs Il</a></h5>
+                                                </div>
+                                            </div><!-- END .box -->
+                                            <div class="box">
+                                                <div class="boximg">
+                                                    <a href="#" class="thumbbox"><img src="{$basedomain}assets/content/7.jpg" width="200" height="200"></a>  
+                                                </div><!-- end .boximg -->    
+                                                <div class="caption">
+                                                    <div class="desc-box">
+                                                        <h4><a href="#">Nama Foto</a></h4>
+                                                    </div><!-- end .author-box -->    
+                                                    <h5><a href="#">Executive Team Leader Assets Protection West Suburbs Il</a></h5>
+                                                </div>
+                                            </div><!-- END .box -->
+                                            <div class="box">
+                                                <div class="boximg">
+                                                    <a href="#" class="thumbbox"><img src="{$basedomain}assets/content/7.jpg" width="200" height="200"></a>  
+                                                </div><!-- end .boximg -->    
+                                                <div class="caption">
+                                                    <div class="desc-box">
+                                                        <h4><a href="#">Nama Foto</a></h4>
+                                                    </div><!-- end .author-box -->    
+                                                    <h5><a href="#">Executive Team Leader Assets Protection West Suburbs Il</a></h5>
+                                                </div>
+                                            </div><!-- END .box -->
+                                            <div class="box">
+                                                <div class="boximg">
+                                                    <a href="#" class="thumbbox"><img src="{$basedomain}assets/content/7.jpg" width="200" height="200"></a>  
+                                                </div><!-- end .boximg -->    
+                                                <div class="caption">
+                                                    <div class="desc-box">
+                                                        <h4><a href="#">Nama Foto</a></h4>
+                                                    </div><!-- end .author-box -->    
+                                                    <h5><a href="#">Executive Team Leader Assets Protection West Suburbs Il</a></h5>
+                                                </div>
+                                            </div><!-- END .box -->
+                                            
+                                            <div class="box">
+                                                <div class="boximg">
+                                                    <a href="#" class="thumbbox"><img src="{$basedomain}assets/content/7.jpg" width="200" height="200"></a>  
+                                                </div><!-- end .boximg -->    
+                                                <div class="caption">
+                                                    <div class="desc-box">
+                                                        <h4><a href="#">Nama Foto</a></h4>
+                                                    </div><!-- end .author-box -->    
+                                                    <h5><a href="#">Executive Team Leader Assets Protection West Suburbs Il</a></h5>
+                                                </div>
+                                            </div><!-- END .box -->
+                                            
+                                            <div class="box">
+                                                <div class="boximg">
+                                                    <a href="#" class="thumbbox"><img src="{$basedomain}assets/content/7.jpg" width="200" height="200"></a>  
+                                                </div><!-- end .boximg -->    
+                                                <div class="caption">
+                                                    <div class="desc-box">
+                                                        <h4><a href="#">Nama Foto</a></h4>
+                                                    </div><!-- end .author-box -->    
+                                                    <h5><a href="#">Executive Team Leader Assets Protection West Suburbs Il</a></h5>
+                                                </div>
+                                            </div><!-- END .box -->
+                                            
+                                    </div><!-- END .rows5 -->
+                                </div>
+                       			 </div><!-- END .col-content -->
+                       			 </div><!-- END .PhotoInside -->
+                                 
+                                 </div><!-- END .tabInside -->
+                            </div>
+                        
+                    </div><!-- END .tabentry -->
+                  </div><!-- END .tab-content -->
+                  
+                </div><!-- END .widget -->
+            </div><!-- end .cols -->   
+        </div><!-- end .wrapper -->    
+    </div><!-- end #profileboard --> 
+</div><!-- end #profilepage -->
+{include file="application/web/widgets/popup-tour-profileTs.html"}
+<div id="bg-popup2"></div>

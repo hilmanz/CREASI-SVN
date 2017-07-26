@@ -1,0 +1,526 @@
+<?php
+global $ENGINE_PATH;
+include_once $ENGINE_PATH.'pdf/html2pdf.class.php';
+class dashboardHelper {
+	
+	var $_mainLayout="";
+	
+	var $login = false;
+	
+	function __construct($apps=false){
+		global $logger,$CONFIG;
+		$this->logger = $logger;
+		$this->apps = $apps;
+		$this->config = $CONFIG;
+		
+	}
+	
+	function jobupdate()
+	{
+		global $CONFIG;
+		$sql = "SELECT * FROM {$CONFIG['DATABASE'][0]['DATABASE']}.jobboard limit 5 ";
+		$fecth = $this->apps->fetch($sql,1);		
+		return $fecth;
+	}
+	
+	function checkinterview()
+	{
+		global $CONFIG;
+		
+		$result['result'] = false;
+		$result['total'] = 0;
+		$jobsid=$this->apps->_p('jobsid');
+		$checkadv=$_POST['user'];
+		//pr($checkadv);exit;
+		
+		$yois=count($checkadv);
+		//pr($yoi);	
+		$valuenyas='';
+		$is=0;
+			foreach($checkadv as $keys => $vals)
+			{
+				$is++;
+				if($yois==1)
+				{
+				$valuenyas.="'".$vals."'";
+				}
+				else if($is <= $yois)
+				{
+						if($yois==$is)
+						{
+						$valuenyas.="'".$vals."'";
+						}else {
+						$valuenyas.="'".$vals."',";
+						}
+				}
+			}	
+			
+		$sql = "select * from social_member sm inner join tbl_talent tt on sm.id=tt.user_id 
+				inner join my_application ma on sm.id=ma.user_id where ma.jobboard_id={$jobsid} and ma.user_id in ({$valuenyas})";
+		//pr($sql);exit;
+		$rqData = $this->apps->fetch($sql,1);
+		return $rqData;	
+			
+				
+				
+	}
+	function interview_job($start=null,$limit=10,$uid)
+	{
+		global $CONFIG;
+		
+		$result['result'] = false;
+		$result['total'] = 0;
+		
+		if($start==null)$start = intval($this->apps->_request('start'));
+		$limit = intval($limit);
+	 
+	
+		
+		$search = strip_tags($this->apps->_p('search'));
+		$notiftype = intval($this->apps->_p('notiftype'));
+		// $publishedtype = intval($this->apps->_p('publishedtype'));
+		$startdate = $this->apps->_p('startdate');
+		$enddate = $this->apps->_p('enddate');
+		
+		//RUN FILTER
+		$filter = "";
+		$filter = $search=="Search..." ? "" : "AND (name LIKE '%{$search}%' )";
+		// $filter .= $notiftype!=0 ? " AND notiftype = {$notiftype}" : " AND notiftype = 3";
+		// $filter .= $publishedtype ? "AND n_status = {$publishedtype}" : " AND n_status != 3";
+		$filter .= $startdate ? " AND postdate >= '{$startdate}'" : "";
+		$filter .= $enddate ? " AND postdate < '{$enddate}'" : "";
+		
+		//GET TOTAL
+		$sql = "SELECT count(*) total
+			from {$CONFIG['DATABASE'][0]['DATABASE']}.my_application as ma left join jobboard jb on ma.jobboard_id=jb.id_job
+left join tbl_talent_seeker tts on tts.id=jb.talent_seeker_id 			where 1 and ma.user_id='{$uid}'  ";
+
+		$total = $this->apps->fetch($sql);		
+		
+	//pr($sql);exit;
+		if(intval($total['total'])<=$limit) $start = 0;
+		
+	
+		
+		$sql = "select * from {$CONFIG['DATABASE'][0]['DATABASE']}.my_application as ma left join jobboard jb on ma.jobboard_id=jb.id_job  left join tbl_talent_seeker tts
+on tts.id=jb.talent_seeker_id where 1 and ma.user_id='{$uid}' ";
+	//	pr($sql);exit;
+		$rqData = $this->apps->fetch($sql,1);
+		//pr($rqData);exit;
+		
+		
+		//pr($rqData);exit;
+		if($rqData) {
+			$no = $start+1;
+			foreach($rqData as $key => $val){
+				$val['no'] = $no++;
+				
+				$tgl1 = date('d-m-Y');
+				//pr($tgl1);exit;		
+				$tgl2 =  $val['date']; 
+				$selisih = strtotime($tgl2) - strtotime($tgl1); 
+				$val['hari'] = $selisih/(60*60*24);
+				$sql = "SELECT count(*) totals
+					FROM {$CONFIG['DATABASE'][0]['DATABASE']}.my_application where 1  AND `jobboard_id`='{$val['id_job']}'";
+				//pr($sql);exit;
+				$total_registrant = $this->apps->fetch($sql);
+				//pr($total_registrant);exit;
+				$val['registrant']=$total_registrant['totals'];
+				$rqData[$key] = $val;
+
+				
+			}
+			//pr($rqData);exit;
+			if($rqData) $qData=	$rqData;
+			else $qData = false;
+		} else $qData = false;
+		
+		
+		$result['result'] = $qData;
+		$result['total'] = intval($total['total']);
+		
+		
+		
+		//pr($result);exit;
+		return $result;
+	}
+	function updatedecisionajaxinterview($idjobs)
+	{
+	//pr($_POST);exit;
+				$uid=intval($this->apps->_p('uid'));
+				$sql = "update my_application set interview='2' where user_id='{$uid}' and jobboard_id='{$idjobs}' ";
+				//pr($sql);exit;
+				$fetch = $this->apps->query($sql);
+				return true;
+	
+	
+	}
+	
+	function updatesettingts($data=array())
+	{
+				// pr($data);
+				$qpassword='';
+				if($data['password'])
+				{
+					$password = $this->apps->encrypt($data['password']);
+					$qpassword="password='{$password }' ";
+				}
+				else
+				{
+				
+				}
+				
+				$sql = "update social_member set 
+					email='{$data['email']}',
+					{$qpassword}
+					where id='{$data['uid']}'  ";
+				 //pr($sql);
+				//$fetch = $this->apps->query($sql);
+				
+				
+				$sql = "update tbl_talent_seeker set 
+					language='{$data['language']}',
+					privacy='{$data['privacy']}',
+					where id='{$data['uid']}'  ";
+				 //pr($sql);exit;
+				//$fetch = $this->apps->query($sql);
+				return true;
+	
+	
+	}
+	
+	
+	function updateinterview($idjobs)
+	{
+	//pr($_POST);exit;
+	
+		global $CONFIG;
+		//$paramuser=$this->apps->_p('user');
+		if ($_POST['user'])
+		{
+		foreach($_POST['user'] as $key=>$val)
+			{
+				$sql = "update my_application set interview='1' where user_id='{$val}' and jobboard_id='{$idjobs}' ";
+				$fetch = $this->apps->query($sql);
+			}
+			return true;
+		}
+			
+	
+	}
+	function download($downloadid)
+	{
+	global $CONFIG;
+	$sql = "select * from social_member sm inner join tbl_talent tt on sm.id=tt.user_id where sm.id='{$downloadid}'";
+	//pr($sql);exit;
+	$result = $this->apps->fetch($sql,1);		
+	//pr($fecth);exit;
+				if($result)
+					{
+					
+					foreach($result as $key=>$val)
+					{	
+						echo '<img alt="Logo" src="'.$CONFIG['BASE_DOMAIN'].'public_assets/personal/'.$val['img'].'" style="width: 100%;">';
+						echo "<p>";
+						echo $val['email'];
+						echo "cumu2";
+						echo "</p>";
+					
+					}
+					
+									
+							$filename=$result[0]['name'].'.pdf' ; 
+							$content = ob_get_clean();
+								
+								
+								try
+								{
+									$html2pdf = new HTML2PDF('P','A4','en', false, 'ISO-8859-15',array(20, 10, 20, 25));
+									$html2pdf->setDefaultFont('Arial');
+									$html2pdf->writeHTML($content, isset($_GET['vuehtml']));
+									$html2pdf->Output($filename);
+									$html2pdf->set_pixels(960);
+
+								}
+								catch(HTML2PDF_exception $e) { echo $e; }
+								exit;
+					}
+	}				
+					
+	function detail_talent_jobs($jobsid)
+	{
+	global $CONFIG;
+		
+		$sql = "select * from social_member sm inner join tbl_talent tt on sm.id=tt.user_id 
+				inner join my_application ma on sm.id=ma.user_id where ma.jobboard_id={$jobsid}";
+		// pr($sql);exit;
+		$rqData = $this->apps->fetch($sql,1);
+		return $rqData;
+		//pr($rqData);exit;
+		
+	}
+	function detail_talent_seeker($userid)
+	{
+	global $CONFIG;
+		
+		$sql = "select * from social_member sm inner join tbl_talent_seeker tt on sm.id=tt.user_id 
+				 where sm.id={$userid}";
+		// pr($sql);exit;
+		$rqData = $this->apps->fetch($sql);
+		return $rqData;
+		//pr($rqData);exit;
+		
+	}
+	function popular()
+	{
+	global $CONFIG;
+		
+		$sql = "select *,DATE_FORMAT(jb.enddate,'%d-%m-%Y') as date,jb.provinsi,jb.city,count(ma.jobboard_id) as coba from creasi.jobboard as jb left join tbl_talent_seeker tts on jb.talent_seeker_id=tts.id left join job_category jc
+ on jb.id_job=jc.jobboard_id left join my_application ma on ma.jobboard_id=jb.id_job  WHERE 1   AND jb.n_status=1   AND (tts.nama_perusahaan LIKE '%%' ) group by jb.job_title   order by coba DESC limit 10 ";
+		//pr($sql);exit;
+		$rqData = $this->apps->fetch($sql,1);
+		
+		
+		
+		return $rqData;
+		//pr($rqData);exit;
+	}
+	
+	
+	function main_job_ts($start=null,$limit=10,$id=null)
+	{
+	global $CONFIG;
+		
+		$result['result'] = false;
+		$result['total'] = 0;
+		
+		if($start==null)$start = intval($this->apps->_request('start'));
+		$limit = intval($limit);
+	 
+		$sql="select *,tts.id as idnya from tbl_talent_seeker tts inner join social_member sm on tts.user_id=sm.id where sm.id='{$id}'";
+		//pr($sql);exit;
+		$select_tts = $this->apps->fetch($sql,1);
+		$id_tts=$select_tts[0]['idnya'];
+		
+		$search = strip_tags($this->apps->_p('search'));
+		$notiftype = intval($this->apps->_p('notiftype'));
+		// $publishedtype = intval($this->apps->_p('publishedtype'));
+		$startdate = $this->apps->_p('startdate');
+		$enddate = $this->apps->_p('enddate');
+		
+		//RUN FILTER
+		$filter = "";
+		$filter = $search=="Search..." ? "" : "AND (name LIKE '%{$search}%' )";
+		// $filter .= $notiftype!=0 ? " AND notiftype = {$notiftype}" : " AND notiftype = 3";
+		// $filter .= $publishedtype ? "AND n_status = {$publishedtype}" : " AND n_status != 3";
+		$filter .= $startdate ? " AND postdate >= '{$startdate}'" : "";
+		$filter .= $enddate ? " AND postdate < '{$enddate}'" : "";
+		
+		//GET TOTAL
+		$sql = "SELECT count(*) total
+			FROM {$CONFIG['DATABASE'][0]['DATABASE']}.job_category as jb left join tbl_talent_seeker tts on jb.talent_seeker_id=tts.id left join job_category jc
+ on jb.id_job=jc.jobboard_id WHERE 1 AND jb.n_status=2 ";
+
+		$total = $this->apps->fetch($sql);		
+		
+	//pr($sql);exit;
+		if(intval($total['total'])<=$limit) $start = 0;
+		
+	
+		
+		$sql = "select *,DATE_FORMAT(jb.enddate,'%d-%m-%Y') as date,jb.provinsi,jb.city,jb.n_status from {$CONFIG['DATABASE'][0]['DATABASE']}.jobboard as jb left join tbl_talent_seeker tts on jb.talent_seeker_id=tts.id left join job_category jc
+ on jb.id_job=jc.jobboard_id left join my_application ma on jb.id_job=ma.jobboard_id WHERE 1  and jb.talent_seeker_id={$id_tts}  group by job_title ";
+		//pr($sql);exit;
+		$rqData = $this->apps->fetch($sql,1);
+		//pr($rqData);exit;
+		
+		
+		//pr($rqData);exit;
+		if($rqData) {
+			$no = $start+1;
+			foreach($rqData as $key => $val){
+				$val['no'] = $no++;
+				
+				$tgl1 = date('d-m-Y');
+				//pr($tgl1);exit;		
+				$tgl2 =  $val['date']; 
+				$selisih = strtotime($tgl2) - strtotime($tgl1); 
+				$val['hari'] = $selisih/(60*60*24);
+				$sql = "SELECT count(*) totals
+					FROM {$CONFIG['DATABASE'][0]['DATABASE']}.my_application where 1  AND `jobboard_id`='{$val['id_job']}'";
+				//pr($sql);exit;
+				$total_registrant = $this->apps->fetch($sql);
+				//pr($total_registrant);exit;
+				$val['registrant']=$total_registrant['totals'];
+				$rqData[$key] = $val;
+
+				
+			}
+			//pr($rqData);exit;
+			if($rqData) $qData=	$rqData;
+			else $qData = false;
+		} else $qData = false;
+		
+		
+		$result['result'] = $qData;
+		$result['total'] = intval($total['total']);
+		
+		
+		
+		//pr($result);exit;
+		return $result;
+		
+	}	
+	
+	
+	function main_job($start=null,$limit=10,$id=null)
+	{
+	global $CONFIG;
+		
+		$result['result'] = false;
+		$result['total'] = 0;
+		
+		if($start==null)$start = intval($this->apps->_request('start'));
+		$limit = intval($limit);
+	 
+		
+		
+	
+		$search = strip_tags($this->apps->_p('search'));
+		$notiftype = intval($this->apps->_p('notiftype'));
+		// $publishedtype = intval($this->apps->_p('publishedtype'));
+		$startdate = $this->apps->_p('startdate');
+		$enddate = $this->apps->_p('enddate');
+		
+		//RUN FILTER
+		$filter = "";
+		$filter = $search=="Search..." ? "" : "AND (name LIKE '%{$search}%' )";
+		// $filter .= $notiftype!=0 ? " AND notiftype = {$notiftype}" : " AND notiftype = 3";
+		// $filter .= $publishedtype ? "AND n_status = {$publishedtype}" : " AND n_status != 3";
+		$filter .= $startdate ? " AND postdate >= '{$startdate}'" : "";
+		$filter .= $enddate ? " AND postdate < '{$enddate}'" : "";
+		
+		//GET TOTAL
+		$sql = "SELECT count(*) total
+			FROM {$CONFIG['DATABASE'][0]['DATABASE']}.job_category as jb left join tbl_talent_seeker tts on jb.talent_seeker_id=tts.id left join job_category jc
+ on jb.id_job=jc.jobboard_id WHERE 1 AND jb.n_status=2 ";
+
+		$total = $this->apps->fetch($sql);		
+		
+	//pr($sql);exit;
+		if(intval($total['total'])<=$limit) $start = 0;
+		
+	
+		
+		$sql = "select *,DATE_FORMAT(jb.enddate,'%d-%m-%Y') as date,jb.provinsi,jb.city from {$CONFIG['DATABASE'][0]['DATABASE']}.jobboard as jb left join tbl_talent_seeker tts on jb.talent_seeker_id=tts.id left join job_category jc
+ on jb.id_job=jc.jobboard_id left join my_application ma on jb.id_job=ma.jobboard_id WHERE 1   AND jb.n_status=1  AND ma.user_id={$id}";
+		//pr($sql);exit;
+		$rqData = $this->apps->fetch($sql,1);
+		//pr($rqData);exit;
+		
+		
+		//pr($rqData);exit;
+		if($rqData) {
+			$no = $start+1;
+			foreach($rqData as $key => $val){
+				$val['no'] = $no++;
+				
+				$tgl1 = date('d-m-Y');
+				//pr($tgl1);exit;		
+				$tgl2 =  $val['date']; 
+				$selisih = strtotime($tgl2) - strtotime($tgl1); 
+				$val['hari'] = $selisih/(60*60*24);
+				$sql = "SELECT count(*) totals
+					FROM {$CONFIG['DATABASE'][0]['DATABASE']}.my_application where 1  AND `jobboard_id`='{$val['id_job']}'";
+				//pr($sql);exit;
+				$total_registrant = $this->apps->fetch($sql);
+				//pr($total_registrant);exit;
+				$val['registrant']=$total_registrant['totals'];
+				$rqData[$key] = $val;
+
+				
+			}
+			//pr($rqData);exit;
+			if($rqData) $qData=	$rqData;
+			else $qData = false;
+		} else $qData = false;
+		
+		
+		$result['result'] = $qData;
+		$result['total'] = intval($total['total']);
+		
+		
+		
+		//pr($result);exit;
+		return $result;
+		
+	}	
+	function following($start=null,$limit=10,$id)
+	{
+		global $CONFIG;
+		//pr($id);exit;
+		$result['result'] = false;
+		$result['total'] = 0;
+		
+		if($start==null)$start = intval($this->apps->_request('start'));
+		$limit = intval($limit);
+	  
+		// $projectid = intval($this->apps->_g('projects'));
+		
+		$search = strip_tags($this->apps->_p('search'));
+		$notiftype = intval($this->apps->_p('notiftype'));
+		// $publishedtype = intval($this->apps->_p('publishedtype'));
+		$startdate = $this->apps->_p('startdate');
+		$enddate = $this->apps->_p('enddate');
+		
+		//RUN FILTER
+		$filter = "";
+		$filter = $search=="Search..." ? "" : "AND (name LIKE '%{$search}%' )";
+		// $filter .= $notiftype!=0 ? " AND notiftype = {$notiftype}" : " AND notiftype = 3";
+		// $filter .= $publishedtype ? "AND n_status = {$publishedtype}" : " AND n_status != 3";
+		$filter .= $startdate ? " AND postdate >= '{$startdate}'" : "";
+		$filter .= $enddate ? " AND postdate < '{$enddate}'" : "";
+		
+		//GET TOTAL
+		$sql = "SELECT count(*) total
+			FROM {$CONFIG['DATABASE'][0]['DATABASE']}.news 
+			WHERE 1 ";
+		$total = $this->apps->fetch($sql);		
+		
+	//pr($sql);exit;
+		if(intval($total['total'])<=$limit) $start = 0;
+		
+		//GET LIST
+		$sql = "select sm.id,sm.name,sm.img from {$CONFIG['DATABASE'][0]['DATABASE']}.my_follow mf left join social_member sm on mf.friend_id=sm.id where mf.user_id={$id} "; 
+		//pr($sql);exit;
+		$rqData = $this->apps->fetch($sql,1);
+//pr($rqData);exit;
+		if($rqData) {
+			$no = $start+1;
+			foreach($rqData as $key => $val){
+				$val['no'] = $no++;
+				$rqData[$key] = $val;
+
+				$sql = "SELECT COUNT(*) total_data
+						FROM {$CONFIG['DATABASE'][0]['DATABASE']}.news
+						WHERE 1";
+				// if($val['ownerid']==47){
+				// 	pr($sql);
+				//  	pr(intval($this->apps->fetch($sql)));exit;
+				//  }
+				$total_registrant = $this->apps->fetch($sql);
+				$rqData[$key]['total_registrant'] = intval($total_registrant['total_data']);
+			}
+			//pr($rqData);exit;
+			if($rqData) $qData=	$rqData;
+			else $qData = false;
+		} else $qData = false;
+		
+		$result['result'] = $qData;
+		$result['total'] = intval($total['total']);
+		//pr($result);exit;
+		return $result;
+	}	
+	
+}
+	

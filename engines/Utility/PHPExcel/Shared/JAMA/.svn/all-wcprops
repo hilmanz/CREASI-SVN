@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/creasi/!svn/ver/49/trunk/engines/Utility/PHPExcel/Shared/JAMA
+END
+LUDecomposition.php
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/creasi/!svn/ver/49/trunk/engines/Utility/PHPExcel/Shared/JAMA/LUDecomposition.php
+END
+CholeskyDecomposition.php
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/creasi/!svn/ver/49/trunk/engines/Utility/PHPExcel/Shared/JAMA/CholeskyDecomposition.php
+END
+SingularValueDecomposition.php
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/creasi/!svn/ver/49/trunk/engines/Utility/PHPExcel/Shared/JAMA/SingularValueDecomposition.php
+END
+QRDecomposition.php
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/creasi/!svn/ver/49/trunk/engines/Utility/PHPExcel/Shared/JAMA/QRDecomposition.php
+END
+EigenvalueDecomposition.php
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/creasi/!svn/ver/49/trunk/engines/Utility/PHPExcel/Shared/JAMA/EigenvalueDecomposition.php
+END
+Matrix.php
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/creasi/!svn/ver/49/trunk/engines/Utility/PHPExcel/Shared/JAMA/Matrix.php
+END

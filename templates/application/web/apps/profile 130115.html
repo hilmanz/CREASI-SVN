@@ -1,0 +1,459 @@
+<div class="page_section" id="profilepage">
+    <div id="metapage">
+        <div class="wrapper">
+            <h1 class="page-title fl">Creative Talent Profile</h1>
+            <div class="breadcumb fr">
+                <a href="index.php">Home</a> <span>/</span> <a>Creative Talent Profile</a>
+            </div>
+        </div><!-- end .wrapper -->   
+    </div><!-- end #metapage -->
+	{if $list}
+				{section name=i loop=$list}  
+    <div id="profileboard" class="section"> 
+        <div class="wrapper">
+        	<div class="cols">
+            	{*}<div class="rows">
+                    <div class="helpButton fr">
+                        <a href="#popup-tour-profile" class="helpPopup showPopup2"><i class="icon-question-circle">&nbsp;</i></a>
+                    </div>
+                </div>{/*}
+			 {include file="application/web/widgets/notibar.html"}  
+                  <div class="blocks">
+                	<div class="coverprofile boxpop">
+					{if $list[i].img_cover <> ''}
+                    	<img src="{$basedomain}public_assets/personal/{$list[i].img_cover}"/>
+					{else}
+                    	<img src="{$basedomain}assets/content/cover.jpg" />
+					{/if}
+                        <a href="#popup-upload-cover" class="showpopup editPop">
+                        <i class="icon-pencil">&nbsp;</i> Edit</a>
+                    </div><!-- END .coverprofile -->
+                </div><!-- END .blocks -->
+				{include file='application/web/widgets/popup-upload-cover.html'}
+                <div class="sectionsrow profilebox">
+                  <div class="profilethumb thumb boxpop">
+				    {if $list[i].img_avatar <> ''}
+				  <img src="{$basedomain}public_assets/personal/{$list[i].img_avatar}" />
+				  {else}
+				   <img src="{$basedomain}public_assets/postjob/images.jpg" />
+				  {/if}
+				   <a href="#popup-upload-profilepic" class="showpopup editPop">
+                        <i class="icon-pencil">&nbsp;</i> Edit</a>
+				  </div>
+				  
+				  {include file='application/web/widgets/popup-upload-profilepic.html'}
+                  <div class="profileentry">
+                  	<div class="rowhead">
+                        <h3 class="profilename">{$list[i].name} </h3>
+                        <div class="meta-info">
+                            <a href="#" class="c-view"><i class="ico icon-eye">&nbsp;</i> <span>{$list[i].view_count}</span></a>
+                            <a href="#" class="c-like "><i class="ico icon-thumbs-o-up">&nbsp;</i> <span class="likesnya">{$list[i].love_count}</span></a>
+                        </div><!-- END .meta-info -->
+                           <a class="button1 btnedit" href="{$basedomain}personal/editpersonal?id={$id}"><i class="icon-pencil">&nbsp;</i> Edit</a>
+                           <a class="button1 downloadCV" href="{$basedomain}dashboard/download?param={$id}">Download CV</a>
+						   
+						   {if $selectlike==''}
+                           <a class="button2 untuklike" href="#" ref="#" id='likenya' value='{$id}' folow='{$id}'><i class="icon-thumbs-o-up">&nbsp;</i> Like</a>
+						   {/if}
+                           <!--<a class="button2" href="#"><i class="icon-suitcase">&nbsp;</i> Invite to a job</a>-->
+                    </div><!-- END .rowhead -->
+                  	<div class="rowentry">
+                        <p>{$cat_name}  </p>
+                        <p><i class="icon-map-marker">&nbsp;</i>{$list[i].provincy}, {$list[i].city} <!-- <a href="#popup-message" class="showpopup">click</a> --></i>
+                        <div class="socialbox">
+                            <a href="http://www.{$list[i].fb_link}" target="_blank"><i class="ico icon-facebook">&nbsp;</i></a>
+                            <a href="http://www.{$list[i].twitter_link}" target="_blank"><i class="ico icon-twitter">&nbsp;</i></a>
+                            <a href="http://www.{$list[i].instagram_link}" target="_blank"><i class="ico icon-instagram">&nbsp;</i></a>
+                            <a href="http://www.{$list[i].youtube_link}" target="_blank"><i class="ico icon-youtube">&nbsp;</i></a>
+                        </div><!-- END .socialbox -->
+                    </div><!-- END .rowentry -->
+                  </div><!-- END .profileentry -->
+                </div><!-- END .sectionsrow -->
+                 <div class="sharebox">
+                    <h4>Share This Profile</h4> 
+                  <a href="{$basedomain}share/fbShare/profile/{$list[i].user_id}/personal/view"><i class="ico icon-facebook">&nbsp;</i></a>
+                       <a href="{$basedomain}share/twitterShare/profile/{$list[i].user_id}/personal/view"><i class="ico icon-twitter">&nbsp;</i></a>
+                     <a href="javascript:void(0)"><i class="ico icon-envelope clicksharemail">&nbsp;</i></a>
+                        <div id="sharemail" class="rows sharemail" style="display:none">
+                         <label> Add email addresses (separate with commas)</label>
+                        
+                         <input class="emailshare" type="text" name="email" id='email' style="width:400px"/>
+                          <input class="idusershare" type="hidden" name="idusershare" id='idusershare' style="width:400px" value="{$list[i].user_id}"/>
+
+                         <input class="button1 submit" type="submit" name="submit" value="submit">
+                         <br>
+                        <label style="red" class="msgerorr"> </label>
+                        </div>
+                </div>
+            	<div class="euTab">
+                  <ul>
+                    <li><a href="#my-bio">BIO</a></li>
+					
+					{if $selectcategory != ''}
+					{section name=n loop=$selectcategory}
+                    <li><a href="#{$selectcategory[n].category_name}">{$selectcategory[n].category_name}</a></li>
+					{/section}
+					{/if}
+                    <li><a href="#my-portfolio">Portfolio</a></li>
+                  </ul>
+                  <div id="my-bio" class="tab-content">
+                  	<div class="tabentry">
+                        <div class="sectionsrow">
+                            <a class="button1 btnedit" href="{$basedomain}personal/editpersonal"><i class="icon-pencil">&nbsp;</i> Edit</a>
+                            <div class="sections">
+                                <p>{$list[i].testimoni}</p>
+                                <div class="rows">
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                      <tr>
+                                        <td width="220"><strong>Nickname</strong></td>
+                                        <td width="10">:</td>
+                                        <td>{$list[i].name}</td>
+                                      </tr>
+                                      <tr>
+                                        <td><strong>Gender</strong></td>
+                                        <td width="10">:</td>
+                                        <td>{$list[i].sex}</td>
+                                      </tr>
+                                      <tr>
+                                        <td><strong>Date of birth</strong></td>
+                                        <td>:</td>
+                                        <td>{$list[i].birthday}</td>
+                                      </tr>
+                                      <tr>
+                                        <td><strong>Location</strong></td>
+                                        <td>:</td>
+                                        <td>{$list[i].city}</td>
+                                      </tr>
+                                      <tr>
+                                        <td><strong>Phone Number</strong></td>
+                                        <td>:</td>
+                                        <td>{$list[i].phone_number}</td>
+                                      </tr>
+                                      <tr>
+                                        <td><strong>Email Address</strong></td>
+                                        <td>:</td>
+                                        <td>{$list[i].email}</td>
+                                      </tr>
+                                    </table>
+                                </div><!-- END .rows -->
+                            </div><!-- END .sections -->
+                        </div><!-- END .sectionsrow -->
+						{if $ultah <= 18}
+						{if $list}
+						{section name=j loop=$load} 
+                        <h3 class="sectiontitle">Parent / Guardian <span class="red">Info</span></h3>
+                        <div class="sectionsrow">
+                            <a class="button1 btnedit" href="{$basedomain}personal/editpersonal"><i class="icon-pencil">&nbsp;</i> Edit</a>
+                            <div class="sections">
+                                <div class="rows">
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                      <tr>
+                                        <td width="220"><strong>Name of parent / guardian</strong></td>
+                                        <td width="10">:</td>
+                                        <td>{$load[j].name_parent}</td>
+                                      </tr>
+                                      <tr>
+                                        <td><strong>Relation with talent</strong></td>
+                                        <td>:</td>
+                                        <td>{$load[j].relation_parent}</td>
+                                      </tr>
+                                      <tr>
+                                        <td><strong>Date of birth</strong></td>
+                                        <td>:</td>
+                                        <td>{$load[j].birth}</td>
+                                      </tr>
+                                      <tr>
+                                        <td><strong>Phone number</strong></td>
+                                        <td>:</td>
+                                        <td>{$load[j].phone}</td>
+                                      </tr>
+                                      <tr>
+                                        <td><strong>ID card number</strong></td>
+                                        <td>:</td>
+                                        <td>{$load[j].identitas}</td>
+                                      </tr>
+                                      <tr>
+                                        <td><strong>Address</strong></td>
+                                        <td>:</td>
+                                        <td>{$load[j].address}</td>
+                                      </tr>
+                                      <tr>
+                                        <td><strong>Email Address</strong></td>
+                                        <td>:</td>
+                                        <td>{$load[j].email}</td>
+                                      </tr>
+                                    </table>
+                                </div><!-- END .rows -->
+                            </div><!-- END .sections -->
+                        </div><!-- END .sectionsrow -->
+						{/section}
+						{/if}
+						{/if}
+                        <h3 class="sectiontitle">Education <span class="red">Info</span></h3>
+                        <div class="sectionsrow">
+						{if $listmyedu}
+						 {section name=m loop=$listmyedu} 
+                            <a class="button1 btnedit" href="{$basedomain}personal/editpersonal"><i class="icon-pencil">&nbsp;</i> Edit</a>
+                            <div class="sections">
+                                <div class="rows">
+                                	<h4 class="red">{$listmyedu[m].tahunmasuk}-{$listmyedu[m].tahunlulus}</h4>
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                      <tr>
+                                        <td width="220"><strong>Degree</strong></td>
+                                        <td width="10">:</td>
+                                        <td>{$listmyedu[m].degree}</td>
+                                      </tr>
+                                      <tr>
+                                        <td><strong>School / Institution</strong></td>
+                                        <td>:</td>
+                                        <td>{$listmyedu[m].institusi}</td>
+                                      </tr>
+                                      <tr>
+                                        <td><strong>Field of Study</strong></td>
+                                        <td>:</td>
+                                        <td>{$listmyedu[m].bidang_studi}</td>
+                                      </tr>
+                                    </table>
+                                	
+                                </div><!-- END .rows -->
+                            </div><!-- END .sections -->
+							{/section}			
+							{/if}
+							
+                        </div><!-- END .sectionsrow -->
+                    </div><!-- END .tabentry -->
+                  </div><!-- END .tab-content -->
+				  
+				  {if $selectcategory != ''}
+				  {section name=n loop=$selectcategory}
+                  <div id="{$selectcategory[n].category_name}" class="tab-content">
+                  	<div class="tabentry">
+                        <div class="sectionsrow">
+                            <a class="button1 btnedit" href="{$basedomain}personal/editpersonal?id={$id}"><i class="icon-pencil">&nbsp;</i> Edit</a>
+						
+                            <div class="sections">
+                                <p>{$selectcategory[n].short_description}</p>
+                                <div class="rows">
+                                	<h5>{$selectcategory[n].category_name} - {$selectcategory[n].name_subcategory}</h5>
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                      <tr>
+                                        <td width="220"><strong>Agent</strong></td>
+                                        <td width="10">:</td>
+                                        <td>{$selectcategory[n].name_agent}</td>
+                                      </tr>
+                                      <tr>
+                                        <td><strong>Looking for</strong></td>
+                                        <td width="10">:</td>
+                                        <td>
+										{if $selectcategory[n].mlfor.loking_for_id != ''}
+										{foreach from=$selectcategory[n].mlfor.loking_for_id  item=mlfor}
+										{if $mlfor==1}Full time.{/if}
+										{if $mlfor==2}Part time.{/if}
+										{if $mlfor==3}Internship.{/if}
+										{if $mlfor==4}Freelance.{/if}
+										{/foreach}
+										{/if}
+										
+										</td>
+                                      </tr>
+                                      <tr>
+                                        <td><strong>Open for</strong></td>
+                                        <td>:</td>
+                                        <td>{if $selectcategory[n].moffor.oppen_for != ''}
+										{foreach from=$selectcategory[n].moffor.oppen_for  item=mofor}
+										{$mofor}.
+										{/foreach}
+										{/if}</td>
+                                      </tr>
+                                    </table>
+                                	
+                                </div><!-- END .rows -->
+                            </div><!-- END .sections -->
+						
+                        </div><!-- END .sectionsrow -->
+                        <h3 class="sectiontitle">Experience</h3>
+						
+                        <div class="sectionsrow">
+                            <a class="button1 btnedit" href="index.php?page=profile-edit"><i class="icon-pencil">&nbsp;</i> Edit</a>
+                            <div class="sections">
+                                <div class="rows">
+							{foreach from=$selectcategory[n].arrayexp item=arrayexp}
+									{assign var="startp" value="-"|explode:$arrayexp.periode_start}
+									{assign var="yearstart" value="$startp[0]"}
+									{assign var="endp" value="-"|explode:$arrayexp.periode_end}
+									{assign var="yearend" value="$endp[0]"}
+
+                                	<h4 class="red">{$yearstart} - {$yearend}</h4>
+									
+                                	<h5>{$selectcategory[n].category_name}</h5>
+									<p>
+									{$arrayexp.detail_exp}
+									</p>
+							{/foreach}
+                                </div><!-- END .rows -->
+                            </div><!-- END .sections -->
+						 </div><!-- END .sectionsrow -->
+                    </div><!-- END .tabentry -->
+                  </div><!-- END .tab-content -->
+                  {/section}
+				  {/if}
+                   <div id="my-portfolio" class="tab-content">
+                  	<div class="tabentry">
+                        <div class="sectionsrow">
+                            <a class="btnadd showpopup" href="#popup-upload-photo"><i class="icon-plus">&nbsp;</i> Add more photos</a>
+                        	{include file='application/web/widgets/popup-upload-photo.html'}
+                            <div class="sectionbox">
+                                <div class="rows rows5">
+								{if $images}
+								{section name=k loop=$images}
+                                    <div class="box">
+                                        <div class="boximg">
+                                            <a href="{$basedomain}portofolio?images={$images[k].id}&id={$images[k].user_id}" class="thumbbox"><img src="{$basedomain}public_assets/portofolio/small_{$images[k].images}"></a>  
+                                        </div><!-- end .boximg -->    
+                                        <div class="caption">
+                                            <div class="desc-box">
+                                                <h4><a href="{$basedomain}portofolio?images={$images[k].id}&id={$images[k].user_id}">{$images[k].title}</a></h4>
+                                            </div><!-- end .author-box -->    
+                                            <h5><a href="{$basedomain}portofolio?images={$images[k].id}&id={$images[k].user_id}">{$images[k].description}</a></h5>
+                                        </div>
+                                    </div><!-- END .box -->
+                                 {/section}
+                                 {else}<p> There are no portfolio(s) yet</p>
+                                   
+								 {/if}
+                                </div><!-- END .rows -->
+                            </div><!-- END .sectionbox -->
+                        </div><!-- END .sectionsrow -->
+                        <h3 class="sectiontitle">Videos</h3>
+                        <div class="sectionsrow">
+                            <a class="btnadd showpopup" href="#popup-upload-video"><i class="icon-plus">&nbsp;</i> Add more Videos</a>
+                        	{include file='application/web/widgets/popup-upload-video.html'}
+                            <div class="sectionbox">
+                                <div class="rows rows5">
+                                  	{if $listvideo}
+										{section name=kv loop=$listvideo}
+											<div class="box">
+												<div class="boximg">
+													<a href="{$basedomain}portofolio?video={$listvideo[kv].id}&id={$listvideo[kv].user_id}" class="thumbbox">
+														<img src="{$basedomain}public_assets/portofolio/small_{$listvideo[kv].images}" width="400" height="200">
+														<i class="icon-play-circle-o">&nbsp;</i>
+													</a>  
+												</div><!-- end .boximg -->    
+												<div class="caption">
+													<div class="desc-box">
+														<h4><a href="{$basedomain}portofolio?video={$listvideo[kv].id}&id={$listvideo[kv].user_id}">{$listvideo[kv].title}</a></h4>
+													</div><!-- end .author-box -->    
+													<h5><a href="{$basedomain}portofolio?video={$listvideo[kv].id}&id={$listvideo[kv].user_id}">{$listvideo[kv].description}</a></h5>
+												</div>
+											</div><!-- END .box -->
+										 {/section}
+                                 		{else}<p> There are no portfolio(s) yet</p>  
+									{/if}
+                                   
+                                </div><!-- END .rows -->
+                            </div><!-- END .sectionbox -->
+                        </div><!-- END .sectionsrow -->
+                        <h3 class="sectiontitle">Audios</h3>
+                        <div class="sectionsrow">
+                            <a class="btnadd showpopup" href="#popup-upload-audio"><i class="icon-plus">&nbsp;</i> Add more Audios</a>
+                        	{include file='application/web/widgets/popup-upload-audio.html'}
+                            <div class="sectionbox">
+                                <div class="rows rows5">
+                                   {if $listaudio}
+										{section name=ka loop=$listaudio}
+											<div class="box">
+												<div class="boximg">
+													<a href="{$basedomain}portofolio?audio={$listaudio[ka].id}&id={$listaudio[ka].user_id}" class="thumbbox">
+														<img src="{$basedomain}public_assets/portofolio/small_{$listaudio[ka].images}"  width="400" height="200">
+															<i class="icon-play-circle-o">&nbsp;</i>
+													</a>  
+												</div><!-- end .boximg -->    
+												<div class="caption">
+													<div class="desc-box">
+														<h4><a href="{$basedomain}portofolio?audio={$listaudio[ka].id}&id={$listaudio[ka].user_id}">{$listaudio[ka].title}</a></h4>
+													</div><!-- end .author-box -->    
+													<h5><a href="{$basedomain}portofolio?audio={$listaudio[ka].id}&id={$listaudio[ka].user_id}">{$listaudio[ka].description}</a></h5>
+												</div>
+											</div><!-- END .box -->
+											
+										 {/section}
+		                                 {else}<p> There are no portfolio(s) yet</p>  
+										 
+									{/if}
+                                  
+                                   
+                                </div><!-- END .rows -->
+                            </div><!-- END .sectionbox -->
+                        </div><!-- END .sectionsrow -->
+                    </div><!-- END .tabentry -->
+                  </div><!-- END .tab-content -->
+                </div><!-- END .widget -->
+            </div><!-- end .cols -->   
+        </div><!-- end .wrapper -->    
+    </div><!-- end #profileboard --> 
+	{/section}
+	{/if}
+</div><!-- end #profilepage -->
+{include file="application/web/widgets/popup-tour-profile.html"}
+<div id="bg-popup2"></div>
+{literal}
+<script>
+	  $(document).ready(function(){
+				$('.untuklike').click(function(e){
+									
+								var likenya=$(this).attr('value');
+								var friendlikes=$(this).attr('folow');
+								//console.log(likenya);
+								//console.log(friendlikes);
+								var thiss=$(this);
+								e.preventDefault();
+								$.ajax({
+								
+									'type': 'POST',
+									'url': basedomain+'talentboard/ajaxlike',
+									'data':{uid:likenya,idnya:friendlikes},
+									'dataType':'json',
+									'success': function(response){
+										var str='';
+										str+=response.countnya;
+										$('.likesnya').html(str);
+										$('.untuklike').hide();
+									}
+									
+									
+									
+									});
+								});
+							});
+		$('.clicksharemail').click(function()
+		{
+			$('.sharemail').show();
+
+		});
+		$('.submit').click(function(){
+				
+				var email=$('.emailshare').val();
+				var userid=$('.idusershare').val();
+				 $.ajax({
+							
+									'type': 'POST',
+									'url': ''+basedomain+'share/emailShare',
+									'data': {userid:userid,type:'profile',email:email},
+									'dataType':'json',
+								   'success': function(result){
+										if(result.status==1)
+										{
+												$('.msgerorr').html('proses share berhasil');
+
+										}
+										else
+										{
+											 $('.msgerorr').html('proses share gagal coba ulang lagi');
+										}
+								   }
+						 });
+		   
+		})	
+	
+	{/literal}
+	</script>

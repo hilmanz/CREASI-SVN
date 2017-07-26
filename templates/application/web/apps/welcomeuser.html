@@ -1,0 +1,108 @@
+<div class="page_section" id="theformpage">
+    <div id="metapage">
+        <div class="wrapper">
+            <h1 class="page-title fl">Welcome to CREASI</h1>
+            <div class="breadcumb fr">
+                <a href="index.php">Home</a> <span>/</span> <a>Welcome to CREASI</a>
+            </div>
+        </div><!-- end .wrapper -->   
+    </div><!-- end #metapage -->
+    <div id="theform" class="section"> 
+        <div class="wrapper">
+        	<div class="welcomebox">
+                <div class="rows-titlebox">
+                   <span class="line">&nbsp;</span>
+                  <h2 class="center">WELCOME TO CREASI</h2>
+                </div><!-- end .rows -->    
+                <br />
+               {*}  <p>We have crafted this online platform so that thousands of Talent Seekers can post jobs and browse through our directory of Creative Talents. We believe this will help all Talent Seekers out there who are faced with the daunting task of hiring the right talent in the creative industry.</p>
+
+				<p>Make sure you share this good news and get all of your friends aboard.</p> {/*}
+
+				 <p>Thousands of Talent Seekers are looking for the right Creative Talent. Many times, they just don't know where to look. We belive  that if we join forces and stand as one, thousands of Creative Talents will have a bigger opportunity to get exposed and hired. That's why we crafted this website</p>
+
+					<p>Share this good news and get all of your friends aboard so we can create the biggest Creative Society in Indonesia</p> 
+					
+					<p>Thanks for your help :)</p> 
+					
+                    <div class="sharebox">
+                    	<h4>Share the awesome news!</h4> 
+                       {*}  <a href="{$basedomain}share/fbShare/join/{$user->id}/dashboard/welcomeuser"><i class="ico icon-facebook">&nbsp;</i></a> {/*}
+						  <a href="javascript:void(0)" onclick="shareFB('Creasi','{$basedomain}home','{$basedomain}assets/images/logo.png','','{$fbjoin|escape:'quotes'}')"><i class="ico icon-facebook">&nbsp;</i></a> 
+                        <a href="http://twitter.com/share?text={$twitjoin|escape:'quotes'}&url={$basedomain}" target="_blank"><i class="ico icon-twitter">&nbsp;</i></a>
+						<a href="javascript:void(0)"><i class="ico icon-envelope clicksharemail">&nbsp;</i></a>
+                        <div id="sharemail" class="rows sharemail" style="display:none">
+							 <label> Add email addresses (separate with commas)</label>
+							
+							 <input class="emailshare" type="text" name="email" id='email' style="width:400px"/>
+							  <input class="idusershare" type="hidden" name="idusershare" id='idusershare' style="width:400px" value="{$user->id}"/>
+
+							 <input class="button1 submit" type="submit" name="submit" value="submit">
+							 <br>
+							<label style="red" class="msgerorr"> </label>
+                        </div>
+                    </div>
+                    <div class="rows">
+                        <a href="{$basedomain}dashboard" class="button2 fr">SKIP</a>
+                    </div><!-- end .rows -->
+            </div><!-- end .welcomebox -->  
+        </div><!-- end .wrapper -->    
+    </div><!-- end #theform --> 
+</div><!-- end #theformpage -->
+{literal}
+<script>
+	
+		$.getScript('//connect.facebook.net/en_US/all.js', function(){
+			FB.init({
+			  appId: '1568887560021810',
+			});  
+		 });
+		$('.clicksharemail').click(function()
+		{
+			$('.sharemail').show();
+
+		});
+		$('.submit').click(function(){
+				var email=$('.emailshare').val();
+				var userid=$('.idusershare').val();
+				 $.ajax({
+							
+									'type': 'POST',
+									'url': ''+basedomain+'share/emailShare',
+									'data': {userid:userid,type:'join',email:email},
+									'dataType':'json',
+								   'success': function(result){
+										if(result.status==1)
+										{
+												$('.msgerorr').html('Share Sucessful');
+												$('.emailshare').val('');
+												$('.sharemail').hide();
+												$('.msgerorr').html(' ');
+	
+										}
+										else
+										{
+											 $('.msgerorr').html('Share Failed, Please Try Again');
+										}
+								   }
+							   });
+		   
+		})	
+	function shareFB(fb_name,fb_link,fb_img,fb_user,fb_post){
+		$("#bg-popup").fadeOut();
+		$(".popup,.popup2").fadeOut();
+		FB.init();
+		FB.ui({
+			method: 'feed',
+			name: fb_name,
+			link: fb_link,
+			picture: fb_img,
+			caption: fb_user,
+			description: fb_post
+			
+			
+		});
+			 
+	}
+	{/literal}
+	</script>

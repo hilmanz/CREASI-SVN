@@ -1,0 +1,138 @@
+<div class="page_section" id="project-page">
+    <div id="container">
+        <div class="titlebox">
+            <h2 class="fl"><span class="icon-blog">&nbsp;</span> Notification Management</h2>
+        </div><!-- end .titlebox -->
+        <div class="content">
+        	<div class="summary">
+       		<div class="row">
+					<form id="form" action="" method="post">
+					<input type="text" name="search" class="search" value="{$search}" placeholder="Search" style="width:200px">
+					<div class="fr">
+						<input type="text" name="startdate" value="{$startdate}" placeholder="Start Date" class="startdate">
+						<span> To </span>
+						<input type="text" name="enddate" value="{$enddate}" placeholder="End Date"  class="enddate" readonly='readonly' >
+						<input type="submit" value="GO" class="button3 submitsearch">
+					</div>
+					</form>
+				</div>
+            </div><!-- end .summary -->
+			<table cellpadding="0" cellspacing="0" border="0">
+			<thead>
+				<tr>
+					<th class="head0">No</th>
+					<th class="head0">Type</th> 
+					<th class="head0">Notification</th> 
+					<th class="head0">Date Created</th> 
+					<th width="25%" class="head0">Action</th> 
+				</tr>
+			</thead>
+			<tbody class="pagilist">
+			{if $list}
+			
+				{section name=i loop=$list}    
+                    <tr {if $list[i].n_status=="1"} class="unreadNotif" {else} class="readNotif" {/if} >
+					
+						<td>{$list[i].no}</td>
+						<td><span >{$list[i].title}</span></td> 
+							<td><span data-id="{$list[i].id}" class="isiNotif">{$list[i].detail}</span></td> 
+								<td><span>{$list[i].date}</span></td> 
+						
+						
+						<td>	
+
+                        	<a href="javascript:void(0)" class="button" onClick="confirmation('{$basedomain}notifikasi/delnotif?id={$list[i].id}','Confirm to Delete?')" ><span class="icon-trash">&nbsp;</span> Delete</a>
+                        </td>
+					</tr>
+                {/section}
+				
+			{/if}
+		
+					
+			</tbody>
+			</table>
+            <div id="paging_of_jobs" class="paging">
+              <a href="#"><span class="icon-first">&nbsp;</span></a>
+              <a href="#"><span class="icon-backward2">&nbsp;</span></a>
+              <a href="#">1</a>
+              <a href="#">2</a>
+              <a href="#" class="current">3</a>
+              <a href="#">4</a>
+              <a href="#">5</a>
+              <a href="#"><span class="icon-forward3">&nbsp;</span></a>
+              <a href="#"><span class="icon-last">&nbsp;</span></a>
+            </div>
+        </div><!-- end .content -->
+    </div><!-- end #container -->
+</div><!-- end #home -->
+
+<script type="text/javascript">
+	getpaging(0,{$total},"paging_of_jobs","paging_ajax_jobs",10);
+	var userid = {$user->id};
+	{literal}
+	
+	$(document).ready(function(){
+		setInterval(function(){ location.reload();  }, 100000);
+		 var $from = $(".startdate").datepicker({dateFormat: 'dd-mm-yy'});
+		  var $to = $(".enddate").datepicker({dateFormat: 'dd-mm-yy'}).prop('disabled', true);
+		$(".startdate").change(function()
+		{
+			$(".enddate").datepicker({
+				dateFormat: 'dd-mm-yy'
+			}).prop('disabled', false);
+			$(".enddate").removeAttr('readonly');
+		});
+		$('#downloadXls').attr('href',basedomain+"notifikasi/callsheader?search="+$(".search").val()+'&startdate='+$(".startdate").val()+'&enddate='+$(".enddate").val());
+		  //$(".enddate").datepicker({dateFormat:"dd-mm-yy"}).prop('disabled', true);;
+		 $(".isiNotif").click(function()
+		{
+			console.log($(this).data('id'));
+			var idnotif=$(this).data('id');
+			$.ajax({
+								'type': 'POST',
+								'url': basedomain+'notifikasi/readnotif',
+								'data': {id:idnotif},
+								'dataType':'json',
+								'success': function(response){
+									return true;
+								}
+								
+							});
+			
+		});
+	});
+	
+	function paging_ajax_jobs(fungsi,start){ 
+
+	
+	$.post(basedomain+"notifikasi/main",{start:start,ajax:1,search:$('.search').val(),startdate:$('.startdate').val(),enddate:$('.enddate').val()},function(response){
+	console.log(response);
+		if(response){
+					  if(response.status==1){
+							var no = start+1;
+							var str="";
+							$.each(response.result,function(k,v){  
+							
+								str+='<tr>'+
+							   '<td>'+no+'</td>'+
+									'<td><span>'+v.title+'</span></td> '+
+									'<td><span>'+v.detail+'</span></td> '+
+									'<td><span>'+v.date+'</span></td> '+
+									'<td>'+	
+										'<a href="javascript:void(0)" class="button" onClick="confirmation(\''+basedomain+'notifikasi/delnotif?id='+v.id+'\',\'Confirm to Delete? \')" ><span class="icon-trash">&nbsp;</span> Delete</a>'+
+									 '</td>'+
+								'</tr>';
+								no++;
+							});
+							$('.pagilist').html(str);
+							//verified();
+							//delct();
+					}else{
+						$('.pagilist').html('<tr><td colspan="5"> No Data</td></tr>');
+			 
+					} 
+				}
+		},"JSON");
+	}
+	{/literal}
+</script>

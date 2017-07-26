@@ -1,0 +1,26 @@
+<div id="top">
+	<div class="wrapper menuHeader">    	
+		<a id="logo" href="{$basedomain}home">&nbsp;</a>
+        
+       <a class="boxbtn logoutButton" href="{$basedomain}logout.php"><span class="ico icon-lock">&nbsp;</span><span>Logout</span></a>
+       <div class="users">
+        	<a class="boxbtn userName">Welcome, {$user->name}</a>
+        </div>
+		 {*} <a class="boxbtn {if $pages == 'users'}active{/if}" href="{$basedomain}career"><span class="ico icon-users">&nbsp;</span><span>Career</span></a>{/*}{*}
+		  <a class="boxbtn {if $pages == 'users'}active{/if}" href="{$basedomain}regulation"><span class="ico icon-users">&nbsp;</span><span>Informations</span></a>
+		 <a class="boxbtn {if $pages == 'users'}active{/if}" href="{$basedomain}systemshin"><span class="ico icon-users">&nbsp;</span><span>System</span></a>
+		<a class="boxbtn {if $pages == 'users'}active{/if}" href="{$basedomain}location"><span class="ico icon-users">&nbsp;</span><span>Locations
+</span></a>
+		<a class="boxbtn {if $pages == 'users'}active{/if}" href="{$basedomain}news"><span class="ico icon-users">&nbsp;</span><span>What’s New</span></a>	
+		<a class="boxbtn {if $pages == 'addeducation'}active{/if}" href="{$basedomain}home/listeducation"><span class="ico icon-users">&nbsp;</span><span>Articles</span></a>
+      <a class="boxbtn {if $pages == 'buku'}active{/if}" href="{$basedomain}buku"><span class="ico icon-users">&nbsp;</span><span>Learning Materials</span></a>
+       <a class="boxbtn {if $pages == 'videocms'}active{/if}" href="{$basedomain}videocms"><span class="ico icon-users">&nbsp;</span><span>Video</span></a>
+      <a class="boxbtn {if $pages == 'gallery'}active{/if}" href="{$basedomain}gallerycms"><span class="ico icon-users">&nbsp;</span><span>Gallery</span></a>
+        <a class="boxbtn {if $pages == 'banner'}active{/if}" href="{$basedomain}banner"><span class="ico icon-users">&nbsp;</span><span>Slider Banner</span></a>
+      
+      <a class="boxbtn {if $pages == 'brosur'}active{/if}" href="{$basedomain}brosur" ><span class="ico icon-users">&nbsp;</span><span>Brosur</span></a>
+        {/*}
+
+    </div><!-- end .wrapper -->  
+    
+</div><!-- end #top --> 

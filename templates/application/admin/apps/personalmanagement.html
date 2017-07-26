@@ -1,0 +1,414 @@
+<div class="page_section" id="project-page">
+    <div id="container">
+        <div class="titlebox">
+            <h2 class="fl"><span class="icon-user">&nbsp;</span> Creative Talent Management</h2>
+        <h2 class="fr"><a class="button2 downloadXls" id="downloadXls" href="#downloadXls">Download</a></h2>
+        </div><!-- end .titlebox -->
+        <div class="content">
+        	<div class="summary">
+				<div class="row">
+					<form id="form" action="" method="post">
+					<input type="text" name="search" class="search" value="{$search}" placeholder="Search" style="width:200px">
+					<div class="fr">
+						<input type="text" name="startdate" value="{$startdate}" placeholder="Start Date" class="startdate" >
+						<span> To </span>
+						<input type="text" name="enddate" value="{$enddate}" placeholder="End Date"  class="enddate"  { if $enddate} {else} readonly='readonly' {/if}  > 
+						<input type="submit" value="GO" class="button3 submitsearch">
+					</div>
+					</form>
+				</div>
+            </div><!-- end .summary -->
+			<table cellpadding="0" cellspacing="0" border="0">
+			<thead>
+				<tr>
+					<th   rowspan="2" class="head0">No</th>
+					<th   rowspan="2" class="head0">User ID</th>
+					<th   rowspan="2" class="head0">Name</th> 
+					<th rowspan="2" class="head0">Email</th> 
+					<th rowspan="2" class="head0">Registration Date</th> 
+					<th rowspan="2" class="head0">Status</th> 
+					<th rowspan="2" class="head0">Interview</th>
+					<th rowspan="2" class="head0">Hired</th>
+					<th style="text-align:center" colspan="6" class="head0">
+						Action
+					</th> 
+				</tr>
+				<tr>
+					
+					<th class="head0"> Profile </th> 
+					<th class="head0"> Suspend </th>
+					<th class="head0"> Delete </th> 
+					<th class="head0"> Reset Password </th> 
+					<th class="head0"> Portfolio </th> 
+					<th  class="head0"> Not Show </th> 
+				
+				</tr>
+			</thead>
+			<tbody class="pagilist">
+			{if $list}
+				{section name=i loop=$list}    
+                    <tr>
+						<td>{$list[i].no}</td>
+						<td>{$list[i].id}</td>
+						<td><span>{$list[i].name}</span></td> 
+						<td><span>{$list[i].email}</span></td> 
+						<td><span>{$list[i].tanggal}</span></td> 
+						<td class="deleteinfo"><span>
+						
+							{if $list[i].n_status==0}
+								Un Publish
+							{elseif $list[i].n_status==1}
+								Active
+							{elseif $list[i].n_status==2}
+								Delete
+							{elseif $list[i].n_status==3}
+								Hide
+							{elseif $list[i].n_status==4}
+								Suspend
+							{elseif $list[i].n_status==4}
+								In Active
+							{/if}
+						</span></td> 
+						<td class="markinginfo"><span>
+							{if $list[i].marking}
+								Not Show
+							{else}
+								-
+							{/if}
+						</span></td> 
+						<td><span>
+						{if $list[i].hire==1}
+						
+							Hired
+						{else}
+						
+							-
+						{/if}
+						</span></td> 
+						<td ><span><a href="{$basedomain}personalmanagement/detail?id={$list[i].id}" class="button"> View</a></span></td> 
+						<td ><span><a href="javascript:void(0)"  class="button block" data-status="{$list[i].n_status}" data-id="{$list[i].id}"> { if $list[i].n_status==4} Unsuspend {else} Suspend {/if} </a></span></td> 
+						<td ><span><a href="javascript:void(0)"  class="button delct" data-status="{$list[i].n_status}" data-id="{$list[i].id}"> { if $list[i].n_status==2} Deleteed {else} Delete {/if}</a></span></td> 
+						{*} <td  ><span><a href="javascript:void(0)"  data-status="{$list[i].n_status}" data-id="{$list[i].id}" class="button delct" data-id="{$list[i].id}" > Delete</a></span></td> {/*}
+						<td ><span><a href="{$basedomain}personalmanagement/resendEmail?iduser={$list[i].id}" class="button"> Resend</a></span></td> 
+						<td ><span><a href="{$basedomain}personalmanagement/portofolio?iduser={$list[i].id}" class="button"> View</a></span></td> 
+						<td style="text-align:center;"><span>
+						<input type="checkbox" attr=""  data-status="{$list[i].marking}" data-id="{$list[i].id}" value="26" id="26" { if $list[i].marking=='2' || $list[i].marking=='1' } checked="checked"  {/if} class="marking">
+						 </span></td> 
+					</tr>
+                {/section}
+			{/if}
+					
+			</tbody>
+			</table>
+            <div id="paging_of_personal" class="paging">
+
+            </div>
+        </div><!-- end .content -->
+    </div><!-- end #container -->
+</div><!-- end #home -->
+
+<script type="text/javascript">
+
+	getpaging(0,{$total},"paging_of_personal","paging_ajax_personal",10);
+	var userid = {$user->id};
+	{literal}
+	$(document).ready(function(){
+		verified();
+		delct();
+		marking();
+		 var $from = $(".startdate").datepicker({dateFormat: 'dd-mm-yy'});
+		//  var $to = $(".enddate").datepicker({dateFormat: 'dd-mm-yy'}).prop('disabled', true);
+		$(".startdate").change(function()
+		{
+			$(".enddate").datepicker({
+				dateFormat: 'dd-mm-yy'
+			}).prop('disabled', false);
+			$(".enddate").removeAttr('readonly');
+		});
+		$('#downloadXls').attr('href',basedomain+"personalmanagement/callsheader?search="+$(".search").val()+'&startdate='+$(".startdate").val()+'&enddate='+$(".enddate").val());
+		  //$(".enddate").datepicker({dateFormat:"dd-mm-yy"}).prop('disabled', true);;
+	});
+	
+	function marking()
+	{
+		$('.marking').click(function()
+		{
+			var idCt =$(this).data('id');
+			thiss=$(this);
+			var blockstatus= $(this).attr('data-status');
+			if(blockstatus==2 || blockstatus==1)
+				{
+					status=0;
+				}
+			else
+				{
+					status=1;
+				}
+				$.ajax({
+								'type': 'POST',
+								'url': basedomain+'marking/upmarking',
+								'data': {id:idCt,markingstatus:status},
+								'dataType':'json',
+								'success': function(response){
+									if(response.status==1)
+									{
+										console.log(thiss.parents('tr').find('.markinginfo'));
+										if(blockstatus==2 || blockstatus==1)
+										{
+											
+											thiss.removeAttr('data-status');
+											thiss.attr('data-status','0');
+											thiss.removeClass('button2');
+											thiss.addClass('button');
+											thiss.parents('tr').find('.markinginfo').html('-');
+										}
+										else
+										{
+											
+											thiss.removeAttr('data-status');
+											thiss.attr('data-status','1');
+											thiss.removeClass('button');
+											thiss.addClass('button2');
+											thiss.parents('tr').find('.markinginfo').html('Not Show');
+										}
+									}
+								}
+								
+							});
+			
+		
+		});
+	}
+	function delct()
+	{
+		$('.delct').click(function()
+		{
+			var idCt =$(this).data('id');
+			var deltatus= $(this).attr('data-status');
+			if(deltatus==2 )
+				{
+					status=1;
+				}
+			else
+				{
+					status=2;
+				}
+			thiss=$(this);
+				$.ajax({
+								'type': 'POST',
+								'url': basedomain+'personalmanagement/delete',
+								'data': {id:idCt,deltatus:status},
+								'dataType':'json',
+								'success': function(response){
+									if(response.status==1)
+									{
+										if(deltatus==2 )
+										{
+											
+											thiss.removeAttr('data-status');
+											thiss.attr('data-status','1');
+											//thiss.removeClass('button2');
+											console.log(thiss.parent().parent().parent());
+											thiss.parent().parent().parent().remove();
+											thiss.html('Delete');
+											thiss.parents('tr').find('.deleteinfo').html('Active');
+										}
+										else
+										{
+											
+											thiss.removeAttr('data-status');
+											thiss.attr('data-status','2');
+											//thiss.removeClass('button');
+											console.log(thiss.parent().parent().parent());
+											thiss.html('Deleted');
+											thiss.parent().parent().parent().remove();
+											thiss.parents('tr').find('.deleteinfo').html('Delete');
+										}
+									}
+								}
+								
+							});
+			
+		
+		});
+	}
+	function paging_ajax_personal(fungsi,start){ 
+		$.post(basedomain+"personalmanagement/main",{start:start,ajax:1,search:$('.search').val(),startdate:$('.startdate').val(),enddate:$('.enddate').val()},function(response){
+		if(response){
+					if(response.status==1){
+							var no = start+1;
+							var str="";
+							$.each(response.data,function(k,v){  
+									if(v.n_status==4)
+								{
+									var button='button2';
+								}
+								else
+								{
+									var button='button';
+								}
+								
+								
+								 str +='<tr>'+
+						
+										'<td  >'+no+'</td>'+
+										'<td  >'+v.id+'</td>'+
+										'<td ><span>'+v.name+'</span></td> '+
+										'<td ><span>'+v.email+'</span></td> '+
+										'<td width="5%"><span>'+v.tanggal+'</span></td> '+
+										'<td  width="5%" class="deleteinfo"><span>';
+										
+											if (v.n_status==0)
+											{
+												str +='Un Publish';	
+											}
+											else if( v.n_status==1)
+											{
+												 str +='Active';
+											}
+											else if (v.n_status==2)
+											{
+												 str +='Delete';
+											}
+											else if (v.n_status==3)
+											{
+												str +='Hide';
+											}
+											else if (v.n_status==4)
+											{
+												str +='Suspend';	
+											}
+											else if (v.n_status==4)
+											{
+												str +='In Active';
+											}
+										str +='</span></td> '+
+										'<td   class="markinginfo"><span>';
+										console.log(v.marking);
+											if (v.marking==1)
+											{
+												str +='Not Show';
+											}
+											else
+											{
+												str +='-';
+											}
+										str +='</span></td>'+ 
+										'<td  ><span>';
+										console.log(v.hier);
+										if(v.hire)
+										{
+											if (v.hire==1)
+												{
+													str +='Hired';
+												}
+												else
+												{
+													str +='-';
+												}
+										}
+										else
+										{
+											str +='-';
+										}
+										
+										str +='</span></td>'+
+										'<td  ><span><a href="'+basedomain+'personalmanagement/detail?id='+v.id+'" class="button"> View</a></span></td> '+
+										'<td  ><span><a href="javascript:void(0)"  class="';
+											if (v.n_status==4)
+											{
+												statusSuspend ='Unsuspend'; 
+											}
+											else
+											{
+												statusSuspend ='Suspend ';
+											}
+										
+										str +='button block" data-status="'+v.n_status+'" data-id="'+v.id+'"> '+statusSuspend+'</a></span></td> '+
+										'<td  ><span><a href="javascript:void(0)"  class="';
+										if (v.n_status==2)
+											{
+												statusdelete ='Deleted';
+											}
+										else
+											{
+												statusdelete ='Delete';
+											}
+											str +='button delct" data-status="'+v.n_status+'" data-id="'+v.id+'"> '+statusdelete+'</a></span></td>'+
+											'<td ><span><a href="'+basedomain+'personalmanagement/resendEmail?iduser='+v.id+' class="button"> Resend</a></span></td> '+
+										'<td  ><span><a href="'+basedomain+'personalmanagement/portofolio?iduser='+v.id+'" class="button"> View</a></span></td>'+
+										'<td style="text-align:center;"  ><span>'+
+										'<input type="checkbox" attr=""  data-status="'+v.marking+'" data-id="'+v.id+'" value="26" id="26"';
+										if (v.marking=='1')
+											{
+												str +='checked="checked"';
+											}
+											str +='class="marking">'+
+										' </span></td> '+
+										'</tr>';
+								
+								
+								no++;
+							});
+							$('.pagilist').html(str);
+							verified();
+							delct();
+						}else{
+						   $('.pagilist').html('<tr><td colspan="5"> No Data</td></tr>');
+						 
+						}
+				}
+		},"JSON");
+	}
+	function verified()
+	{
+		$('.block').click(function()
+		{
+			var idCt =$(this).data('id');
+			thiss=$(this);
+			var blockstatus= $(this).attr('data-status');
+			if(blockstatus==4)
+				{
+					status=1;
+				}
+			else
+				{
+					status=4;
+				}
+				$.ajax({
+								'type': 'POST',
+								'url': basedomain+'personalmanagement/block',
+								'data': {id:idCt,blockstatus:status},
+								'dataType':'json',
+								'success': function(response){
+									if(response.status==1)
+									{
+										//console.log(thiss.parents('tr').remove());
+										if(blockstatus==4)
+										{
+											
+											thiss.removeAttr('data-status');
+											thiss.attr('data-status','1');
+											//thiss.removeClass('button2');
+											thiss.html('Suspend');
+											thiss.parents('tr').find('.deleteinfo').html('Active');
+										}
+										else
+										{
+											
+											thiss.removeAttr('data-status');
+											thiss.attr('data-status','4');
+											//thiss.removeClass('button');
+											thiss.html('Unsuspend');
+											thiss.parents('tr').find('.deleteinfo').html('Suspend');
+										}
+									}
+								}
+								
+							});
+			
+		
+		});
+	}
+{/literal}
+</script>

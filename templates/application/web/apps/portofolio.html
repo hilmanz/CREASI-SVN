@@ -1,0 +1,136 @@
+<!-- ki -->
+<div class="page_section" id="project-page">
+    <div id="container">
+        <div class="titleboxs">
+            <h2 class="fl"><span class="icon-books">&nbsp;</span> Creasi</h2>
+        
+        </div><!-- end .titleboxs -->
+        <div class="content">
+            <div class="summary">
+           
+            </div><!-- end .summary -->
+
+           
+            <div id="new-project" class="boxcontent">
+			
+			{if $list}
+				{section name=i loop=$list}  
+			<img src="{$basedomain}assets/gallery/photo_user/{$list[i].images}"> <br>
+			Title :<span class="title"> {$list[i].title} </span>| Description :<span class="desc"> {$list[i].description}</span>
+			<br>{if $uid == $list[i].user_id}<a class="enableedit">Edit</a> |{/if}   View Count : XXXX | Love Count : XXXXX
+			<br><h2>
+			Comment</h2>
+			
+			<table><tr><th>Nama</th><th>Commentar</th></tr>
+			{if $listcomment}
+			{section name=j loop=$listcomment}  
+			
+			<tr><td>{$listcomment[j].name}</td><td>{$listcomment[j].comment}</td>
+			</tr>
+			
+			
+			{/section}
+			{/if}
+			</table>
+			{if $uid == $list[i].user_id}
+			<form action="" method="POST" class="FormInput">
+			  <div class="row">
+                        <label for="title_galery">Name<br></label>
+                        <input disabled id="title_galery" name="title_galery" type="text" class="required mandatory" ><br>
+					    <label class="msg_name" style="color: red;">{$name_no}</label>
+                        </div><!-- end .row -->
+					
+					    <div class="row">
+                        <label for="name"  class="required mandatory" >Description<br></label>
+						<textarea disabled style="width: 615px; height: 122px;"   name="desc_galery"  id="desc_galery" class="required mandatory" ></textarea><br>
+                        </div><!-- end .row -->
+						<input type="hidden" value="{$list[i].id}" name="id_image" >
+						 <button type="submit" value="SAVE" name="submit" class="button3"  />SAVE</button>
+						 <a href="{$basedomain}home" class="button4">CANCEL</a>
+			</form>
+			{else}
+			<br>
+			<h1>Comments</h1>
+			
+			
+			<form action="" method="POST" class="FormComment">
+		
+					
+					    <div class="row">
+                        <label for="name"  class="required mandatory" >Comment<br></label>
+						<textarea  style="width: 615px; height: 122px;"   name="comment"  id="comment" class="required mandatory" ></textarea><br>
+                        </div><!-- end .row -->
+						<input type="hidden" value="{$list[i].id}" name="id_portofolio" >
+						<input type="hidden" value="{$uid}" name="id_user" >
+						 <button type="submit" value="SAVE" name="submit" class="button3"  />SAVE</button>
+						 <a href="{$basedomain}home" class="button4">CANCEL</a>
+			</form>
+			
+			{/if}
+			
+				{/section}
+			{/if}
+				
+
+            </div><!-- end #wizard -->
+            
+        </div><!-- end .content -->
+    </div><!-- end #container -->
+</div><!-- end #home -->
+
+{literal}
+<script>
+$(document).ready(function () {
+	$('.enableedit').click(function(){
+		$('#title_galery').removeAttr('disabled');
+		$('#desc_galery').removeAttr('disabled');
+		});
+});
+
+
+	$(document).ready(function(){
+                $('.FormInput').submit(function(e){
+                    e.preventDefault();
+                    $.ajax({
+                        'type': 'POST',
+                        'url': basedomain+'personal/portofolio',
+                        'data': $(this).serialize(),
+						'dataType':'json',
+                        'success': function(result){
+								
+								if(result.status==true)
+								{
+									var str='';
+									var stra='';
+									$.each(result.data,function(k,v){  
+									str+=v.title;
+									stra+=v.description;
+									});$('.title').html(str);
+										$('.desc').html(stra);							
+								}
+								
+                          	
+                        }
+                    });
+                });
+            });
+			
+	$(document).ready(function(){
+                $('.FormComment').submit(function(e){
+                    e.preventDefault();
+                    $.ajax({
+                        'type': 'POST',
+                        'url': basedomain+'personal/comment',
+                        'data': $(this).serialize(),
+						'dataType':'json',
+                        'success': function(result){
+								
+								location.reload(); 
+								
+                          	
+                        }
+                    });
+                });
+            });		
+</script>
+{/literal}

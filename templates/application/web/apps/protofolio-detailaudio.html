@@ -1,0 +1,242 @@
+<div class="page_section" id="profilepage">
+    <div id="metapage">
+        <div class="wrapper">
+            <h1 class="page-title fl">Audio Details</h1>
+            <div class="breadcumb fr">
+                <a href="{$basedomain}">Home</a> <span>/</span> <a href="{$basedomain}personal/view/{$list.user_id}#my-portfolio">Portfolio</a> <span>/</span> <a>Audio Details</a>
+            </div>
+        </div><!-- end .wrapper -->   
+    </div><!-- end #metapage -->
+    <div id="profileboard" class="section"> 
+        <div class="wrapper">
+        	<div class="blockwrapper">
+            	<div id="photo-detail">
+                    <div class="popupcontent">
+                            <div class="photoheader">
+                                <h3>{$list.title}</h3>
+                            	<a class="button1 btnedit" href="index.php?page=photo-detail-edit"><i class="icon-pencil">&nbsp;</i> Edit</a>
+                                <div class="fr">
+                                 <p class="postdate">Uploaded 30 October 2014</p>
+                                 
+                               </div>
+                            </div><!-- END .popupheader -->
+                            <div class="imagesdetail">
+                                <div class="imglarge">
+                                  <iframe width="100%" height="420" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url={$list.audio}&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>
+                                
+									
+									
+                                    <div class="imgdirection">
+                                        <a href="#" class="cleft flex-prevs"><i class="icon-chevron-left">&nbsp;</i></a>
+                                        <a href="#" class="cright flex-nexts"><i class="icon-chevron-right">&nbsp;</i></a>
+                                    </div><!-- END .imgdirection -->
+                                </div><!-- END .imglarge -->
+                                <div class="desc">	
+                                    <p>{$list.description}</p>
+                                </div><!-- END .desc -->
+                            </div><!-- END .imagesdetail -->
+                            <div class="popupfooter">
+                                <div class="fl">
+                                <a href="#popup-photo-fullscreen" class="showpopup"><i class="icon-arrows">&nbsp;</i> FULLSCREEN</a> &bull; <span class="red">LIKED</span> &bull; <a href="#">DELETE</a>
+                                </div>
+                                <div class="meta-infos fr">
+                                    <a href="#" class="c-view"><i class="ico icon-eye">&nbsp;</i> <span>{$list.view_count}</span></a>
+                                    <a href="#" class="c-like"><i class="ico icon-thumbs-o-up">&nbsp;</i> <span>{$list.love_count}</span></a>
+                                </div><!-- end .meta-info -->  
+                            </div><!-- END .popupfooter -->
+                            <div class="sharebox">
+                                <h4>Share This Photo</h4> 
+                                <a href="#"><i class="ico icon-facebook">&nbsp;</i></a>
+                                <a href="#"><i class="ico icon-twitter">&nbsp;</i></a>
+                                <a href="#"><i class="ico icon-envelope">&nbsp;</i></a>
+                            </div>
+                    </div><!-- END .popupcontent -->
+                    <div class="photo-list">
+                        <div class="flexsliders">
+						
+                          <ul class="slides">
+						  {if $slide}
+							{section name=i loop=$slide.result}
+                            <li class="" >
+							{section name=j loop=$slide.result[i]}
+                                <div class="box">
+                                    <div class="boximg">
+                                        <a href="{$basedomain}portofolio?audio={$slide.result[i][j].id}&id={$user}" class="thumbbox"><img src="{$basedomain}public_assets/portofolio/{$slide.result[i][j].images}"  width="400" height="200"/></a> 
+                                    </div><!-- end .boximg -->    
+                                    <div class="meta-desc">
+                                        <p>{$slide.result[i][j].description|substr:0:240}</p>
+                                    </div><!-- end .meta-info -->  
+                                </div><!-- end .box --> 
+                              {/section} 
+                            </li>
+                           {/section}  
+						{/if}
+						</ul>
+						 
+                         
+                        </div><!-- end .flexslider -->
+						<div class="imgdirection">
+                                        <a href="#" class="cleft flex-prev"  style="margin-left:-8px"><i class="icon-chevron-left">&nbsp;</i></a>
+                                        <a href="#" class="cright flex-next" style="margin-right:-25px"><i class="icon-chevron-right">&nbsp;</i></a>
+                          </div><!-- END .imgdirection -->
+                    </div><!-- end .photo-list -->
+                </div><!-- END #photo-detail -->
+				
+                <div id="respond">
+                	<h2> <span class="jumlahcomment" > {$jumlahcomment}</span> thoughts on <span class="red">"{$list.title}"</span></h2>
+                    <div class="respondlist">
+						{if $listcomment}           
+						 {section name=k loop=$listcomment}
+						   <div class="rows">
+								<div class="comment-author">
+									<div class="smallthumb"><img src="{$basedomain}public_assets/personal/{$listcomment[k].img_avatar}" /></div>
+								</div><!-- end .comment-author -->
+								<div class="comment-text">
+									<h6>{$listcomment[k].name} {if $users->id == $listcomment[k].user_id}</h6><span class='delcomment' id="delcomment" data-comment="{$listcomment[k].id_comment}"><a href="#delcomment" class="icon-trash-o">&nbsp;</a> </span>{/if}
+								   <p>{$listcomment[k].comment}</p>
+								</div><!-- end .comment-text -->
+							</div><!-- end .rows -->
+						 {/section}
+                       {/if}
+					  
+					   
+                    </div><!-- end .respondlist -->
+                </div><!-- end #respond --> 
+				{if $users}
+                <div id="comment">
+                	<h2>Leave a <span class="red">Comment</span></h2>
+                    <form class="commentform theform">
+                    	<textarea  placeholder="Message" name="comment"  id="comment" ></textarea>
+						<input type="hidden" value="{$idpro}" name="id_portofolio" >
+						<input type="hidden" value="{$users->id}" name="id_user" >
+						<input type="hidden" value="1" name="submit" >
+                        <input type="submit" value="SUBMIT" class="button1 fr" />
+                    </form>
+                </div><!-- end #comment --> 
+				{/if}
+            </div><!-- end .blockwrapper -->   
+        </div><!-- end .wrapper -->    
+    </div><!-- end #profileboard --> 
+</div><!-- end #profilepage -->
+{include file='application/web/widgets/popup-audio-fullscreen.html'}
+<script>
+var first={$first};
+var last={$last};
+var idpro={$idpro};
+var user={$user};
+var start={$start};
+var next='{$next}';
+var prev='{$prev}';
+var tokenzie='{$tokenize}';
+var xsa ='{$users->id}';
+{literal}
+$(document).ready(function(){
+
+ $('.flexsliders').flexslider({
+        animation: "slide",
+		controlNav: false,             
+		slideshow: false,
+		startAt: start,
+		slideshowSpeed: 300,        
+		animationSpeed: 600
+		
+      });
+
+if(next=='')
+{
+	$('.flex-nexts').hide();
+
+}
+else
+{
+
+	$('.flex-nexts').show();
+}
+
+if(prev=='')
+{
+	$('.flex-prevs').hide();
+
+}
+else
+{
+
+	$('.flex-prevs').show();
+}
+
+
+$('.flex-prevs').on('click', function(){
+	
+	window.location.href=basedomain+"portofolio?audio="+(prev)+'&id='+user;
+	return false;
+});
+$('.flex-nexts').on('click', function(){
+
+	window.location.href=basedomain+"portofolio?audio="+(next)+'&id='+user;
+	return false;
+});
+
+$('.theform').submit(function(e){
+e.preventDefault();
+var str='';
+console.log($(this).serialize());
+ $.ajax({
+                        'url': basedomain+'portofolio/comment',
+                        'type': 'POST',
+                        'data': $(this).serialize()+'&tokenize='+tokenzie,
+						'dataType':'json',
+                        'success': function(result){
+							if(result.status==1)
+							{
+								var jumlahcomment=result.data.length;
+								$.each(result.data,function(k,v){	
+									str+=' <div class="rows">'+
+										'<div class="comment-author">'+
+											'<div class="smallthumb">'+
+											'<img src="'+basedomain+'public_assets/personal/'+v.img_avatar+'" /></div>'+
+										'</div><!-- end .comment-author -->'+
+										'<div class="comment-text">'+
+											'<h6>'+v.name+'</h6>';
+											if(xsa==v.user_id)
+											{
+												str+='<span class="delcomment" id="delcomment" data-comment="'+v.id_comment+'"><a href="#delcomment" class="icon-trash-o">&nbsp;</a> </span>';
+											}
+											
+										  str+=' <p>'+v.comment+'</p>'+
+										'</div>'+
+									'</div>';
+									
+								});
+							
+								$('.jumlahcomment').html(jumlahcomment);
+								$('.respondlist').html(str);
+							}
+						}
+					});
+});
+
+
+});
+{/literal}
+	</script>
+<script src="https://w.soundcloud.com/player/api.js" type="text/javascript"></script>
+ <script type="text/javascript">
+ {literal}
+      (function(){
+	  
+             var widgetIframe = document.getElementById('sc-widget'),
+             widget       = SC.Widget(widgetIframe),
+             newSoundUrl = 'http://api.soundcloud.com/tracks/13692671';
+                                    
+             widget.bind(SC.Widget.Events.READY, function() {
+					 // load new widget
+					 widget.bind(SC.Widget.Events.FINISH, function() {
+						 widget.load(newSoundUrl, {
+							  show_artwork: false
+						});
+					});
+			});
+                                    
+     }());
+{/literal}
+ </script>

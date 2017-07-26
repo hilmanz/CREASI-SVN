@@ -1,0 +1,66 @@
+<?php
+class logincompany extends App{
+		
+	function beforeFilter(){
+		$this->loginHelper = $this->useHelper('loginHelper');
+		
+	}
+	
+	function main(){
+		$this->local();
+	}
+	
+	function local(){
+		
+		global $CONFIG,$logger;
+		
+		$basedomain = $CONFIG['BASE_DOMAIN'];
+		
+		$this->assign('basedomain',$basedomain);
+		if($this->_p('username')&&$this->_p('password')){
+		//pr('ss');exit;
+			//captcha 
+			// $_captcha = $this->_p('captcha');
+			// if(isset($_SESSION['codeBookCaptcha'])){
+			// $_valid = (md5($_captcha) == $_SESSION['codeBookCaptcha']) ? true : false;
+			// $_SESSION['codeBookCaptcha'] = "bed" . rand(00000000,99999999) . "bed";
+			// }else $_valid = false;
+			// if($_valid) {
+				
+				$res = $this->loginHelper->loginSession();
+				
+				if($res['status']==1){
+					// pr($this->session->getSession($CONFIG['SESSION_NAME'],"WEB")->role );die;
+					// pr($res);die;
+						$this->log('login','welcome');
+						$this->assign("msg","login-in.. please wait");
+						$this->assign("link","{$CONFIG['BASE_DOMAIN']}{$CONFIG['DINAMIC_MODULE']}");
+						$sessiontempfile = @$this->session->getSession($CONFIG['SESSION_NAME'],"jobposttmpfile");
+						if($sessiontempfile && $this->session->getSession($CONFIG['SESSION_NAME'],"WEB")->role ==2 )
+						{
+							sendRedirect("{$CONFIG['BASE_DOMAIN']}postjobs");
+						}
+						else
+						{
+							sendRedirect("{$CONFIG['BASE_DOMAIN']}dashboard");
+						}
+						return $this->out(TEMPLATE_DOMAIN_WEB . '/login_message.html');
+						die();
+				}
+				else
+				{
+				
+					$this->assign("msg",$res['msg']);
+				}
+			// }
+		}
+		else
+		{
+		
+			$this->assign("msg","username dan password tidak boleh kosong");
+		}
+		print $this->View->toString(TEMPLATE_DOMAIN_WEB .'logincompany.html');
+		exit;
+	}
+}
+?>

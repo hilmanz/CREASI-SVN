@@ -1,0 +1,566 @@
+<div class="page_section" id="profilepage">
+    <div id="metapage">
+        <div class="wrapper">
+            <h1 class="page-title fl">Job Details</h1>
+            <div class="breadcumb fr">
+                      <a href="{$basedomain}home">Home</a> <span>/</span> <a href='{$basedomain}jobboard'>Job Board</a> <span>/</span> <a href="#">Job Details</a>
+            </div>
+        </div><!-- end .wrapper -->   
+    </div><!-- end #metapage -->
+	{if $load}
+	 {section name=i loop=$load}
+    <div id="jobdetail" class="section"> 
+        <div class="wrapper">
+        	<div class="blockwrapper">
+            	<div id="job-detail" style="padding:20px 20px 50px 20px;">
+                	<div class="boxTitle">
+                    	<div class="boxLeft ">
+                        <div class="jobtittleDet">
+                    	<h3>{$load[i].job_title}</h3>
+						{if $selectlike}
+							<a href="#" class="c-likes redbtn" data-type='0' id='likenya' value='{$idjob}' follow="{$iduser}"></a>
+						{else}
+							<a href="#" class="c-likes"  id='likenya' data-type='1' value='{$idjob}' follow="{$iduser}"></a>
+						{/if}
+                        </div>
+                        <span class="post-date">Posted on :{$load[i].date|date_format:"%e %B %Y"}</span>
+                        </div><!-- end .boxLeft -->   
+                    	<div class="boxRight center">
+                        	  <!--<a class="button1" href="#">APPLY</a>-->
+						{if $roleid==1}
+						
+						{if $seeapp <> ''}
+						{if $load[i].hari > 0}
+                      	<a class="button1"  >APPLIED</a>
+						{else}
+						{/if}
+						{else}
+						{if $load[i].hari > 0}
+						<a class="button1"  id="submitjobs" href="#">APPLY</a>
+						{else}
+						{/if}
+						{/if}
+						
+						{/if}
+						
+						
+						{if $roleid==2 && $iduser==$load[i].user_id}
+                      	<a class="button2" href="{$basedomain}jobboard/tscms/{$load[i].id_job}">VIEW & MANAGE</a>
+						{/if}
+                            <div class="countdown-job">
+                                <h4><b>{if $load[i].hari < 0}0{else}{$load[i].hari}{/if}</b></h4>
+                                <span>DAYS LEFT TO APPLY</span>
+                            </div>
+                        </div><!-- end .boxRight -->   
+                    </div><!-- end .boxTitle -->   
+                	<div class="boxDetail">
+                    	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tables">
+                          <tr>
+                            <td rowspan="11" class="noborder">
+                                <a class="thumbbox">
+								{if $load[i].img_avatar != ''}
+								<img height="300px" width="300px" src="{$basedomain}public_assets/personal/{$load[i].img_avatar}" />
+								{else}
+									<img height="300px" width="300px"  src="{$basedomain}public_assets/personal/ts.png"  /></a>
+								{/if}
+								</a>
+                                <div class="caption">
+                                    <i>No. of Applicants : {$countmyapp}</i>
+                                    
+                                    <i >No. of likes : <span class="likesnya">{$load[i].love_count}</span></i>
+									
+									{*}<i >No. of shares : <span >{$load[i].share_count}</span></i>{/*}
+                                </div>    
+                            </td>
+                            <td align="right"><strong>Talent Seeker :</strong></td>
+                            <td><strong><a class="detailperus" href="{$basedomain}personal/view_profilets/{$load[i].user_id}">{$load[i].nama_perusahaan} </a></strong>
+							{if $load[i].verified == 1} 
+							<a href="#" class="company-status">Verified</a></td>
+							{/if}
+                          </tr>
+                          <tr>
+                            <td align="right"><strong>Category :</strong></td>
+                            <td>	{$load[i].category_name}</td>
+                          </tr>
+                          <tr>
+                            <td align="right"><strong>Sub-Category :</strong></td>
+                            <td>{$load[i].name_subcategory}</td>
+                          </tr>
+                          <tr>
+                            <td align="right"><strong>Primary working location :</strong></td>
+                            <td>{$load[i].provinsi}, {$load[i].city}</td>
+                          </tr>
+                          <tr>
+                            <td align="right"><strong>Looking for :</strong></td>
+                            <td>
+							{if $load[i].mlfor != ''}
+							{section name=m loop=$load[i].mlfor}
+							{if $smarty.section.m.index==0}
+							{$load[i].mlfor[m].looking_for}
+							{else}
+							,{$load[i].mlfor[m].looking_for}
+							{/if}
+							
+							
+						
+							{/section}
+							{else}
+							
+							-
+							{/if}
+							
+							</td>
+                          </tr>
+                          <tr>
+                            <td align="right"><strong>Expected Budget :</strong></td>
+                            <td>{if $load[i].salary==1} Paid {elseif $load[i].salary==2} Unpaid {elseif $load[i].salary==3} Expense Only {else} Any {/if}</td>
+                          </tr>
+                          <tr>
+                            <td align="right"><strong>Agent :</strong></td>
+                            <td>{if $load[i].agent==1} Yes {elseif $load[i].agent==2} Any {else} No {/if} </td>
+                          </tr>
+                          <tr>
+                            <td align="right"><strong>Experience :</strong></td>
+                            <td>{if $load[i].experience==1} Yes {elseif $load[i].experience==2} Any {else} No {/if} </td>
+                          </tr>
+                          <tr>
+                            <td align="right"><strong>Close on :</strong></td>
+                            <td>{$load[i].enddate|date_format:"%e %B %Y"}</td>
+                          </tr>
+                          <tr>
+                            <td align="right"><strong>Job ID# :</strong></td>
+                            <td>{$load[i].id_job}</td>
+                          </tr>
+                          <tr>
+                            <td align="right"><strong>Job status :</strong></td>
+                            <td>
+							{if $roleid==1}
+								 {if $load[i].n_status==1 && $load[i].n_status_interview==1}
+										{if $load[i].hari <= 0}
+											<span class="grey">Closed</span>
+										{else}
+											<span class="bgyellow">Interview</span>
+										{/if}			
+								{else}
+										{if $load[i].hari <= 0}
+											<span class="grey">Closed</span>
+										{else}
+											<span class="green">Open</span>
+										{/if}
+								{/if}
+							
+							{elseif $roleid==2 && $iduser==$load[i].user_id && $load[i].hari > 0}
+								{*}
+									{if $load[i].n_status==1 && $load[i].n_status_interview==1}
+											{if $load[i].hari <= 0}
+												<span class="grey ">Closed</span>
+											{else}
+												<a href="javascript:void(0)" ><span class="bgyellow changestatus">Interview</span></a>
+											{/if}			
+									{else}
+											{if $load[i].hari <= 0}
+												<span class="grey">Closed</span>
+											{else}
+												<a href="javascript:void(0)" ><span class="green changestatus">OPEN</span></a>
+											{/if}
+									{/if} 
+									{/*}
+								<div class=" selectboxstatus" >
+                                  <select  data-width="60%"  name="statuesjob" class="statuesjob selectpicker selectpicker show-tick" data-live-search="true" >
+										<option value="" selected>Month</option>
+										<option {if $load[i].n_status_interview==0 } selected="selected" {/if} value="0">OPEN </option>
+										<option {if $load[i].n_status_interview==1 } selected="selected" {/if} value="1">INTERVIEW </option>
+                                  </select>
+                              </div>
+							  {else}
+								{if $load[i].n_status==1 && $load[i].n_status_interview==1}
+										{if $load[i].hari <= 0}
+											<span class="grey">Closed</span>
+										{else}
+											<span class="bgyellow">Interview</span>
+										{/if}			
+								{else}
+										{if $load[i].hari <= 0}
+											<span class="grey">Closed</span>
+										{else}
+											<span class="green">Open</span>
+										{/if}
+								{/if}
+							{/if}
+							
+                              <!--<div class="selectbox">
+                                  <select>
+                                    <option>OPEN</option>
+                                    <option>CLOSE</option>
+                                  </select>
+                              </div> END .selectbox -->
+                            </td>
+                          </tr>
+                        </table>
+                    </div><!-- end .boxDetail -->  
+                	<div class="boxDesc">
+                    	<h4 style="margin-bottom:0;">Job Description</h4>
+                           {$load[i].job_description|escape:'quotes'}
+                            
+                            
+                            
+							<h4 style="margin-bottom:0;">Job Requirements</h4>
+                            {$load[i].requitment|escape:'quotes'}
+                     
+						  {if $roleid==1 || $roleid==2 }
+						
+							
+							{if $load[i].fileunserial.file <> ''}
+									<h4>Attachment File :</h4>
+									 {section name=ad loop=$load[i].fileunserial.file}
+										{if $load[i].fileunserial.file[ad].type!='' }
+												{if $load[i].fileunserial.file[ad].name|pathinfo:$smarty.const.PATHINFO_EXTENSION == 'jpg' }
+													<a target="_blank" href="{$basedomain}public_assets/postjob/{$load[i].fileunserial.file[ad].name}"> <img width="50" hegiht="50" src="{$basedomain}public_assets/postjob/{$load[i].fileunserial.file[ad].name}"> </a>
+												{/if}
+												{if $load[i].fileunserial.file[ad].name|pathinfo:$smarty.const.PATHINFO_EXTENSION == 'doc' }
+													<a target="_blank" href="{$basedomain}public_assets/postjob/{$load[i].fileunserial.file[ad].name}"><img width="50" hegiht="50" src="{$basedomain}assets/images/doc.png"></a>
+												{/if}
+												{if $load[i].fileunserial.file[ad].name|pathinfo:$smarty.const.PATHINFO_EXTENSION == 'docx' }
+													<a target="_blank" href="{$basedomain}public_assets/postjob/{$load[i].fileunserial.file[ad].name}"><img width="50" hegiht="50" src="{$basedomain}assets/images/doc.png"></a>
+												{/if}
+												{if 	$load[i].fileunserial.file[ad].name|pathinfo:$smarty.const.PATHINFO_EXTENSION == 'pdf' }
+													<a target="_blank" href="{$basedomain}public_assets/postjob/{$load[i].fileunserial.file[ad].name}"> <img width="50" hegiht="50" src="{$basedomain}assets/images/pdf.png"></a>
+												{/if}
+										{/if}
+									{/section}
+									  
+						      {/if}
+							  
+						 {else}
+							 {if $load[i].fileunserial.file <> ''}
+								<h4>Attachment File</h4>
+								 {section name=ad loop=$load[i].fileunserial.file}
+								
+									{if $load[i].fileunserial.file[ad].type!='' }
+										 {if $load[i].fileunserial.file[ad].name|pathinfo:$smarty.const.PATHINFO_EXTENSION == 'jpg' }
+										 <a href="#popup-thks-download" class='no_down'> <img width="50" hegiht="50" src="{$basedomain}public_assets/postjob/{$load[i].fileunserial.file[ad].name}"> 
+										 {/if} 
+										 {if $load[i].fileunserial.file[ad].name|pathinfo:$smarty.const.PATHINFO_EXTENSION == 'doc' }
+										 <a href="#popup-thks-download" class='no_down'> <img width="50" hegiht="50" src="{$basedomain}assets/images/doc.png"></a>
+											{/if}
+										 {if $load[i].fileunserial.file[ad].name|pathinfo:$smarty.const.PATHINFO_EXTENSION == 'docx' }
+										 <a href="#popup-thks-download" class='no_down'> <img width="50" hegiht="50" src="{$basedomain}assets/images/doc.png"></a>
+										{/if}
+										 {if $load[i].fileunserial.file[ad].name|pathinfo:$smarty.const.PATHINFO_EXTENSION == 'pdf' }
+										 <a href="#popup-thks-download" class='no_down'> <img width="50" hegiht="50" src="{$basedomain}assets/images/pdf.png"></a>
+										{/if}
+									
+									{/if}
+								{/section}
+                                <i style="font-style:italic; font-size:11px; color:#999; display: block; clear:both; padding:10px 0 0 0;">Click each icon to download the file</i>
+								  
+						      {/if}
+							  
+						   {/if}
+                    </div>
+              </div><!-- END #job-detail -->
+			  <div id="popup-thks-download" class="popup mfp-hide" style="width:300px;">
+				<div class="popupfullcontent">
+				<h3 class="title">Download <span class="red">File</span></h3>
+				<p>Sorry, you must login before downloading this file(s)</p>
+					</div>
+			 </div><!-- END .popup -->	
+			  <script>
+			  {literal}
+			  $(document).ready(function(){
+				$(".no_down").on("click", function(){
+				
+				
+					setTimeout(function() {
+							 if ($('#popup-thks-download').length) { 
+							   $.magnificPopup.open({
+								items: {
+									src: '#popup-thks-download' 
+								},
+								type: 'inline'
+								  });
+							   }
+							
+							  //  window.location.assign(basedomain+'login');
+								return false; 
+							 }, 0);
+						
+					});
+				});
+			
+			  {/literal}
+			  </script>
+                  <div class="sharebox" style="margin:0; border:solid 1px #ddd; border-top:none; padding:20px;">
+                    <h4>Share This Job</h4> 
+                    {*} <a href="{$basedomain}share/fbShare/jobs/{$load[i].id_job}/jobboard/detail_jobboard"><i class="ico icon-facebook">&nbsp;</i></a>{/*}
+                   <a href="javascript:void(0)" onclick="shareFB('Creasi','{$basedomain}jobboard/detail_jobboard/{$load[i].id_job}','{$basedomain}public_assets/personal/{$load[i].img_avatar}','','{$fbjobs|replace:'$jobtitle':$load[i].job_title|escape:'quotes'}')"><i class="ico icon-facebook">&nbsp;</i></a>
+                   <a href="http://twitter.com/share?text={$twitterjobs|escape:'quotes'|replace:'$jobtitle':$load[i].job_title}&url={$basedomain}jobboard/detail_jobboard/{$load[i].id_job}" target="_blank"><i class="ico icon-twitter">&nbsp;</i></a>
+                     <a href="javascript:void(0)"><i class="ico icon-envelope clicksharemail">&nbsp;</i></a>
+                        <div id="sharemail" class="rows sharemail" style="display:none">
+                         <label> Add email addresses (separate with commas)</label>
+                        
+                         <input class="emailshare" type="text" name="email" id='email' style="width:400px"/>
+                          <input class="idusershare" type="hidden" name="idusershare" id='idusershare' style="width:400px" value="{$load[i].id_job}"/>
+
+                         <input class="button1 submit" type="submit" name="submit" value="submit">
+                         <br>
+                        <label style="red" class="msgerorr"> </label>
+                        </div>
+                </div>
+            </div><!-- end .blockwrapper -->   
+        </div><!-- end .wrapper -->    
+    </div><!-- end #profileboard --> 
+</div><!-- end #profilepage -->
+<div id="popupalert" class="popupfull mfp-hide">
+	<div class="popupfullcontent">
+    	<a class="closepopup" href="#"><i class="icon-times-circle">&nbsp;</i></a>
+		<h3 class="title"> <span class="red">Alert</span></h3>
+		<div class="countentalert"></div>
+    </div>
+</div>
+	<div id="popup-applied" class="popup mfp-hide" style="width:300px;">
+					<div class="popupfullcontent">
+						<h3 class="title">Data <span class="red">Applicant</span></h3>
+						<p>Thank you. Your application has been sent</p>
+					</div>
+				</div>
+{/section}
+{/if}
+<script>
+var iduser='{$iduser}';
+var id_job='{$idjob}';
+var share=0;
+var xsa = '{$user->id}';
+var statuesjob=0;
+{literal}
+
+  $(document).ready(function(){
+  $.getScript('//connect.facebook.net/en_US/all.js', function(){
+    FB.init({
+      appId: '1568887560021810',
+    });  
+ });
+                $('#submitjobs').click(function(e){
+				$(this).val();
+				$('.msgapply').html('Thank you. Your application has been sent');
+                    e.preventDefault();
+                    $.ajax({
+                        'type': 'POST',
+                        'url': basedomain+'jobboard/postapllication',
+                        'data': {'iduse':iduser,'idjob':id_job},
+						'dataType':'json',
+                        'success': function(result){
+								if(result.status==0)
+								{
+								alert('Anda Harus Login Terlebih Dahulu.');
+								}
+								else if(result.status==1)
+								{
+								$('.msgapply').html('Thank you. Your application has been sent');
+								setTimeout(function() {
+									 if ($('#popup-applied').length) { 
+									   $.magnificPopup.open({
+										items: {
+											src: '#popup-applied' 
+										},
+										callbacks: {
+											close: function(){
+												location.reload(); 
+											}
+										},
+										type: 'inline'
+										  });
+									   }
+									 }, 0);
+								$('#submitjobs').text('APPLIED');
+								}
+								else if(result.status==3)
+								{
+									//alert('Talent Seekers need to see your complete profile. Make sure you have a profile photo, cover photo, at least 3 potfolios and have filled in your experience, agent, looking for and open for section. After that, you can start applying jobs. Click here to complete your <a herf="'+basedomain+'personal">profile</a>!');
+								 $('.countentalert').html('Talent Seekers need to see your complete profile. <p> Make sure you have a profile photo, cover photo, at least 3 potfolios and have filled in your experience, agent, looking for and open for section.</p><p> After that, you can start applying jobs. Click here to complete your <a href="'+basedomain+'personal" class="red">profile</a>!</p>');
+								 $.magnificPopup.open({
+									items: {
+										src: '#popupalert' 
+									},
+									callbacks: {
+											close: function(){
+												location.reload();
+											}
+										},
+									type: 'inline'
+									  });
+
+								}
+								else if(result.status==2)
+								{
+								setTimeout(function() {
+							 if ($('#popup-applied').length) { 
+							   $.magnificPopup.open({
+								items: {
+									src: '#popup-applied' 
+								},
+								type: 'inline'
+								  });
+							   }
+							 }, 0);
+								}
+						}
+						});
+					});
+				});
+					
+
+	  $(document).ready(function(){
+				$('.c-likes').click(function(e){
+									
+								var likenya=$(this).attr('value');
+								var friendlikes=$(this).attr('follow');
+								
+								//console.log(friendlikes);
+								var thiss=$(this);
+								e.preventDefault();
+								if(friendlikes)
+								{
+									//if(friendlikes!=xsa)
+									//{
+									
+										$.ajax({
+										
+											'type': 'POST',
+											'url': basedomain+'jobboard/ajaxlike',
+											'data':{uid:likenya,idnya:friendlikes},
+											'dataType':'json',
+											'success': function(response){
+												var str='';
+												str+=response.countnya;
+												$('.likesnya').text(str);
+												//$('.c-likes').addClass('redbtn');
+												if(thiss.data('type')==1)
+												{
+													thiss.addClass('redbtn');
+													//console.log(thiss.data('type'));
+													thiss.data('type',0);
+												}
+												else
+												{
+													thiss.removeClass('redbtn');
+														thiss.data('type',1);
+												}
+											}
+											
+											
+											
+											});
+									//}
+								}
+								});
+							});
+	$('.clicksharemail').click(function()
+{
+    $('.sharemail').show();
+
+});
+
+		$('.changestatus').click(function(){
+			if(statuesjob==0)
+			{
+				$('.selectboxstatus').show();
+				$('.changestatus').hide();
+				console.log(statuesjob);
+			}
+		});
+	
+$('.statuesjob').change(function(e){
+e.preventDefault();
+	console.log('sasa');
+	status=$( this).val();
+	 $.ajax({
+                        'type': 'POST',
+                        'url': basedomain+'jobboard/stsjobs',
+                        'data': {'statusjobs':status,'idjob':id_job},
+						'dataType':'json',
+                        'success': function(result){
+							if(status==1)
+							{
+								$('.changestatus').removeClass('green');
+								$('.changestatus').addClass('bgyellow');
+								$('.changestatus').html('Interview');
+								$('.changestatus').parent().removeAttr('href');
+								///$('.changestatus').show();	
+								//$('.selectboxstatus').hide();
+							}
+							else
+							{
+								$('.changestatus').addClass('green');
+								$('.changestatus').removeClass('bgyellow');
+								$('.changestatus').html('OPEN');
+								$('.changestatus').parent().removeAttr('href');
+								//$('.changestatus').show();	
+								//$('.selectboxstatus').hide();
+							}
+							statuesjob=1;
+						}
+			});
+});
+$('.submit').click(function(){
+if( share==0)
+	{
+        
+		var email=$('.emailshare').val();
+		if(email)
+		{
+			share=1;
+		}
+        var jobsid=$('.idusershare').val();
+         $.ajax({
+                    
+                            'type': 'POST',
+                            'url': ''+basedomain+'share/emailShare',
+                            'data': {jobsid:jobsid,type:'jobs',email:email},
+                            'dataType':'json',
+                           'success': function(result){
+                                if(result.status==1)
+                                {
+                                       $('.msgerorr').html('Share process succeed');
+										$('.emailshare').val('');
+										$('.sharemail').hide();
+										$('.msgerorr').html(' ');
+
+                                }
+                                else
+                                {
+                                    share=0;
+									$('.msgerorr').html('Share process failed, please try again');
+                                }
+                           }
+                       });
+	}
+   else
+		{
+			$('.emailshare').val('');
+										$('.sharemail').hide();
+										$('.msgerorr').html(' ');
+		}
+})	
+function shareFB(fb_name,fb_link,fb_img,fb_user,fb_post){
+		$("#bg-popup").fadeOut();
+		$(".popup,.popup2").fadeOut();
+		FB.init();
+		FB.ui({
+			method: 'feed',
+			name: fb_name,
+			link: fb_link,
+			picture: fb_img,
+			caption: fb_user,
+			description: fb_post
+			
+			
+		});
+			 
+	}		
+$('.mfp-close').click(function()
+{
+	location.reload;
+});	
+	{/literal}
+	</script>

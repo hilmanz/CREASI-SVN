@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/creasi/!svn/ver/49/trunk/engines/Utility/Predis/lib/Predis/Options
+END
+ClientOptions.php
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/creasi/!svn/ver/49/trunk/engines/Utility/Predis/lib/Predis/Options/ClientOptions.php
+END
+ClientPrefix.php
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/creasi/!svn/ver/49/trunk/engines/Utility/Predis/lib/Predis/Options/ClientPrefix.php
+END
+ClientProfile.php
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/creasi/!svn/ver/49/trunk/engines/Utility/Predis/lib/Predis/Options/ClientProfile.php
+END
+ClientCluster.php
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/creasi/!svn/ver/49/trunk/engines/Utility/Predis/lib/Predis/Options/ClientCluster.php
+END
+IOption.php
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/creasi/!svn/ver/49/trunk/engines/Utility/Predis/lib/Predis/Options/IOption.php
+END
+CustomOption.php
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/creasi/!svn/ver/49/trunk/engines/Utility/Predis/lib/Predis/Options/CustomOption.php
+END
+IClientOptions.php
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/creasi/!svn/ver/49/trunk/engines/Utility/Predis/lib/Predis/Options/IClientOptions.php
+END
+ClientConnectionFactory.php
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/creasi/!svn/ver/49/trunk/engines/Utility/Predis/lib/Predis/Options/ClientConnectionFactory.php
+END
+ClientReplication.php
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/creasi/!svn/ver/49/trunk/engines/Utility/Predis/lib/Predis/Options/ClientReplication.php
+END
+Option.php
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/creasi/!svn/ver/49/trunk/engines/Utility/Predis/lib/Predis/Options/Option.php
+END

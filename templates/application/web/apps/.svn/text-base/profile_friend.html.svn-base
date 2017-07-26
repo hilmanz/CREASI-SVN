@@ -1,0 +1,506 @@
+<div class="page_section" id="profilepage">
+    <div id="metapage">
+        <div class="wrapper">
+            <h1 class="page-title fl">Creative Talent Profile</h1>
+            <div class="breadcumb fr">
+                 <a href="{$basedomain}home/">Home</a> <span>/</span> <a href="{$basedomain}talentboard">Talent Board</a> <span>/</span> <a href="">Creative Talent Profile</a>
+            </div>
+        </div><!-- end .wrapper -->   
+    </div><!-- end #metapage -->
+	{if $list}
+				{section name=i loop=$list}  
+    <div id="profileboard" class="section ProfileView"> 
+        <div class="wrapper">
+        	<div class="cols">
+                <div class="blocks">
+                	<div class="coverprofile">
+					{if $list[i].img_cover <> ''}
+                    	<img src="{$basedomain}public_assets/personal/{$list[i].img_cover}" width="1200px" height="270px" />
+						{else}
+							<img src="{$basedomain}assets/content/cover.jpg" width="1200px" height="270px" />
+					{/if}
+                    </div><!-- END .coverprofile -->
+                </div><!-- END .blocks -->
+                <div class="sectionsrow profilebox">
+                  <div class="profilethumb thumb boxpop">
+				    {if $list[i].img_avatar <> ''}
+                    
+                    <a href="#popup-photo-thumb" class="showpopup">
+				  	<img src="{$basedomain}public_assets/personal/{$list[i].img_avatar}" />
+                  </a>
+				  {else}
+				   <img src="{$basedomain}public_assets/postjob/images.jpg" />
+				  {/if}
+				
+				  </div>
+				  
+					{include file='application/web/widgets/popup-photo-thumb.html'}
+				  {include file='application/web/widgets/popup-upload-profilepic.html'}
+                  <div class="profileentry">
+                  	<div class="rowhead">
+                        <h3 class="profilename">{$list[i].name} <label class='red namanok'>{$list[i].lastname}</label></h3>
+                        <div class="meta-info">
+                            <a class="newIcon-view-grey" ><span>{$list[i].view_count}</span></a>
+                            <a class="newIcon-like-grey" ><span class="likesnya">{$list[i].love_count}</span></a>
+                        </div><!-- END .meta-info -->
+                        
+                            <a class="button1 downloadCV" href="{$basedomain}dashboard/download?param={$list[i].user_id}"  target="_blank">Download CV</a>
+                      
+						 {*} <a class="button2 untuklike" href="#" ref="#" id='likenya' value='{$id}' folow='{$list[i].user_id}'><i class="icon-thumbs-o-up">&nbsp;</i> Like</a> {/*}
+						    {if $selectlike}
+							  <a class="button2 untuklike redbtn" href="#" ref="#"  data-type='1'  id='likenya' value='{$id}' folow='{$list[i].user_id}'>Like</a>
+						  {else}
+								<a class="button2 untuklike blmLike" href="#"  data-type='0'  ref="#" id='likenya' value='{$id}' folow='{$list[i].user_id}'>Like</a>
+						   {/if}
+			
+                          <!-- <a class="button2" href="#"><i class="icon-suitcase">&nbsp;</i> Invite to a job</a>-->
+                    </div><!-- END .rowhead -->
+                  	<div class="rowentry">
+                        <p>
+                        <div style="display:inline-block;" >
+				  {section name=n loop=$selectcategory}
+						{if $smarty.section.n.index ==0}
+                  {$selectcategory[n].category_name}
+				  {else}
+				  & {$selectcategory[n].category_name}
+				  {/if}
+					{/section} </div>
+					 {if $userss->role==2 && $list[i].marking} 
+					<div style="display:inline-block;"  class="relative noshowBox"><a  class="buttonKotak">No Show</a><a href="#" class="tooltip2 helpicon"  data-placement="right" title="<h6>Tips</h6> <p>You can choose up 2 categories. Make sure you choose which one suits you best</p>">?</a></div>
+					{/if}
+					</p>
+                        <p><i class="icon-map-marker">&nbsp;</i><label class='locaok'>{$list[i].provincy}</label>,&nbsp; <label class='cityok'> {$list[i].city}</label></i>
+                        <div class="socialbox" >
+                            <a {if $list[i].fb_link} href="https://www.facebook.com/{$list[i].fb_link|replace:'https://www.facebook.com/':''}" target="_blank" {else} href="#fblinks" id="fblinks" {/if} ><i class="ico icon-facebook">&nbsp;</i></a>
+                            <a {if $list[i].twitter_link} href="https://twitter.com/{$list[i].twitter_link|replace:'https://twitter.com/':''}" target="_blank" {else} href="#twitterlinks" id="twitterlinks" {/if} ><i class="ico icon-twitter">&nbsp;</i></a>
+                            <a  {if $list[i].instagram_link}  href="http://instagram.com/{$list[i].instagram_link|replace:'http://instagram.com/':''}" target="_blank"  {else} href="#instagramlinks" id="instagramlinks" {/if} ><i class="ico icon-instagram">&nbsp;</i></a>
+                            <a {if $list[i].youtube_link} href="https://www.youtube.com/{$list[i].youtube_link|replace:'https://www.youtube.com/':''}" target="_blank" {else} href="#youtubelinks" id="youtubelinks" {/if} ><i class="ico icon-youtube">&nbsp;</i></a>
+                        </div><!-- END .socialbox -->
+                    </div><!-- END .rowentry -->
+                  </div><!-- END .profileentry -->
+                </div><!-- END .sectionsrow -->
+                <div class="sharebox">
+                    <h4>Share This Profile</h4> 
+                {*} <a href="{$basedomain}share/fbShare/profile/{$list[i].user_id}/personal/view"><i class="ico icon-facebook">&nbsp;</i></a> {*}
+				   <a href="javascript:void(0)" onclick="shareFB('Creasi','{$basedomain}personal/view?id={$list[i].user_id}','{$basedomain}public_assets/personal/{$list[i].img_avatar}','','{$fbprofiles|escape:'quotes'}')"><i class="ico icon-facebook">&nbsp;</i></a>
+                        <a href="http://twitter.com/share?text={$twiiterprofiles|escape:'quotes'}&url={$basedomain}personal/view?id={$list[i].user_id}" target="_blank"><i class="ico icon-twitter">&nbsp;</i></a>
+                     <a href="javascript:void(0)"><i class="ico icon-envelope clicksharemail">&nbsp;</i></a>
+                        <p>
+                        <div id="sharemail" class="rows sharemail" style="display:none">
+                         <label> Add email addresses (separate with commas)</label>
+                        
+                         <input class="emailshare" type="text" name="email" id='email' style="width:400px"/>
+                          <input class="idusershare" type="hidden" name="idusershare" id='idusershare' style="width:400px" value="{$list[i].user_id}"/>
+
+                         <input class="button1 submit" type="submit" name="submit" value="submit">
+                         <br>
+                        <label style="red" class="msgerorr"> </label>
+                        </div>
+                </div>
+				 <h3 class="sectiontitle">
+	About
+	<span class="red">{$list[i].name}</span>
+	</h3>
+            	<div class="euTab">
+                  <ul>
+                    <li><a href="#my-bio">BIO</a></li>
+                   {if $selectcategory[0].category_name != ''}
+				  {section name=n loop=$selectcategory}
+                    <li><a href="#tabcategory{$selectcategory[n].category_id}">{$selectcategory[n].category_name}</a></li>
+					{/section} 
+					{/if}
+                    <li><a href="#my-portfolio">Portfolio</a></li>
+                  </ul>
+                  <div id="my-bio" class="tab-content">
+                  	<div class="tabentry">
+					
+					
+                        <div class="sectionsrow">
+                           
+                            <div class="sections">
+                                <p>{$list[i].testimoni}</p>
+                                <div class="rows">
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                      <tr>
+                                        <td width="220"><strong>Nickname</strong></td>
+                                        <td width="10">:</td>
+                                        <td>{$list[i].nickname}</td>
+                                      </tr>
+                                      <tr>
+                                        <td><strong>Gender</strong></td>
+                                        <td width="10">:</td>
+                                        <td>{$list[i].sex}</td>
+                                      </tr>
+                                      <tr>
+                                        <td><strong>Date of birth</strong></td>
+                                        <td>:</td>
+                                        <td>{$list[i].birthday|date_format:" %e %B %Y"}</td>
+                                      </tr>
+                                      {*}<tr>
+                                        <td><strong>Location</strong></td>
+                                        <td>:</td>
+                                        <td>{$list[i].city}</td>
+                                      </tr>{/*}
+									  {if $id == $idnya}
+                                    <tr>
+                                        <td><strong>Phone Number</strong></td>
+                                        <td>:</td>
+                                        <td>{$list[i].phone_number}</td>
+                                      </tr> 
+                                      <tr>
+                                        <td><strong>Email Address</strong></td>
+                                        <td>:</td>
+                                        <td>{$list[i].email}</td>
+                                      </tr>
+									  {/if}
+                                    </table>
+                                </div><!-- END .rows -->
+                            </div><!-- END .sections -->
+                        </div><!-- END .sectionsrow -->
+						
+						
+                       <h3 class="sectiontitle">Education <span class="red">Info</span></h3>
+                        <div class="sectionsrow">
+						{if $listmyedu}
+						 {section name=m loop=$listmyedu} 
+                         
+                            <div class="sections">
+                                <div class="rows">
+                                	<h4 class="red">{$listmyedu[m].tahunmasuk}-{$listmyedu[m].tahunlulus}</h4>
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                      <tr>
+                                        <td width="220"><strong>Degree</strong></td>
+                                        <td width="10">:</td>
+                                        <td>{$listmyedu[m].degree}</td>
+                                      </tr>
+                                      <tr>
+                                        <td><strong>School / Institution</strong></td>
+                                        <td>:</td>
+                                        <td>{$listmyedu[m].institusi}</td>
+                                      </tr>
+                                      <tr>
+                                        <td><strong>Field of Study</strong></td>
+                                        <td>:</td>
+                                        <td>{$listmyedu[m].bidang_studi}</td>
+                                      </tr>
+                                    </table>
+                                	
+                                </div><!-- END .rows -->
+                            </div><!-- END .sections -->
+							{/section}			
+							{/if}
+							
+                        </div><!-- END .sectionsrow -->
+                    </div><!-- END .tabentry -->
+                  </div><!-- END .tab-content -->
+				  
+	{literal}
+<script>
+	  $(document).ready(function(){
+	  $.getScript('//connect.facebook.net/en_US/all.js', function(){
+			FB.init({
+			  appId: '1568887560021810',
+			});  
+		});
+				$('.untuklike').click(function(e){
+									
+								var likenya=$(this).attr('value');
+								var friendlikes=$(this).attr('folow');
+								//console.log(likenya);
+								//console.log(friendlikes);
+								var thiss=$(this);
+								e.preventDefault();
+								if(likenya)
+								{
+									$.ajax({
+									
+										'type': 'POST',
+										'url': basedomain+'personal/ajaxlike',
+										'data':{uid:likenya,idnya:friendlikes},
+										'dataType':'json',
+										'success': function(response){
+											var str='';
+											str+=response.countnya;
+											$('.likesnya').html(str);
+											if(thiss.data('type')==1)
+											{
+												thiss.removeClass('redbtn');
+												//console.log(thiss.data('type'));
+												thiss.data('type',0);
+											}
+											else
+											{
+												thiss.addClass('redbtn');
+													thiss.data('type',1);
+											}
+										}
+										
+										
+										
+										});
+								}
+								});
+							});
+							
+	{/literal}
+	</script>
+	  {if $selectcategory != ''}
+				  {section name=n loop=$selectcategory}
+                  <div id="tabcategory{$selectcategory[n].category_id}" class="tab-content">
+                  	<div class="tabentry">
+                        <div class="sectionsrow">
+                           
+						
+                            <div class="sections">
+                                <p>{$selectcategory[n].short_description}</p>
+                                <div class="rows">
+                                	<h5 class="category-title">{$selectcategory[n].category_name} - {$selectcategory[n].name_subcategory}</h5>
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                      <tr>
+                                        <td width="220"><strong>Agent</strong></td>
+                                        <td width="10">:</td>
+                                        <td>{$selectcategory[n].name_agent}</td>
+                                      </tr>
+                                      <tr>
+                                        <td><strong>Looking for</strong></td>
+                                        <td width="10">:</td>
+                                        <td>
+										{if $selectcategory[n].mlfor.loking_for_id != ''}
+										{*} {foreach from=$selectcategory[n].mlfor.loking_for_id  item=mlfor} {/*}
+										{section name=iw loop=$selectcategory[n].mlfor.loking_for_id} 
+											{if $smarty.section.iw.index ==0}
+												{if $selectcategory[n].mlfor.loking_for_id[iw].$mlfor==1}Full time{/if}
+												{if $selectcategory[n].mlfor.loking_for_id[iw].$mlfor==2}Part time{/if}
+												{if $selectcategory[n].mlfor.loking_for_id[iw].$mlfor==4}Internship{/if}
+												{if $selectcategory[n].mlfor.loking_for_id[iw].$mlfor==3}Freelance{/if}
+											{else}
+												{if $selectcategory[n].mlfor.loking_for_id[iw].$mlfor==1},Full time.{/if}
+												{if $selectcategory[n].mlfor.loking_for_id[iw].$mlfor==2},Part time.{/if}
+												{if $selectcategory[n].mlfor.loking_for_id[iw].$mlfor==4},Internship.{/if}
+												{if $selectcategory[n].mlfor.loking_for_id[iw].$mlfor==3},Freelance.{/if} 
+											{/if}
+										 {/section}
+											{*} {/foreach} {/*}
+										{/if}
+										 
+										
+										</td>
+                                      </tr>
+                                      <tr>
+                                        <td><strong>Open for</strong></td>
+                                        <td>:</td>
+                                        <td>{if $selectcategory[n].moffor.oppen_for != ''}
+										{section name=iwc loop=$selectcategory[n].moffor.oppen_for } 
+											{if $smarty.section.iwc.index ==0}
+													{if $selectcategory[n].moffor.oppen_for[iwc]=='Expenses'} Expenses only. {else} {$selectcategory[n].moffor.oppen_for[iwc]} {/if}
+											{else}
+												{if $selectcategory[n].moffor.oppen_for[iwc]=='Expenses'} ,Expenses only. {else} , {$selectcategory[n].moffor.oppen_for[iwc]} {/if}
+											{/if}
+										{/section}
+										{/if}</td>
+                                      </tr>
+                                    </table>
+                                	
+                                </div><!-- END .rows -->
+                            </div><!-- END .sections -->
+						
+                        </div><!-- END .sectionsrow -->
+                        <h3 class="sectiontitle">Experience <span class="red">Info</span></h3>
+						
+                        <div class="sectionsrow">
+                         
+                            <div class="sections">
+                                <div class="rows">
+							{foreach from=$selectcategory[n].arrayexp item=arrayexp}
+									{assign var="startp" value="-"|explode:$arrayexp.periode_start}
+									{assign var="yearstart" value="$startp[0]"}
+									{assign var="endp" value="-"|explode:$arrayexp.periode_end}
+									{assign var="yearend" value="$endp[0]"}
+
+                                	<h4 class="red">{$yearstart} - {$yearend}</h4>
+									
+                                	<h5 class="experience-title">{$selectcategory[n].category_name}</h5>
+									<p>
+									{$arrayexp.detail_exp}
+									</p>
+							{/foreach}
+                                </div><!-- END .rows -->
+                            </div><!-- END .sections -->
+						 </div><!-- END .sectionsrow -->
+						 	 {include file="application/web/widgets/related-project.html"}  	
+						
+                    </div><!-- END .tabentry -->
+                  </div><!-- END .tab-content -->
+                  {/section}
+				  {/if}
+                  <div id="my-portfolio" class="tab-content">
+                  	<div class="tabentry">
+                        <div class="sectionsrow">
+                           
+                            <div class="sectionbox">
+                                <div class="rows rows5">
+								{if $images}
+								{section name=k loop=$images}
+                                    <div class="box" style="min-height:inherit;">
+                                        <div class="boximg">
+                                            <a href="{$basedomain}portofolio?images={$images[k].id}&id={$images[k].user_id}" class="thumbbox"><img src="{$basedomain}public_assets/portofolio/small_{$images[k].images}" onerror="this.src='{$basedomain}assets/content/press-porto.jpg'"></a>  
+                                        </div><!-- end .boximg -->    
+                                       {*} <div class="caption">
+                                            <div class="desc-box">
+                                                <h4><a href="{$basedomain}portofolio?images={$images[k].id}&id={$images[k].user_id}">{$images[k].title|truncate:50}</a></h4>
+                                            <h4><a href="{$basedomain}portofolio?images={$images[k].id}&id={$images[k].user_id}">{$images[k].description|truncate:100}</a></h4>
+                                            </div><!-- end .author-box -->    
+                                        </div>{/*}
+                                    </div><!-- END .box -->
+                                 {/section}  
+								  {else}<p> There are no portfolio(s) yet</p>
+								 {/if}
+                                </div><!-- END .rows -->
+                            </div><!-- END .sectionbox -->
+                        </div><!-- END .sectionsrow -->
+                        <h3 class="sectiontitle">Videos</h3>
+                        <div class="sectionsrow">
+                          
+                            <div class="sectionbox">
+                                <div class="rows rows5">
+                                  	{if $listvideo}
+										{section name=kv loop=$listvideo}
+											<div class="box">
+												<div class="boximg">
+													<a href="{$basedomain}portofolio?video={$listvideo[kv].id}&id={$listvideo[kv].user_id}" class="thumbbox"><img src="{$basedomain}public_assets/portofolio/small_{$listvideo[kv].images}" onerror="this.src='{$basedomain}assets/content/press-porto.jpg'">
+                                                    <i class="icon-play-circle-o">&nbsp;</i></a>  
+												</div><!-- end .boximg -->    
+												<div class="caption">
+													<div class="desc-box">
+														<h4><a href="{$basedomain}portofolio?video={$listvideo[kv].id}&id={$listvideo[kv].user_id}">{$listvideo[kv].title|truncate:50}</a></h4>
+													</div><!-- end .author-box -->    
+													<h5><a href="{$basedomain}portofolio?video={$listvideo[kv].id}&id={$listvideo[kv].user_id}">{$listvideo[kv].description|truncate:100}</a></h5>
+												</div>
+											</div><!-- END .box -->
+										 {/section} 
+										{else}<p> There are no portfolio(s) yet</p>										 
+									{/if}
+                                   
+                                </div><!-- END .rows -->
+                            </div><!-- END .sectionbox -->
+                        </div><!-- END .sectionsrow -->
+                        <h3 class="sectiontitle">Audios</h3>
+                        <div class="sectionsrow">
+                           
+                            <div class="sectionbox">
+                                <div class="rows rows5">
+                                   {if $listaudio}
+										{section name=ka loop=$listaudio}
+											<div class="box">
+												<div class="boximg">
+													<a href="{$basedomain}portofolio?audio={$listaudio[ka].id}&id={$listaudio[ka].user_id}" class="thumbbox"><img src="{$basedomain}public_assets/portofolio/small_{$listaudio[ka].images}"  onerror="this.src='{$basedomain}assets/content/press-porto.jpg'">
+                                                    <i class="icon-play-circle-o">&nbsp;</i>  </a>
+												</div><!-- end .boximg -->    
+												<div class="caption">
+													<div class="desc-box">
+														<h4><a href="{$basedomain}portofolio?audio={$listaudio[ka].id}&id={$listaudio[ka].user_id}">{$listaudio[ka].title |truncate:50}</a></h4>
+													</div><!-- end .author-box -->    
+													<h5><a href="{$basedomain}portofolio?audio={$listaudio[ka].id}&id={$listaudio[ka].user_id}">{$listaudio[ka].description|truncate:100}</a></h5>
+												</div>
+											</div><!-- END .box -->
+										 {/section}  
+										  {else}<p> There are no portfolio(s) yet</p>
+									{/if}
+                                 {*}  <div class="box">
+                                        <div class="boximg">
+                                            <a href="#" class="thumbbox"><img src="content/6.jpg"><i class="icon-play-circle-o">&nbsp;</i></a>  
+                                        </div><!-- end .boximg -->    
+                                        <div class="caption">
+                                            <div class="desc-box">
+                                                <h4><a href="#">Nama Foto</a></h4>
+                                            </div><!-- end .author-box -->    
+                                            <h5><a href="#"><iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https://soundcloud.com/octobersveryown/makonnen-ft-drake-tuesday&amp;color=ff6600&amp;auto_play=false&amp;show_artwork=true"></iframe></a></h5>
+                                        </div>
+                                    </div><!-- END .box -->
+                                    {/*}
+                                </div><!-- END .rows -->
+                            </div><!-- END .sectionbox -->
+                        </div><!-- END .sectionsrow -->
+                    </div><!-- END .tabentry -->
+                  </div><!-- END .tab-content -->
+                </div><!-- END .widget -->
+            </div><!-- end .cols -->   
+        </div><!-- end .wrapper -->    
+    </div><!-- end #profileboard --> 
+	{/section}
+	{/if}
+</div><!-- end #profilepage -->
+<script>
+{literal}
+var share=0;
+$('.clicksharemail').click(function()
+{
+    $('.sharemail').show();
+
+});
+$('.submit').click(function(){
+if( share==0)
+			{
+				var email=$('.emailshare').val();
+				 $(this).val('Sending...');
+						thisss=$(this);
+				if(email)
+					{
+						share=1;
+					}
+				var userid=$('.idusershare').val();
+				 $.ajax({
+							
+									'type': 'POST',
+									'url': ''+basedomain+'share/emailShare',
+									'data': {userid:userid,type:'profile',email:email},
+									'dataType':'json',
+								   'success': function(result){
+										if(result.status==1)
+										{
+												 $('.sharemail').hide();
+												  $('.msgerorr').html('Share process succeed');
+															$('.emailshare').val('');
+															$('.sharemail').hide();
+															$('.msgerorr').html(' ');
+															thisss.val('submit');
+
+										}
+										else
+										{
+											share=0;
+											 $('.msgerorr').html('Share process failed, please try again');
+											thisss.val('submit');
+											}
+										
+								   }
+							   });
+		}
+		else
+		  {
+				$('.emailshare').val('');
+				$('.sharemail').hide();
+				$('.msgerorr').html(' ');
+		  
+		  }
+   
+})
+function shareFB(fb_name,fb_link,fb_img,fb_user,fb_post){
+		$("#bg-popup").fadeOut();
+		$(".popup,.popup2").fadeOut();
+		FB.init();
+		FB.ui({
+			method: 'feed',
+			name: fb_name,
+			link: fb_link,
+			picture: fb_img,
+			caption: fb_user,
+			description: fb_post
+			
+			
+		});
+			 
+	}
+
+{/literal}
+</script>

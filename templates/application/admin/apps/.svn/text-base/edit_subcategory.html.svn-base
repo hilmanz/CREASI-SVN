@@ -1,0 +1,42 @@
+
+<div class="page_section" id="project-page">
+    <div id="container">
+        <div class="titlebox">
+            <h2 class="fl"><span class="icon-list2">&nbsp;</span> Edit Sub Category</h2>
+        </div><!-- end .titlebox -->
+        <div class="content">
+
+            <form id="forms" class="forms" method="post" action="">
+
+            <div id="new-project" class="boxcontent">
+                <section class="step1">
+                    <h3>Category Name</h3>
+                    <p>Fill in the details below to submit your new project.</p>
+					 <div class="row">
+                        <label for="title">Name Category<br></label>
+						 <select name="category">
+						 	{section name=j loop=$listcategory} 
+								<option value="{$listcategory[j].id}"{ if $list.category_id==$listcategory[j].id} selected="selected" {/if} >{$listcategory[j].category_name}</option>
+							{/section}
+						 </select>
+                    </div><!-- end .row -->
+                    <div class="row">
+                        <label for="title">Name SubCategory<br></label>
+						  <input id="title" name="idsub" type="hidden" value="{$list.id}" class="required" >
+                        <input id="title" name="name" type="text" value="{$list.name_subcategory}" class="required" ><br><label class="msg_name" style="color: red;">{$status.msgpr}</label>
+                    </div><!-- end .row -->
+                    
+                    <input type="hidden" name="submit" value="1">
+                        <input type="submit" value="Save" class="fr button3"  />
+						
+						 <a href="{$basedomain}categorymanagemant" class="button4 fr">Cancel</a>
+                        <small class="msg">{$status.msgee}</small>
+                        <small class="msg">{$status.msg}</small>
+                    </div><!-- end .row -->
+                </section>
+            </div><!-- end #wizard -->
+		
+            </form>
+        </div><!-- end .content -->
+    </div><!-- end #container -->
+</div><!-- end #home -->

@@ -1,0 +1,130 @@
+{literal}
+<script type="text/javascript">
+tinymce.init({
+    selector: ".textarea2",
+	plugins: "paste,table",
+    theme: "modern",
+	file_browser_callback : 'myFileBrowser',
+
+    plugins: [
+        "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+        "searchreplace wordcount visualblocks visualchars code fullscreen",
+        "insertdatetime media nonbreaking save table contextmenu directionality",
+        "emoticons template paste textcolor colorpicker textpattern"
+    ],
+    toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | table",
+    toolbar2: "print preview media | forecolor backcolor emoticons",
+    image_advtab: true,
+    templates: [
+        {title: 'Test template 1', content: 'Test 1'},
+        {title: 'Test template 2', content: 'Test 2'}
+    ]
+});
+</script>
+
+{/literal}
+<div class="page_section" id="project-page">
+    <div id="container">
+        <div class="titlebox">
+            <h2 class="fl"><span class="icon-newspaper">&nbsp;</span> Add Faq</h2>
+            {*}<h2 class="fr"><a href="{$basedomain}faqcms" class="button2">Back</a></h2>{/*}
+        </div><!-- end .titlebox -->
+        <div class="content">
+            <div class="summary">
+            </div><!-- end .summary -->
+
+            <form id="forms" class="forms" method="post" action="" enctype="multipart/form-data">
+            <div id="new-project" class="boxcontent">
+               
+				
+				 <section class="step1">
+                    <div class="row">
+                        <label style="max-width:55px;" for="title">Title<br></label>
+                        <input id="title" name="title" type="text" value="{$title}" class="required mandatory title" ><br>
+					<label class="msg_name title_no" style="color: red;">{$title_no}</label>
+                    </div><!-- end .row -->
+
+					
+                 <div class="row">
+					<label for="Date">Description 	:</label>
+					
+					
+                     
+                    </div>
+					
+                    <div class="row">
+                       
+						<textarea   name="description" class="mandatory textarea2 description" >{$content}</textarea>  
+                     
+						
+                   		 <label class="msg_name description_no" style="color: red;">{$content_no}</label>
+					</div><!-- end .row -->
+                  </section>
+				   <section class="step2" style="display:none;">
+				 
+					  <div class="row">
+                        
+                         <div  id="imgstore"></div>
+				
+                    </div><!-- end .row -->
+				  </section>
+				  
+				  
+                    <input type="hidden" name="submit" value="1">
+                        <input type="submit" value="Save" class="fr button3 submitsave"  />
+						 <a href="{$basedomain}faqcms" class="fr button4">Cancel</a>
+                        <small class="msg">{$status.msgee}</small>
+                        <small class="msg">{$status.msg}</small>
+                    </div><!-- end .row -->
+               
+				
+				
+				
+				 
+				
+				
+            </div><!-- end #wizard -->
+            </form>
+        </div><!-- end .content -->
+    </div><!-- end #container -->
+</div><!-- end #home -->
+{literal}
+
+<script>
+$('.submitsave').click(function()
+{
+	var title_no='.title_no';
+	var title= $('.title').val();
+	$(title_no).html('');
+
+	var description= tinymce.get('description').getContent();
+	var description_no='.description_no';
+	$(description_no).html('');
+	var error='';
+	
+	
+	if(title=='')
+		{
+			$(title_no).html('You cannot leave this field empty');
+			error='ada';
+		}
+	if(description=='')
+		{
+			$(description_no).html('You cannot leave this field empty');
+			error='ada';
+		}
+	if(error)
+	{
+		return false;
+	}
+	else
+	{
+		
+		return  true;
+	}	
+});
+</script>
+
+
+
+{/literal}

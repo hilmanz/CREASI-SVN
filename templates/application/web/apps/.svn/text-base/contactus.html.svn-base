@@ -1,0 +1,57 @@
+<!-- ki -->
+<div class="page_section" id="project-page">
+    <div id="container">
+      
+        <div class="content">
+            <div class="summary">
+           
+            </div><!-- end .summary -->
+
+   
+                <form id="forms" class="forms" method="post" action="{$basedomain}contactus/addcontact_us" enctype="multipart/form-data">
+            <div id="new-project" class="boxcontent">
+                <section class="step1">
+                    <h3>CONTACT US</h3>
+                    <p>Fill in the details below to submit your CONTACT US project.</p>
+                    <div class="row">
+                        <label for="name">Name<br></label>
+                        <input id="name" name="name" type="text" class="required mandatory" ><br>
+					<label class="msg_name" style="color: red;">{$name_no}</label>
+                    </div><!-- end .row -->
+					<div class="row">
+                        <label for="email">Email<br></label>
+                        <input id="email" name="email" type="text"  class="required mandatory" ><br>
+					<label class="msg_name" style="color: red;">{$email_no}</label>
+                    </div><!-- end .row -->
+					<div class="row">
+					<label for="Date">Message 	:<br></label>
+						<textarea name="message"  class="required mandatory" ></textarea><br>
+						<label class="msg_name" style="color: red;">{$message_no}</label>
+                    </div>
+                 <div class="row"><label for="Date">Captcha 	:<br></label>
+						<div id="chaptcha">
+                    	<img src="{$basedomain}captcha.php"/>
+                    	
+                	</div>
+					  <div class="row"><label for="Date">	<br></label>
+						<div id="chaptcha">
+                    	<input type="text" class="chaptcha" name="captcha"/>
+                    	
+                	</div>
+					
+                   </div>
+                    <input type="hidden" name="submit" value="1">
+                        <input type="submit" value="SAVE" class="button3"  />
+						 <a href="{$basedomain}users" class="button4">CANCEL</a>
+						 <label class="msg_name" style="color: green;">{$success}</label>
+                        <small class="msg">{$status.msgee}</small>
+                        <small class="msg">{$status.msg}</small>
+                    </div><!-- end .row -->
+                </section>
+            </div><!-- end #wizard -->
+            </form>
+		
+           
+        </div><!-- end .content -->
+    </div><!-- end #container -->
+</div><!-- end #home -->

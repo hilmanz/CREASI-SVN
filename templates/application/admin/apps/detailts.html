@@ -1,0 +1,79 @@
+<!-- ki -->
+<div class="page_section" id="project-page">
+    <div id="container">
+        <div class="titlebox">
+            <h2 class="fl"><span class="icon-books">&nbsp;</span> Profile Info</h2>
+       <h2 class="fr"><a href="{$basedomain}companymanegement" class="button2">Back</a></h2>
+        </div><!-- end .titlebox -->
+        <div class="content">
+            <div class="summary">
+           
+            </div><!-- end .summary -->
+
+            <form id="forms" class="forms" method="post" action="">
+            <div id="new-project" class="boxcontent">
+				<div class='profilePicture'>
+				 {if $profile.img_avatar}
+				<img src='{$basedomainpath}public_assets/personal/{$profile.img_avatar}'  width="200" height="250" ></img>	
+				{else}
+				<img src='{$basedomainpath}public_assets/postjob/images.jpg' class="gambaravatar"  width="200" height="250" ></img>
+				{/if}
+            </div><!-- end #wizard -->
+            <div class="detailProf">
+			<div class='row'>
+            	<label>Company Name : </label>
+				<span class='edit' style="display:none"><input type="hidden" name="iduser" value="{$profile.id}"><input type="text" name="nama_perusahaan" value="{$profile.nama_perusahaan}"></span><span class='count_view'>{$profile.nama_perusahaan}</span>
+			</div>
+			<div class='row'>
+				<label>City : </label><span class='edit' style="display:none"><input type="text" name="city" value="{$profile.city}"></span><span class='count_view'>{$profile.city}</span>
+			</div>
+			<div class='row'>
+				<label>Phone : </label><span class='edit' style="display:none"><input type="text" name="phone" value="{$profile.no_tlp}"></span><span class='count_view'>{$profile.no_tlp}</span>
+			</div>
+			<div class='row'>
+				<label>Email : </label><span class='edit' style="display:none"><input type="text" name="email" value="{$profile.email}"></span><span class='count_view'>{$profile.email}</span>
+			</div>
+			<hr>
+			<h4> Contact Person</h4>
+			<hr>
+			<div class='row'>
+				<label>Name :</label> <span class='edit' style="display:none"><input type="text" name="name" value="{$profile.name}"></span><span class='count_view'>{$profile.name}</span><br>
+			</div>
+			<div class='row'>
+				<label>Phone number :</label> <span class='edit' style="display:none"><input type="text" name="phonnumber" value="{$profile.phone_number}"></span><span class='count_view'>{$profile.phone_number}</span>
+			</div>
+			
+			
+			<input type="button" class="fr button3 editprofile" name="Edit" value="Edit">
+			<input type="hidden" class="submit" name="submit" value="1">
+			<input type="submit" class="fr submitprofile button3 " name="Submit" value="Save" style="display:none">
+            <a href="{$basedomain}companymanegement/detail?id={$profile.id}" class="fr button4 cancelprofile" style="display:none; margin:0 10px;">Cancel</a>
+            </div>
+            </form>
+        </div><!-- end .content -->
+    </div><!-- end #container -->
+</div><!-- end #home -->
+
+
+<script type="text/javascript">
+
+{literal}		 
+		$(document).ready(function(){
+			$('.editprofile').click(function(e){
+					$('.edit').show();
+					$('.submitprofile').show();
+					$('.cancelprofile').show();
+					$('.editprofile').hide();
+					$('.count_view').hide();
+				 });
+		   
+		});
+	
+	
+		
+	
+	</script>
+	
+{/literal}
+
+

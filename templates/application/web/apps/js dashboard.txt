@@ -1,0 +1,100 @@
+					
+                        str+='<div class="rowjob">';
+						str+='<div class="boximg">';
+                            
+                        
+						if (v.file !== '')
+						{
+						if (role === 1)
+						{
+						str+='<a href="'+basedomain+'jobboard/detail_jobboard?id='+v.id_job+'" class="thumbbox"><img src="'+basedomain+'public_assets/postjob/'+v.file+'" height="200px" width="200px"/></a>';
+						}
+						if(role === 2)
+						{
+						str+='<a href="'+basedomain+'jobboard/detail_jobboard?id='+v.id_job+'" class="thumbbox"><img src="'+basedomain+'public_assets/postjob/'+v.file+'" height="200px" width="200px"/></a>';
+						}
+						
+						}else{
+						if (role === 1)
+						{
+						str+='<a href="'+basedomain+'jobboard/detail_jobboard?id='+v.id_job+'" class="thumbbox"><img src="'+basedomain+'public_assets/postjob/images.jpg" height="200px" width="200px"/></a>';
+						}
+						if(role === 2)
+						{
+						str+='<a href="'+basedomain+'jobboard/detail_jobboard?id='+v.id_job+'" class="thumbbox"><img src="'+basedomain+'public_assets/postjob/images.jpg" height="200px" width="200px"/></a>';
+						}
+						
+						
+						}
+						
+						str+='<div class="caption">';
+                        str+='<i>No. of likes: '+v.love_count+'</i>';
+                        str+='</div>';   
+									
+									{section name=k loop=$popularlist}	
+									{if $popularlist[k].id_job == $load[i].id_job}
+									<div class="ribbon">Popular</div>
+									{/if}
+									{/section}  
+                                  
+                                </div>
+                                 <div class="entry">
+										<h3><a href="{$basedomain}jobboard/detail_jobboard?id={$load[i].id_job}">{$load[i].job_title}</a></h3>
+										<div class="meta-post">
+											<a href="#" class="company-name"><i class="icon-suitcase">&nbsp;</i>{$load[i].nama_perusahaan}</a>
+											{if $load[i].verified == 1}
+											<a href="#" class="company-status"><i class="icon-check-circle">&nbsp;</i> Verified</a>
+											{/if}
+											
+											<a href="#" class="location-name"/><i class="icon-map-marker">&nbsp;</i> DKI Jakarta, Jakarta Selatan</a>
+										</div>
+										<p align='justify'>{$load[i].job_description|substr:0:150}...(more)</p>
+									</div>  
+                                <div class="jobInfo">
+                                   {if $user->role == 2}
+											{if $load[i].n_status==2}
+												<h4 class="draft">DRAFT</h4>
+												<p><a href="{$basedomain}postjobs/editdraft?param={$load[i].id_job}" class="button2"><span>EDIT JOB</span></a></p>
+												 <span class="applicantsNo">No. of Applicants: {$load[i].registrant}</span>
+											{/if}
+											{if $load[i].n_status==1 && $load[i].hari > 0 && $load[i].n_status_interview != 1}
+												<a class="label bggreen" href="{$basedomain}jobboard/detail_jobboard?id={$load[i].id_job}"> OPEN</a>
+												  <div class="countdown-job">
+													<h4><b>{if $load[i].hari < 0}
+													0
+													{else}
+													{$load[i].hari}
+													{/if}
+													
+													</b></h4>
+													<span>DAYS LEFT TO APPLY</span>
+												</div>
+												<span class="applicantsNo">No. of Applicants:{$load[i].registrant}</span>
+											{/if}
+											{if $load[i].n_status==1 && $load[i].n_status_interview==1}
+												<span class="label bgyellow">INTERVIEW</span>
+												<div class="countdown-job">
+												<h4><b>{if $load[i].hari < 0}
+													0
+													{else}
+													{$load[i].hari}
+													{/if}</b></h4>
+												<span>DAYS LEFT TO APPLY</span>
+												</div>
+												<span class="applicantsNo">No. of Applicants: {$load[i].registrant}</span>
+											{/if}
+										{/if}
+                                   
+                                </div>    
+								{if $load[i].hari < 0}
+								<div class="redbox errorjob">
+									<div class="redbox-entry">
+									<h3>UNSUCCSESSFULL :(</h3>
+									<p>JOB ID : {$load[i].id_job}</p>
+									<p>
+									</div>
+								</div>
+								{/if}
+                            </div>
+							{/section}
+							{/if}

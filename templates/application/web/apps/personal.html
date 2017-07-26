@@ -1,0 +1,259 @@
+<!-- ki -->
+<div class="page_section" id="project-page">
+    <div id="container">
+        <div class="titleboxs">
+            <h2 class="fl"><span class="icon-books">&nbsp;</span> Personal Info</h2>
+          <h2 class="fr"><a href="{$basedomain}personal/editpersonal?id={$id}" class="button2">Edit Personal</a></h2>
+        </div><!-- end .titleboxs -->
+        <div class="content">
+            <div class="summary">
+           
+            </div><!-- end .summary -->
+
+            <form id="forms" class="forms" method="post" action="">
+            <div id="new-project" class="boxcontent">
+				<div class='row'>
+				{if $list}
+				{section name=i loop=$list}  
+				<img src='{$basedomain}public_assets/personal/{$list[i].img_avatar}'  width="200" height="250" ></img>	
+				<h2>{$list[i].name} </h2>
+				<label>View : <span class='count_view'>{$list[i].view_count}</span></label>
+				<label>Follow : <span class='count_follow'>{$list[i].follow_count}</span></label>
+				<label >love : <span class='count_like'>{$list[i].love_count} </span></label>
+				<table class='ok'><tr>
+				<th>Nama </th><th>Alamat </th><th>No telp</th><th>KTP (GID)  </th><th>Images</th><th size='30'>Follow</th><th size='30'>Like</th></tr>
+				<tr>
+				<td>{$list[i].name}</td><td>{$list[i].alamat}</td><td>{$list[i].no_tlp}</td><td>{$list[i].no_ktp}</td><td>{$list[i].images_profile}</td>
+				<td>
+				<form id="formfollow" class="forms formfollow" role="form"  method="POST">
+				{if $uid == ''}
+				<input type="button" name='submit' value="Here!" class="button4 kirim krm2" follownya="{$list[i].user_id}"  />
+				<input type="button" name='submit' value="Here!" class="button3 kirim krm1" follownya="{$list[i].user_id}"   style="display:none;"/>
+				<span class='loading' style="display:none;"/ >Loading .. </span>
+				{else}
+				<input type="button" name='submit' value="Here!" class="button4 kirim krm2" follownya="{$list[i].user_id}" style="display:none;" />
+				<input type="button" name='submit' value="Here!" class="button3 kirim krm1" follownya="{$list[i].user_id}"  />
+				<span class='loading' style="display:none;"/ >Loading .. </span>
+				{/if}
+				</form>
+				</td>
+				
+				
+				<td>
+				<form id="formlike" class="forms" method="post" action="">
+				
+				{if $uid == ''}
+				<input type="button" name='submit' value="Unlike" class="button4 like2" likenya="{$list[i].user_id}"  />
+				<input type="button" name='submit' value="like" class="button3 like" likenya="{$list[i].user_id}"   style="display:none;"/>
+				<span class='loadinglike' style="display:none;"/ >Loading .. </span>
+				{else}
+				<input type="button" name='submit' value="Unlike" class="button4 like2" likenya="{$list[i].user_id}" style="display:none;" />
+				<input type="button" name='submit' value="like" class="button3 like1" likenya="{$list[i].user_id}"  />
+				<span class='loadinglike' style="display:none;"/ >Loading .. </span>
+				{/if}
+				
+				
+				</form>
+				
+				</td>
+				
+				
+				
+				</tr>
+				
+				{/section}
+				{/if}
+				</div>
+				<table><tr></tr><tr><tr></table><br>
+				<h2></h2>
+				<div class='row'>
+				{if $list}
+				{section name=i loop=$listadmin}    
+				<table><tr>
+				<th>Nama </th><th>Alamat </th><th>No telp</th><th>Images</th></tr>
+				<tr>
+				<td>{$listadmin[i].name}</td><td>{$listadmin[i].alamat_perusahaan}</td><td>{$listadmin[i].no_tlp}</td><td>{$listadmin[i].images_profile}</td></tr>
+				
+				{/section}
+				{/if}
+				</div>
+				
+				<font align='left'> <a href="{$basedomain}galery">Add +</a></font><hr>
+				{if $images}
+				{section name=j loop=$images}  
+				
+				<a href="{$basedomain}personal/portofolio?images={$images[j].images}"><img width="200" height="200" src="{$basedomain}assets/gallery/photo_user/{$images[j].images}"></a>
+				{/section}
+				{else}
+				{/if}
+				<h2>Video</h2><font align='left'><a href="{$basedomain}galery">Add +</a></font><hr>
+				<h2>Audio</h2><font align='left'>Add +</font><hr>
+            </div><!-- end #wizard -->
+            </form>
+        </div><!-- end .content -->
+    </div><!-- end #container -->
+</div><!-- end #home -->
+
+
+<script type="text/javascript">
+var idfriend={$id};
+var uid={$id};
+{literal}		 
+		$(document).ready(function(){
+			$('.krm1').click(function(e){
+		
+				  e.preventDefault();
+					 $.ajax({
+					
+							'type': 'POST',
+							'url': ''+basedomain+'personal/ajaxfollow',
+							'data': 'idnya='+idfriend+'&uid='+uid,
+							'dataType':'json',
+							'beforeSend':function(){    
+							
+														
+														$('.krm1').hide();
+														$(".loading").show();
+															
+             										},
+							'success': function(result){
+							if(result.status==true)
+							{
+								
+								$('.krm1').hide();
+								$('.loading').hide();
+								$('.krm2').show();
+								var str="";
+								str +=result.countnya;
+								$('.count_follow').html(str);
+								
+							}
+							
+							
+							}
+						});
+					});
+				 });
+		   
+
+	
+	
+		$(document).ready(function(){
+			$('.krm2').click(function(e){
+			
+				  e.preventDefault();
+					 $.ajax({
+					
+							'type': 'POST',
+							'url': ''+basedomain+'personal/ajaxfollow',
+							'data': 'idnya='+idfriend+'&uid='+uid,
+							'dataType':'json',
+							'beforeSend':function(){    
+							
+														
+														$('.krm2').hide();
+														$(".loading").show();
+															
+             										},
+							'success': function(result){
+							if(result.status==true)
+							{
+								
+								$('.krm2').hide();
+								$('.loading').hide();
+								$('.krm1').show();
+								var str="";
+								str +=result.countnya;
+								$('.count_follow').html(str);
+							}
+							
+							
+							}
+						});
+					});
+				 });
+		   
+
+	
+	</script>
+	
+	<script type="text/javascript">
+		 
+		$(document).ready(function(){
+			$('.like').click(function(e){
+			 var idlike = $('.like').attr('likenya');
+				  e.preventDefault();
+					 $.ajax({
+					
+							'type': 'POST',
+							'url': ''+basedomain+'personal/ajaxlike',
+							'data': 'idnya='+idfriend+'&uid='+uid,
+							'dataType':'json',
+							'beforeSend':function(){    
+							
+														
+														$('.like').hide();
+														$(".loadinglike").show();
+															
+             										},
+							'success': function(result){
+							if(result.status==true)
+							{
+								
+								$('.like').hide();
+								$('.loadinglike').hide();
+								$('.like2').show();
+								var str="";
+								str +=result.countnya;
+								$('.count_like').html(str);
+							}
+							
+							
+							}
+						});
+					});
+				 });
+		   
+
+	
+		 
+		$(document).ready(function(){
+			$('.like2').click(function(e){
+			 var idfollow = $('.like2').attr('follownya');
+				  e.preventDefault();
+					 $.ajax({
+					
+							'type': 'POST',
+							'url': ''+basedomain+'personal/ajaxlike',
+							'data': 'idnya='+idfriend+'&uid='+uid,
+							'dataType':'json',
+							'beforeSend':function(){    
+							
+														
+														$('.like2').hide();
+														$(".loadinglike").show();
+															
+             										},
+							'success': function(result){
+							if(result.status==true)
+							{
+								
+								$('.like2').hide();
+								$('.loadinglike').hide();
+								$('.like').show();
+								var str="";
+								str +=result.countnya;
+								$('.count_like').html(str);
+							}
+							
+							
+							}
+						});
+					});
+				 });
+	
+	</script>
+	
+{/literal}
+
+

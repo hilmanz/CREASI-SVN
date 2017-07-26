@@ -1,0 +1,445 @@
+
+<div class="page_section" id="theformpage">
+    <div id="metapage">
+        <div class="wrapper">
+            <h1 class="page-title fl">Job Posting Form </h1>
+            <div class="breadcumb fr">
+                <a href="index.php">Home</a> <span>/</span> <a>Job Posting Form</a>
+            </div>
+        </div><!-- end .wrapper -->   
+    </div><!-- end #metapage -->
+    <div id="theform" class="section"> 
+        <div class="wrapper">
+        	<div class="col-content">
+        	<div class="titleboxs">   
+                <h2>Job Posting <span class="red">Form</span></h2>
+                <p>Complete this easy and quick form and start receiving CVs from our Creative Talents.</p>
+            </div><!-- end .titlebox -->
+            <form class="theforms forms" id="forms"  method='POST' action="{$basedomain}postjobs" enctype="multipart/form-data">
+            	<div class="rows">
+                	<div class="col2">
+                      <label>Category*</label>
+                      <select class="selectpicker selectpicker show-tick categorylist" data-live-search="true" name="category"  data-width="100%">
+                        	<option>Please select one category</option>
+                           {section name=i loop=$category}
+                            <option name-cat="{$category[i].category_name}" {if $sessiontemp->category == $category[i].id } selected="selected" {/if} value="{$category[i].id}">{$category[i].category_name}</option>
+						    {/section}
+					
+                      </select>
+                    </div><!-- end .col2 -->    
+                	<div class="col2">
+                       <label>Sub - Category*</label>
+                      <select class="selectpicker selectpicker show-tick subcategory" id='subcategory' name='subcategory' data-width="100%">
+                        <option>Please select one sub-category</option>
+                      </select>
+                    </div><!-- end .col2 -->    
+                 </div><!-- end .rows -->    
+            	<div class="rows">
+                      <label class="relative">Job Title* 
+                      <a href="#" class="tooltip helpicon" title="<h6>Tips</h6> <p>This will be the first thing people read. Make sure you create a clear and attractive title.</p>">?</a></label>
+                       <input id="title" name="title" type="text" class="required title" value="{$sessiontemp->title}" placeholder="E.g. 'Graphic Designer' or 'Looking for an actor in a music video clip'"><br><label class="msg_name" style="color: red;" />{$status.msgpr}</label>
+					<label class="red title_no"></label>
+			  </div><!-- end .rows -->  
+            	<div class="rows">
+                      <label class="relative">Job Description* 
+                      <a href="#" class="tooltip helpicon" title="<h6>Tips</h6> <p>Explain about the responsibilities and results expected in this job.</p>">?</a></label>
+				
+                       <textarea type="text" class="description" placeholder="Maximum of 1000 characters"  id="description" name="description">{$sessiontemp->description}</textarea>
+					<label class="red description_no"></label>
+			   </div><!-- end .rows -->    
+            	<div class="rows">
+                      <label class="relative">Job Requirement* 
+                      <a href="#" class="tooltip helpicon" title="<h6>Tips</h6> <p>What qualifications are needed to be successful in this job? Try to be specific.</p>">?</a></label>
+					   	<textarea type="text" placeholder="Maximum of 1000 characters" class="requitment"  name="requitment">{$sessiontemp->requitment}</textarea>
+                       <label class="red requitment_no"></label>
+                </div><!-- end .rows -->   
+            	<div class="rows">
+                      <label class="relative">
+                      <div style="position:relative; display:inline-block; padding:0 30px 0 0;">Upload Samples, Helpful Or Supporting  Materials	(Optional)* 
+                      <a href="#" style="top:0;" class="tooltip helpicon" title="<h6>Tips</h6> <p>You can upload up to 3 files (JPEG, PNG, PDF, PPT or Word). Maximum file size is 2MB each.</p>">?</a>
+                      </div>
+                      </label>
+					   <div style="display:none">
+					      <input type="file" class="myfile" id="myfile" name="myfile[]" />
+					      <input type="hidden" id="talent_seeker_id" name="talent_seeker_id" value='{$uid}'>
+					   </div>
+                       <a   href="javascript:void(0)" class="button2 button2s browsfile" id="browsfile">BROWSE FILE</a>
+					     {section name=iw loop=$sessiontempfile}
+							{if $sessiontempfile[iw]->type == 'image/jpeg'}
+								<img width="50" class="filimg" height="50" src="{$basedomain}public_assets/postjob/{$sessiontempfile[iw]->name}">
+							{elseif $sessiontempfile[iw]->type == 'application/msword'}
+									<img width="50" class="filimg" height="50" src="{$basedomain}assets/images/doc.png">
+							{elseif $sessiontempfile[iw]->type == 'application/pdf'}
+									<img width="50" class="filimg" height="50" src="{$basedomain}assets/images/pdf.png">	
+							{/if}
+						 {/section}
+					<label class="red upload_no"></label>
+                </div><!-- end .rows --> 
+            	<div class="rows">
+                	<div class="col2">
+                      <label class="relative">Primary Work Location* 
+                      <a href="#" class="tooltip helpicon" title="<h6>Tips</h6> <p>Some jobs cover more than 1 city. Please choose the city with the longest stay.</p>">?</a></label>
+                      <select class="selectpicker selectpicker show-tick provincy"  data-live-search="true" name="provincy" data-width="100%">
+					  <option  value="">Please select your PROVINCE*</option>
+                        {section name=i loop=$provincy}
+						   <option value="{$provincy[i].province}">{$provincy[i].province}</option>
+						    {/section}
+                      </select>
+					  <label class="red provincy_no"></label>
+                    </div><!-- end .col2 -->    
+                	<div class="col2">
+                      <label>&nbsp;</label>
+                      <select class="selectpicker selectpicker show-tick city"   data-live-search="true" id='city' name="city" data-width="100%">
+                        <option class="" value="">Please select your CITY*</option>
+                      </select>
+                    </div><!-- end .col2 -->  
+						  <label class="red city_no"></label>
+                 </div><!-- end .rows -->
+            	<div class="rows checkboxs">
+                       <label>Looking for:*</label>   
+                       <input type="checkbox" class="subcat" name='check[]' {if $sessiontemp->check}  {if  in_array('fulltime',$sessiontemp->check) } checked="checked" {/if} {/if} value='fulltime'/><span>Full timer</span>
+                       <input type="checkbox" class="subcat" name='check[]' {if $sessiontemp->check} {if  in_array('parttime',$sessiontemp->check) } checked="checked" {/if} {/if} value='parttime'/><span>Part timer</span>
+                       <input type="checkbox" class="subcat" name='check[]' {if $sessiontemp->check} {if  in_array('freelancer',$sessiontemp->check) } checked="checked" {/if} {/if} value='freelancer'/><span>Freelancer</span>
+                      <!--  <input type="checkbox" class="subcat" name='check[]' {if $sessiontemp->check} {if  in_array('inter',$sessiontemp->check) } checked="checked" {/if} {/if}  value='inter'/><span>Intern</span> -->
+						<div class="rows" style="display:none">
+							  <label class="red checkboxs_no"></label>
+						</div>
+				</div><!-- end .rows -->  
+            	<div class="rows">
+                	<div class="col2">
+                      <label>Is experience required? *</label>
+                      <select class="selectpicker selectpicker show-tick" data-width="100%" name="experience">
+						<option value='2' {if $sessiontemp->experience == '2' } selected="selected" {/if} >Any</option>
+						<option value='0' {if $sessiontemp->experience == '0' } selected="selected" {/if} >No</option>
+						 <option value='1' {if $sessiontemp->experience == '1' } selected="selected" {/if} >Yes</option>
+                      </select>
+                    </div><!-- end .col2 -->    
+                	<div class="col2">
+                      <label class="relative">Expected pay/ salary* 
+                      <a href="#" class="tooltip helpicon" title="<h6>Tips</h6> <p>Some people are open for unpaid or expenses only pay, others only want paid jobs.</p>">?</a></label>
+                        <select name="salary" class="selectpicker selectpicker show-tick salary" data-width="100%"> 
+											  <option value='' >Please select one option </option>
+											  <option value='1' {if $sessiontemp->salary == '1' } selected="selected" {/if} >PAID</option>
+											  <option value='2' {if $sessiontemp->salary == '2' } selected="selected" {/if}  >UNPAID</option>
+											    <option value='3' {if $sessiontemp->salary == '2' } selected="selected" {/if}  >EXPENSE</option>
+								</select>			 
+						 <label class="red salary_no"></label>
+                    </div><!-- end .col2 -->    
+                 </div><!-- end .rows -->   
+            	<div class="rows">
+                	<div class="col2">
+                      <label class="relative">Is an agent required?* 
+                      <a href="#" class="tooltip helpicon" title="<h6>Tips</h6> <p>Some Creative Talents require their agents to deal with their jobs. You could choose with (yes) or without.</p>">?</a></label>
+                      <select class="selectpicker selectpicker show-tick" data-width="100%" name="agent">
+						<option >Any</option>
+                        <option value='1' {if $sessiontemp->agent == '1' } selected="selected" {/if} >Yes</option>
+						<option value='0' {if $sessiontemp->agent == '0' } selected="selected" {/if} >No</option>
+                      </select>
+                    </div><!-- end .col2 -->    
+                	<div class="col2">
+                      <label class="relative">Job post closing date* 
+                      <a href="#" class="tooltip helpicon" title="<h6>Tips</h6> <p>You can choose up to 30 days. If you have a tight deadline you may want to choose a shorter period of time.</p>">?</a></label>
+                     <input id="endpublish" name="endpublish" value="{$sessiontemp->endpublish}" type="text" class="datepicker endpublish" placeholder="dd/mm/yyyy"  >
+                   <label class="red endpublish_no"></label>
+				   </div><!-- end .col2 -->    
+                 </div><!-- end .rows -->   
+            	<div class="rows">
+				<input type="hidden"  value="0" class="postnya"  name="postnya"/> 
+				<input type="hidden"  value="1" class="saveasdraft"  name="saveasdraft"/> 
+                	<input type="submit" class="button1 fr" value="postnya" id='postjb' />&nbsp;
+					{if $uid !=''}
+					<input type="submit" class="button2 fr" value="Save As Draft"/>
+					{/if}
+                 </div><!-- end .rows -->   
+            </form>
+            </div><!-- end .col-content -->   
+        </div><!-- end .wrapper -->    
+    </div><!-- end #theform --> 
+</div><!-- end #theformpage -->
+{literal}
+ <script>
+ var id = $('.categorylist option:selected').val();
+$('.browsfile').click(function(e)
+ {
+	console.log($('.filimg').length);
+	console.log($('.myfile').length);
+	if($('.filimg').length < 3  )
+	{
+		console.log($('.filimg').length);
+		console.log('sss');
+		if(($('.myfile').length >1 && $('.myfile').length<=3) || ($('.browsfile').length >1 && $('.browsfile').length<=3 ))
+		{
+			$(".myfile:last").trigger('click');
+			thiss= $(".myfile:last");
+		}
+		else if($('.myfile').length==1)
+		{
+			$(".myfile").trigger('click');
+			thiss= $(".myfile");
+		}
+		else
+		{
+			
+			$(".upload_no").html('maximal upload 3 file');
+		}
+	}
+	else
+	{
+		$(".upload_no").html('maximal upload 3 file');
+	}
+	if($('.myfile').length<=3)
+	{
+		thiss.change(function(e)
+		 {
+		   
+			   e.preventDefault();
+				
+			    $(".upload_no").html('');
+			   if(this.files[0].type=='image/jpeg')
+				{
+					 var reader = new FileReader();
+					 reader.onload = function (ex) {
+						ex.preventDefault();
+						$('.browsfile').after(' <img width="50" class="filimg" hegiht="50" src="'+ex.target.result+'"> ');
+					  }
+				  reader.readAsDataURL(this.files[0]);
+				  $(this).after(' <input type="file" class="myfile" id="myfile" name="myfile[]" />');
+				  end;
+				}
+			   else if(this.files[0].type=='application/msword' || this.files[0].type=='application/vnd.openxmlformats-officedocument.wordprocessingml.document' )
+			   {
+				   $('.browsfile').after(' <img width="50" class="filimg" hegiht="50" src="'+basedomain+'assets/images/doc.png"> ');
+				   $(this).after(' <input type="file" class="myfile" id="myfile" name="myfile[]" />');
+				   end;
+			   }
+			   else if(this.files[0].type=='application/pdf')
+			   {
+				   $('.browsfile').after(' <img width="50" class="filimg" hegiht="50" src="'+basedomain+'assets/images/pdf.png"> ');
+				   $(this).after(' <input type="file" class="myfile" id="myfile" name="myfile[]" />');
+				    end;
+			   }
+			   else if(this.files[0].type=='application/vnd.openxmlformats-officedocument.presentationml.presentation')
+			   {
+					$('.browsfile').after(' <img width="50" class="filimg" hegiht="50" src="'+basedomain+'assets/images/ppt.png"> ');
+				   $(this).after(' <input type="file" class="myfile" id="myfile" name="myfile[]" />');
+				    end;
+			   
+			   }
+			   else
+			   {
+			   
+				 $(".upload_no").html('Sorry, we can only support JPG, PDF and WORD files');
+			   }
+			  
+			   
+				
+			   // $('browsfile')
+			   // $('.bg_home').attr('src', e.target.result);   
+
+		 });
+	 }
+ });
+ 
+	$.ajax ({
+				type	 : 'POST', 
+				url	 :  basedomain+'postjobs/ajaxsub' , 
+				data:{id:id},
+				dataType:'json',
+				success	: function (result) 
+				{ 
+					if(result.status==1)
+								{
+									$("#subcategory option").remove();
+									var str="";
+									$.each(result.data,function(kal,val){
+						
+										str +='<option value="'+val.id+'">'+val.name_subcategory+'</option>';
+										
+									});
+									
+									$('#subcategory').append(str);
+									$('.subcategory').selectpicker("refresh");
+								}
+				}
+			});
+$('#postjb').click(function(e)
+		{
+			e.preventDefault();
+			console.log($('.checkboxs:checked').length);
+			var title_no='.title_no';
+			$(title_no).html(' ');
+			var description_no='.description_no';
+			$(description_no).html(' ');
+			var requitment_no='.requitment_no';
+			$(requitment_no).html(' ');
+			var provincy_no='.provincy_no';
+			$(provincy_no).html(' ');
+			var city_no='.city_no';
+			$(city_no).html(' ');
+			
+			var endpublish_no='.endpublish_no';
+			$(endpublish_no).html(' ');
+			
+			var checkboxs_no='.checkboxs_no';
+			$(checkboxs_no).html(' ');
+			
+			var salary_no='.salary_no';
+			$(salary_no).html(' ');
+			var valid='';
+			
+			if($('.title').val()=='')
+			{
+				$(title_no).html('You cannot leave this field empty');
+				valid='ada';
+			}
+			if(tinymce.get('description').getContent()=='')
+			{
+				$(description_no).html('You cannot leave this field empty');
+				valid='ada';
+			}
+			if(tinymce.get('requitment').getContent()=='')
+			{
+				$(requitment_no).html('You cannot leave this field empty');
+				valid='ada';
+			}
+			if($('.provincy').val()=='')
+			{
+				$(provincy_no).html('You cannot leave this field empty');
+				valid='ada';
+			}
+			if($('.city').val()=='')
+			{
+				$(city_no).html('You cannot leave this field empty');
+				valid='ada';
+			}
+			if($('.endpublish').val()=='')
+			{
+				$(endpublish_no).html('You cannot leave this field empty');
+				valid='ada';
+			}
+			if($('.salary').val()=='')
+			{
+				$(salary_no).html('You cannot leave this field empty');
+				valid='ada';
+			}
+			if($('.checkboxs').find('.subcat:checked').length ==0)
+				{
+				
+					$(checkboxs_no).html('You cannot leave this field empty');
+					valid='ada';
+				}
+			if(valid)
+			{
+				return false;
+			
+			}
+			else
+			{
+				$('.postnya').val('1');
+				$('.saveasdraft').val('0');
+				
+				$('#forms').trigger('submit');
+			}
+		});
+$(function() {
+$( ".datepicker" ).datepicker();
+});
+</script>
+{/literal}
+<script>
+{literal}
+$('.provincy').change(function(){
+	var id = $('.provincy option:selected').val();
+	console.log(id);
+	$.ajax ({
+				type	 : 'POST', 
+				url	 :  basedomain+'postjobs/ajaxcity' , 
+				data:{id:id},
+				dataType:'json',
+				success	: function (result) 
+				{ 
+					if(result.status==1)
+								{
+									$("#city option").remove();
+									var str="";
+									$.each(result.data,function(kal,val){
+						
+										str +='<option value="'+val.city+'">'+val.city+'</option>';
+										
+									});
+									
+									$('#city').append(str);
+									$('.city').selectpicker("refresh");
+								}
+				}
+			});
+
+})
+
+$('.categorylist').change(function(){
+	var id = $('.categorylist option:selected').val();
+	console.log(id);
+	$.ajax ({
+				type	 : 'POST', 
+				url	 :  basedomain+'postjobs/ajaxsub' , 
+				data:{id:id},
+				dataType:'json',
+				success	: function (result) 
+				{ 
+					if(result.status==1)
+								{
+									$("#subcategory option").remove();
+									var str="";
+									$.each(result.data,function(kal,val){
+						
+										str +='<option value="'+val.id+'">'+val.name_subcategory+'</option>';
+										
+									});
+									
+									$('#subcategory').append(str);
+									$('.subcategory').selectpicker("refresh");
+								}
+				}
+			});
+
+})
+
+
+
+{/literal}
+</script>
+{literal}
+	<script>
+	tinymce.init({selector:'textarea',
+	
+	style_formats: [
+        {title: 'Bold text', inline: 'b'},
+        {title: 'Red text', inline: 'span', styles: {color: '#ff0000'}},
+        {title: 'Red header', block: 'h1', styles: {color: '#ff0000'}},
+        {title: 'Example 1', inline: 'span', classes: 'example1'},
+        {title: 'Example 2', inline: 'span', classes: 'example2'},
+        {title: 'Table styles'},
+        {title: 'Table row 1', selector: 'tr', classes: 'tablerow1'}
+    ],
+
+	 plugins: [
+        "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+        "searchreplace wordcount visualblocks visualchars code fullscreen",
+        "insertdatetime media nonbreaking save table contextmenu directionality",
+        "emoticons template paste textcolor colorpicker textpattern", "insertdatetime media table contextmenu paste jbimages"
+    ],
+    menubar : false,
+
+    toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+
+	image_advtab: true,
+
+	theme : "modern",
+	height: "100",
+    width:850
+	
+	});
+	
+
+	</script>
+{/literal}

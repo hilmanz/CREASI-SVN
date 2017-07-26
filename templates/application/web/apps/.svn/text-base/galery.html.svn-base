@@ -1,0 +1,283 @@
+<!-- ki -->
+<div class="page_section" id="project-page">
+    <div id="container">
+        <div class="titlebox">
+            <h2 class="fl"><span class="icon-books">&nbsp;</span> VIDEO IMAGE AND SOUND</h2>
+        
+        </div><!-- end .titlebox -->
+        <div class="content">
+            <div class="summary">
+           
+            </div><!-- end .summary -->
+
+            <form id="FormInput" class="forms" method="post" role="form" enctype="multipart/form-data">
+            <div id="new-project" class="boxcontent">
+              <h3>UPLOAD IMAGE</h3>
+			
+{literal}
+
+{/literal}
+ <img src="{$basedomain}assets/img/loading.gif" class="loading" style="display:none;">
+				<div class="row datatables">
+						<TABLE id="dataTable" width="350px" border="1">
+						<tr><th colspan="3"> Content </th></tr>
+						{if $load}
+						{section name=i loop=$load} 
+						<TR>
+							<TD><input type="checkbox"></TD>
+							<TD><input id="photo[]" name="photo[]" type="file" onchange='openFile(event,1)'  class="required mandatory okeh" okeh="okeh" value="{$load[i].nama}" >
+							<TD><img class='bg_home[]'  id='output1' class="sss" buatcount=1 width="189px" height="189px" src="{$basedomain}assets/gallery/photo_user/{$load[i].nama}"></img></TD>
+							</TD>
+						</TR>
+						{/section}
+						{else}
+						<TR>
+							<TD><input type="checkbox"></TD>
+							<TD><input id="photo[]" name="photo[]" type="file" onchange='openFile(event,1)'  class="required mandatory okeh" okeh="okeh"  >
+							<TD><img class='bg_home[]'  id='output1' class="sss" buatcount=1 width="189px" height="189px" ></img></TD>
+							</TD>
+						</TR>
+						
+						{/if}						
+						
+						</TABLE>	
+						
+							<INPUT type="button" value="Add Row" onclick="addRow('dataTable')" />
+							<INPUT type="button" value="Delete Row" onclick="deleteRow('dataTable')" />
+						</div>
+						<input type="submit" name="SAVE" value="SAVE GALERY KARYA" class="button4 submitnya">
+						<a href="{$basedomain}personal" class="button2 kembali" style="display:none;"> Kembali Ke personal </a>
+						
+				</form><br><br>
+				  
+				    <form id="forms" class="forms" method="post" action="{$basedomain}help/addhelp" enctype="multipart/form-data">
+					<div id="new-project" class="boxcontent">
+					<h3>UPLOAD YOUTUBE VIDEO</h3>
+                   
+                     <div id="new-project" class="boxcontent">
+                    <div class="row input_fields_wrap">
+                        <label for="name">Name<br></label>
+                       
+							<input type="text" id="thread_url" placeholder="Youtube link..." class="required mandatory video" countyoutube="1">
+						   <div class="row dynamicPreview">
+							<iframe  width="900" height="350" type="text/html" src=""  frameborder="0" style='display:none;'></iframe>
+						  </div><!-- end .row -->
+                    </div><!-- end .row -->
+					   </div><!-- end #wizard -->
+					<div class="row">
+					<a href="#" class="add_button">+ add</a>
+					</div>
+					
+           
+			  
+         
+					<div class="row">
+						<input type="hidden" name="submit" value="1">
+                        <input type="submit" value="SAVE" class="button3"  />
+						 <a href="{$basedomain}users" class="button4">CANCEL</a>
+                    </div>
+					</div><!-- end #wizard -->
+					</form>
+					
+						
+            </div><!-- end #wizard -->
+            
+        </div><!-- end .content -->
+    </div><!-- end #container -->
+</div><!-- end #home -->
+{literal}
+					<script type="text/javascript">
+				
+							
+							$('body').delegate('.video','keyup',function() {
+							
+							var x=document.getElementsByClassName("video")[0].getAttribute("countyoutube")
+							console.log(x);
+							var thiss =$(this);
+							$.post( basedomain+"galery/video", {url: $(this).val()})
+									   .done(function(data) {
+									   var json =data,
+									   obj = JSON.parse(json);
+											
+											if (obj.status==true)
+											{
+												var str="";
+													   {
+													   str+='<iframe  width="900" height="350" type="text/html" src="http://www.youtube.com/embed/'+obj.url+'"  frameborder="0"></iframe>';
+													   }
+											}
+										   
+									console.log(thiss.parent().find('.dynamicPreview'));
+										thiss.parent().find('.dynamicPreview').html(str);
+									 });
+
+							});
+					</script>
+{/literal}
+{literal}
+
+<script>
+
+$(document).ready(function() {
+    var max_fields      = 10; //maximum input boxes allowed
+    var wrapper         = $(".input_fields_wrap"); //Fields wrapper
+    var add_button      = $(".add_button"); //Add button ID
+   
+    var x = 1; //initlal text box count
+    $(add_button).click(function(e){ //on add input button click
+        e.preventDefault();
+        if(x < max_fields){ //max input box allowed
+            x++; //text box increment
+			var content='<div class="row"> <label for="name">ext <br></label><input id="thread_url" type="text" name="mytext[]" class="required mandatory video" countyoutube="'+x+'"/><a href="#" class="remove_field">Remove</a>';
+			content +='<div class="row dynamicPreview">';
+			content +='<iframe  width="900" height="350" type="text/html" src=""  frameborder="0" style="display:none;"></iframe>';
+			content +='</div></div>';
+			$(wrapper).append(content); //add input box
+        }
+    });
+   
+    $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
+        e.preventDefault(); $(this).parent('div').remove(); x--;
+    })
+});
+</script>
+
+<script>
+$().ready(function(){
+$("#FormInput").submit(function(){
+
+    var formData = new FormData($(this)[0]);
+
+    $.ajax({
+        url : ''+basedomain+'galery/addgallery',
+        type: 'POST',
+        data: formData,
+        async: false,
+		 beforeSend: function() {
+        // setting a timeout
+		$('.datatables').hide();
+		$('.submitnya').hide();
+		
+        $('.loading').show();
+    },
+        success: function (data) {
+		 $('.loading').hide();
+		 $('.datatables').hide();
+	     $('.berhasil').hide();
+		 $('.kembali').show();
+			
+
+        },
+        cache: false,
+        contentType: false,
+        processData: false
+    });
+
+    return false;
+	});
+});
+</script>
+
+
+<script>
+$(function(){
+    $(".okeh").change(loadPreviews_click);
+})
+
+function loadPreviews_click(e) {
+    $(".bg_home").each(function() {
+        var $input = $(this);
+        var inputFiles = this.files;
+        if(inputFiles == undefined || inputFiles.length == 0) return;
+        var inputFile = inputFiles[0];
+
+        var reader = new FileReader();
+        reader.onload = function(event) {
+            $input.next().attr("src", event.target.result);
+        };
+        reader.onerror = function(event) {
+            alert("I AM ERROR: " + event.target.error.code);
+        };
+        reader.readAsDataURL(inputFile);
+    });
+}
+
+
+</script>
+<SCRIPT language="javascript">
+        function addRow(tableID) {
+ 
+            var table = document.getElementById(tableID);
+ 
+            var rowCount = table.rows.length;
+			var i= rowCount;
+            var row = table.insertRow(rowCount);
+ 
+            var cell1 = row.insertCell(0);
+            var element1 = document.createElement("input");
+            element1.type = "checkbox";
+			element1.name="chkbox[]";
+			
+            cell1.appendChild(element1);
+ 
+            var cell2 = row.insertCell(1);
+			var element2 = document.createElement("input");
+            element2.type = "file";
+            element2.name="photo[]";
+			element2.setAttribute("id", "photo");
+			element2.setAttribute("onchange", "openFile(event,"+i+")");
+		
+            cell2.appendChild(element2);
+			
+			var cell3 = row.insertCell(2);
+			var element3 = document.createElement("img");
+            element3.setAttribute("buatcount",i);
+			element3.setAttribute("id", "output"+i);
+			element3.setAttribute("width", "189px");
+			element3.setAttribute("height", "189px");
+			
+            cell3.appendChild(element3);
+ 
+        }
+ 
+        function deleteRow(tableID) {
+            try {
+            var table = document.getElementById(tableID);
+            var rowCount = table.rows.length;
+ 
+            for(var i=0; i<rowCount; i++) {
+                var row = table.rows[i];
+                var chkbox = row.cells[0].childNodes[0];
+                if(null != chkbox && true == chkbox.checked) {
+                    table.deleteRow(i);
+                    rowCount--;
+                    i--;
+                }
+ 
+ 
+            }
+            }catch(e) {
+                alert(e);
+            }
+        }
+	
+	
+	var openFile = function(event,i) {
+
+	var target =i;
+	var keluarannya="output"+target;
+	console.log(target);
+	
+	 var input = event.target;
+     var reader = new FileReader();
+     reader.onload = function(){
+     var dataURL = reader.result;
+     var output = document.getElementById(keluarannya);
+     output.src = dataURL;
+    };
+    reader.readAsDataURL(input.files[0]);
+	
+  
+  };
+    </SCRIPT>
+{/literal}

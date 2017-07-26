@@ -1,0 +1,138 @@
+/*
+Theme Name:  CREASI
+Version: 1.0
+Author: Acit Jazz 2014
+*/
+body{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:14px;
+	margin:30px;
+	color:#000;
+}
+#wrapper{
+	max-width:500px;
+	margin:0 auto;
+    word-break: break-all;
+}
+.exp{
+	width:300px;
+    word-break: break-all;
+	display:block;
+}
+ hr { color: #c00; }
+.pagebreak{
+	page-break-before:always;
+}
+#header{
+	text-align:right;
+}
+.section-row{
+	border:solid 1px #ddd;
+	border-top:none;
+	display:table;
+	width:100%;
+}
+.rowdumbs{
+	border-bottom:solid 1px #ddd;
+}
+#photo{
+	width:150px;
+	margin:0 30px 0 0;
+	border:solid 2px #000;
+}
+#photo img{
+	width:100%;
+}
+#name h1,#name h2{
+	font-weight:normal;
+	margin:0;
+	padding:10px 0;
+}
+#name h1{
+	border-bottom:solid 1px #ddd;
+}
+.row{
+	border:solid 1px #ddd;
+	padding:20px;
+	margin:0 0 40px 0;
+}
+.row2{
+	padding:20px;
+	margin:0 0 40px 0;
+	border-bottom:solid 1px #ddd;
+	border-left:solid 1px #ddd;
+	border-right:solid 1px #ddd;
+}
+.titlerow{
+	color:#c00;
+	border-bottom:solid 1px #c00;
+	padding:0 0 10px 0;
+}
+.titlerow2{
+	color:#c00;
+	border-top:solid 1px #ddd;
+	border-left:solid 1px #ddd;
+	border-right:solid 1px #ddd;
+	padding:20px;
+}
+.titlerow2 h3{
+	border-bottom:solid 2px #c00;
+}
+.titlerow h3,.titlerow2 h3{
+	margin:0;
+}
+.content{
+	padding:20px 0;
+}
+.socialcontent img{
+	float:left;
+	margin:0 10px 0 0;
+}
+.socialcontent a{
+	color:#000;
+	display:block;
+	margin:20px 0;
+}
+.socialcontent span{
+	display:block;
+	line-height:40px;
+	float:left;
+}
+.universityname{
+	display:block;
+	font-size:12px;
+}
+.date{
+	color:#666;
+	font-size:12px;
+	margin:0 0 0 10px;
+}
+.labelname{
+	letter-spacing:3px;
+}
+.educontent li{
+	margin:0 0 20px 0;
+}
+@page {
+  margin: 1cm;
+  margin-top:2.5cm;
+  margin-bottom: 2.5cm;
+
+/* Header frame starts within margin-top of @page */
+  @frame header {
+  -pdf-frame-content: headerContent; /* headerContent is the #id of the element */
+  top: 1cm;
+  margin-left: 1cm;
+  margin-right:1cm;
+  height:1cm;
+  }
+
+/* Footer frame starts outside margin-bottom of @page */
+  @frame footer {
+    -pdf-frame-content: footerContent;
+    bottom: 2cm;
+    margin-left: 1cm;
+    margin-right: 1cm;
+    height: 1cm;
+  }
+}

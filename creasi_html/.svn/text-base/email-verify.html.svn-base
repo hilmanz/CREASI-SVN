@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Email Verify</title>
+</head>
+
+<body>
+<div style="max-width:600px; margin:0 auto; font-size:14px; font-family:Arial, Helvetica, sans-serif;">
+	<h1 style="color:#c00; margin:20px 0 0 0; text-align:center;">Creasi.co.id</h1>
+    <h3 style="margin:0 0 40px 0; font-size:14px; border-bottom:solid 3px #c00; padding:0 0 20px 0; text-align:center;">Website-nya orang kreatif mencari kerja</h3>
+    <p style="margin:0;"><strong style="font-size:18px;">Hello Kevin,</strong></p>
+    <p style="font-size:18px;"><strong>Thank you for joining <a style="color:#c00;" href="http://creasi.co.id" target="_blank">Creasi.co.id</a></strong></p>
+    <p>You must verify your email by clicking the verify button below.</p>
+    <a href="#" style="display:block; width:80px; margin:30px auto; line-height:40px; border:solid 2px #c00; border-radius:10px; text-align:center; color:#c00; text-decoration:none; font-size:18px;">Verify</a>
+    <p><strong>Warm regards,</strong></p>
+    <p style="border-bottom:dashed 3px #c00; padding:0 0 40px 0; margin:0 0 40px 0;"><a style="color:#c00;" href="http://creasi.co.id" target="_blank">Creasi.co.id</a><br />
+    Customer Relations Team<br />
+    telp. (+62)21 7050 8952/53<br />
+    email : info@creasi.co.id</p>
+    <p style="margin:0;"><strong style="font-size:18px;">Halo Kevin,</strong></p>
+    <p style="font-size:18px;"><strong>Terima kasih sudah bergabung di  <a style="color:#c00;" href="http://creasi.co.id" target="_blank">Creasi.co.id</a></strong></p>
+    <p>Kamu harus melakukan verifikasi dengan cara klik tombol verifikasi.</p>
+    <a href="#" style="display:block; width:80px; margin:30px auto; line-height:40px; border:solid 2px #c00; border-radius:10px; text-align:center; color:#c00; text-decoration:none; font-size:18px;">Verify</a>
+    <p><strong>Salam hangat,</strong></p>
+    <p style="border-bottom:dashed 3px #c00; padding:0 0 40px 0; margin:0 0 40px 0;"><a style="color:#c00;" href="http://creasi.co.id" target="_blank">Creasi.co.id</a><br />
+    Customer Relations Team<br />
+    telp. (+62)21 7050 8952/53<br />
+    email : info@creasi.co.id</p>
+    <div style="text-align:center; margin:0 0 50px 0;">
+    	<a href="#" style="margin:0 10px;"><img src="images/facebook.png" /></a>
+    	<a href="#" style="margin:0 10px;"><img src="images/twitter.png" /></a>
+    	<a href="#" style="margin:0 10px;"><img src="images/instagram.png" /></a>
+    	<a href="#" style="margin:0 10px;"><img src="images/email.png" /></a>
+    	<p style="margin:20px 0;">COPYRIGHT © 2015 PT. KREATIF IDEOLOGI, ALL RIGHTS RESERVED.</p>
+        <a href="#" style="color:#000; text-transform:uppercase;">Unsubscribe</a>
+    </div>
+</div>
+</body>
+</html>

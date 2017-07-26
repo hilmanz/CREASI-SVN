@@ -1,0 +1,52 @@
+{literal}
+	<script>
+	tinymce.init({selector:'.textarea2',
+	plugins: "paste,table",
+	menubar: "false",
+    toolbar1: "bold italic underline strikethrough  alignleft aligncenter alignright alignjustify  styleselect formatselect fontselect fontsizeselect",
+    toolbar2: "cut copy paste | bullist numlist | outdent indent blockquote | undo redo | anchor | forecolor backcolor | table ",
+	theme : "modern",
+	height: "100",
+    width:900
+	
+	});
+	</script>
+{/literal}
+<div class="page_section" id="project-page">
+    <div id="container">
+        <div class="titlebox">
+            <h2 class="fl"><span class="icon-newspaper">&nbsp;</span> Edit FAQ</h2>
+            {*}<h2 class="fr"><a href="{$basedomain}faqcms" class="button2">Back</a></h2>{/*}
+        </div><!-- end .titlebox -->
+        <div class="content">
+            <div class="summary">
+            </div><!-- end .summary -->
+
+            <form id="forms" class="forms" method="post" action="" enctype="multipart/form-data">
+
+            <div id="new-project" class="boxcontent">
+                <section class="step1">
+                    <div class="row">
+                        <label style="max-width:55px;" for="title">Title<br></label>
+                        <input id="title" name="title" type="text" value="{$load.title}" class="required mandatory" ><br><label class="msg_name" style="color: red;">{$status.msgpr}</label>
+                    </div><!-- end .row -->
+					
+					<div class="row">
+						<label for="Date">Description 	:<br></label>
+					    <textarea   name="description"  class="required mandatory textarea2"   style="width: 616px; height: 130px;">{$load.description}</textarea><br>
+						<label class="msg_name" style="color: red;">{$Description_no}</label>
+                    </div>
+                     <input type="hidden" name="id" value="{$load.id}">
+                    <input type="hidden" name="submit" value="1">
+                        <input type="submit" value="Save" class="fr button3"  />
+						 <a href="{$basedomain}faqcms" class="button4 fr">Cancel</a>
+                        <small class="msg">{$status.msgee}</small>
+                        <small class="msg">{$status.msg}</small>
+                    </div><!-- end .row -->
+                </section>
+            </div><!-- end #wizard -->
+		
+            </form>
+        </div><!-- end .content -->
+    </div><!-- end #container -->
+</div><!-- end #home -->

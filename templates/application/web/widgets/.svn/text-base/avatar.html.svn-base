@@ -1,0 +1,72 @@
+<!-- Avatar Modal -->
+				<div class="ip-modal" id="avatarModal">
+					<div class="ip-modal-dialog">
+						<div class="ip-modal-content">
+							<div class="ip-modal-header">
+								<a class="ip-close" title="Close">x</a>
+								<h4 class="ip-modal-title">Change your profile picture</h4>
+							</div>
+							<div class="ip-modal-body">
+								<div class="btn btn-primary ip-upload">Upload <input type="file" name="file" class="ip-file"></div>
+								<button type="button" class="btn btn-primary ip-webcam">Webcam</button>
+								
+								
+								<div class="alert ip-alert"></div>
+								<div class="ip-info">To crop this image, drag a region below and then click "Save Image"</div>
+								<div class="ip-preview"></div>
+								<div class="ip-rotate">
+									<button type="button" class="btn btn-default ip-rotate-ccw" title="Rotate counter-clockwise"><i class="icon-ccw"></i></button>
+									<button type="button" class="btn btn-default ip-rotate-cw" title="Rotate clockwise"><i class="icon-cw"></i></button>
+								</div>
+								<div class="ip-progress">
+									<div class="text">Uploading</div>
+									<div class="progress active"><div class="progress-bar progress-bar-danger progress-bar-striped"></div></div>
+								</div>
+							</div>
+							<div class="ip-modal-footer">
+								<div class="ip-actions" >
+									<button type="button" class="btn button1 ip-save" style="display:none;">Save Image</button>
+									<button type="button" class="btn btn-primary ip-capture" style="display:none;">Capture</button>
+									<button type="button" class="btn button2 ip-cancel" style="display:none;">Cancel</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- end Modal -->
+				<!-- Header Modal -->
+	<div class="ip-modal" id="headerModal">
+		<div class="ip-modal-dialog">
+			<div class="ip-modal-content">
+				<div class="ip-modal-header">
+					<a class="ip-close" title="Close">x</a>
+					<h4 class="ip-modal-title">Change cover</h4>
+				</div>
+				<div class="ip-modal-body">
+					<div class="btn btn-primary ip-upload">Upload <input type="file" name="file" class="ip-file"></div>
+					<!-- <button type="button" class="btn btn-primary ip-webcam">Webcam</button> -->
+					
+					
+					<div class="alert ip-alert"></div>
+					<div class="ip-info">To crop this image, drag a region below and then click "Save Image"</div>
+					<div class="ip-preview"></div>
+					<div class="ip-rotate">
+						<button type="button" class="btn btn-default ip-rotate-ccw" title="Rotate counter-clockwise"><i class="icon-ccw"></i></button>
+						<button type="button" class="btn btn-default ip-rotate-cw" title="Rotate clockwise"><i class="icon-cw"></i></button>
+					</div>
+					<div class="ip-progress">
+						<div class="text">Uploading</div>
+						<div class="progress active"><div class="progress-bar progress-bar-danger progress-bar-striped"></div></div>
+					</div>
+				</div>
+				<div class="ip-modal-footer">
+					<div class="ip-actions">
+						<button type="button" class="btn button1 ip-save" style="display:none;">Save Image</button>
+                        <button type="button" class="btn button2 ip-cancel" style="display:none;">Cancel</button>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end Modal -->

@@ -1,0 +1,482 @@
+<script type="text/javascript">
+{literal}
+$(document).ready(function() {
+	$("div.pagings").jPages({
+	    containerID : "school_list",
+	    perPage: 10,
+		  first       : "first",
+        previous    : escape(" \&#60;&#60; previous"),
+        next        : "next",
+        last        : "last"
+  	});
+	$('.paging a').click(function(){
+    $("html, body").animate({ scrollTop: 0 }, 600);
+	});
+	$('.satu').click(function()
+	{
+		
+		$('.kedua').hide();
+		$('.kesatu').show();
+		$('.paging').find(".current").removeClass();
+		$(this).addClass("current");
+		console.log('aaa');
+	});
+	$('.dua').click(function()
+	{
+		$('.kedua').show();
+		$('.kesatu').hide();
+		$('.paging').find(".current").removeClass();
+		$(this).addClass("current");
+	});
+});
+{/literal}
+</script>
+
+<div class="page_section" id="SchoolDirectory">
+    <div id="metapage">
+        <div class="wrapper">
+            <h1 class="page-title fl">School Directory</h1>
+            <div class="breadcumb fr">
+                  <a href="{$basedomain}home/">Home</a> <span>/</span> <a href="">School Directory</a>
+            </div>
+        </div><!-- end .wrapper -->   
+    </div><!-- end #metapage -->
+    <div id="popularTalents" class="section"> 
+        <div class="wrapper"> 
+        	<div class="blockwrapper" id="school-directory">
+                    <div class="titleboxs">   
+                        <h2>School <span class="red">Directory</span></h2>
+                    </div><!-- end .titlebox -->
+                    <ul id="school_list"  class="kesatu">
+						<li>
+							<div class="rowarticle"> 
+								<div class="pressthumb">
+									<a href="http://www.ajielubisschool.com" target="_blank"><img src="{$basedomain}assets/content/adjieLubis.png" /></a>
+								</div>
+								<div class="pressentry">
+									<div class="entry-summary">
+										<div class="press-title">
+											<h3><a href="http://www.ajielubisschool.com" target="_blank">Ajie Lubis School of Photography</a></h3>
+											<div class="meta-post">
+											   <a  class="sumber">Jl. Raya Gading Batavia LC-10 No. 02, Kelapa Gading, Jakarta</a><br />                                  
+											   <a class="schoolcat"><strong>Category: Photographer</strong></a>
+											</div>
+										</div><!-- end .entry-title -->
+										<a href="http://www.ajielubisschool.com" class="readmore" target="_blank">WEBSITE</a>
+									</div><!-- end .entry-summary -->   
+									<div class="summary-right">
+										<p>Website: http://www.ajielubisschool.com<br />
+										Telp: 021 - 4584 8476	<br />
+										Fax: 021 - 4585 4432<br />
+										Email: info@ajielubisschool.com</p>
+									</div>
+								</div><!-- end .pressentry -->    
+							</div><!-- end .rowarticle -->
+						</li>
+						<li>
+							<div class="rowarticle"> 
+								<div class="pressthumb">
+									<a href="http://darwistriadischoolofphotography.com" target="_blank"><img src="{$basedomain}assets/content/darwistriadi.png" /></a>
+								</div>
+								<div class="pressentry">
+									<div class="entry-summary">
+										<div class="press-title">
+											<h3><a href="http://darwistriadischoolofphotography.com" target="_blank">Darwis Triadi School of Photography</a></h3>
+											<div class="meta-post">
+											   <a  class="sumber">Jl. Pattimura No. 2 Kebayoran Baru, Jakarta selatan</a><br />                                  
+											   <a  class="schoolcat"><strong>Category: Photographer</strong></a>
+											</div>
+										</div><!-- end .entry-title -->
+										<a href="http://darwistriadischoolofphotography.com" class="readmore" target="_blank">WEBSITE</a>
+									</div><!-- end .entry-summary -->   
+									<div class="summary-right">
+										<p>Website: http://darwistriadischoolofphotography.com<br />
+										Telp: 021 - 722 0630	<br />
+										Fax: 021 - 726 0925<br />
+										Email: Darwis_triadi_school@yahoo.com</p>
+									</div>
+								</div><!-- end .pressentry -->    
+							</div><!-- end .rowarticle --> 
+						</li>
+						<li>
+							<div class="rowarticle"> 
+								<div class="pressthumb">
+									<a href="http://gigiartofdance.com" target="_blank"><img src="{$basedomain}assets/content/gigi.png" /></a>
+								</div>
+								<div class="pressentry">
+									<div class="entry-summary">
+										<div class="press-title">
+											<h3><a href="http://gigiartofdance.com" target="_blank">GIGI Art of Dance</a></h3>
+											<div class="meta-post">
+											   <a  class="sumber">Jl. Radio Dalam Raya, no 191 - 17, Jakarta Selatan</a><br />                                  
+											   <a  class="schoolcat"><strong>Category: Dancer</strong></a>
+											</div>
+										</div><!-- end .entry-title -->
+										<a href="http://gigiartofdance.com" class="readmore" target="_blank">WEBSITE</a>
+									</div><!-- end .entry-summary -->   
+									<div class="summary-right">
+										<p>Website: gigiartofdance.com<br />
+										Telp/Fax: 021 - 7399711	<br />
+										Email: gaod.gigiartofdance@gmail.com</p>
+									</div>
+								</div><!-- end .pressentry -->    
+							</div><!-- end .rowarticle -->
+						</li>
+						<li>
+							<div class="rowarticle"> 
+								<div class="pressthumb">
+									<a href="http://www.idseducation.com" target="_blank"><img src="{$basedomain}assets/content/ids.png" /></a>
+								</div>
+								<div class="pressentry">
+									<div class="entry-summary">
+										<div class="press-title">
+											<h3><a href="http://www.idseducation.com" target="_blank">IDS (Internasional Design School)</a></h3>
+											<div class="meta-post">
+											   <a  class="sumber">Jl. Warung Jati Barat No. 98, Pejaten Barat, Jakarta Selatan</a><br />                                  
+											   <a  class="schoolcat"><strong>Category: Visual Designer & Film/ TV/Video Production</strong></a>
+											</div>
+										</div><!-- end .entry-title -->
+										<a href="http://www.idseducation.com" class="readmore" target="_blank">WEBSITE</a>
+									</div><!-- end .entry-summary -->   
+									<div class="summary-right">
+										<p>Website: www.idseducation.com<br />
+										Telp: 021 - 566 778 99	<br />
+										Email: info@idsEducation.com</p>
+									</div>
+								</div><!-- end .pressentry -->    
+							</div><!-- end .rowarticle -->
+						</li>
+						<li>
+							<div class="rowarticle"> 
+								<div class="pressthumb">
+									<a href="http://www.stmbi.ac.id" target="_blank"><img src="{$basedomain}assets/content/imi.png" /></a>
+								</div>
+								<div class="pressentry">
+									<div class="entry-summary">
+										<div class="press-title">
+											<h3><a href="http://www.stmbi.ac.id" target="_blank">IMI (Institut Musik Indonesia)</a></h3>
+											<div class="meta-post">
+											   <a  class="sumber">Basuki Building, Jl. Pulo Lentut No. 2 , Jakarta Timur</a><br />                                  
+											   <a  class="schoolcat"><strong>Category: Musician</strong></a>
+											</div>
+										</div><!-- end .entry-title -->
+										<a href="http://www.stmbi.ac.id" class="readmore" target="_blank">WEBSITE</a>
+									</div><!-- end .entry-summary -->   
+									<div class="summary-right">
+										<p>Website: www.stmbi.ac.id<br />
+										Telp: 021 - 4603747	<br />
+										Fax: 021 - 4603744<br />
+										Email: info@stmbi.ac.id</p>
+									</div>
+								</div><!-- end .pressentry -->    
+							</div><!-- end .rowarticle --> 
+						</li>
+						<li>
+							<div class="rowarticle"> 
+								<div class="pressthumb">
+									<a href="http://www.imbindonesia.com" target="_blank"><img src="{$basedomain}assets/content/istitutoburgo.png" /></a>
+								</div>
+								<div class="pressentry">
+									<div class="entry-summary">
+										<div class="press-title">
+											<h3><a href="http://www.imbindonesia.com" target="_blank">Istituto Di Moda Burgo Indonesia</a></h3>
+											<div class="meta-post">
+											   <a  class="sumber">The Bellagio Mall, unit OL #14-16, Kawasan Mega Kuningan Barat Kav E4.3 - Kuningan Timur, Setia Budi, Jakarta Selatan</a><br />                                  
+											   <a  class="schoolcat"><strong>Category: Fashion Designer</strong></a>
+											</div>
+										</div><!-- end .entry-title -->
+										<a href="http://www.imbindonesia.com" class="readmore" target="_blank">WEBSITE</a>
+									</div><!-- end .entry-summary -->   
+									<div class="summary-right">
+										<p>Website: www.imbindonesia.com<br />
+										Telp/Fax: 021 - 30020932	<br />
+										Email: info@imbindonesia.com</p>
+									</div>
+								</div><!-- end .pressentry -->    
+							</div><!-- end .rowarticle -->
+						</li>
+						<li>
+							<div class="rowarticle"> 
+								<div class="pressthumb">
+									<a href="http://oqmodellingschool.com" target="_blank"><img src="{$basedomain}assets/content/oqmodel.png" /></a>
+								</div>
+								<div class="pressentry">
+									<div class="entry-summary">
+										<div class="press-title">
+											<h3><a href="http://oqmodellingschool.com" target="_blank">OQ Modelling School</a></h3>
+											<div class="meta-post">
+											   <a  class="sumber">Ruko Sentra Menteng, Blok MN No. 65, Sektor 7 Bintaro Jaya, Tangerang Selatan</a><br />                                  
+											   <a  class="schoolcat"><strong>Category: Model</strong></a>
+											</div>
+										</div><!-- end .entry-title -->
+										<a href="http://oqmodellingschool.com" class="readmore" target="_blank">WEBSITE</a>
+									</div><!-- end .entry-summary -->   
+									<div class="summary-right">
+										<p>Website: http://oqmodellingschool.com<br />
+										Telp/Fax:  021 - 74863901	<br />
+										Email: oqmodelingbintaro@yahoo.co.id</p>
+									</div>
+								</div><!-- end .pressentry -->    
+							</div><!-- end .rowarticle -->
+						</li>
+						<li> 
+							<div class="rowarticle"> 
+								<div class="pressthumb">
+									<a href="http://plotpoint.co" target="_blank"><img src="{$basedomain}assets/content/plotpoint.png" /></a>
+								</div>
+								<div class="pressentry">
+									<div class="entry-summary">
+										<div class="press-title">
+											<h3><a href="http://plotpoint.co" target="_blank">PlotPoint</a></h3>
+											<div class="meta-post">
+											   <a  class="sumber">Jln. Puri Mutiara II No. 7, Jakarta</a><br />                                  
+											   <a  class="schoolcat"><strong>Category: Writer</strong></a>
+											</div>
+										</div><!-- end .entry-title -->
+										<a href="http://plotpoint.co" class="readmore" target="_blank">WEBSITE</a>
+									</div><!-- end .entry-summary -->   
+									<div class="summary-right">
+										<p>Website: http://plotpoint.co/<br />
+										Telp: 021 - 75902920	<br />
+										Email: info@plotpointkreatif.com</p>
+									</div>
+								</div><!-- end .pressentry -->    
+							</div><!-- end .rowarticle --> 
+						</li>
+						<li>
+							<div class="rowarticle"> 
+								<div class="pressthumb">
+									<a href="http://www.raffles-indonesia.com" target="_blank"><img src="{$basedomain}assets/content/rafflesLog.png" /></a>
+								</div>
+								<div class="pressentry">
+									<div class="entry-summary">
+										<div class="press-title">
+											<h3><a href="http://www.raffles-indonesia.com" target="_blank">Raffles Institude of Higher Education</a></h3>
+											<div class="meta-post">
+											   <a  class="sumber">Citywalk Sudirman 6th floor Jl. K.H. Mas Mansyur No.121 Jakarta 10220</a><br />                                  
+											   <a  class="schoolcat"><strong>Category: Designer</strong></a>
+											</div>
+										</div><!-- end .entry-title -->
+										<a href="http://www.raffles-indonesia.com" class="readmore" target="_blank">WEBSITE</a>
+									</div><!-- end .entry-summary -->   
+									<div class="summary-right">
+										<p>Website: http://www.raffles-indonesia.com<br />
+										Telp/Fax: 021 - 25556738	<br />
+										Email: jakarta@rafflesindonesia.com</p>
+									</div>
+								</div><!-- end .pressentry -->    
+							</div><!-- end .rowarticle -->
+						</li>
+						<li>
+							<div class="rowarticle"> 
+								<div class="pressthumb">
+									<a href="http://rudyhadisuwarno.co.id" target="_blank"><img src="{$basedomain}assets/content/rudi.png" /></a>
+								</div>
+								<div class="pressentry">
+									<div class="entry-summary">
+										<div class="press-title">
+											<h3><a href="http://rudyhadisuwarno.co.id" target="_blank">Rudi Hadisuwarno Professional Modelling School</a></h3>
+											<div class="meta-post">
+											   <a  class="sumber">Jl Lengkong Kecil No.16C Bandung </a><br />                                  
+											   <a  class="schoolcat"><strong>Category: Model</strong></a>
+											</div>
+										</div><!-- end .entry-title -->
+										<a href="http://rudyhadisuwarno.co.id" class="readmore" target="_blank">WEBSITE</a>
+									</div><!-- end .entry-summary -->   
+									<div class="summary-right">
+										<p>Website: http://rudyhadisuwarno.co.id<br />
+										Telp/Fax: 022 - 4202041	<br />
+										Email: rudycare@rudyhadisuwarno.co.id</p>
+									</div>
+								</div><!-- end .pressentry -->    
+							</div><!-- end .rowarticle -->
+						</li>
+					</ul>
+					 <ul id="school_list" class="kedua" style="display:none">
+						<li>
+							<div class="rowarticle"> 
+								<div class="pressthumb">
+									<a href="http://www.sjm.sch.id" target="_blank"><img src="{$basedomain}assets/content/sekolahJurnalis.png" /></a>
+								</div>
+								<div class="pressentry">
+									<div class="entry-summary">
+										<div class="press-title">
+											<h3><a href="http://www.sjm.sch.id" target="_blank">Sekolah Jurnalistik dan Multimedia</a></h3>
+											<div class="meta-post">
+											   <a  class="sumber">Komplek Perkantoran Mitra Matraman Blok B-21, Jakarta Timur</a><br />                                  
+											   <a  class="schoolcat"><strong>Category: Film/ TV/Video Production & Visual Designer</strong></a>
+											</div>
+										</div><!-- end .entry-title -->
+										<a href="http://www.sjm.sch.id" class="readmore" target="_blank">WEBSITE</a>
+									</div><!-- end .entry-summary -->   
+									<div class="summary-right">
+										<p>Website: www.sjm.sch.id<br />
+										Telp: 087788778585	<br />
+										Email: sjmfile@gmail.com</p>
+									</div>
+								</div><!-- end .pressentry -->    
+							</div><!-- end .rowarticle -->
+						</li>
+						<li>
+							<div class="rowarticle"> 
+								<div class="pressthumb">
+									<a href="http://http://sekolahpoppy.net84.net" target="_blank"><img src="{$basedomain}assets/content/sekolahnyapoppy.png" /></a>
+								</div>
+								<div class="pressentry">
+									<div class="entry-summary">
+										<div class="press-title">
+											<h3><a href="http://http://sekolahpoppy.net84.net" target="_blank">Sekolah Mode Poppy Dharsono</a></h3>
+											<div class="meta-post">
+											   <a  class="sumber">Jl Bumi No.50 (Majestik), Kebayoran Baru, Jakarta Selatan</a><br />                                  
+											   <a  class="schoolcat"><strong>Category: Fashion Designer</strong></a>
+											</div>
+										</div><!-- end .entry-title -->
+										<a href="http://sekolahpoppy.net84.net" class="readmore" target="_blank">WEBSITE</a>
+									</div><!-- end .entry-summary -->   
+									<div class="summary-right">
+										<p>Website: http://sekolahpoppy.net84.net<br />
+										Telp/Fax: 021 - 92996737	<br />
+										Email:</p>
+									</div>
+								</div><!-- end .pressentry -->    
+							</div><!-- end .rowarticle -->
+						</li>
+						<li>
+							<div class="rowarticle"> 
+								<div class="pressthumb">
+									<a href="http://www.sekolahmusikindonesia.co.id" target="_blank"><img src="{$basedomain}assets/content/sekolahmusik.png" /></a>
+								</div>
+								<div class="pressentry">
+									<div class="entry-summary">
+										<div class="press-title">
+											<h3><a href="http://www.sekolahmusikindonesia.co.id" target="_blank">Sekolah Musik Indonesia</a></h3>
+											<div class="meta-post">
+											   <a  class="sumber">Jl. Alam Sutera Boulevard Ruko Town Square 10C no.39-42, Alam Sutera, Serpong, Tangerang</a><br />                                  
+											   <a  class="schoolcat"><strong>Category: Musician</strong></a>
+											</div>
+										</div><!-- end .entry-title -->
+										<a href="http://www.sekolahmusikindonesia.co.id" class="readmore" target="_blank">WEBSITE</a>
+									</div><!-- end .entry-summary -->   
+									<div class="summary-right">
+										<p>Website: http://www.sekolahmusikindonesia.co.id<br />
+										Telp/Fax: 021 - 29211496	<br />
+										Email: info@sekolahmusikindonesia.co.id</p>
+									</div>
+								</div><!-- end .pressentry -->    
+							</div><!-- end .rowarticle -->
+						</li>
+						<li>
+							<div class="rowarticle"> 
+								<div class="pressthumb">
+									<a href="http://www.interstudi.edu/" target="_blank"><img src="{$basedomain}assets/content/interstudi.png" /></a>
+								</div>
+								<div class="pressentry">
+									<div class="entry-summary">
+										<div class="press-title">
+											<h3><a href="http://www.interstudi.edu" target="_blank">Sekolah Tinggi Design Interstudi (STDI)</a></h3>
+											<div class="meta-post">
+											   <a  class="sumber">Jl. Bulungan Raya no.6 Kebayoran Baru - Jakarta Selatan</a><br />                                  
+											   <a  class="schoolcat"><strong>Category: Visual Designer & Fashion Designer</strong></a>
+											</div>
+										</div><!-- end .entry-title -->
+										<a href="http://www.interstudi.edu/" class="readmore" target="_blank">WEBSITE</a>
+									</div><!-- end .entry-summary -->   
+									<div class="summary-right">
+										<p>Website: www.interstudi.edu<br />
+										Telp: 021 - 7250437 	<br />
+										Fax: 021 - 7258273<br />
+										Email: </p>
+									</div>
+								</div><!-- end .pressentry -->    
+							</div><!-- end .rowarticle -->
+						</li>
+						<li>
+							<div class="rowarticle"> 
+								<div class="pressthumb">
+									<a href="http://smkn1depok.sch.id" target="_blank"><img src="{$basedomain}assets/content/smkdepok1.png" /></a>
+								</div>
+								<div class="pressentry">
+									<div class="entry-summary">
+										<div class="press-title">
+											<h3><a href="http://smkn1depok.sch.id" target="_blank">SMKN 1 Depok</a></h3>
+											<div class="meta-post">
+											   <a  class="sumber">Jalan Tapos Raya No.100, Tapos, Depok, Jawa Barat</a><br />                                  
+											   <a  class="schoolcat"><strong>Category: Film/ TV/Video Production & Editor</strong></a>
+											</div>
+										</div><!-- end .entry-title -->
+										<a href="http://smkn1depok.sch.id" class="readmore" target="_blank">WEBSITE</a>
+									</div><!-- end .entry-summary -->   
+									<div class="summary-right">
+										<p>Website: http://smkn1depok.sch.id<br />
+										Telp/Fax: 021 - 87907233	<br />
+										Email:</p>
+									</div>
+								</div><!-- end .pressentry -->    
+							</div><!-- end .rowarticle -->
+						</li>
+						<li>
+							<div class="rowarticle"> 
+								<div class="pressthumb">
+									<a href="http://www.s-s-r.com/" target="_blank"><img src="{$basedomain}assets/content/ssrLog.png" /></a>
+								</div>
+								<div class="pressentry">
+									<div class="entry-summary">
+										<div class="press-title">
+											<h3><a href="http://www.s-s-r.com/" target="_blank">SSR (School of Sound & Recording)</a></h3>
+											<div class="meta-post">
+											   <a  class="sumber">Royal Mediterania Garden, Lavender Tower (RL) 2nd Floor, Jakarta Barat</a><br />                                  
+											   <a  class="schoolcat"><strong>Category: Film/ TV/Video Production & Musician</strong> </a>
+											</div>
+										</div><!-- end .entry-title -->
+										<a href="http://www.s-s-r.com/" class="readmore" target="_blank">WEBSITE</a>
+									</div><!-- end .entry-summary -->   
+									<div class="summary-right">
+										<p>Website: http://www.s-s-r.com/<br />
+										Telp: 021 - 29335678	<br />
+										Fax: 021 - 29335682<br />
+										Email: info@ssrjakarta.com</p>
+									</div>
+								</div><!-- end .pressentry -->    
+							</div><!-- end .rowarticle -->
+						</li>
+						<li>
+							<div class="rowarticle"> 
+								<div class="pressthumb">
+									<a href="http://skenario.org" target="_blank"><img src="{$basedomain}assets/content/serunya.png" /></a>
+								</div>
+								<div class="pressentry">
+									<div class="entry-summary">
+										<div class="press-title">
+											<h3><a href="http://skenario.org" target="_blank">Serunya Screenwriting</a></h3>
+											<div class="meta-post">
+											   <a  class="sumber">Jalan Tebet Barat Dalam III A, Jakarta Selatan</a><br />                                  
+											   <a  class="schoolcat"><strong>Category: Writer</strong> </a>
+											</div>
+										</div><!-- end .entry-title -->
+										<a href="http://skenario.org" class="readmore" target="_blank">WEBSITE</a>
+									</div><!-- end .entry-summary -->   
+									<div class="summary-right">
+										<p>Website: skenario.org<br />
+										Telp/Fax: 021 - 9700 7900	<br />
+										Email: serunyaserunya@yahoo.com</p>
+									</div>
+								</div><!-- end .pressentry -->    
+							</div><!-- end .rowarticle -->
+						</li>
+                    </ul><!--end.Pagination-->
+                   
+                 <div id="paging_dir" class="row-paging">
+                    <div class="paging">
+                    	<a class=" satu" ><< First</a>
+                    	<a class="satu" ><</a>
+                    	<a class="current satu">1</a>
+                    	<a class="dua">2</a>
+                    	<a class="dua" >></a>
+                    	<a class="dua">Last >></a>
+                    </div>
+                </div>
+            </div><!-- end .col-content -->   
+        </div><!-- end .wrapper -->    
+    </div><!-- end #popularTalents --> 
+</div><!-- end #talentBoard -->
+

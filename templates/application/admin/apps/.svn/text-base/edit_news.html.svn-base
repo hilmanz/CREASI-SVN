@@ -1,0 +1,251 @@
+{literal}
+<script type="text/javascript">
+tinymce.init({
+    selector: ".textarea2",
+	plugins: "paste",
+    theme: "modern",
+	menubar:false,
+	statusbar:false,
+	file_browser_callback : 'myFileBrowser',
+
+    plugins: [
+        "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+        "searchreplace wordcount visualblocks visualchars code fullscreen",
+        "insertdatetime media nonbreaking save table contextmenu directionality",
+        "emoticons template paste textcolor colorpicker textpattern"
+    ],
+    toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+    toolbar2: "print preview media | forecolor backcolor emoticons",
+    image_advtab: true,
+    templates: [
+        {title: 'Test template 1', content: 'Test 1'},
+        {title: 'Test template 2', content: 'Test 2'}
+    ]
+});
+</script>
+
+{/literal}
+<div class="page_section" id="project-page">
+    <div id="container">
+        <div class="titlebox">
+            <h2 class="fl"><span class="icon-images">&nbsp;</span> Edit News Perss & Banner</h2>
+            {*}<h2 class="fr"><a href="{$basedomain}contentmanagement" class="button2">Back</a></h2>{/*}
+        </div><!-- end .titlebox -->
+		<div class="row">
+        <label class="msg_name warning" style="color: red;">{$warning}</label>
+        </div><!-- end .row -->
+        <div class="content">
+            <div class="summary">
+            </div><!-- end .summary -->
+
+            <form id="forms" class="forms" method="post" action="" enctype="multipart/form-data">
+            <div id="new-project" class="boxcontent">
+               
+				<div class="row">
+					<label for="Date">Select Category 	:<br></label></label>
+					
+						<select name="category" class="categoryclass">
+						<option  disabled="disabled" >-- Choise One --</option>
+						<option value="1"  {if $list.category==1} selected="selected" {else} disabled="disabled" {/if} >Pers</option>
+						<option value="2"  {if $list.category==2} selected="selected" {else} disabled="disabled" {/if} >News</option>
+						<option value="3"  {if $list.category==3} selected="selected" {else} disabled="disabled" {/if}>Banner</option>
+						</select>
+				</div>
+				 <section class="step1">
+                    <div class="row">
+                        <label for="title">Title<br></label>
+						 <input id="id" name="id" type="hidden" value="{$list.id}" >
+                        <input id="title" name="title" type="text" value="{$list.title}" class="required mandatory" ><br>
+					<label class="msg_name" style="color: red;">{$title_no}</label>
+                    </div><!-- end .row -->
+					<div class="row steplink" style="display:none;">
+                        <label for="url">Url<br></label>
+                        <input id="url" name="url" type="text" value="{$list.link}" class="required mandatory" ><br>
+						<label class="msg_name" style="color: red;">{$url_no}</label>
+                    </div><!-- end .row -->
+					 <div class="row" >
+                        <label for="url">Source<br></label>
+                        <input id="url" name="source" type="text" value="{$list.caption}" class="required mandatory" ><br>
+						<label class="msg_name" style="color: red;">{$url_no}</label>
+                    </div><!-- end .row -->
+					<div class="row">
+                        <label for="url">Images<br></label>
+							{if $list.images} <img src="{$basedomainpath}public_assets/banner/{$list.images}"  width="100" height="100"/> <br> {/if}
+                        <input id="imgnews" name="imgnews" type="file" class="required mandatory url" ><br>
+						
+						<label class="msg_name imgnews_no" style="color: red;">{$url_no}</label>
+						<div class="row">
+							<label class="vifotonews"> </label>
+						</div>
+                    </div><!-- end .row -->
+					{*}<div class="row">
+					<label for="Date">Caption 	:<br><br>*maksimum character 150</label></label>
+					
+					
+                        <textarea style="width: 615px; height: 122px;"   name="caption"  class="required mandatory" >{$list.caption}</textarea><br>
+						<label class="msg_name" style="color: red;">{$Description_no}</label>
+                    </div>{/*}
+					
+                 <div class="row">
+					<label for="Date">Description 	:</label>
+					
+					
+                     
+                    </div>
+					
+                    <div class="row">
+                       
+						<textarea   name="description" class="mandatory textarea2" >{$list.description}</textarea>  
+                     
+						
+                   		 <label class="msg_name" style="color: red;">{$content_no}</label>
+					</div><!-- end .row -->
+                  </section>
+				   <section class="step2" style="display:none;">
+				    <div class="row" >
+                        <label for="url">Url<br></label>
+                        <input id="url" name="urlnews" type="text" value="{$list.link}" class="required mandatory" ><br>
+						<label class="msg_name" style="color: red;">{$url_no}</label>
+                    </div><!-- end .row -->
+					
+					<div class="row">
+                        <label for="Upload">Upload<br></label>
+						{if $list.images} <img src="{$basedomainpath}public_assets/banner/{$list.images}"  width="250" height="100"/> <br> {/if}
+                       <input type="file" name="image_file" id="image_file" /><br>
+					
+					<label class="msg_name" style="color: red;">{$file_no}</label>
+                    </div><!-- end .row -->
+					
+					  <div class="row">
+					  <label class="vifoto"> </label>
+						<label class="msg_name error_foto" style="color: red;">{$error_foto}</label>
+					</div><!-- end .row -->
+				  </section>
+				  
+				  
+                    <input type="hidden" name="submit" value="1">
+                        <input type="submit" value="Save" class="fr button3"  />
+						 <a href="{$basedomain}contentmanagement" class="fr button4">Cancel</a>
+                        <small class="msg">{$status.msgee}</small>
+                        <small class="msg">{$status.msg}</small>
+                    </div><!-- end .row -->
+               
+				
+				
+				
+				 
+				
+				
+            </div><!-- end #wizard -->
+            </form>
+        </div><!-- end .content -->
+    </div><!-- end #container -->
+</div><!-- end #home -->
+{literal}
+
+<script>
+var val=$('.categoryclass').val();
+console.log(val);
+	if(val==3)
+	{
+			
+			$('.step1').hide();
+			$('.steplink').hide();
+			$('.stepimgnews').hide();
+			
+			$('.step2').show();
+	}
+	else if(val==2)
+	{
+			$('.step2').hide();
+			$('.steplink').hide();
+			$('.stepimgnews').show();
+			$('.step1').show();
+			
+			 
+	}else 
+	{
+			$('.step2').hide();
+			$('.step1').show();
+			$('.stepimgnews').hide();
+			$('.steplink').show();
+			
+			 
+			
+	}
+
+$('.categoryclass').on('change', function() {
+	var val=this.value;
+	if(val==3)
+	{
+			
+			$('.step1').hide();
+			$('.steplink').hide();
+			$('.step2').show();
+	}
+	else if(val==2)
+	{
+			$('.step2').hide();
+			$('.steplink').hide();
+			$('.step1').show();
+	}else 
+	{
+			$('.step2').hide();
+			$('.step1').show();
+			$('.steplink').show();
+			
+	}
+	
+});
+$('#image_file').change(function(e)
+	{
+		
+		
+		   
+			   e.preventDefault();
+				
+			    //$(".upload_no").html('');
+				//console.log(this.files[0].type);
+			   if(this.files[0].type=='image/jpeg')
+				{
+					 var reader = new FileReader();
+					 reader.onload = function (ex) {
+						ex.preventDefault();
+					//console.log(ex.target.result);
+						$('.vifoto').html('<img width="250" class="filimg" hegiht="100" src="'+ex.target.result+'"> ');
+					  }
+				  reader.readAsDataURL(this.files[0]);
+				
+				}
+				end;
+		
+	
+	});
+	$('#imgnews').change(function(e)
+	{
+		
+		
+		   
+			   e.preventDefault();
+				
+			    //$(".upload_no").html('');
+				//console.log(this.files[0].type);
+			   if(this.files[0].type=='image/jpeg')
+				{
+					 var reader = new FileReader();
+					 reader.onload = function (ex) {
+						ex.preventDefault();
+					//console.log(ex.target.result);
+						$('.vifotonews').html('<img width="100" class="filimg" hegiht="100" src="'+ex.target.result+'"> ');
+					  }
+				  reader.readAsDataURL(this.files[0]);
+				
+				}
+				end;
+		
+	
+	});
+</script>
+
+
+{/literal}

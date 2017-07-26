@@ -1,0 +1,1468 @@
+/*
+Theme Name:  shinkenjuku
+Version: 1.0
+Author: Febriansyah 2014
+*/
+@import url(http://fonts.googleapis.com/css?family=Montserrat|Droid+Sans|Love+Ya+Like+A+Sister);
+body {
+    color: #0000;
+    font-family: 'Droid Sans', sans-serif;
+    font-size: 13px;
+	background:url(../images/bg-pattern.png) #FFF;
+	margin:0;
+}
+.wrapper {
+    margin: 0 auto;
+    max-width: 1022px;
+	position:relative;
+}
+a {
+    text-decoration: none;
+    transition: all 0.3s ease-in-out 0s;
+	color:#005bad;
+}
+img{
+	border:none;
+}
+h1,h2,h3,h4{
+	margin:0;
+}
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  outline:none;
+}
+.fr{
+	float:right;
+}
+.fl{
+	float:left;
+}
+.col-12{
+	width:100%;
+}
+.col-2{
+	width:50%;
+	float:left;
+}
+.col-3{
+	width:33.33%;
+	float:left;
+}
+.col-8{
+	width:75%;
+	float:left;
+}
+.col-4{
+	width:25%;
+	float:left;
+}
+.col-main{
+	width:72%;
+	float:left;
+	padding:0 0 0 40px;
+}
+.col-center{
+	width:40%;
+	float:left;
+}
+.col-left{
+	width:28%;
+	float:left;
+}
+.col-right{
+	width:32%;
+	float:left;
+}
+/** ========================= HEADER ========================= **/
+#header{
+	width:100%;
+	position:relative;
+	padding:35px 0;
+	font-family: 'Montserrat', sans-serif;
+	font-size:13px;
+}
+.headImage{
+	position:absolute;
+	right:0;
+	top:0;
+	max-width:569px;
+}
+.footerImage{
+	position:absolute;
+	left:-55px;
+	bottom:0;
+	max-width:459px;
+	z-index:-1;
+}
+.footerImage img{
+	width:100%;
+}
+.headImage img{
+	width:100%;
+}
+.logo {
+    float: left;
+    padding: 0;
+}
+.topmenu{
+	position:absolute;
+	top:0;
+	right:0;
+	background:#005bad;
+	padding:5px;
+	border-radius:0 0 5px 5px;
+}
+.topmenu li { list-style:none; display:inline-block; border-right:1px #FFF solid;} 
+.topmenu li:nth-child(3){
+	border:none;
+}
+.topmenu li a { color:#FFF; padding:0 15px;}
+.topmenu li a:hover,.topmenu li.active a{ color:#ee7700;}
+
+.mainMenu{
+	float:right;
+	margin:10px 0 0 0;
+}
+
+#nav ul,.topmenu ul{
+    text-align: center;
+	margin:0;
+	padding:0;
+}
+ol, ul {
+    list-style: none outside none;
+}
+/*style the main menu*/ 
+.menuNav li { list-style:none; display:inline-block;} 
+.menuNav li a:link, .menuNav li a:visited { display:block; text-decoration:none; background-color:#FFF; padding:5px 10px; margin:0; font-size:13px; color:#005bad; border:1px solid #005bad; border-radius:2px;} 
+.menuNav li a:hover,.menuNav li.active a { color:#FFF; background:#ee7700; border:1px solid #ee7700;}
+
+/*style the sub menu*/ 
+.menuNav li ul { position:absolute; visibility:hidden; border:1px solid #005bad; margin:0; padding:0; z-index:1000; } 
+.menuNav  li ul li { display:inline; float:none; text-align:left;} 
+.menuNav li ul li a:link, .menuNav  li ul li a:visited { border:none; color:#005bad;background-color:#FFF; width:150px; font-size:12px; padding:8px;} 
+.menuNav  li ul li a:hover { background-color:#ee7700; color:#FFF;; } 
+/*-----------------------------*/
+
+/*------------mainContent------------*/
+
+.mainContent{
+	clear:both;
+	overflow:hidden;
+	margin-top:65px;
+	padding:0 0 30px 0;
+}
+.mainContent h2{
+	font-family: 'Love Ya Like A Sister', cursive;
+	color:#005bad;
+	margin:0;
+}
+.rows{
+	margin:25px 0;
+	overflow:hidden;
+}
+.newsText a.seeMore{
+	margin:0 0 0 5px;
+}
+a.seeMore{
+	color:#ee7700;
+	text-decoration:underline;
+}
+a.seeMore:hover{
+	color:#005bad;
+}
+.boxContent{
+	clear:both;
+	border:1px solid #cecccb;
+	padding:10px 35px;
+	background:#FFF;
+	border-radius:3px;
+}
+.introText h2{
+	font-size:20px;
+	margin:0 0 10px 0;
+	font-weight:normal;
+}
+.kutip1,.kutip2{
+	background:url(../images/kutip1.png) no-repeat;
+	width:23px;
+	height:14px;
+	display:inline-block;
+}
+.kutip2{
+	background:url(../images/kutip2.png) no-repeat;
+}
+.bigMenu{
+}
+.bigMenu a.firstChild{
+	margin:0;
+}
+.bigMenu a{
+	font-family: 'Love Ya Like A Sister', cursive;
+	font-size:20px;
+	color:#ee7700;
+	width:268px;
+	height:75px;
+	border:2px solid #ee7700;
+	text-align:left;
+	padding:20px 20px 30px 25px;
+	display:block;
+	margin:15px 0 0;
+	border-radius:5px;
+}
+.activeBigMenu a{
+	background-color:#ee7700;
+	background-position:right;
+	font-family: 'Love Ya Like A Sister', cursive;
+	font-size:24px;
+	color:#005bad;
+	width:268px;
+	height:75px;
+	border:2px solid #ee7700;
+	text-align:left;
+	padding:20px 20px 30px 25px;
+	display:block;
+	margin:10px 0 0;
+	border-radius:5px;
+}
+.bigMenu a:hover{
+	background-color:#ee7700;
+	background-position:right;
+	color:#005bad;
+}
+.systemMenu{
+	background:#ffddbb url(../images/menu-system.png) no-repeat right center;
+}
+.sampleBook{
+	background:#ffddbb url(../images/menu-samplebook.png) no-repeat right center;
+}
+.download-form{
+	overflow:hidden;
+	margin:20px 0;
+}
+.downlaodForm{
+	padding:10px 20px;
+	font-family: 'Love Ya Like A Sister', cursive;
+	background:#ee7700;
+	color:#FFF;
+}
+.downlaodForm:hover{
+	background:#005bad;
+}
+.registraionMenu{
+	background:#ffddbb url(../images/menu-regis.png) no-repeat right center;
+}
+.newsHome .boxContent{
+	padding:0;
+}
+.newsHighlights{
+	border-top:5px solid #005bad;
+	background:#f5f4f3;
+	overflow:hidden;
+	min-height:252px;
+}
+.newsHighlights .tittle{
+	padding:10px;
+	position:relative;
+	border-bottom:1px #cecccb solid;
+	background:url(../images/arrow-blue.png) no-repeat 376px center;
+}
+.titleEdu a:hover{
+	text-decoration:underline;
+}
+.newsFlash{
+	padding:11px 10px;
+	border-bottom:1px #cecccb solid;
+	overflow:hidden;
+}
+.newsFlash:last-child{
+	border-bottom:none;
+}
+.newsImage {
+	float: left;
+	max-width: 67px;
+}
+.newsImage img{
+	width:100%
+}
+.newsText {
+    float: left;
+    margin-left: 10px;
+	width:75%;
+	font-size:12px;
+}
+.newsText h4{
+}
+.newsText p{
+	margin:5px 0 0 0;
+}
+.newsText .dateNews{
+	font-size:10px;
+	font-style:italic;
+}
+.our-location{
+	margin:0 0 11px 0;
+}
+.our-location,.downloadBrosur{
+	max-width:310px;
+	float:right;
+	display:block;
+	float:right;
+}
+.readMangaImage img{
+	width:100%;
+}
+.box-form{
+	background: url(../images/contactImage1.png) no-repeat #005bad left top;
+	padding:20px 40px;
+	color:#FFF;
+	position:relative;
+	overflow:hidden;
+	border-radius:3px;
+}
+.box-form-regis{
+	background: url(../images/regis-image.png) no-repeat #ffddbb left top;
+	padding:20px 40px;
+	color:#ee7700;
+	position:relative;
+	overflow:hidden;
+	border-radius:3px;
+}
+.imageForm{
+	background:url(../images/contactImage2.png) no-repeat;
+	display:block;
+	width:93px;
+	height:117px;
+	position:absolute;
+	right:0;
+	bottom:0;
+}
+.box-form h2{
+	color:#FFF;
+	font-size:40px;
+}
+.tittle-regis{
+	text-align:center;
+}
+/*-----form-regis-------*/
+/* form filed */
+.telpInput{
+	width:97% !important;
+}
+.telpRumah{
+	margin-right:15px;
+}
+#sekolah{
+	width:30%;
+}
+.classLabel{
+	width:10%;
+	text-transform:uppercase;
+}
+.kelasInput{
+	margin-left:20px;
+}
+#kelas{
+	width:65%;
+}
+.form-registration {
+    margin-left:auto;
+    margin-right:auto;
+    padding: 25px 15px 25px 10px;
+    color: #ee7700;
+}
+.form-registration label {
+    display: block;
+    margin: 0px;
+}
+.form-registration .iconsTelp {
+	width:5% !important;
+	font-size:24px;
+	line-height:17px;
+}
+.icon-mobile{
+	line-height:15px!important;
+}
+.form-registration label>span {
+    float: left;
+    width: 30%;
+    text-align: left;
+    padding-right: 10px;
+    margin-top: 10px;
+    color: #ee7700;
+	text-transform:uppercase;
+}
+.form-registration input[type="text"], .form-registration input[type="email"], .form-registration textarea,.form-registration select,.form-registration #uploadFile {
+	background:#ee7700;
+	border:none;
+	border-radius:3px;
+    color: #000;
+    height: 30px;
+    margin-bottom: 16px;
+    margin-right: 6px;
+    margin-top: 2px;
+    outline: 0 none;
+    padding: 3px 3px 3px 5px;
+    width: 60%;
+    font-size: 12px;
+    line-height:15px;
+    box-shadow: inset 0px 1px 4px #ECECEC;
+    -moz-box-shadow: inset 0px 1px 4px #ECECEC;
+    -webkit-box-shadow: inset 0px 1px 4px #ECECEC;
+}
+.form-registration input[type="text"]:disabled,.form-registration input[type="email"]:disabled,.form-registration textarea:disabled{
+	background: #feebd8;
+}
+.form-registration textarea{
+    padding: 5px 3px 3px 5px;
+}
+.form-registration textarea{
+    height:100px;
+}
+.form-registration #uploadFile{
+	width:35%;
+	float:left;
+}
+.fileUpload {
+	position: relative;
+	overflow: hidden;
+	margin: 3px 0;
+	float:left;
+}
+.fileUpload input.upload {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 0;
+	padding: 0;
+	font-size: 20px;
+	cursor: pointer;
+	opacity: 0;
+	filter: alpha(opacity=0);
+}
+.uploadFile{
+	background: url(../images/chooseFile.png) no-repeat;
+	width:138px;
+	height:29px;
+	display:block;
+}
+.form-registration textarea#address{
+    height:100px;
+}
+/*.form-field select {
+    background: #ffddbb url('../images/arrow-select.png') no-repeat right;
+    background: #ffddbb url('../images/arrow-select.png') no-repeat right);
+    appearance:none;
+    -webkit-appearance:none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+    width: 60%;
+    height: 35px;
+    line-height: 25px;
+	border:none;
+}*/
+.form-registration select{
+        border: 0 !important;  /*Removes border*/
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        text-overflow:'';
+        padding: 4px 30px 2px 2px;
+        background: #ffddbb url(../images/arrow-select.png) no-repeat 92% center;
+        width: 380px; /*Width of select dropdown to give space for arrow image*/
+        text-indent: 0.01px; /* Removes default arrow from firefox*/
+        text-overflow: "";  /*Removes default arrow from firefox*/ /*My custom style for fonts*/
+        color: #000;
+        font-size:15px;
+        padding: 5px;
+        height:30px;
+		border-radius:3px;
+    }
+    .form-registration select::-ms-expand {
+        display: none;
+    }
+.selectes
+    {
+        padding-left:0px;width:69%;overflow:hidden;border-radius:3px;
+    }
+.button-submit{
+	margin:10px 0;
+}
+.button-submit .submit,a.submit{
+	background:#ee7700;
+	border:none;
+	color:#FFF;
+	padding:5px 25px;
+	border-radius:3px;
+	cursor:pointer;
+	-webkit-appearance:none;
+}
+.button-submit .submit:hover,a.submit:hover{
+	background:#005bad;
+}
+.form-field .tinyText{
+	clear: both;
+	font-size: 12px;
+	margin: -8px 0 15px 0;
+	text-align: right;
+	position: relative;
+	z-index: 1;
+	padding: 0 5px;
+}
+.form-field .bigText{
+	clear: both;
+	font-size: 12px;
+	margin: 5px 10px 0 30%;
+	text-align: right;
+	position: relative;
+	z-index: 1;
+	font-style: italic;
+}
+.form-registration .bigText{
+	clear:both;
+	font-size:12px;
+	font-style:italic;
+	margin:0px 65px 0 30%;
+	text-align:right;
+	position:relative;
+}
+/*---------------------form-------*/
+/* form filed */
+.form-field {
+    margin-left:auto;
+    margin-right:auto;
+    padding: 25px 15px 5px 0px;
+    color: #fff;
+}
+.desc-form{
+	line-height:20px;
+	font-weight:bold;
+}
+.form-field label {
+    display: block;
+    margin: 0px;
+}
+.form-field label>span {
+    float: left;
+    width: 30%;
+    text-align: left;
+    padding-right: 10px;
+    margin-top: 10px;
+    color: #fff;
+}
+.form-field input[type="text"], .form-field input[type="email"], .form-field textarea,.form-field select,.form-field #uploadFile {
+	background:#ffddbb;
+	border:none;
+	border-radius:3px;
+    color: #000;
+    height: 30px;
+    margin-bottom: 16px;
+    margin-right: 6px;
+    margin-top: 2px;
+    outline: 0 none;
+    padding: 3px 3px 3px 5px;
+    width: 69%;
+    font-size: 12px;
+    line-height:15px;
+    box-shadow: inset 0px 1px 4px #ECECEC;
+    -moz-box-shadow: inset 0px 1px 4px #ECECEC;
+    -webkit-box-shadow: inset 0px 1px 4px #ECECEC;
+}
+.form-field input[type="text"]:disabled,.form-field input[type="email"]:disabled,.form-field textarea:disabled{
+	background: #feebd8;
+}
+.form-field textarea{
+    padding: 5px 3px 3px 5px;
+}
+.form-field textarea{
+    height:100px;
+	position:relative;
+	z-index:4;
+}
+.form-field #uploadFile{
+	width:45%;
+	margin-bottom:6px;
+	float:left;
+}
+.fileUpload {
+	position: relative;
+	overflow: hidden;
+	margin: 3px 0;
+	float:left;
+}
+.fileUpload input.upload {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 0;
+	padding: 0;
+	font-size: 20px;
+	cursor: pointer;
+	opacity: 0;
+	filter: alpha(opacity=0);
+}
+.uploadFile{
+	background: url(../images/chooseFile.png) no-repeat;
+	width:138px;
+	height:29px;
+	display:block;
+}
+.form-field textarea#address{
+    height:50px;
+}
+/*.form-field select {
+    background: #ffddbb url('../images/arrow-select.png') no-repeat right;
+    background: #ffddbb url('../images/arrow-select.png') no-repeat right);
+    appearance:none;
+    -webkit-appearance:none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+    width: 60%;
+    height: 35px;
+    line-height: 25px;
+	border:none;
+}*/
+.form-field select{
+        border: 0 !important;  /*Removes border*/
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        text-overflow:'';
+        padding: 4px 30px 2px 2px;
+        background: #ffddbb url(../images/arrow-select.png) no-repeat 92% center;
+        width: 445px; /*Width of select dropdown to give space for arrow image*/
+        text-indent: 0.01px; /* Removes default arrow from firefox*/
+        text-overflow: "";  /*Removes default arrow from firefox*/ /*My custom style for fonts*/
+        color: #000;
+        font-size:15px;
+        padding: 5px;
+        height:30px;
+		border-radius:3px;
+    }
+    .form-field select::-ms-expand {
+        display: none;
+    }
+.selectes
+    {
+        padding-left:0px;width:69%;overflow:hidden;border-radius:3px;
+    }
+.button-submit{
+	margin:10px 0;
+}
+.button-submit .submit{
+	background:#ee7700;
+	border:none;
+	color:#FFF;
+	padding:5px 25px;
+	border-radius:3px;
+	cursor:pointer;
+}
+.button-submit .submit:hover{
+	background:#005bad;
+}
+.form-field .tinyText{
+	clear:both;
+	font-size:12px;
+	margin:-8px 0 0 30%;
+	text-align:right;
+	position:relative;
+	z-index:1;
+}
+.form-field .bigText{
+	clear:both;
+	font-size:12px;
+	margin:5px 10px 0 30%;
+	text-align:right;
+	position:relative;
+	z-index:1;
+	font-style:italic;
+}
+.tittle-page{
+	background:#005bad;
+	padding:10px;
+	border-radius:3px;
+	margin:0 0 10px 0;
+}
+.tittle-page h1{
+	font-size:24px;
+	font-family: 'Love Ya Like A Sister', cursive;
+	color:#FFF;
+	font-weight:normal;
+	text-transform:uppercase;
+}
+.side-nav{
+	border-left:2px solid #005bad;
+	margin-bottom:20px;
+}
+.side-nav ul{
+	margin:0;
+	padding:0;
+}
+.side-nav ul li{
+	padding:5px 10px;
+}
+.side-nav ul li a{
+	font-size:18px;
+	font-family: 'Love Ya Like A Sister', cursive;
+	color:#005bad;
+}
+.side-nav ul li a:hover,
+.side-nav ul li.active a{
+	color:#ee7700;
+}
+.side-nav ul li:hover,
+.side-nav ul li.active{
+	border-left:2px #ee7700 solid;
+}
+.eduTips,.faq-point{
+	padding: 12px 10px;
+	border-bottom: 1px #ee7700 dashed;
+	overflow: hidden;
+}
+.eduTips:last-child,.faq-point:last-child{
+	border-bottom:none;
+}
+.eduThumbnail {
+	float: left;
+	max-width: 145px;
+}
+.eduThumbnail img{
+	width:100%;
+}
+.eduText {
+	float: left;
+	margin-left: 20px;
+	width: 70%;
+	font-size: 12px;
+}
+.eduText h4,
+.faq-point h4{
+	font-size:17px;
+	font-family: 'Love Ya Like A Sister', cursive;
+	color:#005bad;
+}
+.eduText .dateEdu{
+	color:#ee7700;
+}
+.education-detail .dateEdu{
+	color:#005bad;
+}
+.eduText .flashText{
+	font-size:14px;
+}
+.bigThumb{
+	max-width:340px;
+	margin:10px 0;
+	margin:0 auto;
+}
+.bigThumb img{
+	width:100%;
+}
+.paging {
+	clear: both;
+	padding: 20px 0;
+	text-align: right;
+}
+.paging a.current, .paging a:hover {
+	background: #dddbdb;
+}
+.paging a {
+	display: inline-block;
+	background: #f3f3f3;
+	border-radius:3px;
+	width: 45px;
+	height: 30px;
+	line-height: 30px;
+	margin: 0 2px;
+	text-align:center;
+	color: #005bad;
+	cursor:pointer;
+	border:1px solid #cecccb;
+}
+ul.faq-alpha{
+	list-style:lower-alpha outside;
+}
+ul.faq-number{
+	list-style:decimal outside;
+}
+ul.faq-number>li,ul.faq-alpha>li{
+	margin:10px 0;
+}
+ul.faq-dash{
+	list-style:outside circle;
+	margin:0 0 5px 0;
+}
+.archive-nav{
+	margin-bottom:20px;
+}
+.hidden{
+    display:none;
+}
+.submenu ul{
+	margin:0 0 0 10px;
+	padding:0;
+}
+.archiveTittle{
+	cursor:pointer;
+}
+.submenu ul li{
+	font-family: 'Love Ya Like A Sister', cursive;
+	font-size:16px;
+	padding:10px;
+	color:#005bad;
+}
+.submenu ul li span{
+	margin-right:5px;
+}
+.plus {
+    background: url(../images/arrow-down-blue.png) 80px 3px no-repeat;
+    padding: 0 ;
+}
+.minus {
+    background: url(../images/arrow-right-blue.png) 80px 3px no-repeat;
+    padding: 0 ;
+}
+.education-detail .boxContent,
+.newsUpdates-detail .boxContent,
+.location-content .boxContent{
+	background:url(../images/detail-edu.png) no-repeat #FFF left top;
+	overflow:hidden;
+}
+.location-content .boxContent{
+	padding:35px 55px;
+}
+.education-detail p,
+.newsUpdates-detail p{
+	text-align:justify;
+}
+.divBack{
+	width:100%; overflow:hidden; margin:20px 0;
+	text-align:center;
+}
+.divBack h3{
+	font-family: 'Love Ya Like A Sister', cursive;
+	color:#ee7700;
+	font-size:24px;
+}
+.back-bt{
+	background:url(../images/back-bt.png) no-repeat;
+	display:block;
+	width:55px;
+	height:28px;
+	color:#FFF;
+	font-family: 'Love Ya Like A Sister', cursive;
+}
+.back-bt:hover{
+	background:url(../images/back-bt-hover.png) no-repeat;
+}
+/*---------Book kontent--------------*/
+.books-content .col-3,
+.manga-content .col-3{
+	padding:5px;
+}
+.box-books{
+	display: block;
+	padding: 10px;
+	margin-bottom: 20px;
+	line-height: 1.42857143;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	-webkit-transition: all .2s ease-in-out;
+	-o-transition: all .2s ease-in-out;
+	transition: all .2s ease-in-out;
+	min-height:435px;
+}
+.thumb-books{
+	max-width:207px;
+}
+#gallery-albums .thumb-books{
+	max-width: 207px;
+	position: relative;
+	overflow: hidden;
+}
+#gallery-albums .box-books{
+	min-height:350px;
+}
+#gallery-albums .thumb-books img{
+	height:auto;
+}
+.thumb-books a:hover{
+	opacity:0.7;
+}
+.thumb-books img{
+	width:100%
+}
+
+.caption h3{
+	color:#005bad;
+	font-family: 'Love Ya Like A Sister', cursive;
+	font-size:14px;
+}
+.myToggle h3,{
+	color:#FFFS;
+	font-family: 'Love Ya Like A Sister', cursive;
+	font-size:14px;
+}
+.myToggle{
+	background: rgba(0, 0, 0, 0.7);
+	padding:10px;
+	color:#FFF;
+}
+.caption ul{
+	list-style: disc inside;
+	margin:0;
+	padding:10px 0;
+}
+.caption ul li{
+}
+.photosNum{
+	color:#005bad;
+}
+.box-photos{
+	display: block;
+	padding: 10px;
+	margin-bottom: 5px;
+	line-height: 1.42857143;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	-webkit-transition: all .2s ease-in-out;
+	-o-transition: all .2s ease-in-out;
+	transition: all .2s ease-in-out;
+}
+.box-photos:hover{
+	-webkit-box-shadow: 0px 0px 13px 0px rgba(50, 50, 50, 0.75);
+-moz-box-shadow:    0px 0px 13px 0px rgba(50, 50, 50, 0.75);
+box-shadow:         0px 0px 13px 0px rgba(50, 50, 50, 0.75);
+}
+.thumb-photos{
+	width:142px;
+	height:100px;
+	overflow:hidden;
+	position:relative;
+}
+.thumb-photos img{
+	width:100%;
+}
+.photos-content .col-4{
+	padding:5px;
+}
+.photoSLider .flex-control-nav{
+	display:none;
+}
+.video-content-detail{
+	text-align:center;
+	background:#FFF;
+	border-radius:3px;
+	padding:10px;
+}
+#gallery-videos .box-books{
+	min-height:355px;
+}
+/*----------------------------------*/
+/*--------------Books-read------------*/
+.boxContent{
+	position:relative;
+}
+.readBook,.readmanga{
+	background:#004583;
+	padding:15px;
+	border-radius:5px;
+	
+}
+.bb-custom-side{
+	box-shadow:0 0 40px rgba(0,0,0,0.2);
+}
+#Books-read nav,
+#manga-read nav{
+	text-align:center;
+	margin:20px 0 10px 0;
+}
+#Books-read nav a,
+#manga-read nav a{
+	background: none;
+	border: none;
+	border-radius: 3px;
+	color: #004583;
+	cursor: pointer;
+	display: inline-block;
+	height: 85%;
+	line-height: 30px;
+	margin: 0 10px;
+	text-align: center;
+	width: 50%;
+	position: absolute;
+	left: 0;
+	top: 80px;
+	z-index: 100;
+}
+#manga-read nav a.icon-arrow-right:before,
+#Books-read nav a.icon-arrow-right:before {
+	display: block;
+	width: 30px;
+	height: 30px;
+	position: absolute;
+	line-height: 30px;
+	right: 0;
+	top: 50%;
+	font-size: 36px;
+}
+#manga-read nav a.icon-arrow-left:before,
+#Books-read nav a.icon-arrow-left:before {
+	display: block;
+	width: 30px;
+	height: 30px;
+	position: absolute;
+	line-height: 30px;
+	left: -5px;
+	top: 50%;
+	font-size: 36px;
+}
+#bb-nav-prev,#bb-nav-next{
+	padding:0 0 0 8px;
+}
+#manga-read nav a#bb-nav-next,#Books-read nav a#bb-nav-next{
+	left:auto;
+	right:0;
+}
+#Books-read nav a:hover,
+#manga-read nav a:hover{
+	background:none;
+	color: #666;
+}
+#Books-read .paging,
+#manga-read .paging{
+	text-align:center;
+}
+.ket-loc{
+	overflow:hidden;
+	margin-top:20px;
+}
+.locationEmbed{
+	float:left;
+	max-width:200px;
+}
+.locationEmbed img{
+	width:100%;
+}
+.locationDetail-content .locationEmbed{
+	float:none;
+}
+.caption-loc p{
+	
+}
+.locationDetail-content .caption-loc{
+	margin-left:10px;
+}
+.tittle-loc h2{
+	text-transform:uppercase;
+}
+.tittle-loc h2:hover{
+	color:#ee7700;
+	
+}
+p.alamat{
+	background:url(../images/icons/icon-location.png) no-repeat left top;
+	padding:0px 10px 10px 40px;
+}
+p.noTelp{
+	background:url(../images/icons/icon-telp.png) no-repeat left top;
+	padding:0px 10px 10px 40px;
+}
+.caption-loc{
+	float:left;
+	margin-left:50px;
+	padding:5px 0;
+	width:55%;
+}
+.table-jadwal{
+	margin:25px 0 0 0;
+}
+.table-jadwal h2{
+	font-weight:bold;
+	font-size:14px;
+}
+.table-jadwal table{
+	width:100%;
+}
+.table-jadwal table thead tr th {
+	border-top:1px #ee7700 dashed;
+	border-bottom:1px #ee7700 dashed;
+	font-size:16px;
+	color:#ee7700;
+	font-family: 'Love Ya Like A Sister', cursive;
+	text-align:left;
+	padding:10px 0;
+}
+.table-jadwal table tbody tr td{
+	padding:10px 0;
+}
+.infoTable{
+	border-top:1px #ee7700 dashed;
+	text-align:left;
+	font-size:14px;
+}
+
+.infoTable{
+	border-top:1px #ee7700 dashed;
+	text-align:right;
+	font-size:13px;
+}
+
+.textCenter{
+	text-align:center !important;
+}
+/*----aboutUs---------*/
+.banner-aboutUs{
+	max-width:100%;
+	border:4px solid #005bad;
+	border-radius:4px;
+}
+.banner-aboutUs img{
+	width:100%;
+}
+.aboutUs-content .boxContent{
+	overflow:hidden;
+	padding:50px 20px;
+}
+.aboutUs-content #box1,
+.aboutUs-content #box4{
+	background:url(../images/abstrak1.png) no-repeat left top #FFF;
+}
+.aboutUs-content #box2{
+	background:url(../images/abstrak2.png) no-repeat left top #FFF;
+}
+.aboutUs-content #box3{
+	background:url(../images/abstrak3.png) no-repeat left top #FFF;
+}
+.tittle-aboutUs{
+	width:25%;
+	float:left;
+	text-align:right;
+	padding:0;
+}
+.tittle-aboutUs h2{
+	font-size:26px;
+}
+.detail-aboutUs{
+	width:65%;
+	margin:0 0 0 35px;
+	float:left;
+	text-align:left;
+}
+.detail-aboutUs p{
+	margin:0 0 10px 0;
+	line-height:20px;
+}
+.detail-aboutUs h3{
+	font-family: 'Love Ya Like A Sister', cursive;
+	font-size:16px;
+	margin:0 0 15px 0;
+	color:#ee7700;
+}
+.button-link{
+	background: none repeat scroll 0 0 #ee7700;
+    border: medium none;
+    border-radius: 3px;
+    color: #fff;
+    cursor: pointer;
+    padding: 5px 25px;
+	text-align:left;
+}
+.button-link:hover{
+	background:#005bad;
+}
+/*--------system------*/
+.image-system{
+	max-width:100%;
+}
+.image-system img{
+	width:100%;
+}
+.system-content .boxContent{
+	display:table;
+}
+.system-content .rows{
+	position:relative;
+	overflow:inherit;
+	margin-top:40px;
+}
+.tittle-system{
+	position:absolute;
+	left:50%;
+	top:-25px;
+	margin-left:-233px;
+	max-width:332px;
+}
+.system-desc{
+	padding-top:40px;
+}
+.thumb-system{
+	max-width:200px;
+}
+.thumb-system img{
+	width:100%;
+}
+.regulationImage{
+	max-width:100%;
+}
+.regulationImage img{
+	width:100%;
+}
+.caption-system,.thumb-system{
+	padding:0 20px;
+}
+.pAgreement{
+	margin:0 0 10px 0px;
+}
+/*-----------------FOOTER--------------*/
+#footer{
+	clear:both;
+	width:100%;
+	color:#FFF;
+	font-size:11px;
+	background:#1d60a9;
+}
+.footwrap{
+ 	margin: 0 auto;
+	background:url(../images/footer.png) no-repeat right top;
+    max-width: 1022px;
+	position:relative;
+	padding-bottom:40px;
+}
+.footerInfo{
+}
+.adresses{
+	float:right;
+	text-align:right;
+	padding:40px 0 0 0;
+}
+.adresses h3{
+	font-weight:normal;
+}
+.socmedButton{
+	float:left;
+	padding:20px 0;
+}
+.socmedButton a{
+	display:inline-block;
+	width:40px;
+	height:40px;
+}
+.socmedButton a.youtube-bt{
+	background:url(../images/icons/icons-youtube.png) no-repeat;
+}
+.socmedButton a.facebook-bt{
+	background:url(../images/icons/icons-facebook.png) no-repeat;
+}
+.socmedButton a.twitter-bt{
+	background:url(../images/icons/icons-twitter.png) no-repeat;
+}
+.copyright{
+	float:left;
+}
+.noContact{
+	float:right;
+	text-align:right;
+}
+.noContact p{
+	display:inline-block;
+}
+.noContact span{
+	margin-right:10px;
+}
+.webInfo{
+	margin-right:100px;
+}
+.faxInfo{
+	margin-right:100px;
+}
+.lastrow{
+	margin-bottom:0;
+}
+.firstrow{
+	margin-top:0;
+}
+.mobileCopy{
+	display: none !important;
+}
+/*-------------------------------*/
+/*-------mobile Menu ------*/
+.menuMobile{
+	display:none;
+}
+#mobileButton {
+    background: url(../images/buttonMenu.png) no-repeat scroll center center #005bad;
+    height: 70px;
+    width: 70px;
+	position:absolute;
+	right:0;
+	top:30px;
+	border-radius:4px;
+}
+.slideMobile {
+    display: none;
+    list-style: none outside none;
+    position: absolute;
+    right: 70px;
+    text-align: left;
+    top: 13px;
+    width: 190px;
+    z-index: 115;
+}
+.slideMobile li {
+    background: repeat scroll 0 0 rgba(255, 255, 255, 1);
+    border-bottom: 2px solid #005bad;
+    color: #005bad;
+    padding: 15px;
+}
+.slideMobile li a {
+    color: #005bad;
+    font-size: 13px;
+    text-decoration: none;
+}
+#SubMenuProduct li, #subMenuGallery li{
+    padding: 15px 0 15px 25px;
+    text-align: left;
+}
+.curriculum-content{
+	max-width:705px;
+}
+.curriculum-content img{
+	width:100%;
+}
+/*--------------Popup-----------------*/
+/** ========================= POPUP ========================= **/
+.popup{
+	display:none;
+}
+.popup-container{
+	width:330px;
+	position:absolute;
+	top:30%;
+	left:50%;
+	margin:0 0 0 -115px;
+	z-index:100001;
+	border-radius:5px;
+	text-align:center;
+}
+#popup-bg{
+	background:url(../images/bg-pattern.png) #FFF;
+}
+#popup-bg h3{
+	font-size:24px;
+	color:#005bad;
+	margin: 0;
+	font-family: 'Love Ya Like A Sister', cursive;
+}
+#popup-bg p{
+	font-size:13px;
+	color:#000;
+}
+#bg-popup{
+	background:url(../images/tr2.png) repeat;
+	width:100%; height:100%;
+	left:0; top:0;
+	position:fixed;
+	z-index:100000;
+	display:none;
+}
+.closePopup{
+	display:block;
+	text-decoration:none;
+	position:absolute;
+	color:#FFF;
+	line-height:24px;
+	font-size:18px;
+	background: #005bad;
+	border-radius:100px;
+	width:25px; height:25px;
+}
+.popup .closePopup{
+	right: -10px;
+    top: -10px;
+}
+.closePopup:hover{
+}
+.popup-body{
+	width:100%;
+	min-height:510px;
+	overflow:hidden;
+}
+.popup-content h3{
+	font-size:16px;
+}
+.popup-content{
+	padding:20px 0;
+	color:#5f5c5c;
+}
+
+/*------------------------*/
+.detail-aboutUs ul{
+	list-style:disc outside;
+	margin:0 0 20px 20px;
+	padding:0;
+}
+.detail-aboutUs ul li{
+	margin:10px 0;
+	line-height:20px;
+}
+.misionUl{
+	margin-bottom:0 !important;
+}
+.error-msg{
+	color:red;
+	clear:both;
+	text-align:left;
+	font-size:11px;
+	padding:0 0 0 30%;
+	margin:-10px 0 10px 0 !important;
+}
+.telpHandphone .error-msg,.telpRumah .error-msg{
+	padding:0;
+}
+.misi{
+	margin-bottom:0 !important;
+	margin-top:30px !important;
+}
+.headJapan{
+	margin:25px 0 2px 0 !important;
+}
+.relugationText table td{
+	padding:15px;
+	width:auto !important;
+}
+.relugationText ul{
+	list-style:disc;
+}
+.relugationText ol{
+	list-style:decimal;
+}
+.relugationText table td p{
+	margin:0;
+}
+.detail-edu{
+	clear:both;
+	margin:0 0 25px 0;
+}
+.detail-edu ul{
+	list-style:outside disc;
+}
+.detail-edu ol{
+	list-style:outside decimal;
+}
+.newsUpdates-detail .dateEdu{
+	font-family: 'Love Ya Like A Sister', cursive;
+	color:#005bad;
+	margin:10px 0;
+}
+.registration{
+	display:none !important;
+}

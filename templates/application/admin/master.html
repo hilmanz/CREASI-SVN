@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+{$meta}
+<body>
+  <div id="body">
+    <div id="page">
+      {if $pages != 'login' && $pages != 'logout'}
+      <div id="sidebar">
+        <div id="navbar">
+            <ul>
+			<li class="adminList"><a class="adminmenu"  id="adminmenu"><span> MENU</span></a></li>
+            
+           <div class="subadmin1">
+   <li><a class="{if $pages == 'information'}active{/if}" href="{$basedomain}information"><span>Announcement  </span></a></li>
+           {if $menus}
+				{section name=imn loop=$menus}   
+					
+					{if $menus[imn].id!=7 && $menus[imn].id!=8 && $menus[imn].id!=9}
+						<li><a class="{if $pages ==$menus[imn].module }active{/if}" href="{$basedomain}{$menus[imn].module}" ><span>{$menus[imn].name_menu} </span></a></li>
+						{/if}
+                        
+					
+				{/section}
+                
+			{/if}
+			</div>
+			{if $menus}
+				<li class="adminList"><a class="adminmenu2"  id="adminmenu2"><span> ADMIN </span></a></li>
+				<div class="subadmin2">
+				{section name=imna loop=$menus}   
+					
+					{if $menus[imna].id==7 || $menus[imna].id==8 || $menus[imna].id==9}
+						<li><a class="{if $pages ==$menus[imna].module }active{/if}" href="{$basedomain}{$menus[imna].module}" ><span>{$menus[imna].name_menu} </span>{if $menus[imna].id==9}<span class="notifRound">{$countnotif} </span>{/if}</a></li>
+						{/if}
+					
+				{/section}
+				
+				{if $user->type ==9}
+					
+						<li><a class="{if $pages =='adminmanagement' }active{/if}" href="{$basedomain}adminmanagement" ><span>User Admin Setting </span></a></li>
+					{/if}
+                </div>
+				
+			{/if}
+              </ul>
+          </div>
+      </div><!-- end #sidebar -->
+		  {$header}
+      {/if}
+        <div id="thecontent">
+             {$mainContent}
+        </div><!-- /#thecontent -->
+        
+        
+		<script type="text/javascript">
+			$('.admin').hide();
+		</script>
+		  {$footer}
+    </div><!-- end #page -->
+  </div><!-- end #body -->    
+</body>
+</html>

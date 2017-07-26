@@ -1,0 +1,90 @@
+<div class="page_section" id="jobBoard">
+    <div id="metapage">
+        <div class="wrapper">
+            <h1 class="page-title fl">Detail Board</h1>
+            <div class="breadcumb fr">
+                <a href="index.php">Home</a> <span>/</span> <a>Job Board</a>
+            </div>
+        </div><!-- end .wrapper -->   
+    </div><!-- end #metapage -->
+    <div id="jobBoardList" class="section"> 
+        <div class="wrapper">
+        	
+        	<div class="cols">
+            	
+                <div class="job-list">
+                    <div class="rowjob">
+                      
+					{if $load}
+					     {section name=i loop=$load}
+                        <div class="boximg">
+						{if $load[i].file != ''}
+                            <a href="index.php?page=job-detail" class="thumbbox"><img src="{$basedomain}public_assets/postjob/{$load[i].file}" height="200px" width="200px"/></a>
+						{else}
+								<a href="index.php?page=job-detail" class="thumbbox"><img src="{$basedomain}public_assets/postjob/images.jpg"   height="200px" width="200px" /></a>
+						{/if}
+                            <!-- <div class="caption">
+                                <i>No. of shares : {$load[i].job_title}</i>
+                                <i>No. of likes: {$load[i].job_title}</i>
+                            </div>     -->
+                        </div><!-- end .boximg -->    
+                        <div class="entry">
+                            <h3><a href="index.php?page=job-detail">{$load[i].job_title}</a></h3>
+                            <div class="meta-post">
+                                <a href="#" class="company-name"><i class="icon-suitcase">&nbsp;</i>{$load[i].nama_perusahaan}</a>
+                                <a href="#" class="company-status"><i class="icon-check-circle">&nbsp;</i> Verified</a>
+                                <a href="#" class="location-name"/><i class="icon-map-marker">&nbsp;</i> {$load[i].provinsi}, {$load[i].city}</a>
+				<a href="{$basedomain}share/twitterShare/jobs/{$load[i].id}/jobboard/detail_jobboard" class="location-name" target="_blank"/><i class="glyphicon icon-log-out">&nbsp;</i> twitter share</a>
+                            </div>
+                            <p align='justify'>{$load[i].job_description}</p>
+                        </div><!-- end .entry -->  
+                        <div class="jobInfo">
+                            <a class="label bggreen submitjobs" id="submitjobs" href="#"> SUBMIT JOBS</a>
+                            <div class="countdown-job">
+                                <h4><b>{$load[i].hari}</b></h4>
+                                <span>DAYS LEFT TO APPLY</span>
+                            </div>
+                            <span class="applicantsNo">No. of Applicants: {$countmyapp}</span>
+                        </div><!-- end .jobInfo -->   
+						{/section}
+					{/if}
+                    </div><!-- end .rowjob -->  
+                    
+                </div><!-- end .job-list -->
+                
+            </div><!-- end .col-content -->   
+        </div><!-- end .wrapper -->    
+    </div><!-- end #jobBoardList --> 
+</div><!-- end #jobBoard -->
+<script>
+var iduser='{$iduser}';
+var id_job='{$idjob}';
+{literal}
+  $(document).ready(function(){
+                $('#submitjobs').click(function(e){
+				$(this).val();
+                    e.preventDefault();
+                    $.ajax({
+                        'type': 'POST',
+                        'url': basedomain+'jobboard/postapllication',
+                        'data': {'iduse':iduser,'idjob':id_job},
+						'dataType':'json',
+                        'success': function(result){
+								if(result.status==0)
+								{
+								alert('Anda Harus Login Terlebih Dahulu.');
+								}
+								else if(result.status==1)
+								{
+								alert('Success Submit CV');
+								}
+								else if(result.status==2)
+								{
+								alert('Data Anda Sudah Ada !');
+								}
+						}
+						});
+					});
+				});
+{/literal}						
+</script>

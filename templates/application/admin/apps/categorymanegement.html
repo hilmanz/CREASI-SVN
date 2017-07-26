@@ -1,0 +1,198 @@
+<div class="page_section" id="project-page">
+    <div id="container">
+        <div class="titlebox">
+            <h2 class="fl"><span class="icon-newspaper">&nbsp;</span> Category Management</h2>
+               <h2 class="fr"><a href="{$basedomain}categorymanagemant/addcategory" class="button2">Add New Category</a></h2>
+        </div><!-- end .titlebox -->
+        <div class="content">
+        	<div class="summary">
+       		
+            </div><!-- end .summary -->
+			<table cellpadding="0" cellspacing="0" border="0">
+			<thead>
+				<tr>
+					<th class="head0">No</th>
+					<th class="head0">Category</th> 
+					<th class="head0">Sub-Category</th> 
+					<th class="head0">Action</th> 
+				</tr>
+			</thead>
+			<tbody class="pagilist">
+			{if $list}
+				{section name=i loop=$list}    
+                    <tr>
+					
+						<td  >{$list[i].no}</td>
+						<td ><span>{$list[i].category_name}</span></td> 
+						<td >
+						{if $list}
+                        
+                        	<ul class="cat-list">
+							{section name=j loop=$list[i].subcategory}
+                            	
+                            	<li>
+								{$list[i].subcategory[j].name_subcategory}( <a href="{$basedomain}categorymanagemant/editsubcategory?id={$list[i].subcategory[j].id}" class="refLink"> edit </a> | <a href="{$basedomain}categorymanagemant/delsubcategory?idsub={$list[i].subcategory[j].id}" class="refLink"> Delete </a> )
+                                </li>
+                            
+							{/section}
+                            </ul>	
+						{/if}
+						<br>
+						<a href="{$basedomain}categorymanagemant/addsubcategory?id={$list[i].id}" class="refLink">+ Add Subcategory</a>
+						</td> 
+						
+						
+						<td  >	
+
+							<a href="{$basedomain}categorymanagemant/editscategory?id={$list[i].id}" class="button"><span class="icon-pencil">&nbsp;</span> Edit</a>
+
+						
+							<!-- 	<a href="{$basedomain}news/editnews?id={$list[i].id_news}" class="button"><span class="icon-pencil">&nbsp;</span> Edit</a>
+							 -->
+                        	
+                        	<a href="{$basedomain}categorymanagemant/delcategory?idcat={$list[i].id}" class="button " data-id="{$list[i].id}" ><span class="icon-trash">&nbsp;</span> Delete</a>
+                        	
+                        </td>
+					</tr>
+                {/section}
+			{/if}
+					
+			</tbody>
+			</table>
+            <div id="paging_of_category" class="paging">
+             
+            </div>
+        </div><!-- end .content -->
+    </div><!-- end #container -->
+</div><!-- end #home -->
+
+<script type="text/javascript">
+
+	getpaging(0,{$total},"paging_of_category","paging_ajax_category",10);
+	var userid = {$user->id};
+	var total='{$total}';
+	{literal}
+	$(document).ready(function(){
+		verified();
+		delct();
+	});
+	function delct()
+	{
+		$('.delct').click(function()
+		{
+			var idCt =$(this).data('id');
+			thiss=$(this);
+				$.ajax({
+								'type': 'POST',
+								'url': basedomain+'categorymanagemant/delcategory',
+								'data': {id:idCt},
+								'dataType':'json',
+								'success': function(response){
+									if(response.status==1)
+									{
+										console.log(thiss.parents('tr').remove());
+									}
+								}
+								
+							});
+			
+		
+		});
+	}
+	function verified()
+	{
+		$('.verified').click(function()
+		{
+			var idCt =$(this).data('id');
+			thiss=$(this);
+			var verified= $(this).attr('data-status');
+			if(verified==1)
+				{
+					status=0;
+				}
+			else
+				{
+					status=1;
+				}
+				$.ajax({
+								'type': 'POST',
+								'url': basedomain+'companymanegement/verified',
+								'data': {id:idCt,verified:status},
+								'dataType':'json',
+								'success': function(response){
+									if(response.status==1)
+									{
+										//console.log(thiss.parents('tr').remove());
+										if(verified==1)
+										{
+											console.log(verified);
+											thiss.removeAttr('data-status');
+											thiss.attr('data-status','0');
+											thiss.removeClass('button2');
+											thiss.addClass('button');
+										}
+										else
+										{
+											console.log('ss'+verified);
+											thiss.removeAttr('data-status');
+											thiss.attr('data-status','1');
+											thiss.removeClass('button');
+											thiss.addClass('button2');
+										}
+									}
+								}
+								
+							});
+			
+		
+		});
+	}
+	function paging_ajax_category(fungsi,start){ 
+
+			
+			$.post(basedomain+"categorymanagemant/main",{start:start,ajax:1},function(response){
+				if(response){
+					  if(response.status==1){
+				var no = start+1;
+				var str="";
+				$.each(response.result,function(k,v){  
+				
+				
+					str+='<tr>'+
+				   '<td  >'+no+'</td>'+
+						'<td ><span>'+v.category_name+'</span></td> '+
+						'<td > ';
+						
+						if(v.subcategory)
+						{	str +='<ul class="cat-list">';
+							$.each(v.subcategory,function(ksub,vsub){
+							
+								str +='<li>'+vsub.name_subcategory+''+
+									'( <a href="'+basedomain+'categorymanagemant/editsubcategory?id='+vsub.id+'"> edit </a> |'+
+									'<a href="'+basedomain+'categorymanagemant/delsubcategory?idsub='+vsub.id+'"> Delete </a> )</li>';
+							
+							});
+						}str +='</ul>';
+						str +='<br>'+
+						'<a href="'+basedomain+'categorymanagemant/addsubcategory?id='+v.id+'" class="refLink">+ Add Subcategory</a>'+
+						'</td>'+
+						'<td  >'+	
+							'<a href="'+basedomain+'categorymanagemant/editscategory?id='+v.id+'" class="button"><span class="icon-pencil">&nbsp;</span> Edit</a>'+ 
+							'<a href="'+basedomain+'categorymanagemant/delcategory?idcat='+v.id+'" class="button delct" data-id="'+v.id+'" ><span class="icon-trash">&nbsp;</span> Delete</a>'+
+						 '</td>'+
+					'</tr>';
+					no++;
+				});
+				$('.pagilist').html(str);
+				verified();
+				delct();
+				
+			}else{
+			   $('.pagilist').html('<tr><td colspan="5"> No Data</td></tr>');
+			 
+			}
+				}
+			},"JSON");
+	}
+{/literal}
+</script>
